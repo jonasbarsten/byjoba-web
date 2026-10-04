@@ -621,16 +621,17 @@
     {"date":"2013-06-26","venue":"Vestfoldfestspillene, Støperiet","place":"Tønsberg","note":"premiere"}
   ],
   "sund-turneen-2008": [
-    {"date":"2008-04","place":"Bjugn"},
-    {"date":"2008-04","venue":"Buskerud folkehøgskole","place":"Darbu"},
+    {"date":"2008-04-07","venue":"Kulturhuset","place":"Bjugn"},
     {"date":"2008-04-05","venue":"Bankkafeen","place":"Lillehammer"},
-    {"date":"2008","place":"Oslo"},
-    {"date":"2008","place":"Haugesund"},
-    {"date":"2008","place":"Stord"},
-    {"date":"2008","place":"Bergen"},
-    {"date":"2008","place":"Volda"},
-    {"date":"2008","place":"Ålesund"},
-    {"date":"2008-03-27","venue":"Nattergalen","place":"Trondheim"}
+    {"date":"2008-04-04","venue":"Buskerud folkehøgskole"},
+    {"date":"2008-04-03","venue":"Fabrikken","place":"Oslo"},
+    {"date":"2008-04-01","venue":"To Glass","place":"Haugesund"},
+    {"date":"2008-03-31","venue":"Stord vidaregåande skule","place":"Stord"},
+    {"date":"2008-03-30","venue":"Evans jazzklubb","place":"Bergen"},
+    {"date":"2008-03-29","venue":"Fana folkehøgskule"},
+    {"date":"2008-03-27","venue":"Rokken","place":"Volda"},
+    {"date":"2008-03-26","venue":"Teatercafeen","place":"Ålesund"},
+    {"date":"2008-03-25","venue":"Nattergalen","place":"Trondheim"}
   ],
   "chiwahwah": [
     {"date":"2009-07-25","place":"Mandal"},
