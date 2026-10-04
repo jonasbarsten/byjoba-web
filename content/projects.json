@@ -213,7 +213,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "Singer and songwriter from Geilo, who sings in the Hallingdal dialect. In 2015 and 2016, and again from 2022. Concerts include VG-lista at Rådhusplassen in Oslo in 2015 and Rockefeller in 2016.",
+      "about": "Singer and songwriter from Geilo, who sings in the Hallingdal dialect. In 2015 and 2016, and again from 2021. Concerts include VG-lista at Rådhusplassen in Oslo in 2015, Rockefeller in 2016, and a tour in 2021 that ended at Byscenen in Trondheim.",
       "media": [{ "label": "VG-lista Topp 20 at Rådhusplassen, 2015 (the full broadcast)", "url": "https://tv.nrk.no/serie/vg-lista-topp-20-tv/sesong/2015/episode/MYNT18000215" }],
       "years": "2015–"
     },
@@ -225,7 +225,7 @@
       "category": "music",
       "status": "active",
       "summary": "Composer, producer and drummer.",
-      "about": "Vocalist, composer and keyboard player who makes electronic pop and composes for the performing arts. From 2016 to 2019, and again from 2022. Concerts include a tour of Latin America in 2016 (Lima, Montevideo, São Paulo and Buenos Aires), Henie Onstad Kunstsenter in 2016, Madrid in 2019, Berlin in 2023 and 2024, and a school tour in 2025.",
+      "about": "Vocalist, composer and keyboard player who makes electronic pop and composes for the performing arts. From 2016 to 2019, and again from 2022. Concerts include school tours in 2016, 2018, 2022, 2023 and 2025, a tour of Latin America in 2016 (Lima, Montevideo, Buenos Aires and São Paulo), Henie Onstad Kunstsenter in 2016, Madrid in 2019 and Berlin in 2024.",
       "media": [{ "label": "Bling Bling Bling, live at Henie Onstad Kunstsenter, 2016", "url": "https://www.youtube.com/watch?v=eF02946O6hc" }],
       "years": "2016–",
       "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598", "cover": "/covers/burning-love.jpg" }]
@@ -284,7 +284,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Live project, played at Øyafestivalen and at Parkteatret in Oslo.",
+      "summary": "Drummer. Concerts at Øyafestivalen and at Parkteatret in Oslo.",
       "years": "2022–2023"
     },
     {
@@ -344,7 +344,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer.",
+      "summary": "Drummer in a trio.",
       "about": "Concerts include Spot Festival in Aarhus in 2022.",
       "years": "2022"
     },
@@ -368,7 +368,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Guitarist, singer and songwriter from Bærum. Concerts include Copenhagen and Aarhus in 2015, Øyafestivalen, Reeperbahn Festival and Spellemann in 2019, the live album recording at Oslo Konserthus in 2019, and Nidarosdomen in 2023.",
+      "about": "Guitarist, singer and songwriter from Bærum. Concerts include Copenhagen and Aarhus in 2015, Øyafestivalen and Spellemann in 2019, the live album recording at Oslo Konserthus in 2019, and Nidarosdomen in 2023.",
       "years": "2015–2023",
       "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391", "cover": "/covers/leave-me-to-the-moon.jpg" }],
       "media": [
@@ -537,7 +537,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Co-creator and performer in a stage production of music, dance, poetry and visual art, made over two months in Zimbabwe.",
+      "summary": "Co-creator and performer in a stage production of music, dance, poetry and visual art, made in Zimbabwe.",
       "about": "Made by fifteen artists from several countries as The Woodlands Project, produced by Shi Pratt and Kyrre Heldal Karlsen, and first performed at Reps Theatre in Harare on 29 April 2015, during the Harare International Festival of the Arts. Supported by Arts Council Norway, the Fund for Performing Artists and the Norwegian Ministry of Foreign Affairs.",
       "links": [{ "label": "entry at Sceneweb", "url": "https://sceneweb.no/en/production/49693/Woodlands" }],
       "years": "2015"
@@ -680,7 +680,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts.",
+      "summary": "Stand-in drummer. Concerts include P3aksjonen in Trondheim and P3 Julekonsert at Sentrum Scene.",
       "years": "2018"
     },
     {
@@ -713,7 +713,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts in Norway and Scotland.",
+      "summary": "Drummer. Concerts in Norway, and at Celtic Connections in Glasgow.",
       "years": "2018–2019"
     },
     {
@@ -724,7 +724,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them by:Larm and Månefestivalen.",
+      "summary": "Drummer, with sample pad and backing tracks. Concerts include by:Larm, Trondheim Calling and Månefestivalen.",
       "years": "2017–2019"
     },
     {
@@ -743,7 +743,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Det Norske Teatret, Varangerfestivalen and an autumn tour.",
+      "summary": "Stand-in drummer. Concerts include Det Norske Teatret, Varangerfestivalen and an autumn tour.",
       "about": "Songwriter and artist from Oslo.",
       "years": "2016–2017"
     },
@@ -777,8 +777,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "A project by Erland Dahlen, Hallvard Wennersberg Hagen and Bjørn Charles Dreyer, built on the sound of the Westamaran catamarans made in Mandal. Concerts include Slovakia and Mandal in 2015.",
-      "years": "2015–2016"
+      "about": "A project by Erland Dahlen, Hallvard Wennersberg Hagen and Bjørn Charles Dreyer, built on the sound of the Westamaran catamarans made in Mandal. Concerts include Košice in Slovakia and Mandal Jazzfestival in 2015, a tour of Northern Norway in 2016 and a school tour in Vest-Agder in 2017.",
+      "years": "2015–2017"
     },
     {
       "id": "rydin",
@@ -799,7 +799,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Concerts at Dramatikkens Hus in Oslo.",
+      "summary": "Percussion in a three-day workshop for the musical Sukker at Dramatikkens hus in Oslo.",
       "years": "2014"
     },
     {
@@ -809,7 +809,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts.",
+      "summary": "Drummer in his live band.",
       "about": "Singer and songwriter from Oslo, and a member of Atlanter. The concerts followed his album Opsi.",
       "years": "2019"
     },
@@ -820,7 +820,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts.",
+      "summary": "Drummer.",
       "about": "Vaarin is the artist name of Vårin Strand, a singer and songwriter from Hokksund.",
       "years": "2024–2025"
     },
@@ -832,7 +832,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Øyanatt, and work on the backing tracks.",
+      "summary": "Drummer. Concerts at Øyanatt and Salt in Oslo, and work on the backing tracks.",
       "years": "2023"
     },
     {
