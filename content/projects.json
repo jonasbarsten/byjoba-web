@@ -16,6 +16,7 @@
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "sections": [
         { "title": "Apps and services", "category": "apps" },
+        { "title": "Ableton Live extensions", "category": "live-extensions" },
         { "title": "Music tools", "category": "music-tools" },
         { "title": "Hardware", "category": "hardware" }
       ]
@@ -113,13 +114,51 @@
       "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB."
     },
     {
-      "id": "live-extensions",
-      "name": "Ableton Live extensions",
+      "id": "create-x-tracks",
+      "name": "Create X Tracks",
       "site": "byjoba.com",
-      "category": "music-tools",
+      "category": "live-extensions",
       "status": "active",
-      "summary": "Small extensions for Live: batch track creation, track export, and clip upload to Dropbox and Samply.",
-      "years": "2026",
+      "summary": "Creates a batch of audio or MIDI tracks for multitrack recording, with inputs and outputs routed in sequence to the audio interface.",
+      "about": "Mono or stereo, with an optional name prefix. A review step shows each track's channels before anything is created.",
+      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
+    },
+    {
+      "id": "track-export",
+      "name": "Track Export",
+      "site": "byjoba.com",
+      "category": "live-extensions",
+      "status": "active",
+      "summary": "Saves the selected Arrangement tracks as a new Live Set in the same project folder, leaving the original untouched.",
+      "about": "Needs the byJoBa Live Extension Helper, a menu-bar app for macOS that does the file work an extension is not allowed to do.",
+      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
+    },
+    {
+      "id": "upload-to-dropbox",
+      "name": "Upload to Dropbox",
+      "site": "byjoba.com",
+      "category": "live-extensions",
+      "status": "active",
+      "summary": "Uploads an audio clip from the Arrangement to a Dropbox folder.",
+      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
+    },
+    {
+      "id": "upload-to-samply",
+      "name": "Upload to Samply",
+      "site": "byjoba.com",
+      "category": "live-extensions",
+      "status": "active",
+      "summary": "Renders an audio clip from the Arrangement and uploads it to a Samply project.",
+      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
+    },
+    {
+      "id": "set-location",
+      "name": "Set Location",
+      "site": "byjoba.com",
+      "category": "live-extensions",
+      "status": "active",
+      "summary": "Shows the file path of the Live Set that is open.",
+      "about": "Needs the byJoBa Live Extension Helper.",
       "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
     },
     {
