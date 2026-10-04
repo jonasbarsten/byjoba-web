@@ -89,7 +89,8 @@
       "site": "byjoba.com",
       "category": "apps",
       "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
-      "status": "wip"
+      "status": "wip",
+      "links": [{ "label": "site", "url": "https://suril.ai" }]
     },
     {
       "id": "huba",
