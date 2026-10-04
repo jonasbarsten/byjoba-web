@@ -429,8 +429,9 @@
       "site": "jonasbarsten.com",
       "category": "commissioned",
       "status": "one-off",
-      "summary": "Standalone sampler app built in Max.",
-      "years": "2021"
+      "summary": "The mixer for the children's music project Meg og kammeraten min: change the balance between the instruments and record your own vocals.",
+      "about": "First built as a standalone app in Max in 2021, later as a mixer that runs in the browser.",
+      "links": [{ "label": "site", "url": "https://megogkammeratenmin.no/mix" }]
     },
     {
       "id": "artist-websites",
