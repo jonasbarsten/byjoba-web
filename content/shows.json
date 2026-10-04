@@ -510,6 +510,16 @@
     {"date":"2014-01-29","venue":"Parkteatret","place":"Oslo"},
     {"date":"2013-05-30","venue":"Onda","place":"Aker Brygge, Oslo"}
   ],
+  "chiwahwah": [
+    {"date":"2009-07-25","place":"Mandal"},
+    {"date":"2009-07-07","place":"Mandal"},
+    {"date":"2009-07-04","venue":"Ravnedalen","place":"Kristiansand"},
+    {"date":"2009-06-27","place":"Mandal"},
+    {"date":"2009-06-20","venue":"Frihavnsdagen"},
+    {"date":"2009-06-13"},
+    {"date":"2009-05-01","venue":"Arbeideren"},
+    {"date":"2009-04-25","venue":"Herlig Land"}
+  ],
   "mads-with-band": [
     {"date":"2010-10","venue":"Roskilde Cafe","place":"Roskilde"},
     {"date":"2010-10","place":"Christiania, Copenhagen"},
@@ -556,6 +566,7 @@
     {"date":"2011-08-12","venue":"Øyafestivalen","place":"Oslo"}
   ],
   "froy-aagre": [
+    {"date":"2012-10-29","venue":"The Norwegian embassy","place":"New Delhi","note":"Rikskonsertene tour of India"},
     {"date":"2013-10-12","venue":"Dølajazz","place":"Lillehammer"},
     {"date":"2013-08-18","venue":"Melafestivalen","place":"Oslo"},
     {"date":"2013-08-14","venue":"Oslo Jazzfestival, Herr Nilsen","place":"Oslo","review":{"label":"Martins musikkblogg","url":"https://www.martinsmusikkblogg.com/froy-aagre-electric-oslo-jazzfestival-2013/"}},
@@ -612,6 +623,8 @@
     {"date":"2013-02-14","venue":"by:Larm, Mono","place":"Oslo"},
     {"date":"2012-08-07","venue":"Klubbøya","place":"Oslo"},
     {"date":"2012-07-20","venue":"Slottsfjell","place":"Tønsberg"},
+    {"date":"2012-05-03","venue":"Blå","place":"Oslo"},
+    {"date":"2011-10-11","venue":"Zoom, Mono","place":"Oslo"},
     {"date":"2012-06","venue":"Hovefestivalen","place":"Arendal"}
   ],
   "gundelach": [
