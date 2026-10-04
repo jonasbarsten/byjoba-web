@@ -273,7 +273,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Musical director and drummer."
+      "summary": "Musical director and drummer.",
+      "about": "From around 2018 to 2021, with single shows after that.",
+      "years": "2018–2021"
     },
     {
       "id": "sei-selina",
@@ -281,7 +283,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Musical director and drummer."
+      "summary": "Musical director and drummer.",
+      "about": "From 2022 to 2023, with single shows after that.",
+      "years": "2022–2023"
     },
     {
       "id": "fay-wildhagen",
