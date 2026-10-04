@@ -133,7 +133,7 @@
     {"date":"2023-11-23","venue":"Mir","place":"Oslo"},
     {"date":"2023-10-27","note":"release party"},
     {"date":"2022-05-30","venue":"Norsk Litteraturfestival","place":"Lillehammer"},
-    {"date":"2022-04-28","note":"conference"},
+    {"date":"2022-04-28","venue":"Riksteatret","place":"Oslo","note":"conference"},
     {"date":"2022-03-28","venue":"Rud vgs","place":"Rud","note":"school tour"},
     {"date":"2022-03-25","venue":"Nannestad vgs","place":"Nannestad","note":"school tour"},
     {"date":"2022-03-24","venue":"Nannestad vgs","place":"Nannestad","note":"school tour"},
@@ -145,10 +145,10 @@
     {"date":"2019-10-03","venue":"Espacio Fundación Telefónica","place":"Madrid"},
     {"date":"2019-10-02","venue":"Brenner (NRK)","place":"Oslo"},
     {"date":"2019-06-11","venue":"Heddadagene","place":"Oslo"},
-    {"date":"2019-05-10"},
-    {"date":"2019-05-09"},
-    {"date":"2019-05-03"},
-    {"date":"2019-05-02"},
+    {"date":"2019-05-10","venue":"Landmark","place":"Bergen"},
+    {"date":"2019-05-09","place":"Oslo"},
+    {"date":"2019-05-03","place":"Stavanger"},
+    {"date":"2019-05-02","place":"Oslo","note":"prison concert"},
     {"date":"2018-11-30","place":"Drammen"},
     {"date":"2018-11-16","venue":"Bortenfor"},
     {"date":"2018-06-02","place":"Bergen"},
@@ -330,11 +330,11 @@
   "matoma": [
     {"date":"2024-06-21","venue":"VG-lista"},
     {"date":"2019-08-30","venue":"Festningen","place":"Trondheim","review":{"label":"Adresseavisen","url":"https://trdby.adressa.no/kultur/i/qWO67z/anmeldelse-kveldens-beste-vorspiel"}},
-    {"date":"2019-08-16","place":"Harstad"},
+    {"date":"2019-08-16","venue":"Bakgården","place":"Harstad"},
     {"date":"2019-07-27","venue":"Opptur","place":"Bodø","review":{"label":"Bodø Nu","url":"https://www.bodonu.no/matoma-leverer-et-helt-gjennomsnittlig-show-men-vinner-pa-avslutningen/g/25-159-30864"}},
     {"date":"2019-07-13","venue":"Stavernfestivalen","place":"Stavern"},
     {"date":"2019-07-12","venue":"Tysnesfest","place":"Tysnes"},
-    {"date":"2019-06-21","place":"Fredrikstad"}
+    {"date":"2019-06-21","venue":"Idyll Festival","place":"Fredrikstad"}
   ],
   "sei-selina": [
     {"date":"2026-04-07","venue":"Lille Ole Bull"},
@@ -788,6 +788,7 @@
     {"date":"2011-02-17","venue":"by:Larm","place":"Oslo"}
   ],
   "anja-skybakmoen": [
+    {"date":"2025-02-09","venue":"Biermannsgården","place":"Oslo"},
     {"date":"2025-10-17","place":"Holmlia, Oslo"},
     {"date":"2025-06-23","venue":"Kulturytring","place":"Drammen"},
     {"date":"2024-06-12","venue":"Cafeteatret","place":"Oslo"},
@@ -875,7 +876,7 @@
     {"date":"2015-08-08","place":"Haugesund"}
   ],
   "rytmer-fra-verdensrommet": [
-    {"date":"2018-11-10","place":"Ørsta"},
+    {"date":"2018-11-10","venue":"Ørsta kulturhus","place":"Ørsta"},
     {"date":"2018-03-22"},
     {"date":"2018-03-21"},
     {"date":"2017-11-29"},
