@@ -621,7 +621,15 @@
     {"date":"2013-06-26","venue":"Vestfoldfestspillene, Støperiet","place":"Tønsberg","note":"premiere"}
   ],
   "sund-turneen-2008": [
+    {"date":"2008-04","place":"Bjugn"},
+    {"date":"2008-04","venue":"Buskerud folkehøgskole","place":"Darbu"},
     {"date":"2008-04-05","venue":"Bankkafeen","place":"Lillehammer"},
+    {"date":"2008","place":"Oslo"},
+    {"date":"2008","place":"Haugesund"},
+    {"date":"2008","place":"Stord"},
+    {"date":"2008","place":"Bergen"},
+    {"date":"2008","place":"Volda"},
+    {"date":"2008","place":"Ålesund"},
     {"date":"2008-03-27","venue":"Nattergalen","place":"Trondheim"}
   ],
   "chiwahwah": [
