@@ -85,6 +85,17 @@ test('a section needs a title and exactly one of category and from', () => {
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].category = 'x'; }), /jonasbarsten.com section 1: needs exactly one of "category" and "from"/);
 });
 
+test('a category may appear in only one section of a site', () => {
+  const errors = errorsFor((c) => { c.sites['byjoba.com'].sections.push({ title: 'Again', category: 'hardware' }); });
+  assertError(errors, /byjoba.com section 2: category "hardware" is already used/);
+});
+
+test('a link may be a root-relative path but not a bare or protocol-relative one', () => {
+  assert.deepEqual(errorsFor((c) => { c.projects[0].links = [{ label: 'pdf', url: '/files/a.pdf' }]; }), []);
+  assertError(errorsFor((c) => { c.projects[0].links = [{ label: 'pdf', url: 'files/a.pdf' }]; }), /entry "kiwi": link url must start with https:\/\/ or \//);
+  assertError(errorsFor((c) => { c.projects[0].links = [{ label: 'pdf', url: '//example.com/a.pdf' }]; }), /entry "kiwi": link url must start with https:\/\/ or \//);
+});
+
 test('"from" must name another site', () => {
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].from = 'jonasbarsten.com'; }), /jonasbarsten.com section 1: "from" must name another site/);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].from = 'nope.com'; }), /jonasbarsten.com section 1: "from" must name another site/);

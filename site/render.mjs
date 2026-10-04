@@ -25,15 +25,15 @@ function otherSites(content, domain) {
     .map((other) => `<a href="https://${escapeHtml(other)}/">${escapeHtml(other)}</a>`);
 }
 
-function line(entry, nameHtml) {
-  const meta = [entry.role, entry.years, entry.status === 'wip' ? 'in progress' : ''].filter(Boolean);
-  const metaHtml = meta.length ? ` <span class="meta">${escapeHtml(meta.join(' · '))}</span>` : '';
-  return `${nameHtml} — ${escapeHtml(entry.summary)}${metaHtml}`;
+/** Role, years and status, shown after the summary on the entry's own site. */
+function meta(entry) {
+  const parts = [entry.role, entry.years, entry.status === 'wip' ? 'in progress' : ''].filter(Boolean);
+  return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
 }
 
 /** An entry on its own site: a plain line, or a disclosure when it has an about or links. */
 function fullEntry(entry) {
-  const head = line(entry, `<span class="name">${escapeHtml(entry.name)}</span>`);
+  const head = `<span class="name">${escapeHtml(entry.name)}</span> — ${escapeHtml(entry.summary)}${meta(entry)}`;
   const id = escapeHtml(entry.id);
   if (!entry.about && !entry.links?.length) return `<li id="${id}">${head}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
@@ -43,11 +43,11 @@ function fullEntry(entry) {
   return `<li id="${id}"><details><summary>${head}</summary>${about}${links}</details></li>`;
 }
 
-/** An entry shown on the other site: one line whose name links to its home. */
+/** An entry shown on the other site: name and summary only, the name linking to its home. */
 function linkedEntry(entry) {
   const id = escapeHtml(entry.id);
   const name = `<a href="https://${escapeHtml(entry.site)}/#${id}">${escapeHtml(entry.name)}</a>`;
-  return `<li id="${id}">${line(entry, name)}</li>`;
+  return `<li id="${id}">${name} — ${escapeHtml(entry.summary)}</li>`;
 }
 
 function renderSection(content, domain, section) {

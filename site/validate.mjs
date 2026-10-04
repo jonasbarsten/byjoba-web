@@ -7,6 +7,8 @@ const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
 
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+/** An external https link, or a root-relative path to a file under `static/<site>/`. */
+const isLinkUrl = (url) => typeof url === 'string' && (url.startsWith('https://') || (url.startsWith('/') && !url.startsWith('//')));
 
 /** Returns every problem in the content as a readable line; an empty list means it is valid. */
 export function validate(content) {
@@ -27,6 +29,8 @@ function siteErrors(domain, site, domains) {
   if (!Array.isArray(site.sections) || site.sections.length === 0) {
     return [...errors, `${domain}: sections must be a non-empty list`];
   }
+  // An entry renders once per section holding its category, so a repeat would repeat its id.
+  const used = new Set();
   site.sections.forEach((section, index) => {
     const where = `${domain} section ${index}`;
     if (!isObject(section)) return errors.push(`${where}: must be an object`);
@@ -37,6 +41,9 @@ function siteErrors(domain, site, domains) {
       errors.push(`${where}: needs exactly one of "category" and "from"`);
     } else if (hasFrom && (section.from === domain || !domains.includes(section.from))) {
       errors.push(`${where}: "from" must name another site`);
+    } else if (hasCategory) {
+      if (used.has(section.category)) errors.push(`${where}: category "${section.category}" is already used`);
+      used.add(section.category);
     }
   });
   return errors;
@@ -80,7 +87,7 @@ function entryErrors(entry, index, sites, seen) {
     } else {
       for (const link of entry.links) {
         if (!isObject(link) || !isText(link.label)) errors.push(`${where}: link needs a label`);
-        else if (typeof link.url !== 'string' || !link.url.startsWith('https://')) errors.push(`${where}: link url must start with https://`);
+        else if (!isLinkUrl(link.url)) errors.push(`${where}: link url must start with https:// or /`);
       }
     }
   }

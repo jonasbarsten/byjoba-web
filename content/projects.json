@@ -1,8 +1,8 @@
 {
   "sites": {
     "byjoba.com": {
-      "title": "byjoba",
-      "intro": "Software and hardware made by Jonas Barsten.",
+      "title": "byJoBa",
+      "intro": "byJoBa stands for by Jonas Barsten: software and hardware.",
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "sections": [
         { "title": "Apps and services", "category": "apps" },
@@ -264,7 +264,7 @@
       "name": "Rooms at OLYP",
       "site": "jonasbarsten.com",
       "category": "spaces",
-      "summary": "Builds the sound-isolated rooms at OLYP."
+      "summary": "Sound-isolated rehearsal and production rooms, built on site."
     },
     {
       "id": "olyp-software",
@@ -279,7 +279,7 @@
       "site": "jonasbarsten.com",
       "category": "installations",
       "summary": "Technology for the preliminary phase of Gunhild Mathea Olaussen's sound installation: copper speaker membranes around twelve sensor-activated string columns.",
-      "about": "A preliminary version was shown at the Norwegian Theatre Academy in 2016. The finished work was shown at Henie Onstad Art Centre during Ultima in 2019 and at Galleri F 15 in 2020.",
+      "about": "The preliminary version was shown at the Norwegian Theatre Academy in 2016. The finished work, with technology by Roar Sletteland and Bernt Isak Wærstad, was shown at Henie Onstad Art Centre during Ultima in 2019 and at Galleri F 15 in 2020.",
       "links": [{ "label": "site", "url": "https://www.gunhildmathea.com/resonance" }]
     },
     {
@@ -368,7 +368,7 @@
       "summary": "Written submission from OLYP to the government's strategy for culture venues.",
       "about": "Asks for multi-year operating support for culture production premises, a VAT arrangement for them, a study of returning a share of ticket income, guarantee and loan schemes, a place for culture production in municipal planning, and a municipal contact person.",
       "years": "2026",
-      "links": [{ "label": "pdf", "url": "https://jonasbarsten.com/files/olyp-innspill-kulturarenastrategien-2026.pdf" }]
+      "links": [{ "label": "pdf", "url": "/files/olyp-innspill-kulturarenastrategien-2026.pdf" }]
     },
     {
       "id": "production-premises-association",

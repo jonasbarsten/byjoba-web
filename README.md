@@ -2,7 +2,7 @@
 
 The pages at byjoba.com and jonasbarsten.com: two lists of what Jonas Barsten makes and works on, generated from one content file.
 
-- **byjoba.com** lists the software and hardware Jonas makes on his own initiative.
+- **byjoba.com** lists the software and hardware Jonas makes on his own initiative. The name is written byJoBa and stands for "by Jonas Barsten".
 - **jonasbarsten.com** lists everything else, and the byjoba entries as one-liners that link over.
 
 Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
@@ -26,8 +26,8 @@ npm run build    # writes dist/byjoba.com and dist/jonasbarsten.com
 Preview after a build, one terminal per site:
 
 ```bash
-python3 -m http.server -d dist/byjoba.com 8081
-python3 -m http.server -d dist/jonasbarsten.com 8082
+python3 -m http.server -d dist/byjoba.com 8791
+python3 -m http.server -d dist/jonasbarsten.com 8792
 ```
 
 Locally the visitor counter shows its alt text and the contact page cannot fetch the address; both need the deployed API.
@@ -47,7 +47,7 @@ An entry in `projects`:
 | `years` | no | Free text, e.g. `2016–`. |
 | `status` | no | `wip` shows "in progress". |
 | `role` | no | Shown after the summary. |
-| `links` | no | List of `{ "label", "url" }`; `url` must be `https://`. |
+| `links` | no | List of `{ "label", "url" }`; `url` is `https://…`, or `/…` for a file under `static/<site>/`. |
 
 Entries appear in file order. A site's `sections` set the headings and their order; a section with `"from": "<other domain>"` lists that site's entries as one-liners. The build fails with a list of errors when the content is invalid.
 

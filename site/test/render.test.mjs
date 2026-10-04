@@ -38,7 +38,7 @@ test('an entry without about or links is a plain line with role and years', () =
 test('a "from" section lists the other site\'s entries as one-liners that link over', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<h2>Software and hardware<\/h2>/);
-  assert.match(html, /<li id="kiwi"><a href="https:\/\/byjoba\.com\/#kiwi">Kiwi<\/a> — An instrument\. <span class="meta">in progress<\/span><\/li>/);
+  assert.match(html, /<li id="kiwi"><a href="https:\/\/byjoba\.com\/#kiwi">Kiwi<\/a> — An instrument\.<\/li>/);
   assert.doesNotMatch(html, /Runs on a Raspberry Pi/);
 });
 

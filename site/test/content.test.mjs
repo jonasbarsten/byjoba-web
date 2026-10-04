@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
 import { validate } from '../validate.mjs';
 import { renderContact, renderIndex } from '../render.mjs';
@@ -34,6 +35,15 @@ test('every section of every site has at least one entry', () => {
     const html = renderIndex(content, domain);
     for (const section of content.sites[domain].sections) {
       assert.ok(html.includes(`<h2>${section.title}</h2>`), `${domain}: ${section.title}`);
+    }
+  }
+});
+
+test('every root-relative link points at a file in static', () => {
+  for (const entry of content.projects) {
+    for (const link of entry.links ?? []) {
+      if (!link.url.startsWith('/')) continue;
+      assert.ok(existsSync(new URL(`../../static/${entry.site}${link.url}`, import.meta.url)), `${entry.id}: ${link.url}`);
     }
   }
 });
