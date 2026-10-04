@@ -1,27 +1,101 @@
+/*
+ * Tokens: the shadcn/ui "neutral" theme (ui.shadcn.com/docs/theming), copied by
+ * value. Only the roles these pages use are kept. Type and spacing follow the
+ * Tailwind scale shadcn is built on.
+ */
 :root {
   color-scheme: light dark;
+
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --border: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji';
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-xl: 1.25rem;
+  --leading-sm: 1.25rem;
+  --leading-base: 1.5rem;
+  --leading-xl: 1.75rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-4: 1rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.145 0 0);
+    --foreground: oklch(0.985 0 0);
+    --muted: oklch(0.269 0 0);
+    --muted-foreground: oklch(0.708 0 0);
+    --border: oklch(1 0 0 / 10%);
+    --ring: oklch(0.556 0 0);
+  }
 }
 
 body {
-  font-family: system-ui, sans-serif;
-  line-height: 1.5;
-  max-width: 40rem;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-base);
+  max-width: 42rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: var(--space-12) var(--space-4);
+  overflow-wrap: break-word;
+  -webkit-font-smoothing: antialiased;
 }
 
 h1 {
-  font-size: 1.25rem;
-  margin: 0 0 0.5rem;
+  font-size: var(--text-xl);
+  line-height: var(--leading-xl);
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--space-2);
 }
 
 h2 {
-  font-size: 1rem;
-  margin: 2rem 0 0.5rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  font-weight: 500;
+  color: var(--muted-foreground);
+  margin: var(--space-12) 0 var(--space-2);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--border);
 }
 
 p {
-  margin: 0 0 0.5rem;
+  margin: 0 0 var(--space-2);
+}
+
+header p,
+footer {
+  color: var(--muted-foreground);
+}
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--ring);
+}
+
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+a:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: calc(var(--radius) - 6px);
 }
 
 ul {
@@ -31,25 +105,61 @@ ul {
 }
 
 li {
-  margin: 0.25rem 0;
+  padding: var(--space-1) var(--space-2);
+  margin: 0 calc(-1 * var(--space-2));
+  border-radius: calc(var(--radius) - 4px);
+}
+
+/* The entry a link from the other site points at. */
+li:target {
+  background: var(--muted);
 }
 
 .name {
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .meta {
-  opacity: 0.65;
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  white-space: nowrap;
 }
 
+/* No disclosure triangle, so names line up with plain entries; a trailing sign marks what opens. */
 summary {
   cursor: pointer;
+  list-style: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: ' +';
+  color: var(--muted-foreground);
+}
+
+details[open] > summary::after {
+  content: ' −';
 }
 
 details p {
-  margin: 0.25rem 0 0.5rem 1rem;
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  margin: var(--space-1) 0 var(--space-2);
 }
 
 footer {
-  margin-top: 3rem;
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  margin-top: var(--space-12);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border);
+}
+
+footer img {
+  display: block;
+  margin-top: var(--space-2);
 }
