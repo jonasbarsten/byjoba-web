@@ -649,7 +649,10 @@
     {"date":"2015-05-10"}
   ],
   "bellman": [
-    {"date":"2015-01-13","place":"Japan","note":"tour"},
+    {"date":"2015-01-18","venue":"Metro","place":"Kyoto"},
+    {"date":"2015-01-17","venue":"Crowbar","place":"Tokushima"},
+    {"date":"2015-01-16","venue":"Conpass","place":"Osaka"},
+    {"date":"2015-01-15","venue":"Fever","place":"Tokyo"},
     {"date":"2014-04-03","place":"Larvik"},
     {"date":"2013-10-25","venue":"Paradise Hotel, Grand Ballroom","place":"Busan","note":"hosted by the Norwegian embassy"},
     {"date":"2013-10-24","venue":"Chongdong Theatre","place":"Seoul"},
