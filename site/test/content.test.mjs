@@ -53,7 +53,8 @@ test('every root-relative link points at a file in static', () => {
 
 test('the copy avoids praise and scale words', () => {
   const text = JSON.stringify(content.projects).toLowerCase();
-  for (const word of ['famous', 'biggest', 'leading', 'popular', 'global', 'world-class', 'award']) {
+  // "award-winning" is praise; an event's name, such as "KKBOX Music Awards", is not.
+  for (const word of ['famous', 'biggest', 'leading', 'popular', 'global', 'world-class', 'award-winning']) {
     assert.ok(!text.includes(word), word);
   }
 });
