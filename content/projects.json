@@ -43,7 +43,7 @@
       },
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "sections": [
-        { "title": "Music", "category": "music" },
+        { "title": "Music", "category": "music", "note": "Artists and bands, with my part in each." },
         { "title": "Teaching and live systems", "category": "live-teaching" },
         { "title": "Founder", "category": "founder" },
         { "title": "Spaces", "category": "spaces" },

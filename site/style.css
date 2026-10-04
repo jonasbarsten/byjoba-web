@@ -171,9 +171,18 @@ h3 {
 /* An entry's own badges, at the top right of its card's header. */
 .badges {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
+  flex: none;
+  flex-direction: column;
+  align-items: flex-end;
   gap: var(--space-1);
+}
+
+/* The line under a section heading that says how to read its cards. */
+.note {
+  color: var(--muted-foreground);
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  margin: 0 0 var(--space-4);
 }
 
 /* Status and badges, after the shadcn outline badge: one look for all. */

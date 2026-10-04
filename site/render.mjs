@@ -129,7 +129,9 @@ function releaseList(entry) {
 function renderSection(content, domain, section) {
   const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map(renderEntry);
   if (items.length === 0) return '';
-  return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n<ul>\n${items.join('\n')}\n</ul>\n</section>`;
+  // An optional line under the heading that says how to read the cards below it.
+  const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';
+  return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n${note}<ul>\n${items.join('\n')}\n</ul>\n</section>`;
 }
 
 export function renderIndex(content, domain) {

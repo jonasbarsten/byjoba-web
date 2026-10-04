@@ -212,6 +212,14 @@ test('a site lists its own entries only', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'jonasbarsten.com'), /Kiwi/);
 });
 
+test('a section\'s note shows under its heading', () => {
+  const content = fixture();
+  content.sites['jonasbarsten.com'].sections[0].note = 'Artists & bands, with my part in each.';
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<h2>Music<\/h2>\n<p class="note">Artists &amp; bands, with my part in each\.<\/p>\n<ul>/);
+  assert.match(html, /<h2>Advocacy<\/h2>\n<ul>/);
+});
+
 test('an empty section is not rendered', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /<h2>Apps<\/h2>/);
 });

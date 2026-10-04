@@ -141,6 +141,12 @@ test('badges are a list of short texts, each at most once', () => {
   }
 });
 
+test('a section may carry a note, which must be text', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 'With my part in each.'; }), []);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ''; }), /jonasbarsten.com section 0: note must be non-empty text/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 7; }), /jonasbarsten.com section 0: note must be non-empty text/);
+});
+
 test('a category may appear in only one section of a site', () => {
   const errors = errorsFor((c) => { c.sites['byjoba.com'].sections.push({ title: 'Again', category: 'hardware' }); });
   assertError(errors, /byjoba.com section 2: category "hardware" is already used/);
