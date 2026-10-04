@@ -674,6 +674,9 @@
   "anna-soleil": [
     {"date":"2023-03-04","venue":"Belleville","place":"Oslo"}
   ],
+  "woodlands": [
+    {"date":"2015-04-29","venue":"Harare International Festival of the Arts, Reps Theatre","place":"Harare","note":"premiere"}
+  ],
   "magly": [
     {"date":"2022-05","venue":"Spot Festival","place":"Aarhus"}
   ],

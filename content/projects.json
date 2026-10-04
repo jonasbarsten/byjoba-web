@@ -261,7 +261,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "Vegard is the artist name of Vegard Bjørsmo. Concerts include Finland in 2026.",
+      "about": "Vegard is the artist name of Vegard Bjørsmo, a Sámi artist from Karasjok. Concerts include Finland in 2026.",
       "years": "2026–"
     },
     {
@@ -534,7 +534,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Drummer in a group that spent two months in Zimbabwe, playing concerts there.",
+      "summary": "Co-creator and performer in a stage production of music, dance, poetry and visual art, made over two months in Zimbabwe.",
+      "about": "Made by fifteen artists from several countries as The Woodlands Project, produced by Shi Pratt and Kyrre Heldal Karlsen, and first performed at Reps Theatre in Harare on 29 April 2015, during the Harare International Festival of the Arts. Supported by Arts Council Norway, the Fund for Performing Artists and the Norwegian Ministry of Foreign Affairs.",
+      "links": [{ "label": "entry at Sceneweb", "url": "https://sceneweb.no/en/production/49693/Woodlands" }],
       "years": "2015"
     },
     {
@@ -823,7 +825,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Concerts.",
-      "about": "Vaarin is the artist name of Vaarin Strand.",
+      "about": "Vaarin is the artist name of Vårin Strand, a singer and songwriter from Hokksund.",
       "years": "2024–2025"
     },
     {
