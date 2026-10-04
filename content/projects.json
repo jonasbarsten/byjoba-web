@@ -398,7 +398,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "years": "2011–2013",
+      "years": "2011–2018",
       "releases": [
         { "title": "Bendik Baksaas: Jenny", "year": "2018", "cover": "/covers/jenny.jpg" },
         { "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }
@@ -766,8 +766,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Drummer on single concerts, often as a stand-in, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Karen Musæus, Magly, Jonathan Floyd, Christabelle and Tafel.",
-      "years": "2016–2024"
+      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Magly, Jonathan Floyd, Kimichi, Christabelle, Tafel and Down Low Disco.",
+      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. Also a tour of Haiti in 2016.",
+      "years": "2015–2024"
     },
     {
       "id": "bjorn-charles-dreyer-group",
