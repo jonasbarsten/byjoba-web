@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeHtml, renderIndex, renderContact, renderNotFound, renderRobots, renderSitemap } from '../render.mjs';
+import { escapeHtml, renderIndex, renderContact, renderNotFound, renderRobots, renderShows, renderSitemap } from '../render.mjs';
 import { fixture } from './fixture.mjs';
 
 test('escapeHtml escapes the five special characters', () => {
@@ -50,10 +50,47 @@ test('robots.txt allows everything and names the sitemap', () => {
   assert.equal(renderRobots('byjoba.com'), 'User-agent: *\nAllow: /\n\nSitemap: https://byjoba.com/sitemap.xml\n');
 });
 
-test('the sitemap lists the list page only', () => {
-  const xml = renderSitemap('byjoba.com');
+test('the sitemap lists the list page, and the shows page when the site has shows', () => {
+  const xml = renderSitemap(fixture(), 'byjoba.com');
   assert.match(xml, /^<\?xml version="1\.0" encoding="UTF-8"\?>\n<urlset xmlns="http:\/\/www\.sitemaps\.org\/schemas\/sitemap\/0\.9">/);
   assert.deepEqual(xml.match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
+  assert.deepEqual(renderSitemap(withShows(), 'jonasbarsten.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://jonasbarsten.com/</loc>', '<loc>https://jonasbarsten.com/shows.html</loc>']);
+  assert.deepEqual(renderSitemap(withShows(), 'byjoba.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
+});
+
+/** The fixture with shows on its one music entry. */
+function withShows() {
+  const content = fixture();
+  content.projects[1].shows = [
+    { date: '2013-08-08', venue: 'Øyafestivalen', place: 'Oslo' },
+    { date: '2014-02-13', venue: 'Ja Ja Ja', place: 'London', note: 'showcase', review: { label: 'The Line of Best Fit', url: 'https://example.com/review?a=1&b=2' } },
+    { date: '2014-10' },
+  ];
+  return content;
+}
+
+test('a show\'s review is a link after its note, in the card\'s list', () => {
+  const html = renderIndex(withShows(), 'jonasbarsten.com');
+  assert.match(html, /<td>London<\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
+});
+
+test('the shows page lists every show of the site by year, newest first, with the act linking to its card', () => {
+  const html = renderShows(withShows(), 'jonasbarsten.com');
+  assert.match(html, /<title>Shows — Jonas Barsten<\/title>/);
+  assert.match(html, /<link rel="canonical" href="https:\/\/jonasbarsten\.com\/shows\.html">/);
+  assert.doesNotMatch(html, /noindex/);
+  assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, newest first\.<\/p>/);
+  assert.deepEqual([...html.matchAll(/<h2>(\d{4})<\/h2>/g)].map((match) => match[1]), ['2014', '2013']);
+  assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
+  assert.match(html, /<tr><td><time datetime="2013-08-08">8 Aug 2013<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><\/td><\/tr>/);
+  assert.match(html, /<td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td>/);
+  assert.doesNotMatch(html, /<script/);
+});
+
+test('the list page links to the shows page only when the site has shows', () => {
+  assert.match(renderIndex(withShows(), 'jonasbarsten.com'), /<footer>\n<p><a href="\/shows\.html">shows<\/a> · /);
+  assert.doesNotMatch(renderIndex(fixture(), 'jonasbarsten.com'), /shows\.html/);
+  assert.doesNotMatch(renderIndex(withShows(), 'byjoba.com'), /shows\.html/);
 });
 
 test('the counter image declares its size so the page does not shift', () => {

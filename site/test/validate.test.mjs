@@ -129,6 +129,13 @@ test('shows are a list of dated items with an optional venue, place and note', (
   assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', city: 'Oslo' }]; }), /entry "atlanter": show 2013-08-07: unknown field "city"/);
 });
 
+test('a show may carry a review: a label and an https url', () => {
+  assert.deepEqual(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: { label: 'Gaffa', url: 'https://gaffa.no/x' } }]; }), []);
+  assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: 'https://gaffa.no/x' }]; }), /entry "atlanter": show 2013-08-07: review needs a label and an https url/);
+  assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: { label: 'Gaffa', url: '/x' } }]; }), /entry "atlanter": show 2013-08-07: review needs a label and an https url/);
+  assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: { url: 'https://gaffa.no/x' } }]; }), /entry "atlanter": show 2013-08-07: review needs a label and an https url/);
+});
+
 test('releases must be a list with a title and a year, and an optional url', () => {
   assert.deepEqual(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013' }, { title: 'Aye', year: '2013', url: 'https://www.discogs.com/master/566572' }]; }), []);
   assertError(errorsFor((c) => { c.projects[1].releases = 'Vidde'; }), /entry "atlanter": releases must be a list/);

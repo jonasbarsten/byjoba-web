@@ -10,7 +10,7 @@ const NEW_TAB = ' target="_blank" rel="noopener"';
 /** A JSON-LD data block. `<` is written as an escape so the data can never close the block. */
 const jsonLdBlock = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-function page({ site, title, canonical, index = false, body, scripts = '' }) {
+function page({ site, title, canonical, index = false, jsonLd, body, scripts = '' }) {
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -26,7 +26,7 @@ function page({ site, title, canonical, index = false, body, scripts = '' }) {
     '<meta name="twitter:card" content="summary">',
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
     '<link rel="stylesheet" href="/style.css">',
-    index && site.jsonLd ? jsonLdBlock(site.jsonLd) : '',
+    jsonLd ? jsonLdBlock(jsonLd) : '',
   ].filter(Boolean);
   return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${body}\n${scripts}</body>\n</html>\n`;
 }
@@ -140,16 +140,27 @@ function showDate(date) {
  * it opens. The list is a popover, which the browser opens and closes itself,
  * so the page still carries no script.
  */
+const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
+
+/** A show's date cell. */
+const dateCell = (show) => `<td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>`;
+
+/** A show's last cell: its note, then a link to a review of it, when it has them. */
+function noteCell(show) {
+  const parts = [];
+  if (show.note) parts.push(escapeHtml(show.note));
+  if (show.review) parts.push(`<a href="${escapeHtml(show.review.url)}"${NEW_TAB}>${escapeHtml(show.review.label)}</a>`);
+  return `<td>${parts.join(' · ')}</td>`;
+}
+
+/** Newest first; the dates are ISO, so text order is date order. */
+const newestFirst = (shows) => [...shows].sort((a, b) => b.date.localeCompare(a.date));
+
 function showList(entry) {
   if (!entry.shows?.length) return '';
   const id = `shows-${escapeHtml(entry.id)}`;
   const total = count(entry.shows.length, 'show');
-  const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
-  // Newest first; the dates are ISO, so text order is date order.
-  const newestFirst = [...entry.shows].sort((a, b) => b.date.localeCompare(a.date));
-  const rows = newestFirst.map(
-    (show) => `<tr><td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>${cell(show.venue)}${cell(show.place)}${cell(show.note)}</tr>`,
-  );
+  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${cell(show.venue)}${cell(show.place)}${noteCell(show)}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
   return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3><table>\n${rows.join('\n')}\n</table></div>`;
 }
@@ -162,16 +173,44 @@ function renderSection(content, domain, section) {
   return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n${note}<ul>\n${items.join('\n')}\n</ul>\n</section>`;
 }
 
+/** Every show on a site, each with the entry it belongs to. */
+function siteShows(content, domain) {
+  return content.projects
+    .filter((entry) => entry.site === domain)
+    .flatMap((entry) => (entry.shows ?? []).map((show) => ({ ...show, entry })));
+}
+
+/** Whether a site has a shows page. */
+export const hasShows = (content, domain) => siteShows(content, domain).length > 0;
+
+/** All of a site's shows on one page: a table per year, newest first, the act linking to its card. */
+export function renderShows(content, domain) {
+  const site = content.sites[domain];
+  const shows = newestFirst(siteShows(content, domain));
+  const years = [...new Set(shows.map((show) => show.date.slice(0, 4)))];
+  const tables = years.map((year) => {
+    const rows = shows
+      .filter((show) => show.date.startsWith(year))
+      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${cell(show.venue)}${cell(show.place)}${noteCell(show)}</tr>`);
+    return `<section>\n<h2>${year}</h2>\n<table>\n${rows.join('\n')}\n</table>\n</section>`;
+  });
+  const body = [
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${count(shows.length, 'show')}, newest first.</p>\n</header>`,
+    `<main>\n${tables.join('\n')}\n</main>`,
+  ].join('\n');
+  return page({ site, title: `Shows — ${site.title}`, canonical: `https://${domain}/shows.html`, index: true, body });
+}
+
 export function renderIndex(content, domain) {
   const site = content.sites[domain];
-  const others = otherSites(content, domain).join(' · ');
+  const others = [hasShows(content, domain) ? '<a href="/shows.html">shows</a>' : '', ...otherSites(content, domain)].filter(Boolean).join(' · ');
   const sections = site.sections.map((section) => renderSection(content, domain, section)).filter(Boolean);
   const body = [
     `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n</header>`,
     `<main>\n${sections.join('\n')}\n</main>`,
     `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p><img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
-  return page({ site, title: site.pageTitle, canonical: `https://${domain}/`, index: true, body });
+  return page({ site, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: site.jsonLd, body });
 }
 
 export function renderContact(content, domain) {
@@ -194,12 +233,13 @@ export function renderRobots(domain) {
   return `User-agent: *\nAllow: /\n\nSitemap: https://${domain}/sitemap.xml\n`;
 }
 
-/** Only the list page is worth indexing; the contact and not-found pages are marked noindex. */
-export function renderSitemap(domain) {
+/** The list page and the shows page are worth indexing; the contact and not-found pages are marked noindex. */
+export function renderSitemap(content, domain) {
+  const paths = hasShows(content, domain) ? ['', 'shows.html'] : [''];
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    `<url><loc>https://${escapeHtml(domain)}/</loc></url>`,
+    ...paths.map((path) => `<url><loc>https://${escapeHtml(domain)}/${path}</loc></url>`),
     '</urlset>',
     '',
   ].join('\n');

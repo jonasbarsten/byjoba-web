@@ -388,6 +388,11 @@ td:first-child {
   color: var(--muted-foreground);
 }
 
+/* On the shows page the tables sit under year headings, without the cards' gap above. */
+section > table {
+  margin-bottom: var(--space-4);
+}
+
 td:last-child {
   padding-right: 0;
   color: var(--muted-foreground);

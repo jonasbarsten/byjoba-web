@@ -24,6 +24,8 @@ test('shows come from their own file, keyed by entry id', async () => {
   const paths = await workspace(JSON.stringify(fixture()), JSON.stringify({ atlanter: [{ date: '2014-03-01', venue: 'by:Larm' }] }));
   await build(paths);
   assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'index.html'), 'utf8'), /Atlanter: 1 show<\/h3>/);
+  assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'shows.html'), 'utf8'), /<h1>Shows<\/h1>/);
+  assert.equal(existsSync(join(paths.outDir, 'byjoba.com', 'shows.html')), false);
 });
 
 test('shows for an id that is no entry, and invalid shows, fail the build', async () => {

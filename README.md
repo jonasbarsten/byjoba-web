@@ -64,14 +64,14 @@ An entry in `projects`:
 | `badges` | no | List of short texts stacked at the top right of the card's header. The music cards use `"live"` and `"studio"`. Any text works, on any entry, but a badge reads as a fact about the thing named, so do not use badges for Jonas's role; that goes in `summary`. |
 | `url` | no | Where the name links to. Without it the name is plain text. `https://…`, or `/…` for a file under `static/<site>/`. |
 | `releases` | no | List of `{ "title", "year", "url"?, "cover"? }`: the records the entry appears on, shown with their covers inside the opened card and counted in its marker. `cover` is a path to an image of our own under `static/<site>/`, e.g. `/covers/vidde.jpg`. |
-| `shows` | no | Not written in `projects.json`: the lists live in `content/shows.json`, keyed by entry id, because they are many. Each is a list of `{ "date", "venue"?, "place"?, "note"? }`: the shows played with the act, newest first. `date` is `2019-08-07`, or `2019-08` or `2019` when that is all the source gives. `note` is for things like `stand-in`. A button inside the opened card opens the list in a popover (no script), and the marker counts them. Only shows Jonas played; a calendar entry is not proof of that, so check before adding. |
+| `shows` | no | Not written in `projects.json`: the lists live in `content/shows.json`, keyed by entry id, because they are many. Each is a list of `{ "date", "venue"?, "place"?, "note"?, "review"? }`: the shows played with the act. `review` is `{ "label", "url" }`, a published review of that show, labelled with the publication's name. A site with shows also gets `/shows.html`, which lists them all by year; the list page links to it from its footer. `date` is `2019-08-07`, or `2019-08` or `2019` when that is all the source gives. `note` is for things like `stand-in`. A button inside the opened card opens the list in a popover (no script), and the marker counts them. Only shows Jonas played; a calendar entry is not proof of that, so check before adding. |
 | `links` | no | List of `{ "label", "url" }`, shown by label inside the opened card and counted in its marker ("1 video · 1 link"). They never make the name a link. |
 
 Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
 
 ## Search engines
 
-Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. Only the list page is indexable; the contact and not-found pages are marked `noindex`. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
+Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
 
 ```bash
 npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-practices,performance

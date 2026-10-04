@@ -111,8 +111,14 @@ function entryErrors(entry, index, sites, seen) {
           continue;
         }
         for (const field of Object.keys(show)) {
+          if (field === 'review') continue;
           if (!SHOW_FIELDS.includes(field)) errors.push(`${where}: show ${show.date}: unknown field "${field}"`);
           else if (!isText(show[field])) errors.push(`${where}: show ${show.date}: "${field}" must be non-empty text`);
+        }
+        if ('review' in show) {
+          const { review } = show;
+          const ok = isObject(review) && isText(review.label) && typeof review.url === 'string' && review.url.startsWith('https://');
+          if (!ok) errors.push(`${where}: show ${show.date}: review needs a label and an https url`);
         }
       }
     }
