@@ -144,7 +144,6 @@
     {"date":"2017-09-22","venue":"NRK P2 Spillerom"},
     {"date":"2017-04-12","place":"Berlin"},
     {"date":"2016-11-23","place":"Latin America","note":"tour"},
-    {"date":"2016-11-11","place":"Warsaw"},
     {"date":"2016-10-30"},
     {"date":"2016-10-24","place":"Telemark"},
     {"date":"2016-09-30","venue":"Det Norske Teatret","place":"Oslo"},
@@ -155,6 +154,7 @@
     {"date":"2016-09-01","place":"Bø"}
   ],
   "sandra-lyng": [
+    {"date":"2016-11-11","place":"Warsaw"},
     {"date":"2016-08-27","venue":"Færsterålen","note":"stand-in"},
     {"date":"2016-08-13","place":"Haugesund"},
     {"date":"2016-08-06","place":"Alta","note":"stand-in"},
