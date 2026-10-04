@@ -63,6 +63,7 @@ An entry in `projects`:
 | `badges` | no | List of short texts stacked at the top right of the card's header. The music cards use `"live"` and `"studio"`. Any text works, on any entry, but a badge reads as a fact about the thing named, so do not use badges for Jonas's role; that goes in `summary`. |
 | `url` | no | Where the name links to. Without it the name is plain text. `https://…`, or `/…` for a file under `static/<site>/`. |
 | `releases` | no | List of `{ "title", "year", "url"?, "cover"? }`: the records the entry appears on, shown with their covers inside the opened card and counted in its marker. `cover` is a path to an image of our own under `static/<site>/`, e.g. `/covers/vidde.jpg`. |
+| `shows` | no | List of `{ "date", "venue"?, "place"?, "note"? }`: the shows played with the act, newest first. `date` is `2019-08-07`, or `2019-08` or `2019` when that is all the source gives. `note` is for things like `stand-in`. A button inside the opened card opens the list in a popover (no script), and the marker counts them. Only shows Jonas played; a calendar entry is not proof of that, so check before adding. |
 | `links` | no | List of `{ "label", "url" }`, shown by label inside the opened card and counted in its marker ("1 video · 1 link"). They never make the name a link. |
 
 Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.

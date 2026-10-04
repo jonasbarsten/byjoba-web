@@ -44,6 +44,7 @@ const count = (n, word) => (n ? `${n} ${word}${n === 1 ? '' : 's'}` : '');
 function contentsHint(entry) {
   const kinds = (entry.media ?? []).map((item) => mediaEmbed(item.url).kind);
   return [
+    count(entry.shows?.length ?? 0, 'show'),
     count(kinds.filter((kind) => kind === 'video').length, 'video'),
     count(kinds.filter((kind) => kind === 'track').length, 'track'),
     count(entry.releases?.length ?? 0, 'release'),
@@ -104,7 +105,7 @@ function renderEntry(entry) {
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
-  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
+  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${showList(entry)}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
 }
 
 /**
@@ -124,6 +125,31 @@ function releaseList(entry) {
     return `<figure>${cover}<figcaption>${title} <span class="year">${escapeHtml(release.year)}</span></figcaption></figure>`;
   });
   return `<h3>Releases</h3><div class="releases">${figures.join('')}</div>`;
+}
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/** "2013-08-07" as "7 Aug 2013", "2013-08" as "Aug 2013", "2013" as it is. */
+function showDate(date) {
+  const [year, month, day] = date.split('-');
+  return [day && Number(day), month && MONTHS[Number(month) - 1], year].filter(Boolean).join(' ');
+}
+
+/**
+ * The shows played with an act: a button inside the opened card, and the list
+ * it opens. The list is a popover, which the browser opens and closes itself,
+ * so the page still carries no script.
+ */
+function showList(entry) {
+  if (!entry.shows?.length) return '';
+  const id = `shows-${escapeHtml(entry.id)}`;
+  const total = count(entry.shows.length, 'show');
+  const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
+  const rows = entry.shows.map(
+    (show) => `<tr><td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>${cell(show.venue)}${cell(show.place)}${cell(show.note)}</tr>`,
+  );
+  const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
+  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3><table>\n${rows.join('\n')}\n</table></div>`;
 }
 
 function renderSection(content, domain, section) {

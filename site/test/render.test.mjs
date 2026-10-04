@@ -178,6 +178,33 @@ test('releases show inside the opened card with cover, title and year; the title
   );
 });
 
+test('shows open as a list in a popover, from a button inside the opened card, without script', () => {
+  const content = fixture();
+  content.projects[1].shows = [
+    { date: '2014-03-01', venue: 'by:Larm', place: 'Oslo' },
+    { date: '2013-08-07', venue: 'Øyafestivalen <main stage>', place: 'Oslo', note: 'stand-in' },
+    { date: '2013-06', place: 'Kristiansand' },
+    { date: '2012' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<h3>Shows<\/h3><p><button type="button" class="open-shows" popovertarget="shows-atlanter">List of 4 shows<\/button><\/p>/);
+  assert.match(html, /<div id="shows-atlanter" class="shows" popover><h3>Atlanter: 4 shows<\/h3><table>/);
+  assert.match(html, /<tr><td><time datetime="2014-03-01">1 Mar 2014<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-07">7 Aug 2013<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td>stand-in<\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-06">Jun 2013<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2012">2012<\/time><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
+  assert.doesNotMatch(html, /<script(?! type="application\/ld\+json")/);
+});
+
+test('a single show is counted in the singular, and the marker counts shows first', () => {
+  const content = fixture();
+  content.projects[1].shows = [{ date: '2014-03-01', venue: 'by:Larm' }];
+  content.projects[1].links = [{ label: 'site', url: 'https://example.com/' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, />List of 1 show<\/button>/);
+  assert.match(html, /<span class="more">1 show · 1 link<\/span>/);
+});
+
 test('each group inside an opened card has a heading naming what it holds', () => {
   const video = { label: 'v', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' };
   const track = { label: 't', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' };

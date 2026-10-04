@@ -1,11 +1,14 @@
 import { mediaEmbed } from './media.mjs';
 
-const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'badges', 'url', 'links', 'media', 'releases'];
+const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'badges', 'url', 'links', 'media', 'releases', 'shows'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
 const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
-const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const SHOW_FIELDS = ['date', 'venue', 'place', 'note'];
+/** A day, a month or a year: as exact as the source allows. */
+const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;
+const SLUG =/^[a-z0-9]+(-[a-z0-9]+)*$/;
 const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
 
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
@@ -95,6 +98,22 @@ function entryErrors(entry, index, sites, seen) {
       for (const item of entry.media) {
         if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
         else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video, an NRK TV programme or a Spotify track`);
+      }
+    }
+  }
+  if ('shows' in entry) {
+    if (!Array.isArray(entry.shows) || entry.shows.length === 0) {
+      errors.push(`${where}: shows must be a non-empty list`);
+    } else {
+      for (const show of entry.shows) {
+        if (!isObject(show) || typeof show.date !== 'string' || !SHOW_DATE.test(show.date)) {
+          errors.push(`${where}: show needs a date like 2019-08-07, 2019-08 or 2019`);
+          continue;
+        }
+        for (const field of Object.keys(show)) {
+          if (!SHOW_FIELDS.includes(field)) errors.push(`${where}: show ${show.date}: unknown field "${field}"`);
+          else if (!isText(show[field])) errors.push(`${where}: show ${show.date}: "${field}" must be non-empty text`);
+        }
       }
     }
   }
