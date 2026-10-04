@@ -412,7 +412,8 @@
       "status": "ended",
       "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
       "role": "CTO and co-founder",
-      "years": "2020–2021"
+      "years": "2020–2021",
+      "links": [{ "label": "site", "url": "https://vier.live" }]
     },
     {
       "id": "zahn-hello",
