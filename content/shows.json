@@ -82,12 +82,6 @@
     {"date":"2023-10-27","note":"release party"},
     {"date":"2022-04-28","note":"school tour"},
     {"date":"2019-11-16","place":"Brussels"},
-    {"date":"2016-08-27","venue":"Færsterålen","note":"stand-in"},
-    {"date":"2016-08-06","place":"Alta","note":"stand-in"},
-    {"date":"2016-05-28","note":"stand-in"},
-    {"date":"2016-05-21","place":"Bodø","note":"stand-in"},
-    {"date":"2016-05-20","place":"Bodø","note":"stand-in"},
-    {"date":"2016-05-11","place":"Mosjøen","note":"stand-in"},
     {"date":"2026-05-16","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2025-10-02","place":"Haugesund"},
     {"date":"2025-08-10","venue":"Hellviktangen","place":"Nesodden"},
@@ -158,19 +152,27 @@
     {"date":"2016-09-19"},
     {"date":"2016-09-12","venue":"Rikskonsertene"},
     {"date":"2016-09-05","place":"Oslo"},
-    {"date":"2016-09-01","place":"Bø"},
+    {"date":"2016-09-01","place":"Bø"}
+  ],
+  "sandra-lyng": [
+    {"date":"2016-08-27","venue":"Færsterålen","note":"stand-in"},
     {"date":"2016-08-13","place":"Haugesund"},
+    {"date":"2016-08-06","place":"Alta","note":"stand-in"},
     {"date":"2016-06-25","place":"Lærdal"},
     {"date":"2016-06-19","place":"Lillestrøm"},
     {"date":"2016-06-12","place":"Årnes"},
     {"date":"2016-06-11","place":"Odda"},
+    {"date":"2016-05-28","note":"stand-in"},
     {"date":"2016-05-26","place":"Fetsund"},
+    {"date":"2016-05-21","place":"Bodø","note":"stand-in"},
+    {"date":"2016-05-20","place":"Bodø","note":"stand-in"},
+    {"date":"2016-05-11","place":"Mosjøen","note":"stand-in"},
     {"date":"2016-05-04","venue":"Tusenfryd"},
     {"date":"2016-03-23","place":"Karasjok"},
     {"date":"2016-03-12","place":"Rena"},
     {"date":"2016-01-26"},
     {"date":"2016-01-21","venue":"NRK P3"},
-    {"date":"2016-01-15","venue":"Senkveld","place":"Molde"},
+    {"date":"2016-01-15","venue":"Senkveld (TV 2)","place":"Molde"},
     {"date":"2015-12-11"},
     {"date":"2015-11-21","place":"Oslo"},
     {"date":"2015-10-01","place":"Vadsø"},
@@ -182,6 +184,7 @@
     {"date":"2015-09-18","place":"Gjøvik"}
   ],
   "atlanter": [
+    {"date":"2013-11-02","venue":"Oslo World, Rockefeller","place":"Oslo"},
     {"date":"2015-08-07","venue":"Varangerfestivalen","place":"Vadsø"},
     {"date":"2014-06-13","venue":"Øyafestivalen event","place":"Oslo"},
     {"date":"2026-10-01","place":"Bodø"},
@@ -296,6 +299,7 @@
     {"date":"2022-03-11","venue":"Salt","place":"Oslo"}
   ],
   "fay-wildhagen": [
+    {"date":"2018-02-25","venue":"Spellemann, Oslo Konserthus","place":"Oslo"},
     {"date":"2022-06","venue":"Over Oslo","place":"Oslo"},
     {"date":"2022-04","place":"Turtagrø"},
     {"date":"2017-02","place":"Svalbard"},
@@ -451,7 +455,6 @@
     {"date":"2014-10-18","place":"Oslo"}
   ],
   "froy-aagre": [
-    {"date":"2013-11-02","venue":"Oslo World, Rockefeller","place":"Oslo"},
     {"date":"2013-08-18","venue":"Melafestivalen","place":"Oslo"},
     {"date":"2013-08-14","venue":"Oslo Jazzfestival","place":"Oslo"},
     {"date":"2013-02-15","venue":"NRK"},
@@ -664,7 +667,7 @@
   "stand-in": [
     {"date":"2017-07-13","venue":"Riddu Riđđu","place":"Manndalen","note":"Mette Henriette (keyboards)"},
     {"date":"2016-03-08","place":"Lillehammer","note":"Kimichi"},
-    {"date":"2016-02","place":"Haiti","note":"tour"},
+    {"date":"2016-02","place":"Haiti","note":"village concerts with Prosjekt Haiti"},
     {"date":"2015-08-29","note":"Alejandro Fuentes"},
     {"date":"2015-01-09","place":"Bergen","note":"Down Low Disco, with Tom Hugo and Alexandra Rotan"},
     {"date":"2022-05-31","venue":"NRK","note":"Jonathan Floyd"},

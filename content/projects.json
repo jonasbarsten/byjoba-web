@@ -218,8 +218,8 @@
       "category": "music",
       "status": "active",
       "summary": "Composer, producer and drummer.",
-      "about": "From 2015 to 2019, and again from 2023. Concerts include a tour of Latin America in 2016 (Lima, Buenos Aires, Uruguay and São Paulo), Warsaw in 2016, Berghain in Berlin in 2023 and 2024, and a school tour in 2025.",
-      "years": "2015–",
+      "about": "From 2016 to 2019, and again from 2022. Concerts include a tour of Latin America in 2016 (Lima, Buenos Aires, Uruguay and São Paulo), Warsaw in 2016, Berghain in Berlin in 2023 and 2024, and a school tour in 2025.",
+      "years": "2016–",
       "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598", "cover": "/covers/burning-love.jpg" }]
     },
     {
@@ -230,7 +230,7 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014. Concerts include Øyafestivalen, Hovefestivalen and Bukta in 2013, by:Larm, Ja Ja Ja in London, Berlin Music Week and Waves Vienna in 2014.",
+      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014. Concerts include Øyafestivalen, Hovefestivalen, Bukta and Oslo World in 2013, by:Larm, Ja Ja Ja in London, Berlin Music Week and Waves Vienna in 2014.",
       "releases": [
         { "title": "Klokker", "year": "2026", "url": "https://www.discogs.com/release/36881239", "cover": "/covers/klokker.jpg" },
         { "title": "Jewels Of Crime", "year": "2016", "url": "https://www.discogs.com/master/950215", "cover": "/covers/jewels-of-crime.jpg" },
@@ -325,6 +325,17 @@
       "summary": "Musical director and drummer.",
       "about": "From 2022 to 2023, with single shows after that. Concerts include Spot Festival and Festspillene in 2023, and Spellemann in 2026.",
       "years": "2022–2023"
+    },
+    {
+      "id": "sandra-lyng",
+      "badges": ["live"],
+      "name": "Sandra Lyng",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "about": "Concerts include the TV show Senkveld and NRK P3 in 2016.",
+      "years": "2015–2016"
     },
     {
       "id": "fay-wildhagen",
@@ -767,7 +778,7 @@
       "category": "music",
       "status": "one-off",
       "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Magly, Jonathan Floyd, Kimichi, Christabelle, Tafel and Down Low Disco.",
-      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. Also a tour of Haiti in 2016.",
+      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages.",
       "years": "2015–2024"
     },
     {
