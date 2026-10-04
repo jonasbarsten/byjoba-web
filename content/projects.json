@@ -50,7 +50,8 @@
         { "title": "Installations", "category": "installations" },
         { "title": "Software and hardware", "category": "software-hardware" },
         { "title": "Work for others", "category": "commissioned" },
-        { "title": "Advocacy", "category": "advocacy" }
+        { "title": "Advocacy", "category": "advocacy" },
+        { "title": "Education", "category": "education" }
       ]
     }
   },
@@ -216,7 +217,8 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "years": "2013–",
+      "about": "Album: Vidde (2013). Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
+      "years": "2012–",
       "media": [
         { "label": "Pike", "url": "https://www.youtube.com/watch?v=vGqLUF1fwrQ" },
         { "label": "Can't Get Away, live", "url": "https://www.youtube.com/watch?v=v0T2gI4rYiQ" },
@@ -287,6 +289,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
+      "about": "Releases: One Year and Trip Abroad (2014).",
       "years": "2013–2017",
       "media": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
     },
@@ -306,6 +309,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "From 2011. Album: The Shape Of Beats To Come (2012).",
       "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
         { "label": "Nobody Will Laugh", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
@@ -317,7 +321,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer.",
+      "summary": "Drums and percussion.",
+      "about": "Albums: FlashBlack (2012) and Stillness and Panic (2013).",
+      "years": "2011–2012",
       "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
     {
@@ -326,7 +332,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer.",
+      "summary": "Drums, percussion and electronics in Frøy Aagre Electric.",
+      "about": "From 2012. Album: Frøy Aagre Electric (2013).",
       "media": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
     },
     {
@@ -336,6 +343,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "From 2012. Album: Dagens ungdom (2014).",
       "media": [{ "label": "Aldri vite", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
     },
     {
@@ -344,8 +352,144 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer.",
+      "summary": "Drums, percussion and electronics.",
+      "about": "From 2011. Album: Coconut Message (2014). Also built the band's live rack, which stands in for a sound engineer.",
       "media": [{ "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }]
+    },
+    {
+      "id": "gundelach",
+      "name": "Gundelach",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer."
+    },
+    {
+      "id": "bjorn-charles-dreyer-group",
+      "name": "Bjørn Charles Dreyer Group",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums and electronics, with live effects and live sampling in Ableton Live and Max.",
+      "about": "A trio working between classical, electronic and improvised music. From 2008."
+    },
+    {
+      "id": "sassybeat",
+      "name": "Sassybeat",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums, samples and technical setup.",
+      "about": "From 2011."
+    },
+    {
+      "id": "i-ate-my-pony",
+      "name": "I Ate My Pony",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums and live vocal effects.",
+      "about": "Album: The Ride (2010)."
+    },
+    {
+      "id": "emily",
+      "name": "Emily",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "about": "Album: Until Death (2012)."
+    },
+    {
+      "id": "lets-be-light",
+      "name": "Let's Be Light",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "about": "Album: Let's Be Light (2015)."
+    },
+    {
+      "id": "thor",
+      "name": "Thor",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "about": "Album: Thor (2012)."
+    },
+    {
+      "id": "kjetil-grande",
+      "name": "Kjetil Grande",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums, samples and percussion."
+    },
+    {
+      "id": "ronnie-jacobsen",
+      "name": "Ronnie Jacobsen",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums, samples and percussion.",
+      "about": "Also engineer and drummer on the pre-production of an album."
+    },
+    {
+      "id": "mads-with-band",
+      "name": "Mads With Band",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Samples, drums and live effects in an electronic jazz band."
+    },
+    {
+      "id": "lean-mean-jazz-machine",
+      "name": "Lean Mean Jazz Machine",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer in a jazz quintet."
+    },
+    {
+      "id": "chiwahwah",
+      "name": "Chiwahwah",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums and percussion in a Latin band in Kristiansand."
+    },
+    {
+      "id": "onskekvist",
+      "name": "Önskekvist",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums and electronics in a European free improvisation orchestra."
+    },
+    {
+      "id": "live-electronics-concept",
+      "name": "Live Electronics concept",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums and electronics in improvised concerts with, among others, Eivind Aarset, Bendik Hofseth, Jan Bang, Terje Evensen, Kjetil Husebø and Alex Gunia."
+    },
+    {
+      "id": "other-projects",
+      "name": "Other projects",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "The cultural exchange programme UMOJA, the improvisation concept Antiloop, and the Kristiansand edition of Modulært Grand Prix."
+    },
+    {
+      "id": "also-played-with",
+      "name": "Also played with",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "André Bratten, Anja Skybakmoen, Bellman, Bløsh, CCTV and Siri Nilsen."
     },
     {
       "id": "drums-and-electronics",
@@ -354,9 +498,53 @@
       "category": "music",
       "status": "one-off",
       "summary": "Master's thesis at the Norwegian Academy of Music: drums with electronics controlled by sensors on a dancer.",
-      "about": "With dancers Anette Boge and Hedvig Bang.",
-      "years": "2013",
+      "about": "The piece is called Sound Picking: composition, programming, drums and electronics, with dancers Anette Boge and Hedvig Bang. Presented at Musikkteknologidagene in 2012.",
+      "years": "2011–2013",
       "links": [{ "label": "site", "url": "https://drumsandelectronics.com" }]
+    },
+    {
+      "id": "kyss-av-munch",
+      "name": "\"Kyss\" av Munch",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Commissioned work for Vestfoldfestspillene: drums, percussion, electronics, and the technical setup for video, sound and sync.",
+      "years": "2013"
+    },
+    {
+      "id": "amandusprisen-2011",
+      "name": "Amandusprisen 2011",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Composed and produced all the music for the NRK broadcast.",
+      "years": "2011"
+    },
+    {
+      "id": "film-music",
+      "name": "Film music",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Music for student films at the film school at Lillehammer University College."
+    },
+    {
+      "id": "dolajazz-prize",
+      "name": "Årets Home Coming",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Prize from the jazz festival Dølajazz.",
+      "years": "2014"
+    },
+    {
+      "id": "festivals",
+      "name": "Festivals",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Festivals played, in Norway and abroad.",
+      "about": "Bukta, by:Larm, Dølajazz, HIFA (Zimbabwe), Hovefestivalen, Ja Ja Ja (Berlin and London), Kartfestivalen, Kongsberg Jazzfestival, Melafestivalen, Moldejazz, Musikkfest Oslo, Månefestivalen, Nattjazz, Oscarsborg, Oslo Jazzfestival, Oslo World, Palmesus, Piknik i Parken, Punkt, Quart, Skalldyrfestivalen, Skåtøy vise- og poesifestival, Slottsfjell, Sommerfesten på Giske, South by Southwest (USA), Trondheim Calling, UKA, Ultima, Øyafestivalen and Coachella (USA). Concerts in the USA, Russia, Japan, Germany, France, England, the Netherlands, Belgium and Switzerland."
     },
     {
       "id": "ableton-certified-trainer",
@@ -377,13 +565,57 @@
       "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S and Ary."
     },
     {
+      "id": "nmh-teaching",
+      "name": "Norwegian Academy of Music",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "ended",
+      "summary": "Substitute teacher in Live Electronics and Ableton Live.",
+      "years": "2013–2014"
+    },
+    {
+      "id": "plugin-host-david-solheim",
+      "name": "iPad-controlled plugin host",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "one-off",
+      "summary": "Programmed for sound engineer David Solheim, who has used it with Nils Petter Molvær and Silje Nergaard among others.",
+      "years": "2014"
+    },
+    {
+      "id": "koeju-live-system",
+      "name": "Live performance system for Koeju",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "one-off",
+      "summary": "Programmed a complete live performance system.",
+      "years": "2013–2014"
+    },
+    {
+      "id": "jon-balke-panning",
+      "name": "Panning system for Jon Balke",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "one-off",
+      "summary": "Programmed a system for moving sound between speakers."
+    },
+    {
+      "id": "frikar-bivrfrost",
+      "name": "Trigger system for Frikar",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "one-off",
+      "summary": "Sensor-based triggering used in the dance company's performance Bivrfrost.",
+      "years": "2014"
+    },
+    {
       "id": "olyp",
       "name": "OLYP",
       "site": "jonasbarsten.com",
       "category": "founder",
       "status": "active",
       "summary": "Musicians' collective at Rosenhoff in Oslo: 32 rehearsal and production rooms in about 3,000 m².",
-      "about": "Run by Oslo Lydproduksjon AS.",
+      "about": "Run by Oslo Lydproduksjon AS. Started with support from Musikkutstyrsordningen.",
       "role": "co-founder",
       "years": "2014–",
       "links": [{ "label": "site", "url": "https://olyp.no" }]
@@ -416,6 +648,16 @@
       "status": "in-development",
       "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB.",
       "role": "co-founder"
+    },
+    {
+      "id": "jonas-barsten-as",
+      "name": "Jonas Barsten AS",
+      "site": "jonasbarsten.com",
+      "category": "founder",
+      "status": "active",
+      "summary": "Company for consulting and investments.",
+      "role": "founder",
+      "years": "2016–"
     },
     {
       "id": "olyp-rooms",
@@ -466,6 +708,15 @@
         { "label": "production", "url": "https://samspillmusicnetwork.no/no/band/almir-og-puffene/" },
         { "label": "article", "url": "https://www.kulturdirektoratet.no/aktuelt/trekkspill-bre-deg-ut" }
       ]
+    },
+    {
+      "id": "drivhuset-listening-kiosk",
+      "name": "Listening kiosk",
+      "site": "jonasbarsten.com",
+      "category": "installations",
+      "status": "one-off",
+      "summary": "A kiosk for Drivhuset: put your head in and see randomly chosen images that change with the music playing.",
+      "years": "2010"
     },
     {
       "id": "byjoba",
@@ -580,6 +831,76 @@
       "category": "advocacy",
       "status": "in-development",
       "summary": "Interest organisation for those who run rehearsal and production premises."
+    },
+    {
+      "id": "nmh-master",
+      "name": "Norwegian Academy of Music, master",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Master of Music in performance, with artistic and theoretical specialisation: improvisation with drums and electronics.",
+      "years": "2011–2013"
+    },
+    {
+      "id": "nmh-live-electronics",
+      "name": "Norwegian Academy of Music, Live Electronics",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "One-year study in Live Electronics, and a course in Max for Live.",
+      "years": "2010–2011"
+    },
+    {
+      "id": "uio-sound-programming",
+      "name": "University of Oslo",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Digital audio and MIDI, sound theory and sound programming.",
+      "years": "2010"
+    },
+    {
+      "id": "notam",
+      "name": "NOTAM",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Course in Max/MSP.",
+      "years": "2010–2011"
+    },
+    {
+      "id": "uia-bachelor",
+      "name": "University of Agder",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Bachelor of Music in performance, drums.",
+      "years": "2008–2011"
+    },
+    {
+      "id": "sund-folkehogskole",
+      "name": "Sund Folkehøgskole",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "One year of jazz drums.",
+      "years": "2007–2008"
+    },
+    {
+      "id": "bio-bio-conservatory",
+      "name": "Conservatory in the Bío-Bío region, Chile",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Latin American folk music."
+    },
+    {
+      "id": "gjovik-vgs",
+      "name": "Gjøvik videregående skole",
+      "site": "jonasbarsten.com",
+      "category": "education",
+      "status": "ended",
+      "summary": "Upper secondary school, music programme."
     }
   ]
 }
