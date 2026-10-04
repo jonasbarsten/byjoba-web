@@ -206,6 +206,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
+      "about": "In 2015 and 2016, and again from 2023. Concerts include VG-lista at Rådhusplassen in Oslo in 2015.",
       "years": "2015–"
     },
     {
@@ -216,6 +217,7 @@
       "category": "music",
       "status": "active",
       "summary": "Composer, producer and drummer.",
+      "about": "From 2015 to 2019, and again from 2023. Concerts include a tour of Latin America in 2016 (Lima, Buenos Aires, Uruguay and São Paulo), Warsaw in 2016, Berghain in Berlin in 2023 and 2024, and a school tour in 2025.",
       "years": "2015–",
       "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598", "cover": "/covers/burning-love.jpg" }]
     },
@@ -227,7 +229,7 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
+      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014. Concerts include Øyafestivalen, Hovefestivalen and Bukta in 2013, by:Larm, Ja Ja Ja in London, Berlin Music Week and Waves Vienna in 2014, and Italy in 2024.",
       "releases": [
         { "title": "Klokker", "year": "2026", "url": "https://www.discogs.com/release/36881239", "cover": "/covers/klokker.jpg" },
         { "title": "Jewels Of Crime", "year": "2016", "url": "https://www.discogs.com/master/950215", "cover": "/covers/jewels-of-crime.jpg" },
@@ -243,6 +245,16 @@
         { "label": "Can't Get Away, live", "url": "https://www.youtube.com/watch?v=v0T2gI4rYiQ" },
         { "label": "Aye", "url": "https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q" }
       ]
+    },
+    {
+      "id": "vegard",
+      "badges": ["live"],
+      "name": "Vegard",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "active",
+      "summary": "Concerts, among them in Finland.",
+      "years": "2026–"
     },
     {
       "id": "sirkus-eliassen",
@@ -273,7 +285,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "Full time from 2016 to 2021, with single shows after that.",
+      "about": "Full time from 2016 to 2021, with single shows after that. Concerts include New York in 2017, Coachella, Beijing and Shanghai in 2018, and tours of China and India and Oslo Spektrum in 2019.",
       "releases": [{ "title": "Ina Wroldsen: Strongest (Alan Walker Remix)", "year": "2017", "url": "https://www.discogs.com/master/1268911", "cover": "/covers/strongest-alan-walker-remix.jpg" }],
       "years": "2016–2021",
       "media": [
@@ -299,7 +311,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "From around 2018 to 2021, with single shows after that.",
+      "about": "From around 2018 to 2021, with single shows after that. Concerts include Stavernfestivalen in 2019, the TV show Lindmo in 2020 and VG-lista in 2024.",
       "years": "2018–2021",
       "media": [{ "label": "WOW, with Emma Steinbakken, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=u5umRNr2duw" }]
     },
@@ -311,7 +323,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "From 2022 to 2023, with single shows after that.",
+      "about": "From 2022 to 2023, with single shows after that. Concerts include Spot Festival in 2023, a release concert at Parkteatret in 2025 and Spellemann in 2026.",
       "years": "2022–2023"
     },
     {
@@ -322,6 +334,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "Concerts include Copenhagen and Aarhus in 2015, and Øyafestivalen, Reeperbahn Festival and Spellemann in 2019.",
       "years": "2015–2023",
       "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391", "cover": "/covers/leave-me-to-the-moon.jpg" }],
       "media": [
@@ -342,6 +355,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
+      "about": "Concerts include the TV show Lindmo and NRK P3 in 2017, and Estonia and Vinjerock in 2018.",
       "years": "2017–2022",
       "media": [
         { "label": "My Awe Sustains, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=6b1NsuK1o40" },
@@ -357,6 +371,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
+      "about": "Concerts include London in 2014.",
       "releases": [
         { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058", "cover": "/covers/one-year.jpg" },
         { "title": "Trip Abroad", "year": "2014", "cover": "/covers/trip-abroad.jpg" }
@@ -428,6 +443,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "Concerts include Øyafestivalen in 2014.",
       "years": "2012–2018",
       "releases": [
         { "title": "Lite Å Gjøre", "year": "2018", "cover": "/covers/lite-a-gjore.jpg" },
@@ -445,7 +461,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
-      "about": "Also built the band's live rack, which stands in for a sound engineer.",
+      "about": "Also built the band's live rack, which stands in for a sound engineer. Concerts include Hovefestivalen in 2014 and a live session on NRK P3 in 2015.",
       "years": "2011–2015",
       "releases": [
         { "title": "Coconut Message", "year": "2014", "cover": "/covers/coconut-message.jpg" },
@@ -468,6 +484,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "Concerts include Roskilde Festival and Øyafestivalen in 2016, and London, Aarhus and Amsterdam.",
       "years": "2015–2017"
     },
     {
@@ -588,7 +605,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them the tour finale at Sentrum Scene, and the playback rig.",
+      "summary": "Concerts as a stand-in, among them the tour finale at Sentrum Scene. Also built the playback rig.",
       "years": "2017–2018"
     },
     {
@@ -598,7 +615,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Pre-production and concerts, among them Parkenfestivalen in Bodø.",
+      "summary": "Concerts as a stand-in, among them Parkenfestivalen in Bodø.",
       "years": "2018"
     },
     {
@@ -708,7 +725,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Slottsfjell.",
+      "summary": "Concerts as a stand-in, among them Slottsfjell.",
       "years": "2016–2017"
     },
     {
@@ -772,13 +789,23 @@
       "years": "2023"
     },
     {
+      "id": "astrid-s",
+      "badges": ["live"],
+      "name": "Astrid S",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Concert as a stand-in, at Tinderbox in Denmark.",
+      "years": "2023"
+    },
+    {
       "id": "vinni",
       "badges": ["live"],
       "name": "Vinni",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Rockefeller in Oslo.",
+      "summary": "Concerts as a stand-in, among them Rockefeller in Oslo.",
       "years": "2023"
     },
     {
@@ -788,8 +815,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "With Karen Musæus, Yngvild, Delish, Christabelle, Tafel, Arif and Unge Ferrari, and Xploding Plastix.",
-      "years": "2016–2024"
+      "summary": "With Karen Musæus, Christabelle and Tafel.",
+      "years": "2017–2024"
     },
     {
       "id": "bjorn-charles-dreyer-group",
@@ -810,6 +837,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, samples and technical setup.",
+      "about": "Concerts include by:Larm in 2014.",
       "years": "2011–2014"
     },
     {
