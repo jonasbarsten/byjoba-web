@@ -610,7 +610,10 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "releases": [{ "title": "By Love", "year": "2019", "cover": "/covers/by-love.jpg" }]
+      "releases": [
+        { "title": "Strand og hav", "year": "2024", "cover": "/covers/strand-og-hav.jpg" },
+        { "title": "By Love", "year": "2019", "cover": "/covers/by-love.jpg" }
+      ]
     },
     {
       "id": "bellman",
