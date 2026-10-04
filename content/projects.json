@@ -189,7 +189,12 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "Plays on the recordings Late to the Party and Deathbed (2024), and Stuck Cat and Hospitals (2025).",
+      "releases": [
+        { "title": "How did I let this get so serious?", "year": "2025", "cover": "/covers/how-did-i-let-this-get-so-serious.jpg" },
+        { "title": "Stuck Cat", "year": "2025", "cover": "/covers/stuck-cat.jpg" },
+        { "title": "Deathbed", "year": "2024", "cover": "/covers/deathbed.jpg" },
+        { "title": "Late to the Party", "year": "2024", "cover": "/covers/late-to-the-party.jpg" }
+      ],
       "years": "2023–"
     },
     {
@@ -308,7 +313,7 @@
       "summary": "Producer, musical director and drummer.",
       "releases": [
         { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058", "cover": "/covers/one-year.jpg" },
-        { "title": "Trip Abroad", "year": "2014" }
+        { "title": "Trip Abroad", "year": "2014", "cover": "/covers/trip-abroad.jpg" }
       ],
       "years": "2013–2017",
       "media": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
@@ -329,8 +334,11 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2011. Also plays on Bendik Baksaas' Jenny (2018).",
-      "releases": [{ "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }],
+      "about": "From 2011.",
+      "releases": [
+        { "title": "Bendik Baksaas: Jenny", "year": "2018", "cover": "/covers/jenny.jpg" },
+        { "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }
+      ],
       "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
         { "label": "Nobody Will Laugh", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
@@ -371,6 +379,7 @@
       "summary": "Drummer.",
       "about": "From 2012.",
       "releases": [
+        { "title": "Lite Å Gjøre", "year": "2018", "cover": "/covers/lite-a-gjore.jpg" },
         { "title": "Nedi Havet", "year": "2013", "url": "https://www.discogs.com/release/6331390", "cover": "/covers/nedi-havet.jpg" },
         { "title": "Dagens Ungdom", "year": "2014", "url": "https://www.discogs.com/release/5947672", "cover": "/covers/dagens-ungdom.jpg" },
         { "title": "Naken Gris", "year": "2015", "url": "https://www.discogs.com/release/7996427", "cover": "/covers/naken-gris.jpg" }
@@ -385,7 +394,14 @@
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
       "about": "From 2011. Also built the band's live rack, which stands in for a sound engineer.",
-      "releases": [{ "title": "Coconut Message", "year": "2014" }],
+      "releases": [
+        { "title": "Coconut Message", "year": "2014", "cover": "/covers/coconut-message.jpg" },
+        { "title": "Now We're Gonna Learn To Swim", "year": "2014", "cover": "/covers/now-were-gonna-learn-to-swim.jpg" },
+        { "title": "Yugen (Telling Me All)", "year": "2013", "cover": "/covers/yugen.jpg" },
+        { "title": "Curiosity", "year": "2012", "cover": "/covers/curiosity.jpg" },
+        { "title": "Beach House", "year": "2012", "cover": "/covers/beach-house.jpg" },
+        { "title": "Natural", "year": "2012", "cover": "/covers/natural.jpg" }
+      ],
       "media": [
         { "label": "Beach House", "url": "https://www.youtube.com/watch?v=5kPWEkXuk-s" },
         { "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }
@@ -415,7 +431,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the album Blackwinged Night.",
+      "summary": "Drums on the album Blackwinged Night.",
       "about": "On the tracks Blackwinged Night and Half Human.",
       "years": "2015",
       "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761", "cover": "/covers/blackwinged-night.jpg" }]
@@ -426,7 +442,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the album Norsk Skog.",
+      "summary": "Drums on the album Norsk Skog.",
       "about": "On the tracks Alle har gått hjem, Uro, Ringstrøms antikvariat and Hei sol!",
       "years": "2018",
       "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036", "cover": "/covers/norsk-skog.jpg" }]
@@ -437,8 +453,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the recording Loved You Then And Now Again.",
-      "years": "2025"
+      "summary": "Drums on the single Loved You Then And Now Again.",
+      "years": "2025",
+      "releases": [{ "title": "Loved You Then And Now Again", "year": "2025", "cover": "/covers/loved-you-then-and-now-again.jpg" }]
     },
     {
       "id": "some-feather",
@@ -446,8 +463,12 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the recordings Princess Song and, with Thom Hell, Love By Association.",
-      "years": "2017"
+      "summary": "Drums on Princess Song and on Love By Association, with Thom Hell.",
+      "years": "2017",
+      "releases": [
+        { "title": "High Water Mark", "year": "2017", "cover": "/covers/high-water-mark.jpg" },
+        { "title": "Princess Song", "year": "2017", "cover": "/covers/princess-song.jpg" }
+      ]
     },
     {
       "id": "tom-hugo",
@@ -455,8 +476,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the recording Hjertet tar'kke feil.",
-      "years": "2014"
+      "summary": "Drums on the single Hjertet tar'kke feil.",
+      "years": "2015",
+      "releases": [{ "title": "Hjertet tar'kke feil", "year": "2015", "cover": "/covers/hjertet-tarkke-feil.jpg" }]
     },
     {
       "id": "anna-melkild",
@@ -464,7 +486,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the recording I'm Alive.",
+      "summary": "Drums on the recording I'm Alive.",
       "years": "2014"
     },
     {
@@ -473,7 +495,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Plays on the recording Visjon.",
+      "summary": "Drums on the recording Visjon.",
       "years": "2014"
     },
     {
@@ -576,7 +598,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Plays on five recordings from 2019, among them Trying and Levitate."
+      "releases": [{ "title": "By Love", "year": "2019", "cover": "/covers/by-love.jpg" }]
     },
     {
       "id": "bellman",
@@ -593,8 +615,11 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Plays on nine recordings, among them Give It Away, Highway, Nightmares, and When Love Is Alive with Siri Nilsen.",
-      "years": "2015–2016"
+      "years": "2015–2016",
+      "releases": [
+        { "title": "Keep Bleeding Keep Breathing", "year": "2016", "cover": "/covers/keep-bleeding-keep-breathing.jpg" },
+        { "title": "Keep Your Tongue", "year": "2015", "cover": "/covers/keep-your-tongue.jpg" }
+      ]
     },
     {
       "id": "cctv",
