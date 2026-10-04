@@ -137,8 +137,6 @@
     {"date":"2018-02-19"},
     {"date":"2018-02-03","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2017-12-10","venue":"Nationaltheatret","place":"Oslo"},
-    {"date":"2017-10-07"},
-    {"date":"2017-10-06"},
     {"date":"2017-09-29","place":"Trondheim"},
     {"date":"2017-09-28","venue":"Blå","place":"Oslo"},
     {"date":"2017-09-22","venue":"NRK P2 Spillerom"},
@@ -721,11 +719,15 @@
     {"date":"2018-08-09","place":"Tromsø"}
   ],
   "den-politiske-kroppen": [
-    {"date":"2019-10-19","place":"Frankfurt"},
-    {"date":"2019-10-18","place":"Frankfurt"},
-    {"date":"2019-10-17","place":"Frankfurt"},
-    {"date":"2019-09-26","place":"Norway","note":"tour"},
-    {"date":"2019-09-25","place":"Oslo","note":"premiere"}
+    {"date":"2019-10-19","place":"Berlin","note":"Følelsenes politikk"},
+    {"date":"2019-10-18","place":"Frankfurt","note":"Følelsenes politikk"},
+    {"date":"2019-10-17","place":"Frankfurt","note":"Følelsenes politikk"},
+    {"date":"2019-09-29","place":"Bergen","note":"Følelsenes politikk"},
+    {"date":"2019-09-28","place":"Trondheim","note":"Følelsenes politikk"},
+    {"date":"2019-09-26","place":"Moss","note":"Følelsenes politikk"},
+    {"date":"2019-09-25","venue":"Litteraturhuset","place":"Oslo","note":"Følelsenes politikk, premiere"},
+    {"date":"2017-10-07","venue":"Litteraturhuset","place":"Oslo","note":"The Political Body"},
+    {"date":"2017-10-06","venue":"Litteraturhuset","place":"Oslo","note":"The Political Body, premiere"}
   ],
   "pasha": [
     {"date":"2019-03-09"}
