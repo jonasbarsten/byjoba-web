@@ -46,6 +46,7 @@ function contentsHint(entry) {
   return [
     count(kinds.filter((kind) => kind === 'video').length, 'video'),
     count(kinds.filter((kind) => kind === 'track').length, 'track'),
+    count(entry.releases?.length ?? 0, 'release'),
     count(entry.links?.length ?? 0, 'link'),
   ]
     .filter(Boolean)
@@ -94,13 +95,26 @@ function renderEntry(entry) {
   const id = escapeHtml(entry.id);
   const media = mediaBlock(entry);
   const linkList = entry.links ?? [];
-  if (!entry.about && linkList.length === 0 && !media) return `<li id="${id}">${face}</li>`;
+  const releases = releaseList(entry);
+  if (!entry.about && linkList.length === 0 && !media && !releases) return `<li id="${id}">${face}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = linkList.length
     ? `<p class="links">${linkList.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
-  return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${links}${media}</details></li>`;
+  return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${releases}${links}${media}</details></li>`;
+}
+
+/** The records an entry appears on, each with its year and linked when it has a url. */
+function releaseList(entry) {
+  if (!entry.releases?.length) return '';
+  const items = entry.releases.map((release) => {
+    const title = release.url
+      ? `<a href="${escapeHtml(release.url)}"${NEW_TAB}>${escapeHtml(release.title)}</a>`
+      : escapeHtml(release.title);
+    return `${title} (${escapeHtml(release.year)})`;
+  });
+  return `<p class="releases">Releases: ${items.join(' · ')}</p>`;
 }
 
 function renderSection(content, domain, section) {

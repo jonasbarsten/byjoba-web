@@ -207,7 +207,8 @@
       "category": "music",
       "status": "active",
       "summary": "Composer, producer and drummer.",
-      "years": "2015–"
+      "years": "2015–",
+      "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598" }]
     },
     {
       "id": "atlanter",
@@ -216,7 +217,8 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "about": "Album: Vidde (2013). Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
+      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
+      "releases": [{ "title": "Vidde", "year": "2013", "url": "https://www.discogs.com/master/566572" }],
       "years": "2012–",
       "media": [
         { "label": "Soon", "url": "https://www.youtube.com/watch?v=5x26NrfqQoA" },
@@ -233,6 +235,7 @@
       "status": "ended",
       "summary": "Musical director and drummer.",
       "about": "Full time from 2016 to 2021, with single shows after that.",
+      "releases": [{ "title": "Ina Wroldsen: Strongest (Alan Walker Remix)", "year": "2017", "url": "https://www.discogs.com/master/1268911" }],
       "years": "2016–2021",
       "media": [
         { "label": "Faded, live", "url": "https://www.youtube.com/watch?v=mIxlvVlOIS0" },
@@ -273,6 +276,7 @@
       "status": "ended",
       "summary": "Drummer.",
       "years": "2015–2023",
+      "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391" }],
       "media": [{ "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }]
     },
     {
@@ -291,7 +295,10 @@
       "category": "music",
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
-      "about": "Releases: One Year and Trip Abroad (2014).",
+      "releases": [
+        { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058" },
+        { "title": "Trip Abroad", "year": "2014" }
+      ],
       "years": "2013–2017",
       "media": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
     },
@@ -311,7 +318,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2011. Album: The Shape Of Beats To Come (2012).",
+      "about": "From 2011.",
+      "releases": [{ "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226" }],
       "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
         { "label": "Nobody Will Laugh", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
@@ -324,7 +332,11 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and keyboards.",
-      "about": "Albums: FlashBlack (2012) and Stillness and Panic (2013). Played keyboards with her at South by Southwest.",
+      "about": "Played keyboards with her at South by Southwest.",
+      "releases": [
+        { "title": "Flashblack", "year": "2012", "url": "https://www.discogs.com/master/655762" },
+        { "title": "Stillness And Panic", "year": "2013", "url": "https://www.discogs.com/master/718091" }
+      ],
       "years": "2011–2012",
       "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
@@ -335,7 +347,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics in Frøy Aagre Electric.",
-      "about": "From 2012. Album: Frøy Aagre Electric (2013).",
+      "about": "From 2012.",
+      "releases": [{ "title": "Electric", "year": "2013", "url": "https://www.discogs.com/release/11421486" }],
       "media": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
     },
     {
@@ -345,7 +358,12 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2012. Album: Dagens ungdom (2014).",
+      "about": "From 2012.",
+      "releases": [
+        { "title": "Nedi Havet", "year": "2013", "url": "https://www.discogs.com/release/6331390" },
+        { "title": "Dagens Ungdom", "year": "2014", "url": "https://www.discogs.com/release/5947672" },
+        { "title": "Naken Gris", "year": "2015", "url": "https://www.discogs.com/release/7996427" }
+      ],
       "media": [{ "label": "Aldri vite", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
     },
     {
@@ -355,7 +373,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
-      "about": "From 2011. Album: Coconut Message (2014). Also built the band's live rack, which stands in for a sound engineer.",
+      "about": "From 2011. Also built the band's live rack, which stands in for a sound engineer.",
+      "releases": [{ "title": "Coconut Message", "year": "2014" }],
       "media": [
         { "label": "Beach House", "url": "https://www.youtube.com/watch?v=5kPWEkXuk-s" },
         { "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }
@@ -378,6 +397,26 @@
       "status": "one-off",
       "summary": "Drummer on the band's concerts in Zimbabwe.",
       "years": "2015"
+    },
+    {
+      "id": "phaedra",
+      "name": "Phaedra",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the album Blackwinged Night.",
+      "years": "2015",
+      "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761" }]
+    },
+    {
+      "id": "anders-wyller",
+      "name": "Anders Wyller",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the album Norsk Skog.",
+      "years": "2018",
+      "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036" }]
     },
     {
       "id": "bjorn-charles-dreyer-group",
@@ -404,7 +443,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums and live vocal effects.",
-      "about": "Album: The Ride (2010)."
+      "releases": [{ "title": "The Ride", "year": "2010" }]
     },
     {
       "id": "kjetil-grande",
@@ -453,7 +492,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drums and electronics in a European free improvisation orchestra."
+      "summary": "Drums and electronics in a European free improvisation orchestra.",
+      "releases": [{ "title": "ÖNCZkekvist", "year": "2010", "url": "https://www.discogs.com/release/2596315" }]
     },
     {
       "id": "live-electronics-concept",
@@ -530,6 +570,8 @@
       "status": "one-off",
       "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo.",
       "about": "The first in Pekula's series of commissioned pieces, made for the venue's 15th anniversary. Music by Simen Følstad Nilsen, Axel Skalstad and Erlend Mokkelbost. Performed behind curtains with the musicians' names kept secret: Axel Skalstad, Ellen Brekken, Marte Eberson, Simen Følstad Nilsen, Gunhild Ramsay Kristoffersen and Jonas Barsten.",
+      "years": "2018",
+      "releases": [{ "title": "Live Vol. 1 Arp", "year": "2018", "url": "https://www.discogs.com/master/2743475" }],
       "links": [{ "label": "release page", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
       "media": [{ "label": "Pekula Vol. 1: ARP", "url": "https://www.youtube.com/watch?v=WpIT8G1pcow" }]
     },

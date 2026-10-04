@@ -153,6 +153,24 @@ test('links are listed by label inside the opened card and never make the name a
   assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
+test('releases are listed with their year inside the opened card, linked when they have a url', () => {
+  const content = fixture();
+  content.projects[1].releases = [
+    { title: 'Vidde', year: '2013', url: 'https://www.discogs.com/master/566572' },
+    { title: 'A & B', year: '2014' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<span class="more">2 releases<\/span><\/summary><p class="releases">Releases: <a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> \(2013\) · A &amp; B \(2014\)<\/p><\/details>/);
+});
+
+test('the "more" marker lists videos, tracks, releases and links in that order', () => {
+  const content = fixture();
+  content.projects[1].media = [{ label: 'v', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];
+  content.projects[1].releases = [{ title: 'Vidde', year: '2013' }];
+  content.projects[1].links = [{ label: 'site', url: 'https://example.com/site' }];
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<span class="more">1 video · 1 release · 1 link<\/span>/);
+});
+
 test('the "more" marker counts links after videos and tracks', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'v', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];

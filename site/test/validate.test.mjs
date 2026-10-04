@@ -119,6 +119,15 @@ test('a url must be https or a root-relative path', () => {
   }
 });
 
+test('releases must be a list with a title and a year, and an optional url', () => {
+  assert.deepEqual(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013' }, { title: 'Aye', year: '2013', url: 'https://www.discogs.com/master/566572' }]; }), []);
+  assertError(errorsFor((c) => { c.projects[1].releases = 'Vidde'; }), /entry "atlanter": releases must be a list/);
+  assertError(errorsFor((c) => { c.projects[1].releases = [{ year: '2013' }]; }), /entry "atlanter": release needs a title/);
+  assertError(errorsFor((c) => { c.projects[1].releases = [null]; }), /entry "atlanter": release needs a title/);
+  assertError(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: 2013 }]; }), /entry "atlanter": release "Vidde" needs a year/);
+  assertError(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013', url: 'discogs.com' }]; }), /entry "atlanter": release "Vidde" url must start with https:\/\/ or \//);
+});
+
 test('a category may appear in only one section of a site', () => {
   const errors = errorsFor((c) => { c.sites['byjoba.com'].sections.push({ title: 'Again', category: 'hardware' }); });
   assertError(errors, /byjoba.com section 2: category "hardware" is already used/);

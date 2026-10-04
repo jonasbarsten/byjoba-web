@@ -1,6 +1,6 @@
 import { mediaEmbed } from './media.mjs';
 
-const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'url', 'links', 'media'];
+const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'url', 'links', 'media', 'releases'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
@@ -89,6 +89,20 @@ function entryErrors(entry, index, sites, seen) {
       for (const item of entry.media) {
         if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
         else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video, an NRK TV programme or a Spotify track`);
+      }
+    }
+  }
+  if ('releases' in entry) {
+    if (!Array.isArray(entry.releases)) {
+      errors.push(`${where}: releases must be a list`);
+    } else {
+      for (const release of entry.releases) {
+        if (!isObject(release) || !isText(release.title)) {
+          errors.push(`${where}: release needs a title`);
+          continue;
+        }
+        if (!isText(release.year)) errors.push(`${where}: release "${release.title}" needs a year`);
+        if ('url' in release && !isLinkUrl(release.url)) errors.push(`${where}: release "${release.title}" url must start with https:// or /`);
       }
     }
   }
