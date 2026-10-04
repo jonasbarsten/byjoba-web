@@ -85,7 +85,6 @@
     {"date":"2016-08-19","place":"Tønsberg"},
     {"date":"2016-08-18","place":"Hammerfest"},
     {"date":"2016-03-24","place":"Geilo"},
-    {"date":"2016-03-02","venue":"Rockefeller","place":"Oslo"},
     {"date":"2016-02-17","place":"Lillehammer"},
     {"date":"2016-01-29","place":"Oslo"},
     {"date":"2015-10-23","place":"Ås"},
@@ -152,7 +151,6 @@
     {"date":"2018-11-16","venue":"Bortenfor"},
     {"date":"2018-06-02","place":"Bergen"},
     {"date":"2018-05-16","place":"Oslo"},
-    {"date":"2018-04-13","venue":"Ingensteds"},
     {"date":"2018-04-11","place":"Oppland","note":"school tour"},
     {"date":"2018-04-10","place":"Oppland","note":"school tour"},
     {"date":"2018-04-09","place":"Oppland","note":"school tour"},
@@ -200,7 +198,7 @@
     {"date":"2016-09-13","venue":"Vestre Aker skole and Ullevålsveien skole","place":"Oslo","note":"school tour"},
     {"date":"2016-09-12","venue":"Morellbakken skole","place":"Oslo","note":"school tour"},
     {"date":"2016-09-05","venue":"Fyrstikkalleen skole","place":"Oslo","note":"school tour"},
-    {"date":"2016-09-01","place":"Bø"}
+    {"date":"2016-09-01","venue":"Kulturtorget","place":"Bø"}
   ],
   "sandra-lyng": [
     {"date":"2016-11-11","place":"Warsaw","note":"ANSA event"},
@@ -873,7 +871,7 @@
     {"date":"2016-07-08","venue":"Trænafestivalen"},
     {"date":"2016-06-24","place":"Trondheim"},
     {"date":"2016-06-18","venue":"Sukkerbiten","place":"Oslo"},
-    {"date":"2016-05-28","place":"Bryne"},
+    {"date":"2016-05-28","venue":"Jærnåttå","place":"Bryne"},
     {"date":"2016-04-15","venue":"Rockefeller","place":"Oslo"},
     {"date":"2015-12-04","place":"Lillehammer"},
     {"date":"2015-11-06","place":"Kristiansand"},
@@ -887,9 +885,6 @@
     {"date":"2018-11-10","venue":"Ørsta kulturhus","place":"Ørsta"},
     {"date":"2018-03-22"},
     {"date":"2018-03-21"},
-    {"date":"2017-11-29"},
-    {"date":"2017-11-28"},
-    {"date":"2017-11-27"},
     {"date":"2017-11-22"},
     {"date":"2017-11-21"},
     {"date":"2017-11-20"},
