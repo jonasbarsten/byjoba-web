@@ -266,7 +266,10 @@
     {"date":"2014-06-13","venue":"Øyafestivalen event","place":"Oslo"},
     {"date":"2014-04-23","venue":"Bi Nuu","place":"Berlin","note":"filmed by ARTE Concert"},
     {"date":"2014-04-22","venue":"Uebel & Gefährlich","place":"Hamburg"},
+    {"date":"2014-04-15","place":"Brussels"},
     {"date":"2014-04-14","venue":"Sugarfactory","place":"Amsterdam"},
+    {"date":"2014-04","place":"Den Bosch"},
+    {"date":"2014-04-09","place":"London"},
     {"date":"2014-04-13","venue":"Charlatan","place":"Ghent"},
     {"date":"2014-04-12","venue":"Vera","place":"Groningen"},
     {"date":"2014-04-11","venue":"EKKO","place":"Utrecht","note":"Nordic Delight"},
@@ -548,7 +551,6 @@
     {"date":"2014-06-04","venue":"Blå","place":"Oslo"},
     {"date":"2014-05-21","venue":"Blå","place":"Oslo"},
     {"date":"2014-05-07","venue":"Blå","place":"Oslo"},
-    {"date":"2014-04-09","venue":"Blå","place":"Oslo"},
     {"date":"2014-03-26","venue":"Blå","place":"Oslo"},
     {"date":"2014-02-26","venue":"Blå","place":"Oslo"},
     {"date":"2014-02-12","venue":"Blå","place":"Oslo"},
@@ -696,6 +698,7 @@
     {"date":"2011-08-12","venue":"Øyafestivalen","place":"Oslo"}
   ],
   "onskekvist": [
+    {"date":"2012-02-20","venue":"Porgy & Bess","place":"Vienna","note":"with Vienna Improvisers Orchestra"},
     {"date":"2011-01-28","venue":"Chapeau Rouge","place":"Prague"},
     {"date":"2011-01-27","venue":"Skleněná louka","place":"Brno"},
     {"date":"2011-01-22","venue":"echoraum","place":"Vienna","note":"record presentation"},
