@@ -233,6 +233,15 @@
     {"date":"2015-09-18","venue":"Gjøvikmarken","place":"Gjøvik"}
   ],
   "atlanter": [
+    {"date":"2013-11-15","venue":"Klubben, Studentersamfundet","place":"Trondheim"},
+    {"date":"2013-11-01","venue":"Kulturhuset","place":"Oslo","note":"broadcast concert for NRK P2"},
+    {"date":"2013-05-31","venue":"Rockefeller","place":"Oslo","note":"with Kurt Vile"},
+    {"date":"2013-05-27","venue":"Nattjazz","place":"Bergen"},
+    {"date":"2013-05-24","venue":"Jimmy Legs","place":"Haugesund"},
+    {"date":"2013-05-23","venue":"Grottene, Folken","place":"Stavanger"},
+    {"date":"2013-05-22","venue":"Jimmy Legs","place":"Haugesund","note":"TV broadcast"},
+    {"date":"2013-04-06","venue":"Havresekken"},
+    {"date":"2013-03-15","venue":"Blå","place":"Oslo","note":"release concert for Vidde"},
     {"date":"2026-10-01","venue":"Dama Di","place":"Bodø"},
     {"date":"2026-06-13","venue":"Kampen Bistro","place":"Oslo","note":"release party"},
     {"date":"2026-02-12","venue":"Kafé Hærverk","place":"Oslo"},
@@ -515,6 +524,10 @@
     {"date":"2014-01-29","venue":"Parkteatret","place":"Oslo"},
     {"date":"2013-05-30","venue":"Onda","place":"Aker Brygge, Oslo"}
   ],
+  "kyss-av-munch": [
+    {"date":"2013-06-27","venue":"Vestfoldfestspillene, Støperiet","place":"Tønsberg"},
+    {"date":"2013-06-26","venue":"Vestfoldfestspillene, Støperiet","place":"Tønsberg","note":"premiere"}
+  ],
   "chiwahwah": [
     {"date":"2009-07-25","place":"Mandal"},
     {"date":"2009-07-07","place":"Mandal"},
@@ -605,6 +618,8 @@
     {"date":"2013-02-14","venue":"by:Larm, Revolver","place":"Oslo","review":{"label":"Gaffa","url":"https://gaffa.no/anmeldelser/2013/februar/events/dagens-ungdom-revolver-by-larm/"}}
   ],
   "disaster-in-the-universe": [
+    {"date":"2013-11-23","venue":"Hotel Norge","place":"Bergen"},
+    {"date":"2013-05-03","place":"Hamburg"},
     {"date":"2015-02-06","venue":"Uka, Blindern","place":"Oslo"},
     {"date":"2015-01-29","venue":"NRK P3"},
     {"date":"2014-11-17","venue":"Danvik","place":"Drammen"},
