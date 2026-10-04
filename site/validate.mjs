@@ -1,4 +1,6 @@
-const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'links'];
+import { mediaEmbed } from './media.mjs';
+
+const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'links', 'media'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
@@ -78,6 +80,16 @@ function entryErrors(entry, index, sites, seen) {
   if (!STATUSES.includes(entry.status)) errors.push(`${where}: status must be one of ${STATUSES.join(', ')}`);
   for (const field of OPTIONAL_TEXT) {
     if (field in entry && !isText(entry[field])) errors.push(`${where}: "${field}" must be non-empty text`);
+  }
+  if ('media' in entry) {
+    if (!Array.isArray(entry.media)) {
+      errors.push(`${where}: media must be a list`);
+    } else {
+      for (const item of entry.media) {
+        if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
+        else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video or a Spotify track`);
+      }
+    }
   }
   if ('links' in entry) {
     if (!Array.isArray(entry.links)) {

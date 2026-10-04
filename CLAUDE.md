@@ -29,4 +29,5 @@ The pages are purely informational: no voice, no pitch, no personality.
 
 - `site/` has no dependencies and must stay that way.
 - The list pages carry no script and no inline style.
+- Videos and tracks go in `media`, not `links`: an artist's name does not link anywhere. The players load only when a reader opens the entry, so the page itself still calls no third party.
 - Work on `dev`. Never push to `main`.

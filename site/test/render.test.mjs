@@ -77,6 +77,42 @@ test('an entry without about or links is a plain line with role and years', () =
   assert.match(html, /<li id="vierlive"><span class="name">VIER\.LIVE<\/span> <span class="badge">ended<\/span><span class="summary"> — Streaming platform\.<\/span> <span class="meta">co-founder · 2020–2021<\/span><\/li>/);
 });
 
+test('media shows as small embeds inside the expanded entry, and the name stays plain', () => {
+  const content = fixture();
+  content.projects[1].media = [
+    { label: 'Pike', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' },
+    { label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><details><summary><span class="name">Atlanter<\/span>/);
+  assert.match(
+    html,
+    /<div class="media"><figure class="video"><iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/vGqLUF1fwrQ" title="Pike" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen><\/iframe><figcaption>Pike<\/figcaption><\/figure><figure class="track"><iframe src="https:\/\/open\.spotify\.com\/embed\/track\/5owc6LBkOZp05yh0T0B88Q" title="Aye" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media"><\/iframe><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
+  );
+});
+
+test('the line says what media an entry holds', () => {
+  const video = (n) => ({ label: `v${n}`, url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' });
+  const track = { label: 't', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' };
+  const lineFor = (media) => {
+    const content = fixture();
+    content.projects[1].media = media;
+    return renderIndex(content, 'jonasbarsten.com').match(/<li id="atlanter">.*?<span class="meta">([^<]*)<\/span>/)[1];
+  };
+  assert.equal(lineFor([video(1)]), '2013– · 1 video');
+  assert.equal(lineFor([video(1), video(2)]), '2013– · 2 videos');
+  assert.equal(lineFor([track]), '2013– · 1 track');
+  assert.equal(lineFor([video(1), video(2), track, track]), '2013– · 2 videos · 2 tracks');
+});
+
+test('media labels are escaped', () => {
+  const content = fixture();
+  content.projects[1].media = [{ label: 'A "live" <take>', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /title="A &quot;live&quot; &lt;take&gt;"/);
+  assert.match(html, /<figcaption>A &quot;live&quot; &lt;take&gt;<\/figcaption>/);
+});
+
 test('each status shows as its own badge', () => {
   const labels = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
   for (const [status, label] of Object.entries(labels)) {

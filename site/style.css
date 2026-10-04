@@ -161,6 +161,41 @@ details p {
   margin: var(--space-1) 0 var(--space-2);
 }
 
+/* Small players inside an expanded entry. */
+.media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--space-2) var(--space-4);
+  margin: var(--space-2) 0 var(--space-4);
+}
+
+figure {
+  margin: 0;
+}
+
+iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  border-radius: calc(var(--radius) - 4px);
+  background: var(--muted);
+}
+
+.video iframe {
+  aspect-ratio: 16 / 9;
+}
+
+.track iframe {
+  height: 80px;
+}
+
+figcaption {
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-top: var(--space-1);
+}
+
 footer {
   font-size: var(--text-sm);
   line-height: var(--leading-sm);

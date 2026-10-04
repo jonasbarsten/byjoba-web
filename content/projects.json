@@ -242,10 +242,10 @@
       "status": "active",
       "summary": "Composer and drummer.",
       "years": "2013–",
-      "links": [
+      "media": [
         { "label": "Pike", "url": "https://www.youtube.com/watch?v=vGqLUF1fwrQ" },
         { "label": "Can't Get Away, live", "url": "https://www.youtube.com/watch?v=v0T2gI4rYiQ" },
-        { "label": "Aye on Spotify", "url": "https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q" }
+        { "label": "Aye", "url": "https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q" }
       ]
     },
     {
@@ -257,7 +257,7 @@
       "summary": "Musical director and drummer.",
       "about": "Full time from 2016 to 2021, with single shows after that.",
       "years": "2016–2021",
-      "links": [
+      "media": [
         { "label": "Faded, live", "url": "https://www.youtube.com/watch?v=mIxlvVlOIS0" },
         { "label": "Alone, live", "url": "https://www.youtube.com/watch?v=Q9uat3ticA8" },
         { "label": "All Falls Down, live at YouTube Space NY", "url": "https://www.youtube.com/watch?v=Tfaq4UTH7P0" },
@@ -313,7 +313,7 @@
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
       "years": "2013–2017",
-      "links": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
+      "media": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
     },
     {
       "id": "thea-hjelmeland",
@@ -331,9 +331,9 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "links": [
+      "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
-        { "label": "Nobody Will Laugh on Spotify", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
+        { "label": "Nobody Will Laugh", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
       ]
     },
     {
@@ -343,7 +343,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "links": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
+      "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
     {
       "id": "froy-aagre",
@@ -352,7 +352,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "links": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
+      "media": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
     },
     {
       "id": "dagens-ungdom",
@@ -361,7 +361,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "links": [{ "label": "Aldri vite on Spotify", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
+      "media": [{ "label": "Aldri vite", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
     },
     {
       "id": "disaster-in-the-universe",
@@ -370,7 +370,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "links": [{ "label": "Jada Jada on Spotify", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }]
+      "media": [{ "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }]
     },
     {
       "id": "drums-and-electronics",

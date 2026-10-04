@@ -1,3 +1,5 @@
+import { mediaEmbed } from './media.mjs';
+
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
 
 export const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ESCAPES[char]);
@@ -36,10 +38,36 @@ function otherSites(content, domain) {
     .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
-/** Role and years, shown after the summary. */
+const count = (n, word) => (n ? `${n} ${word}${n === 1 ? '' : 's'}` : '');
+
+/** Says what an entry holds when expanded, e.g. "2 videos · 1 track", so a reader knows it is worth opening. */
+function mediaHint(entry) {
+  const kinds = (entry.media ?? []).map((item) => mediaEmbed(item.url).kind);
+  return [count(kinds.filter((kind) => kind === 'video').length, 'video'), count(kinds.filter((kind) => kind === 'track').length, 'track')]
+    .filter(Boolean)
+    .join(' · ');
+}
+
+/** Role, years and a hint of the media inside, shown after the summary. */
 function meta(entry) {
-  const parts = [entry.role, entry.years].filter(Boolean);
+  const parts = [entry.role, entry.years, mediaHint(entry)].filter(Boolean);
   return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
+}
+
+/**
+ * Small players for an entry's videos and tracks. `loading="lazy"` keeps them
+ * from loading until the entry is opened, so a reader who opens nothing reaches
+ * no third party. YouTube refuses to play without a referrer, hence the policy.
+ */
+function mediaBlock(entry) {
+  if (!entry.media?.length) return '';
+  const figures = entry.media.map((item) => {
+    const { kind, src } = mediaEmbed(item.url);
+    const label = escapeHtml(item.label);
+    const allow = kind === 'video' ? 'allow="encrypted-media; picture-in-picture" allowfullscreen' : 'allow="encrypted-media"';
+    return `<figure class="${kind}"><iframe src="${escapeHtml(src)}" title="${label}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ${allow}></iframe><figcaption>${label}</figcaption></figure>`;
+  });
+  return `<div class="media">${figures.join('')}</div>`;
 }
 
 /** The entry's status as a badge after its name. The label is the status with its hyphen read as a space, except one-off. */
@@ -59,12 +87,13 @@ function renderEntry(entry) {
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
   const head = `${name}${badge(entry)}${summary(entry)}${meta(entry)}`;
   const id = escapeHtml(entry.id);
-  if (!entry.about && rest.length === 0) return `<li id="${id}">${head}</li>`;
+  const media = mediaBlock(entry);
+  if (!entry.about && rest.length === 0 && !media) return `<li id="${id}">${head}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = rest.length
     ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
-  return `<li id="${id}"><details><summary>${head}</summary>${about}${links}</details></li>`;
+  return `<li id="${id}"><details><summary>${head}</summary>${about}${links}${media}</details></li>`;
 }
 
 function renderSection(content, domain, section) {

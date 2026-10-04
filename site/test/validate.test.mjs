@@ -67,6 +67,20 @@ test('links must be a list of labelled https urls', () => {
   assertError(errorsFor((c) => { c.projects[0].links = [null]; }), /entry "kiwi": link needs a label/);
 });
 
+test('media must be a list of labelled YouTube videos or Spotify tracks', () => {
+  const ok = [
+    { label: 'A video', url: 'https://www.youtube.com/watch?v=mIxlvVlOIS0' },
+    { label: 'A track', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' },
+  ];
+  assert.deepEqual(errorsFor((c) => { c.projects[1].media = ok; }), []);
+  assertError(errorsFor((c) => { c.projects[1].media = 'x'; }), /entry "atlanter": media must be a list/);
+  assertError(errorsFor((c) => { c.projects[1].media = [{ url: ok[0].url }]; }), /entry "atlanter": media item needs a label/);
+  assertError(errorsFor((c) => { c.projects[1].media = [null]; }), /entry "atlanter": media item needs a label/);
+  for (const url of ['https://vimeo.com/66229328', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/watch?v=mIxlvVlOIS0&t=10', 'https://open.spotify.com/album/abc', 7]) {
+    assertError(errorsFor((c) => { c.projects[1].media = [{ label: 'x', url }]; }), /entry "atlanter": media url must be a YouTube video or a Spotify track/);
+  }
+});
+
 test('an entry that is not an object is an error, not a crash', () => {
   assertError(errorsFor((c) => { c.projects.push(null); }), /projects\[3\]: must be an object/);
 });
