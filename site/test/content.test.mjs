@@ -17,9 +17,11 @@ test('the sites are byjoba.com and jonasbarsten.com', () => {
 });
 
 test('no page holds an email address', () => {
+  // Structured data has keys such as "@type", so look for an address, not for any "@".
+  const address = /[\w.+-]+@[\w-]+\.[a-z]{2,}|mailto:/i;
   for (const domain of domains) {
-    assert.doesNotMatch(renderIndex(content, domain), /@|mailto:/, domain);
-    assert.doesNotMatch(renderContact(content, domain), /@|mailto:/, domain);
+    assert.doesNotMatch(renderIndex(content, domain), address, domain);
+    assert.doesNotMatch(renderContact(content, domain), address, domain);
   }
 });
 

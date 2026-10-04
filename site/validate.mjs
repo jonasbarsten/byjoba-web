@@ -1,7 +1,7 @@
 const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'links'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
-const SITE_TEXT = ['title', 'intro', 'turnstileSiteKey'];
+const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
 
@@ -26,6 +26,7 @@ function siteErrors(domain, site, domains) {
   if (!HOSTNAME.test(domain)) return [`sites: "${domain}" is not a hostname`];
   if (!isObject(site)) return [`${domain}: must be an object`];
   const errors = SITE_TEXT.filter((field) => !isText(site[field])).map((field) => `${domain}: "${field}" is required`);
+  if ('jsonLd' in site && !isObject(site.jsonLd)) errors.push(`${domain}: "jsonLd" must be an object`);
   if (!Array.isArray(site.sections) || site.sections.length === 0) {
     return [...errors, `${domain}: sections must be a non-empty list`];
   }

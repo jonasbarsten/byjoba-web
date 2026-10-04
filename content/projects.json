@@ -2,7 +2,17 @@
   "sites": {
     "byjoba.com": {
       "title": "byJoBa",
+      "pageTitle": "byJoBa — software and hardware by Jonas Barsten",
+      "description": "byJoBa is the name Jonas Barsten puts on the software and hardware he makes in Oslo: apps and services, music tools for Ableton Live, and hardware.",
       "intro": "byJoBa stands for by Jonas Barsten: software and hardware.",
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "byJoBa",
+        "url": "https://byjoba.com/",
+        "description": "Software and hardware made by Jonas Barsten.",
+        "founder": { "@type": "Person", "name": "Jonas Barsten", "url": "https://jonasbarsten.com/" }
+      },
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "sections": [
         { "title": "Apps and services", "category": "apps" },
@@ -12,7 +22,24 @@
     },
     "jonasbarsten.com": {
       "title": "Jonas Barsten",
+      "pageTitle": "Jonas Barsten — musician and developer in Oslo",
+      "description": "Jonas Barsten is a drummer, musical director and developer in Oslo. A list of his work in music, teaching, spaces, installations, software and hardware.",
       "intro": "Musician and developer in Oslo. I like making things. This is a list of them.",
+      "jsonLd": {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jonas Barsten",
+        "url": "https://jonasbarsten.com/",
+        "jobTitle": ["Drummer", "Musical director", "Software developer"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Oslo", "addressCountry": "NO" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "Norwegian Academy of Music" },
+        "knowsAbout": ["Drums", "Musical direction", "Ableton Live", "Max for Live", "Software development"],
+        "sameAs": [
+          "https://byjoba.com/",
+          "https://www.ableton.com/en/certified-training/jonas-barsten/",
+          "https://github.com/jonasbarsten"
+        ]
+      },
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "sections": [
         { "title": "Music", "category": "music" },

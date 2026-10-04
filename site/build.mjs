@@ -3,9 +3,9 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validate } from './validate.mjs';
-import { renderContact, renderIndex, renderNotFound } from './render.mjs';
+import { renderContact, renderIndex, renderNotFound, renderRobots, renderSitemap } from './render.mjs';
 
-const ASSETS = ['style.css', 'contact.js'];
+const ASSETS = ['style.css', 'contact.js', 'favicon.svg'];
 
 /** Reads and validates the content, then writes `outDir/<domain>/` for every site. */
 export async function build({ contentPath, siteDir, staticDir, outDir }) {
@@ -26,6 +26,8 @@ export async function build({ contentPath, siteDir, staticDir, outDir }) {
     await writeFile(join(dir, 'index.html'), renderIndex(content, domain));
     await writeFile(join(dir, 'contact.html'), renderContact(content, domain));
     await writeFile(join(dir, '404.html'), renderNotFound(content, domain));
+    await writeFile(join(dir, 'robots.txt'), renderRobots(domain));
+    await writeFile(join(dir, 'sitemap.xml'), renderSitemap(domain));
     for (const asset of ASSETS) await copyFile(join(siteDir, asset), join(dir, asset));
     const extras = join(staticDir, domain);
     if (existsSync(extras)) await cp(extras, dir, { recursive: true });

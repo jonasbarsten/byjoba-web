@@ -34,6 +34,18 @@ Locally the visitor counter shows its alt text and the contact page cannot fetch
 
 ## Content model
 
+A site in `sites`, keyed by its domain:
+
+| Field | Required | Meaning |
+|---|---|---|
+| `title` | yes | Short name, shown as the page heading. |
+| `pageTitle` | yes | The `<title>` and link-preview title; what search results show. |
+| `description` | yes | Meta description, about 150 characters. |
+| `intro` | yes | The one line under the heading. |
+| `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
+| `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
+| `sections` | yes | Ordered headings; each has `title` and either `category` or `from`. |
+
 An entry in `projects`:
 
 | Field | Required | Meaning |
@@ -50,6 +62,14 @@ An entry in `projects`:
 | `links` | no | List of `{ "label", "url" }`; `url` is `https://…`, or `/…` for a file under `static/<site>/`. |
 
 Entries appear in file order. A site's `sections` set the headings and their order; a section with `"from": "<other domain>"` lists that site's entries as one-liners. The build fails with a list of errors when the content is invalid.
+
+## Search engines
+
+Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. Only the list page is indexable; the contact and not-found pages are marked `noindex`. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
+
+```bash
+npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-practices,performance
+```
 
 ## Deploy
 

@@ -3,6 +3,8 @@ export const fixture = () => ({
   sites: {
     'byjoba.com': {
       title: 'byjoba',
+      pageTitle: 'byjoba — things',
+      description: 'Things made.',
       intro: 'Software and hardware.',
       turnstileSiteKey: 'KEY-B',
       sections: [
@@ -12,7 +14,10 @@ export const fixture = () => ({
     },
     'jonasbarsten.com': {
       title: 'Jonas Barsten',
+      pageTitle: 'Jonas Barsten — a list',
+      description: 'A longer description.',
       intro: 'A list.',
+      jsonLd: { '@context': 'https://schema.org', '@type': 'Person', name: 'Jonas Barsten' },
       turnstileSiteKey: 'KEY-J',
       sections: [
         { title: 'Music', category: 'music' },

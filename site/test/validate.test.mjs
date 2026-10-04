@@ -72,8 +72,15 @@ test('a site key must be a plain hostname', () => {
   assertError(errors, /sites: "\.\.\/x" is not a hostname/);
 });
 
-test('a site needs title, intro, site key and sections', () => {
+test('a site\'s structured data must be an object', () => {
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].jsonLd = 'Person'; }), /jonasbarsten.com: "jsonLd" must be an object/);
+  assert.deepEqual(errorsFor((c) => { delete c.sites['jonasbarsten.com'].jsonLd; }), []);
+});
+
+test('a site needs title, page title, description, intro, site key and sections', () => {
   assertError(errorsFor((c) => { delete c.sites['byjoba.com'].title; }), /byjoba.com: "title" is required/);
+  assertError(errorsFor((c) => { delete c.sites['byjoba.com'].pageTitle; }), /byjoba.com: "pageTitle" is required/);
+  assertError(errorsFor((c) => { c.sites['byjoba.com'].description = ' '; }), /byjoba.com: "description" is required/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].intro = ''; }), /byjoba.com: "intro" is required/);
   assertError(errorsFor((c) => { delete c.sites['byjoba.com'].turnstileSiteKey; }), /byjoba.com: "turnstileSiteKey" is required/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].sections = []; }), /byjoba.com: sections must be a non-empty list/);
