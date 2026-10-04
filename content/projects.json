@@ -260,14 +260,12 @@
     },
     {
       "id": "sirkus-eliassen",
-      "badges": ["live"],
       "name": "Sirkus Eliassen",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Musical director for their tour.",
-      "about": "Pre-production in 2025. The tour includes Rockefeller in Oslo in February 2026.",
-      "years": "2025–2026"
+      "summary": "Musical director for the preparation of their tour. Not on stage.",
+      "years": "2025"
     },
     {
       "id": "luna",
@@ -287,7 +285,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "Full time from 2016 to 2021, with single shows after that. Concerts include New York in 2017, Coachella, Beijing and Shanghai in 2018, and tours of China and India and Oslo Spektrum in 2019.",
+      "about": "Full time from 2016 to 2021, with single shows after that. Concerts include New York in 2017, Coachella, Beijing and Shanghai in 2018, and in 2019 the Aviation Tour in Chengdu, Shanghai and Foshan, Oslo Spektrum, and India.",
       "releases": [{ "title": "Ina Wroldsen: Strongest (Alan Walker Remix)", "year": "2017", "url": "https://www.discogs.com/master/1268911", "cover": "/covers/strongest-alan-walker-remix.jpg" }],
       "years": "2016–2021",
       "media": [
@@ -764,23 +762,12 @@
     {
       "id": "stand-in",
       "badges": ["live"],
-      "name": "Stand-in",
+      "name": "Stand-in and single concerts",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Drummer on single concerts with Astrid S, Vinni, Cezinando, Sondre Justad and No. 4.",
-      "about": "Astrid S at Tinderbox in Denmark in 2023. Vinni at Rockefeller in Oslo in 2023. Cezinando at Parkenfestivalen in Bodø in 2018. Sondre Justad in 2017 and 2018, among them the tour finale at Sentrum Scene in Oslo. No. 4 in 2016 and 2017, among them Slottsfjell.",
-      "years": "2016–2023"
-    },
-    {
-      "id": "single-concerts",
-      "badges": ["live"],
-      "name": "Single concerts",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "status": "one-off",
-      "summary": "With Karen Musæus, Christabelle and Tafel.",
-      "years": "2017–2024"
+      "summary": "Drummer on single concerts, often as a stand-in, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Karen Musæus, Christabelle and Tafel.",
+      "years": "2016–2024"
     },
     {
       "id": "bjorn-charles-dreyer-group",

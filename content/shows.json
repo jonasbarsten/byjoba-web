@@ -167,6 +167,7 @@
   "atlanter": [
     {"date":"2026-10-01","place":"Bodø"},
     {"date":"2026-06-13","place":"Kampen, Oslo"},
+    {"date":"2026-02-12","venue":"Kafé Hærverk","place":"Oslo"},
     {"date":"2017-07-15","venue":"Moldejazz"},
     {"date":"2017-03-24","place":"Bislett, Oslo"},
     {"date":"2016-11-09","venue":"Kampen Bistro","place":"Oslo"},
@@ -215,11 +216,9 @@
     {"date":"2019-11-25","venue":"Det Norske Teatret","place":"Oslo"},
     {"date":"2019-11-18","place":"Madrid"},
     {"date":"2019-11-09","venue":"Oslo Spektrum","place":"Oslo"},
-    {"date":"2019-11-03","place":"China"},
-    {"date":"2019-11-02","place":"China"},
-    {"date":"2019-10-28","place":"China"},
-    {"date":"2019-10-26","place":"China"},
-    {"date":"2019-10-25","place":"China"},
+    {"date":"2019-11-02","venue":"Foshan International Sports and Cultural Center","place":"Foshan"},
+    {"date":"2019-10-29","venue":"Mercedes-Benz Arena","place":"Shanghai"},
+    {"date":"2019-10-27","place":"Chengdu"},
     {"date":"2019-10-16","venue":"Lindmo (NRK)"},
     {"date":"2019-09-21","place":"Shanghai"},
     {"date":"2019-09-20","place":"Shanghai"},
@@ -562,15 +561,20 @@
     {"date":"2016-03-15","venue":"Det Norske Teatret","place":"Oslo"}
   ],
   "stand-in": [
+    {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
     {"date":"2023-11-11","note":"Vinni"},
     {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S"},
     {"date":"2023-01-21","venue":"Rockefeller","place":"Oslo","note":"Vinni"},
+    {"date":"2022-11-26","place":"Sandefjord","note":"Dagny"},
+    {"date":"2022-11-25","venue":"Salt","place":"Oslo","note":"Maud"},
     {"date":"2018-08-18","venue":"Parkenfestivalen","place":"Bodø","note":"Cezinando"},
     {"date":"2018-08-17","place":"Ålesund","note":"Cezinando"},
     {"date":"2018-06-16","place":"Haugesund","note":"Cezinando"},
+    {"date":"2018-05-01","note":"Tafel"},
     {"date":"2017-11-18","venue":"Parkteatret","place":"Oslo","note":"No. 4"},
     {"date":"2017-11-10","place":"Bergen","note":"Sondre Justad"},
     {"date":"2017-10-20","place":"Trondheim","note":"Sondre Justad"},
+    {"date":"2017-10-14","venue":"Blå","place":"Oslo","note":"Christabelle"},
     {"date":"2017-05-13","place":"Oslo","note":"No. 4"},
     {"date":"2016-10-14","place":"Stavanger","note":"No. 4"},
     {"date":"2016-07-14","venue":"Slottsfjell","note":"No. 4"},
@@ -609,11 +613,6 @@
   ],
   "pasha": [
     {"date":"2019-03-09"}
-  ],
-  "single-concerts": [
-    {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
-    {"date":"2018-05-01","note":"Tafel"},
-    {"date":"2017-10-14","venue":"Blå","place":"Oslo","note":"Christabelle"}
   ],
   "vaarin": [
     {"date":"2025-03-21"},
