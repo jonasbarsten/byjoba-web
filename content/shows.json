@@ -704,6 +704,10 @@
     {"date":"2015-06-04","venue":"Revolver","place":"Oslo"},
     {"date":"2013-08-06","venue":"Klubbøya","place":"Oslo"},
     {"date":"2013-07-27","venue":"Torpfestivalen"},
+    {"date":"2012-11-10","venue":"Trashpop, Pir 6","place":"Kristiansand"},
+    {"date":"2012-11-09","venue":"Jimmy Legs","place":"Haugesund"},
+    {"date":"2012-11-08","venue":"Hulen","place":"Bergen"},
+    {"date":"2012-11-07","venue":"Kampen Bistro","place":"Oslo"},
     {"date":"2012-10-04","venue":"Blå","place":"Oslo","note":"release"}
   ],
   "luna": [
