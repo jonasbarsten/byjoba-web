@@ -511,12 +511,12 @@
       "years": "2014"
     },
     {
-      "id": "margaret-unknown",
-      "name": "Margaret Unknown",
+      "id": "curing-meat-at-the-back-of-beyond",
+      "name": "Curing Meat at the Back of Beyond",
       "site": "jonasbarsten.com",
       "category": "music",
-      "status": "ended",
-      "summary": "Band with Jon Lunde and Karl Haugland Bjorå.",
+      "status": "one-off",
+      "summary": "EP made with Margaret Unknown, Jon Lunde and Karl Haugland Bjorå.",
       "years": "2011",
       "releases": [{ "title": "Curing Meat at the Back of Beyond", "year": "2011", "cover": "/covers/curing-meat-at-the-back-of-beyond.jpg" }]
     },
