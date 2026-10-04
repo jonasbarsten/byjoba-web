@@ -298,6 +298,7 @@
         { "label": "Leave Me To The Moon, live in Oslo", "url": "https://www.youtube.com/watch?v=y7oYnK0Ecu4" },
         { "label": "Fire On The Mountain, live in Oslo", "url": "https://www.youtube.com/watch?v=uJ6CpJJDGZA" },
         { "label": "__Awake, live in Oslo", "url": "https://www.youtube.com/watch?v=idZBUW8YMMY" },
+        { "label": "When I Let Go, with Ane Brun, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=zS-6-ljkDfI" },
         { "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }
       ]
     },
@@ -308,7 +309,12 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "years": "2017–2022"
+      "years": "2017–2022",
+      "media": [
+        { "label": "My Awe Sustains, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=6b1NsuK1o40" },
+        { "label": "Childhood Dreams, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=M9X3xqQRLpk" },
+        { "label": "The Sea, Gullruten 2017", "url": "https://www.youtube.com/watch?v=7ma5TStKuEo" }
+      ]
     },
     {
       "id": "nils-bech",
