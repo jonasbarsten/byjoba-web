@@ -230,35 +230,37 @@
     {"date":"2013-02-13","venue":"by:Larm","place":"Oslo","note":"opening night"}
   ],
   "alan-walker": [
-    {"date":"2019-12-09","place":"India"},
+    {"date":"2021-12-10","place":"Stockholm","note":"Idol Sweden final (TV)"},
+    {"date":"2018-02-25","venue":"Spellemann, Oslo Konserthus","place":"Oslo"},
+    {"date":"2017-12-08","venue":"Andre Etasje","place":"Oslo","note":"with Sølvguttene"},
     {"date":"2016-12-22","venue":"USF Verftet","place":"Bergen"},
     {"date":"2016-12-21","venue":"USF Verftet","place":"Bergen","review":{"label":"Bergens Tidende","url":"https://www.bt.no/kultur/i/5K7je/superstjernen-drukner-litt-i-storproduksjonen"}},
-    {"date":"2020-03-07","place":"Hafjell"},
-    {"date":"2019-12-12","place":"Saudi Arabia"},
-    {"date":"2019-12-08","place":"India"},
-    {"date":"2019-12-07","place":"India"},
-    {"date":"2019-12-06","place":"India"},
-    {"date":"2019-11-26","venue":"Det Norske Teatret","place":"Oslo"},
-    {"date":"2019-11-25","venue":"Det Norske Teatret","place":"Oslo"},
-    {"date":"2019-11-18","place":"Madrid"},
+    {"date":"2020-03-07","venue":"X Games Norway","place":"Hafjell","note":"with K-391 and Ahrix"},
+    {"date":"2019-12-12","place":"Riyadh","note":"PUBG Mobile show"},
+    {"date":"2019-12-08","place":"Delhi","note":"Aviation Tour"},
+    {"date":"2019-12-07","place":"Mumbai","note":"Aviation Tour"},
+    {"date":"2019-12-06","place":"Bengaluru","note":"Aviation Tour"},
+    {"date":"2019-11-26","venue":"Det Norske Teatret","place":"Oslo","note":"corporate event"},
+    {"date":"2019-11-25","venue":"Det Norske Teatret","place":"Oslo","note":"corporate event"},
+    {"date":"2019-11-18","place":"Madrid","note":"Davis Cup Finals opening ceremony"},
     {"date":"2019-11-09","venue":"Oslo Spektrum","place":"Oslo","review":{"label":"NRK","url":"https://www.nrk.no/anmeldelser/anmeldelse_-alan-walker-konsert-i-oslo-spektrum-1.14776308"}},
-    {"date":"2019-11-02","venue":"Foshan International Sports and Cultural Center","place":"Foshan"},
-    {"date":"2019-10-29","venue":"Mercedes-Benz Arena","place":"Shanghai"},
-    {"date":"2019-10-27","place":"Chengdu"},
+    {"date":"2019-11-02","venue":"Foshan International Sports and Cultural Center","place":"Foshan","note":"Aviation Tour"},
+    {"date":"2019-10-29","venue":"Mercedes-Benz Arena","place":"Shanghai","note":"Aviation Tour"},
+    {"date":"2019-10-27","venue":"M Space","place":"Chengdu","note":"Aviation Tour"},
     {"date":"2019-10-16","venue":"Lindmo (NRK)"},
     {"date":"2019-09-20","place":"Shanghai"},
-    {"date":"2019-07-26","place":"Berlin"},
-    {"date":"2019-01-24","place":"Taiwan"},
-    {"date":"2019-01-04","place":"Oslo"},
-    {"date":"2018-11-12","place":"Shanghai"},
-    {"date":"2018-10-15","place":"Beijing"},
+    {"date":"2019-07-26","place":"Berlin","note":"PUBG Mobile spring finals"},
+    {"date":"2019-01-26","place":"Taipei","note":"KKBOX Music Awards (TV)"},
+    {"date":"2019-01-04","place":"Oslo","note":"corporate event"},
+    {"date":"2018-11-12","place":"Shanghai","note":"Rave Now (TV)"},
+    {"date":"2018-10-15","place":"Beijing","note":"the Norwegian state visit to China"},
     {"date":"2018-04-20","venue":"Coachella","place":"California"},
     {"date":"2018-04-13","venue":"Coachella","place":"California"},
-    {"date":"2017-11-26","place":"New York"},
-    {"date":"2017-09-09","place":"Oslo"},
+    {"date":"2017-11-28","venue":"YouTube Space NY","place":"New York","note":"filmed performance"},
+    {"date":"2017-09-09","note":"corporate event"},
     {"date":"2017-07-21","venue":"Malakoff"},
-    {"date":"2017-01-22","place":"Stockholm"},
-    {"date":"2017-01-10","place":"Netherlands"}
+    {"date":"2017-01-22","venue":"Globen","place":"Stockholm","note":"corporate event"},
+    {"date":"2017-01-11","place":"Groningen","note":"EBBA Awards at Eurosonic (TV)"}
   ],
   "matoma": [
     {"date":"2024-06-21","venue":"VG-lista"},
@@ -266,7 +268,7 @@
     {"date":"2019-08-16","place":"Harstad"},
     {"date":"2019-07-27","venue":"Opptur","place":"Bodø","review":{"label":"Bodø Nu","url":"https://www.bodonu.no/matoma-leverer-et-helt-gjennomsnittlig-show-men-vinner-pa-avslutningen/g/25-159-30864"}},
     {"date":"2019-07-13","venue":"Stavernfestivalen","place":"Stavern"},
-    {"date":"2019-07-12","place":"Tysnes"},
+    {"date":"2019-07-12","venue":"Tysnesfest","place":"Tysnes"},
     {"date":"2019-06-21","place":"Fredrikstad"}
   ],
   "sei-selina": [
@@ -301,7 +303,6 @@
   ],
   "fay-wildhagen": [
     {"date":"2019-11","venue":"Oslo Konserthus","place":"Oslo","note":"live album recording"},
-    {"date":"2018-02-25","venue":"Spellemann, Oslo Konserthus","place":"Oslo"},
     {"date":"2022-06","venue":"Over Oslo","place":"Oslo"},
     {"date":"2022-04","place":"Turtagrø"},
     {"date":"2017-02","place":"Svalbard"},
@@ -726,8 +727,8 @@
     {"date":"2018-11-17","venue":"USF Verftet","place":"Bergen"},
     {"date":"2018-10-19","venue":"Parkteatret","place":"Oslo"}
   ],
-  "wyclef-jean": [
-    {"date":"2018-11-15","venue":"Skavlan"}
+  "k-391": [
+    {"date":"2018-11-15","venue":"Senkveld (TV 2)","note":"with Wyclef Jean"}
   ],
   "hanne-hukkelberg": [
     {"date":"2019-11-15","venue":"Bø Jazzklubb, Parketten","place":"Bø"},
