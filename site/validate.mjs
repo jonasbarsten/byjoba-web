@@ -5,7 +5,7 @@ const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
 const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
-const SHOW_FIELDS = ['date', 'event', 'venue', 'place', 'country', 'note'];
+const SHOW_FIELDS = ['date', 'act', 'event', 'venue', 'place', 'country', 'note'];
 const COUNTRY_CODE = /^[A-Z]{2}$/;
 /** A day, a month or a year: as exact as the source allows. */
 const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;

@@ -127,12 +127,10 @@ function releaseList(entry) {
   return `<h3>Releases</h3><div class="releases">${figures.join('')}</div>`;
 }
 
-const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-
-/** "2013-08-07" as "7 Aug 2013", "2013-08" as "Aug 2013", "2013" as it is. */
+/** "2013-08-07" as "07.08.13"; a day or month the date lacks is dashes: "––.08.13", "––.––.13". */
 function showDate(date) {
-  const [year, month, day] = date.split('-');
-  return [day && Number(day), month && MONTHS[Number(month) - 1], year].filter(Boolean).join(' ');
+  const [year, month = '––', day = '––'] = date.split('-');
+  return `${day}.${month}.${year.slice(2)}`;
 }
 
 /**
@@ -159,8 +157,10 @@ const countryOf = (show, places) => (show.place ? places.cities[show.place] : sh
 const whereCell = (show) => cell([...new Set([show.event, show.venue].filter(Boolean))].join(' · '));
 
 /** A show's last cell: its note, then a link to a review of it, when it has them. */
-function noteCell(show) {
+function noteCell(show, { withAct = false } = {}) {
   const parts = [];
+  // A card's own list has no act column, so an act other than the card's goes first in the note.
+  if (withAct && show.act) parts.push(escapeHtml(show.act));
   if (show.note) parts.push(escapeHtml(show.note));
   if (show.review) parts.push(`<a href="${escapeHtml(show.review.url)}"${NEW_TAB}>${escapeHtml(show.review.label)}</a>`);
   return `<td>${parts.join(' · ')}</td>`;
@@ -179,7 +179,7 @@ function showList(entry, places) {
   if (!entry.shows?.length) return '';
   const id = `shows-${escapeHtml(entry.id)}`;
   const total = count(entry.shows.length, 'show');
-  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, places)}${noteCell(show)}</tr>`);
+  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, places)}${noteCell(show, { withAct: true })}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
   return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
 }
@@ -206,6 +206,7 @@ function siteShows(content, domain) {
 function showTotals(shows, places) {
   const distinct = (key) => new Set(shows.map(key).filter(Boolean)).size;
   const parts = [
+    count(distinct(actOf), 'artist'),
     count(shows.length, 'show'),
     count(distinct((show) => show.venue && `${show.venue}\n${show.place}`), 'venue'),
     count(distinct((show) => show.event), 'event'),
@@ -215,25 +216,22 @@ function showTotals(shows, places) {
   return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0];
 }
 
+/** Who a show was played with: the act it names, or the one its card is about. */
+const actOf = (show) => show.act ?? show.entry.name;
+
 /** Whether a site has a shows page. */
 export const hasShows = (content, domain) => siteShows(content, domain).length > 0;
 
-/** All of a site's shows on one page: a table per year, newest first, the act linking to its card. */
+/** All of a site's shows on one page: one table, newest first, the act linking to its card. */
 export function renderShows(content, domain) {
   const site = content.sites[domain];
   const shows = newestFirst(siteShows(content, domain));
-  const years = [...new Set(shows.map((show) => show.date.slice(0, 4)))];
-  const tables = years.map((year) => {
-    const rows = shows
-      .filter((show) => show.date.startsWith(year))
-      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
-    return `<section>\n<h2>${year}</h2>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</section>`;
-  });
+  const rows = shows.map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(actOf(show))}</a></td>${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
   const body = [
-    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows, content.places)}, newest first.</p>\n</header>`,
-    `<main>\n${tables.join('\n')}\n</main>`,
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows, content.places)}.</p>\n</header>`,
+    `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
   ].join('\n');
-  const description = `The ${count(shows.length, 'show')} ${site.title} has played, by year: date, act, event, venue, place and country.`;
+  const description = `The ${count(shows.length, 'show')} ${site.title} has played: date, act, event, venue, place and country.`;
   return page({ site, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 

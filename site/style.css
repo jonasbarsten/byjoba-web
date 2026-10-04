@@ -391,8 +391,15 @@ td {
   vertical-align: top;
 }
 
+/* The date column: every date is eight characters, set in figures of one width. */
+th:first-child,
 td:first-child {
+  width: 4.5rem;
   white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+td:first-child {
   color: var(--muted-foreground);
 }
 
@@ -402,9 +409,9 @@ abbr {
   cursor: help;
 }
 
-/* On the shows page the tables sit under year headings, without the cards' gap above. */
-section > table {
-  margin-bottom: var(--space-4);
+/* The shows page: its one table sits under the header. */
+main > table {
+  margin-top: var(--space-8);
 }
 
 td:last-child {
