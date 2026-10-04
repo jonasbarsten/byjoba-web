@@ -36,11 +36,15 @@ function otherSites(content, domain) {
     .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
-/** Role, years and status, shown after the summary. */
+/** Role and years, shown after the summary. */
 function meta(entry) {
-  const parts = [entry.role, entry.years, entry.status === 'wip' ? 'in progress' : ''].filter(Boolean);
+  const parts = [entry.role, entry.years].filter(Boolean);
   return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
 }
+
+/** The entry's status as a badge after its name. The label is the status with its hyphen read as a space, except one-off. */
+const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
+const badge = (entry) => ` <span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>`;
 
 const summary = (entry) => `<span class="summary"> — ${escapeHtml(entry.summary)}</span>`;
 
@@ -53,7 +57,7 @@ function renderEntry(entry) {
   const name = first
     ? `<a class="name" href="${escapeHtml(first.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
-  const head = `${name}${summary(entry)}${meta(entry)}`;
+  const head = `${name}${badge(entry)}${summary(entry)}${meta(entry)}`;
   const id = escapeHtml(entry.id);
   if (!entry.about && rest.length === 0) return `<li id="${id}">${head}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';

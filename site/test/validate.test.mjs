@@ -43,8 +43,12 @@ test('a category must be a section of the entry\'s own site', () => {
   assertError(errorsFor((c) => { c.projects[0].category = 'music'; }), /entry "kiwi": category "music" is not a section of byjoba.com/);
 });
 
-test('a status other than wip is an error', () => {
-  assertError(errorsFor((c) => { c.projects[0].status = 'done'; }), /entry "kiwi": status must be "wip"/);
+test('every entry needs one of the four statuses', () => {
+  assertError(errorsFor((c) => { c.projects[0].status = 'done'; }), /entry "kiwi": status must be one of in-development, active, ended, one-off/);
+  assertError(errorsFor((c) => { delete c.projects[0].status; }), /entry "kiwi": status must be one of in-development, active, ended, one-off/);
+  for (const status of ['in-development', 'active', 'ended', 'one-off']) {
+    assert.deepEqual(errorsFor((c) => { c.projects[0].status = status; }), []);
+  }
 });
 
 test('an unknown field is an error', () => {

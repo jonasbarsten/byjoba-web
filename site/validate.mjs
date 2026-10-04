@@ -1,6 +1,7 @@
 const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'links'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
+export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
 const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
 const SLUG = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
@@ -74,7 +75,7 @@ function entryErrors(entry, index, sites, seen) {
       errors.push(`${where}: category "${entry.category}" is not a section of ${entry.site}`);
     }
   }
-  if ('status' in entry && entry.status !== 'wip') errors.push(`${where}: status must be "wip"`);
+  if (!STATUSES.includes(entry.status)) errors.push(`${where}: status must be one of ${STATUSES.join(', ')}`);
   for (const field of OPTIONAL_TEXT) {
     if (field in entry && !isText(entry[field])) errors.push(`${where}: "${field}" must be non-empty text`);
   }

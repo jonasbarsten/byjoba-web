@@ -56,6 +56,6 @@ test('invalid content fails with every error and writes nothing', async () => {
   content.projects[0].status = 'done';
   delete content.projects[1].summary;
   const paths = await workspace(JSON.stringify(content));
-  await assert.rejects(build(paths), (error) => error.message.includes('entry "kiwi": status must be "wip"') && error.message.includes('entry "atlanter": "summary" is required'));
+  await assert.rejects(build(paths), (error) => error.message.includes('entry "kiwi": status must be one of in-development, active, ended, one-off') && error.message.includes('entry "atlanter": "summary" is required'));
   assert.equal(existsSync(paths.outDir), false);
 });

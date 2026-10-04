@@ -57,7 +57,7 @@ An entry in `projects`:
 | `summary` | yes | One line, shown in the list. |
 | `about` | no | Short paragraph, shown when expanded. |
 | `years` | no | Free text, e.g. `2016–`. |
-| `status` | no | `wip` shows "in progress". |
+| `status` | yes | Shown as a badge after the name. One of `in-development` (being made, not out yet), `active` (out or running, still worked on), `ended` (was active, has stopped), `one-off` (a single piece of work, delivered). |
 | `role` | no | Shown after the summary. |
 | `links` | no | List of `{ "label", "url" }`; `url` is `https://…`, or `/…` for a file under `static/<site>/`. |
 

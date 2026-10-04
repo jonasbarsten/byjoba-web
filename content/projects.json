@@ -58,6 +58,7 @@
       "name": "Jotufa",
       "site": "byjoba.com",
       "category": "apps",
+      "status": "active",
       "summary": "Invite-only event platform where the ticket is tied to the person.",
       "about": "iOS, Android and web clients on a serverless AWS backend.",
       "links": [{ "label": "site", "url": "https://jotufa.byjoba.com" }]
@@ -67,6 +68,7 @@
       "name": "Fiken MCP",
       "site": "byjoba.com",
       "category": "apps",
+      "status": "active",
       "summary": "MCP server that connects the Fiken accounting API to Claude and ChatGPT.",
       "about": "Books receipts from a photo, sends invoices and answers questions about the accounts. Stores nothing on the server. MIT licensed.",
       "links": [
@@ -79,6 +81,7 @@
       "name": "Fakfura",
       "site": "byjoba.com",
       "category": "apps",
+      "status": "active",
       "summary": "Invoice generator for the phone. Makes a PDF and hands it to the share sheet.",
       "about": "In Norwegian. Runs in the browser.",
       "links": [{ "label": "site", "url": "https://fakfura.no" }]
@@ -88,8 +91,8 @@
       "name": "Suril",
       "site": "byjoba.com",
       "category": "apps",
+      "status": "active",
       "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
-      "status": "wip",
       "links": [{ "label": "site", "url": "https://suril.ai" }]
     },
     {
@@ -97,23 +100,24 @@
       "name": "Huba (working title)",
       "site": "byjoba.com",
       "category": "apps",
+      "status": "in-development",
       "summary": "Distributed file system for audio, video and image work.",
-      "about": "With Thomas Hukkelberg.",
-      "status": "wip"
+      "about": "With Thomas Hukkelberg."
     },
     {
       "id": "tbc",
       "name": "TBC",
       "site": "byjoba.com",
       "category": "apps",
-      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB.",
-      "status": "wip"
+      "status": "in-development",
+      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB."
     },
     {
       "id": "live-extensions",
       "name": "Ableton Live extensions",
       "site": "byjoba.com",
       "category": "music-tools",
+      "status": "active",
       "summary": "Small extensions for Live: batch track creation, track export, and clip upload to Dropbox and Samply.",
       "years": "2026",
       "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
@@ -123,23 +127,24 @@
       "name": "Sordello",
       "site": "byjoba.com",
       "category": "music-tools",
+      "status": "in-development",
       "summary": "Subprojects for Ableton Live: a group track becomes its own set, and its bounce comes back.",
-      "about": "A macOS app and a Max for Live device.",
-      "status": "wip"
+      "about": "A macOS app and a Max for Live device."
     },
     {
       "id": "cantica",
       "name": "Cantica",
       "site": "byjoba.com",
       "category": "music-tools",
-      "summary": "Multitrack mixer and recorder for iPad and Mac.",
-      "status": "wip"
+      "status": "in-development",
+      "summary": "Multitrack mixer and recorder for iPad and Mac."
     },
     {
       "id": "smpte-timecode-generator",
       "name": "SMPTE Timecode Generator",
       "site": "byjoba.com",
       "category": "music-tools",
+      "status": "in-development",
       "summary": "macOS app that writes SMPTE LTC timecode as WAV files."
     },
     {
@@ -147,59 +152,40 @@
       "name": "Kiwi",
       "site": "byjoba.com",
       "category": "hardware",
-      "summary": "Headless instrument on a Raspberry Pi: piano, sampler and vocoder at once, blended with MIDI knobs.",
-      "status": "wip"
+      "status": "in-development",
+      "summary": "Headless instrument on a Raspberry Pi: piano, sampler and vocoder at once, blended with MIDI knobs."
     },
     {
       "id": "vigil",
       "name": "Vigil",
       "site": "byjoba.com",
       "category": "hardware",
-      "summary": "Door access system: an ESP32 device with a maglock, a cloud API and apps.",
-      "status": "wip"
+      "status": "active",
+      "summary": "Door access system: an ESP32 device with a maglock, a cloud API and apps."
     },
     {
       "id": "minos",
       "name": "Minos",
       "site": "byjoba.com",
       "category": "hardware",
-      "summary": "Networked MIDI routing for live rigs: a desktop routing matrix and PoE boxes with MIDI ports.",
-      "status": "wip"
+      "status": "in-development",
+      "summary": "Networked MIDI routing for live rigs: a desktop routing matrix and PoE boxes with MIDI ports."
     },
     {
       "id": "anna-lille",
       "name": "Anna Lille",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "active",
       "summary": "Musical director and drummer.",
       "years": "2023–"
-    },
-    {
-      "id": "alan-walker",
-      "name": "Alan Walker",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "summary": "Musical director and drummer."
-    },
-    {
-      "id": "matoma",
-      "name": "Matoma",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "summary": "Musical director and drummer."
-    },
-    {
-      "id": "sei-selina",
-      "name": "Sei Selina",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "summary": "Musical director and drummer."
     },
     {
       "id": "daniel-kvammen",
       "name": "Daniel Kvammen",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "active",
       "summary": "Musical director and drummer.",
       "years": "2017–"
     },
@@ -208,6 +194,7 @@
       "name": "Sandra Kolstad",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "active",
       "summary": "Composer, producer and drummer.",
       "years": "2015–"
     },
@@ -216,14 +203,40 @@
       "name": "Atlanter",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "active",
       "summary": "Composer and drummer.",
       "years": "2013–"
+    },
+    {
+      "id": "alan-walker",
+      "name": "Alan Walker",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Musical director and drummer."
+    },
+    {
+      "id": "matoma",
+      "name": "Matoma",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Musical director and drummer."
+    },
+    {
+      "id": "sei-selina",
+      "name": "Sei Selina",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Musical director and drummer."
     },
     {
       "id": "fay-wildhagen",
       "name": "Fay Wildhagen",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "ended",
       "summary": "Drummer.",
       "years": "2015–2023"
     },
@@ -232,6 +245,7 @@
       "name": "Ary",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "ended",
       "summary": "Musical director and drummer.",
       "years": "2017–2022"
     },
@@ -240,6 +254,7 @@
       "name": "Nils Bech",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "ended",
       "summary": "Producer, musical director and drummer.",
       "years": "2013–2017"
     },
@@ -248,6 +263,7 @@
       "name": "Thea Hjelmeland",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "ended",
       "summary": "Drummer.",
       "years": "2014–2016"
     },
@@ -256,6 +272,7 @@
       "name": "Drums and Electronics",
       "site": "jonasbarsten.com",
       "category": "music",
+      "status": "one-off",
       "summary": "Master's thesis at the Norwegian Academy of Music: drums with electronics controlled by sensors on a dancer.",
       "about": "With dancers Anette Boge and Hedvig Bang.",
       "years": "2013",
@@ -266,6 +283,7 @@
       "name": "Ableton Certified Trainer",
       "site": "jonasbarsten.com",
       "category": "live-teaching",
+      "status": "active",
       "summary": "Teaches Live, Push and Max for Live. The only certified trainer in Norway.",
       "years": "2018–",
       "links": [{ "label": "profile", "url": "https://www.ableton.com/en/certified-training/jonas-barsten/" }]
@@ -275,6 +293,7 @@
       "name": "Playback systems",
       "site": "jonasbarsten.com",
       "category": "live-teaching",
+      "status": "active",
       "summary": "Designs redundant playback and control setups for live acts."
     },
     {
@@ -282,6 +301,7 @@
       "name": "OLYP",
       "site": "jonasbarsten.com",
       "category": "spaces",
+      "status": "active",
       "summary": "Musicians' collective at Rosenhoff in Oslo: 32 rehearsal and production rooms in about 3,000 m².",
       "about": "Run by Oslo Lydproduksjon AS.",
       "role": "co-founder",
@@ -293,6 +313,7 @@
       "name": "Rooms at OLYP",
       "site": "jonasbarsten.com",
       "category": "spaces",
+      "status": "active",
       "summary": "Sound-isolated rehearsal and production rooms, built on site."
     },
     {
@@ -300,6 +321,7 @@
       "name": "olyp.no",
       "site": "jonasbarsten.com",
       "category": "spaces",
+      "status": "active",
       "summary": "Administration software for production premises: rooms, tenants and billing."
     },
     {
@@ -307,6 +329,7 @@
       "name": "Resonance",
       "site": "jonasbarsten.com",
       "category": "installations",
+      "status": "one-off",
       "summary": "Technology for the preliminary phase of Gunhild Mathea Olaussen's sound installation: copper speaker membranes around twelve sensor-activated string columns.",
       "about": "The preliminary version was shown at the Norwegian Theatre Academy in 2016. The finished work, with technology by Roar Sletteland and Bernt Isak Wærstad, was shown at Henie Onstad Art Centre during Ultima in 2019 and at Galleri F 15 in 2020.",
       "links": [{ "label": "site", "url": "https://www.gunhildmathea.com/resonance" }]
@@ -316,6 +339,7 @@
       "name": "Puffene",
       "site": "jonasbarsten.com",
       "category": "installations",
+      "status": "one-off",
       "summary": "Control software for the nine light and speaker boxes in Almir og Puffene, a music narrative for children by accordionist Almir Meskovic.",
       "about": "Each box has sensors, lights and a speaker, and is controlled over OSC from Ableton Live. Boxes designed by Kyrre Heldal Karlsen. Produced by Ragnhild Tveitan for Viken DKS.",
       "years": "2018",
@@ -329,6 +353,7 @@
       "name": "byJoBa",
       "site": "jonasbarsten.com",
       "category": "software-hardware",
+      "status": "active",
       "summary": "What I make on my own initiative: apps and services, music tools, and hardware. Listed at byjoba.com.",
       "links": [{ "label": "site", "url": "https://byjoba.com/" }]
     },
@@ -337,6 +362,7 @@
       "name": "Tour Control",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "active",
       "summary": "App for artists and crews on tour: schedule, venues, travel, contacts and chat.",
       "about": "For FKP Scorpio Norge. iOS and web clients on a serverless backend.",
       "links": [{ "label": "site", "url": "https://tourcontrol.no" }]
@@ -346,6 +372,7 @@
       "name": "YourBuzzKollekt",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "active",
       "summary": "Web platform for Buzz Kollekt that gathers ticket, advertising, newsletter and streaming data."
     },
     {
@@ -353,6 +380,7 @@
       "name": "BuzzMail",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "active",
       "summary": "Email sending service for Buzz Kollekt."
     },
     {
@@ -360,40 +388,56 @@
       "name": "highasakite.no",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "one-off",
       "summary": "Highasakite's website and the ticket site for their church tour, for Buzz Kollekt.",
       "years": "2026",
       "links": [{ "label": "site", "url": "https://highasakite.no" }]
-    },
-    {
-      "id": "vier-live",
-      "name": "VIER.LIVE",
-      "site": "jonasbarsten.com",
-      "category": "commissioned",
-      "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
-      "role": "CTO and co-founder",
-      "years": "2020–2021"
     },
     {
       "id": "solibo",
       "name": "Solibo",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "ended",
       "summary": "Board portal for housing companies.",
-      "role": "developer"
+      "about": "My part has ended. The portal is still in use.",
+      "role": "developer",
+      "links": [{ "label": "site", "url": "https://home.solibo.no/" }]
+    },
+    {
+      "id": "vier-live",
+      "name": "VIER.LIVE",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "ended",
+      "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
+      "role": "CTO and co-founder",
+      "years": "2020–2021"
     },
     {
       "id": "zahn-hello",
       "name": "Zahn Hello",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "one-off",
       "summary": "Raspberry Pi video walls with cameras and a live video link, for Zahn.",
       "years": "2022"
+    },
+    {
+      "id": "veslesampler",
+      "name": "Veslesampler",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "one-off",
+      "summary": "Standalone sampler app built in Max.",
+      "years": "2021"
     },
     {
       "id": "artist-websites",
       "name": "Artist and label websites",
       "site": "jonasbarsten.com",
       "category": "commissioned",
+      "status": "one-off",
       "summary": "Websites for Atlanter, Daniel Kvammen, Jansen Records, Hajk, Blackpop Records and others.",
       "years": "2017–2020"
     },
@@ -402,6 +446,7 @@
       "name": "Innspill til kulturarenastrategien",
       "site": "jonasbarsten.com",
       "category": "advocacy",
+      "status": "one-off",
       "summary": "Written submission from OLYP to the government's strategy for culture venues.",
       "about": "Asks for multi-year operating support for culture production premises, a VAT arrangement for them, a study of returning a share of ticket income, guarantee and loan schemes, a place for culture production in municipal planning, and a municipal contact person.",
       "years": "2026",
@@ -412,8 +457,8 @@
       "name": "Association for culture production premises",
       "site": "jonasbarsten.com",
       "category": "advocacy",
-      "summary": "Interest organisation for those who run rehearsal and production premises.",
-      "status": "wip"
+      "status": "in-development",
+      "summary": "Interest organisation for those who run rehearsal and production premises."
     }
   ]
 }

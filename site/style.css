@@ -115,6 +115,20 @@ li:target {
   color: var(--muted-foreground);
 }
 
+/* Status, after the shadcn outline badge: one look for every state. */
+.badge {
+  display: inline-block;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 4px);
+  padding: 0 0.375rem;
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1.125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  vertical-align: 0.1em;
+}
+
 .meta {
   color: var(--muted-foreground);
   font-size: var(--text-sm);
