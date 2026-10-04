@@ -21,7 +21,6 @@ export const fixture = () => ({
       turnstileSiteKey: 'KEY-J',
       sections: [
         { title: 'Music', category: 'music' },
-        { title: 'Software and hardware', from: 'byjoba.com' },
         { title: 'Advocacy', category: 'advocacy' },
       ],
     },
@@ -38,6 +37,6 @@ export const fixture = () => ({
       links: [{ label: 'source', url: 'https://example.com/kiwi' }],
     },
     { id: 'atlanter', name: 'Atlanter', site: 'jonasbarsten.com', category: 'music', summary: 'Composer and drummer.', years: '2013–' },
-    { id: 'vierlive', name: 'VIER.LIVE', site: 'jonasbarsten.com', category: 'music', summary: 'Streaming platform.', role: 'co-founder', years: '2020–2021' },
+    { id: 'vierlive', name: 'VIER.LIVE', site: 'jonasbarsten.com', category: 'advocacy', summary: 'Streaming platform.', role: 'co-founder', years: '2020–2021' },
   ],
 });

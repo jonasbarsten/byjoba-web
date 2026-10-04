@@ -86,10 +86,10 @@ test('a site needs title, page title, description, intro, site key and sections'
   assertError(errorsFor((c) => { c.sites['byjoba.com'].sections = []; }), /byjoba.com: sections must be a non-empty list/);
 });
 
-test('a section needs a title and exactly one of category and from', () => {
+test('a section needs a title and a category', () => {
   assertError(errorsFor((c) => { delete c.sites['byjoba.com'].sections[1].title; }), /byjoba.com section 1: needs a title/);
-  assertError(errorsFor((c) => { delete c.sites['byjoba.com'].sections[1].category; }), /byjoba.com section 1: needs exactly one of "category" and "from"/);
-  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].category = 'x'; }), /jonasbarsten.com section 1: needs exactly one of "category" and "from"/);
+  assertError(errorsFor((c) => { delete c.sites['byjoba.com'].sections[1].category; }), /byjoba.com section 1: needs a category/);
+  assertError(errorsFor((c) => { c.sites['byjoba.com'].sections[1].category = 7; }), /byjoba.com section 1: needs a category/);
 });
 
 test('a category may appear in only one section of a site', () => {
@@ -103,7 +103,3 @@ test('a link may be a root-relative path but not a bare or protocol-relative one
   assertError(errorsFor((c) => { c.projects[0].links = [{ label: 'pdf', url: '//example.com/a.pdf' }]; }), /entry "kiwi": link url must start with https:\/\/ or \//);
 });
 
-test('"from" must name another site', () => {
-  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].from = 'jonasbarsten.com'; }), /jonasbarsten.com section 1: "from" must name another site/);
-  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[1].from = 'nope.com'; }), /jonasbarsten.com section 1: "from" must name another site/);
-});

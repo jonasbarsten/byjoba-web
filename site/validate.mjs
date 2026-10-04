@@ -16,13 +16,13 @@ export function validate(content) {
     return ['content must have a "sites" object and a "projects" array'];
   }
   const domains = Object.keys(content.sites);
-  const errors = domains.flatMap((domain) => siteErrors(domain, content.sites[domain], domains));
+  const errors = domains.flatMap((domain) => siteErrors(domain, content.sites[domain]));
   const seen = new Set();
   content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen)));
   return errors;
 }
 
-function siteErrors(domain, site, domains) {
+function siteErrors(domain, site) {
   if (!HOSTNAME.test(domain)) return [`sites: "${domain}" is not a hostname`];
   if (!isObject(site)) return [`${domain}: must be an object`];
   const errors = SITE_TEXT.filter((field) => !isText(site[field])).map((field) => `${domain}: "${field}" is required`);
@@ -36,13 +36,9 @@ function siteErrors(domain, site, domains) {
     const where = `${domain} section ${index}`;
     if (!isObject(section)) return errors.push(`${where}: must be an object`);
     if (!isText(section.title)) errors.push(`${where}: needs a title`);
-    const hasCategory = 'category' in section;
-    const hasFrom = 'from' in section;
-    if (hasCategory === hasFrom || (hasCategory && !isText(section.category))) {
-      errors.push(`${where}: needs exactly one of "category" and "from"`);
-    } else if (hasFrom && (section.from === domain || !domains.includes(section.from))) {
-      errors.push(`${where}: "from" must name another site`);
-    } else if (hasCategory) {
+    if (!isText(section.category)) {
+      errors.push(`${where}: needs a category`);
+    } else {
       if (used.has(section.category)) errors.push(`${where}: category "${section.category}" is already used`);
       used.add(section.category);
     }

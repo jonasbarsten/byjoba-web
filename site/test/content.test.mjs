@@ -25,10 +25,11 @@ test('no page holds an email address', () => {
   }
 });
 
-test('every byjoba entry is also listed on jonasbarsten.com', () => {
+test('jonasbarsten.com points to byjoba.com once and repeats none of its entries', () => {
   const html = renderIndex(content, 'jonasbarsten.com');
+  assert.equal(html.match(/<a class="name" href="https:\/\/byjoba\.com\/"/g)?.length, 1);
   for (const entry of content.projects.filter((e) => e.site === 'byjoba.com')) {
-    assert.ok(html.includes(`href="https://byjoba.com/#${entry.id}"`), entry.id);
+    assert.ok(!html.includes(`id="${entry.id}"`), entry.id);
   }
 });
 

@@ -95,27 +95,22 @@ test('further links are listed by label when the entry is expanded', () => {
   assert.match(html, /<li id="atlanter"><details><summary><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a>.*<\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
-test('a "from" section lists the other site\'s entries as one-liners that link over', () => {
-  const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<h2>Software and hardware<\/h2>/);
-  assert.match(html, /<li id="kiwi"><a class="name" href="https:\/\/byjoba\.com\/#kiwi" target="_blank" rel="noopener">Kiwi<\/a><span class="summary"> — An instrument\.<\/span><\/li>/);
-  assert.doesNotMatch(html, /Runs on a Raspberry Pi/);
-});
-
-test('entries do not leak onto the other site', () => {
+test('a site lists its own entries only', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /Atlanter/);
+  assert.doesNotMatch(renderIndex(fixture(), 'jonasbarsten.com'), /Kiwi/);
 });
 
 test('an empty section is not rendered', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /<h2>Apps<\/h2>/);
-  assert.doesNotMatch(renderIndex(fixture(), 'jonasbarsten.com'), /<h2>Advocacy<\/h2>/);
 });
 
 test('sections keep the order of the site and entries the order of the file', () => {
   const content = fixture();
+  content.projects.push({ id: 'second', name: 'Second', site: 'jonasbarsten.com', category: 'music', summary: 'Later in the file.' });
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.ok(html.indexOf('<h2>Music</h2>') < html.indexOf('<h2>Software and hardware</h2>'));
-  assert.ok(html.indexOf('id="atlanter"') < html.indexOf('id="vierlive"'));
+  assert.ok(html.indexOf('<h2>Music</h2>') < html.indexOf('<h2>Advocacy</h2>'));
+  assert.ok(html.indexOf('id="atlanter"') < html.indexOf('id="second"'));
+  assert.ok(html.indexOf('id="second"') < html.indexOf('id="vierlive"'));
 });
 
 test('the footer has the other site, the contact link and the counter', () => {

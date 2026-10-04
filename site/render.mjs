@@ -36,7 +36,7 @@ function otherSites(content, domain) {
     .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
-/** Role, years and status, shown after the summary on the entry's own site. */
+/** Role, years and status, shown after the summary. */
 function meta(entry) {
   const parts = [entry.role, entry.years, entry.status === 'wip' ? 'in progress' : ''].filter(Boolean);
   return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
@@ -45,10 +45,10 @@ function meta(entry) {
 const summary = (entry) => `<span class="summary"> — ${escapeHtml(entry.summary)}</span>`;
 
 /**
- * An entry on its own site. The name is the entry's first link when it has one.
- * It is a plain line, or a disclosure when there is an about or further links to show.
+ * The name is the entry's first link when it has one. The entry is a plain line,
+ * or a disclosure when there is an about or further links to show.
  */
-function fullEntry(entry) {
+function renderEntry(entry) {
   const [first, ...rest] = entry.links ?? [];
   const name = first
     ? `<a class="name" href="${escapeHtml(first.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
@@ -63,17 +63,8 @@ function fullEntry(entry) {
   return `<li id="${id}"><details><summary>${head}</summary>${about}${links}</details></li>`;
 }
 
-/** An entry shown on the other site: name and summary only, the name linking to its home. */
-function linkedEntry(entry) {
-  const id = escapeHtml(entry.id);
-  const name = `<a class="name" href="https://${escapeHtml(entry.site)}/#${id}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`;
-  return `<li id="${id}">${name}${summary(entry)}</li>`;
-}
-
 function renderSection(content, domain, section) {
-  const items = section.from
-    ? content.projects.filter((entry) => entry.site === section.from).map(linkedEntry)
-    : content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map(fullEntry);
+  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map(renderEntry);
   if (items.length === 0) return '';
   return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n<ul>\n${items.join('\n')}\n</ul>\n</section>`;
 }

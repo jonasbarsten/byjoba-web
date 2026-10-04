@@ -46,7 +46,7 @@
         { "title": "Teaching and live systems", "category": "live-teaching" },
         { "title": "Spaces", "category": "spaces" },
         { "title": "Installations", "category": "installations" },
-        { "title": "Software and hardware", "from": "byjoba.com" },
+        { "title": "Software and hardware", "category": "software-hardware" },
         { "title": "Work for others", "category": "commissioned" },
         { "title": "Advocacy", "category": "advocacy" }
       ]
@@ -321,6 +321,14 @@
         { "label": "production", "url": "https://samspillmusicnetwork.no/no/band/almir-og-puffene/" },
         { "label": "article", "url": "https://www.kulturdirektoratet.no/aktuelt/trekkspill-bre-deg-ut" }
       ]
+    },
+    {
+      "id": "byjoba",
+      "name": "byJoBa",
+      "site": "jonasbarsten.com",
+      "category": "software-hardware",
+      "summary": "What I make on my own initiative: apps and services, music tools, and hardware. Listed at byjoba.com.",
+      "links": [{ "label": "site", "url": "https://byjoba.com/" }]
     },
     {
       "id": "tour-control",

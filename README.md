@@ -3,7 +3,7 @@
 The pages at byjoba.com and jonasbarsten.com: two lists of what Jonas Barsten makes and works on, generated from one content file.
 
 - **byjoba.com** lists the software and hardware Jonas makes on his own initiative. The name is written byJoBa and stands for "by Jonas Barsten".
-- **jonasbarsten.com** lists everything else, and the byjoba entries as one-liners that link over.
+- **jonasbarsten.com** lists everything else, with one entry that points to byjoba.com. Nothing is listed on both sites.
 
 Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
 
@@ -44,7 +44,7 @@ A site in `sites`, keyed by its domain:
 | `intro` | yes | The one line under the heading. |
 | `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
 | `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
-| `sections` | yes | Ordered headings; each has `title` and either `category` or `from`. |
+| `sections` | yes | Ordered headings; each has a `title` and a `category`. |
 
 An entry in `projects`:
 
@@ -61,7 +61,7 @@ An entry in `projects`:
 | `role` | no | Shown after the summary. |
 | `links` | no | List of `{ "label", "url" }`; `url` is `https://…`, or `/…` for a file under `static/<site>/`. |
 
-Entries appear in file order. A site's `sections` set the headings and their order; a section with `"from": "<other domain>"` lists that site's entries as one-liners. The build fails with a list of errors when the content is invalid.
+Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
 
 ## Search engines
 
