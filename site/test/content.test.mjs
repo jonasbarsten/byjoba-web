@@ -42,12 +42,19 @@ test('every section of every site has at least one entry', () => {
   }
 });
 
-test('every root-relative link points at a file in static', () => {
+test('every root-relative url or link points at a file in static', () => {
   for (const entry of content.projects) {
-    for (const link of entry.links ?? []) {
-      if (!link.url.startsWith('/')) continue;
-      assert.ok(existsSync(new URL(`../../static/${entry.site}${link.url}`, import.meta.url)), `${entry.id}: ${link.url}`);
+    const urls = [entry.url, ...(entry.links ?? []).map((link) => link.url)].filter(Boolean);
+    for (const url of urls) {
+      if (!url.startsWith('/')) continue;
+      assert.ok(existsSync(new URL(`../../static/${entry.site}${url}`, import.meta.url)), `${entry.id}: ${url}`);
     }
+  }
+});
+
+test('nothing in the Music section has a name that links away', () => {
+  for (const entry of content.projects.filter((e) => e.category === 'music')) {
+    assert.equal(entry.url, undefined, entry.id);
   }
 });
 

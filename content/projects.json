@@ -65,7 +65,7 @@
       "status": "active",
       "summary": "Invite-only event platform where the ticket is tied to the person.",
       "about": "iOS, Android and web clients on a serverless AWS backend.",
-      "links": [{ "label": "site", "url": "https://jotufa.byjoba.com" }]
+      "url": "https://jotufa.byjoba.com"
     },
     {
       "id": "fiken-mcp",
@@ -75,10 +75,8 @@
       "status": "active",
       "summary": "MCP server that connects the Fiken accounting API to Claude and ChatGPT.",
       "about": "Books receipts from a photo, sends invoices and answers questions about the accounts. Stores nothing on the server. MIT licensed.",
-      "links": [
-        { "label": "site", "url": "https://fiken-mcp.byjoba.com" },
-        { "label": "source", "url": "https://github.com/jonasbarsten/fiken-mcp" }
-      ]
+      "url": "https://fiken-mcp.byjoba.com",
+      "links": [{ "label": "source", "url": "https://github.com/jonasbarsten/fiken-mcp" }]
     },
     {
       "id": "fakfura",
@@ -88,7 +86,7 @@
       "status": "active",
       "summary": "Invoice generator for the phone. Makes a PDF and hands it to the share sheet.",
       "about": "In Norwegian. Runs in the browser.",
-      "links": [{ "label": "site", "url": "https://fakfura.no" }]
+      "url": "https://fakfura.no"
     },
     {
       "id": "upload-to-dropbox",
@@ -98,7 +96,7 @@
       "status": "active",
       "summary": "Renders a selected clip and uploads it to Dropbox, as a new file or as a new version of an existing one.",
       "about": "Uploads to any folder or creates one, and previews the audio files already there. Needs Ableton Live 12.4.5 or later.",
-      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/s/53b8725e25" }]
+      "url": "https://ko-fi.com/s/53b8725e25"
     },
     {
       "id": "upload-to-samply",
@@ -108,7 +106,7 @@
       "status": "active",
       "summary": "Renders a selected clip before effects and uploads it to Samply, as a new track or as a new version of an existing one.",
       "about": "Uploads to any project or creates one, and previews the tracks already there. Needs Ableton Live 12.4.5 or later.",
-      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/s/6f868ecd0a" }]
+      "url": "https://ko-fi.com/s/6f868ecd0a"
     },
     {
       "id": "create-x-tracks",
@@ -221,6 +219,7 @@
       "about": "Album: Vidde (2013). Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
       "years": "2012–",
       "media": [
+        { "label": "Soon", "url": "https://www.youtube.com/watch?v=5x26NrfqQoA" },
         { "label": "Pike", "url": "https://www.youtube.com/watch?v=vGqLUF1fwrQ" },
         { "label": "Can't Get Away, live", "url": "https://www.youtube.com/watch?v=v0T2gI4rYiQ" },
         { "label": "Aye", "url": "https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q" }
@@ -242,7 +241,8 @@
         { "label": "All Falls Down, stripped down", "url": "https://www.youtube.com/watch?v=k_0a3Dsih3A" },
         { "label": "Spellemannprisen", "url": "https://www.youtube.com/watch?v=kyD2uvgoyKM" },
         { "label": "Faded / Different World, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=n03IDJcsy5g" },
-        { "label": "The Spectre, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=a-X6rRcYL70" }
+        { "label": "The Spectre, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=a-X6rRcYL70" },
+        { "label": "Rig rundown of the band setup", "url": "https://www.youtube.com/watch?v=AxwN0J3pAQk&t=198s" }
       ]
     },
     {
@@ -530,7 +530,7 @@
       "status": "one-off",
       "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo.",
       "about": "The first in Pekula's series of commissioned pieces, made for the venue's 15th anniversary. Music by Simen Følstad Nilsen, Axel Skalstad and Erlend Mokkelbost. Performed behind curtains with the musicians' names kept secret: Axel Skalstad, Ellen Brekken, Marte Eberson, Simen Følstad Nilsen, Gunhild Ramsay Kristoffersen and Jonas Barsten.",
-      "links": [{ "label": "release", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
+      "links": [{ "label": "release page", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
       "media": [{ "label": "Pekula Vol. 1: ARP", "url": "https://www.youtube.com/watch?v=WpIT8G1pcow" }]
     },
     {
@@ -585,7 +585,7 @@
       "status": "active",
       "summary": "Teaches Live, Push and Max for Live. The only certified trainer in Norway.",
       "years": "2018–",
-      "links": [{ "label": "profile", "url": "https://www.ableton.com/en/certified-training/jonas-barsten/" }]
+      "url": "https://www.ableton.com/en/certified-training/jonas-barsten/"
     },
     {
       "id": "playback-systems",
@@ -649,7 +649,7 @@
       "about": "Run by Oslo Lydproduksjon AS. Started with support from Musikkutstyrsordningen.",
       "role": "co-founder",
       "years": "2014–",
-      "links": [{ "label": "site", "url": "https://olyp.no" }]
+      "url": "https://olyp.no"
     },
     {
       "id": "suril",
@@ -659,7 +659,7 @@
       "status": "active",
       "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
       "role": "co-founder",
-      "links": [{ "label": "site", "url": "https://suril.ai" }]
+      "url": "https://suril.ai"
     },
     {
       "id": "huba",
@@ -688,7 +688,7 @@
       "status": "active",
       "summary": "Record label in Oslo.",
       "role": "co-founder",
-      "links": [{ "label": "site", "url": "https://www.pekula.no/" }]
+      "url": "https://www.pekula.no/"
     },
     {
       "id": "jonas-barsten-as",
@@ -724,7 +724,7 @@
       "status": "in-development",
       "summary": "Concert venue and bar at Rosenhoff in Oslo, in a converted bomb shelter with room for 250.",
       "about": "A meeting place by day for the musicians who work in the area, a venue and bar by night.",
-      "links": [{ "label": "site", "url": "https://d1ivfvpmqdvx6t.cloudfront.net/" }]
+      "url": "https://d1ivfvpmqdvx6t.cloudfront.net/"
     },
     {
       "id": "resonance",
@@ -734,7 +734,7 @@
       "status": "one-off",
       "summary": "Technology for the preliminary phase of Gunhild Mathea Olaussen's sound installation: copper speaker membranes around twelve sensor-activated string columns.",
       "about": "The preliminary version was shown at the Norwegian Theatre Academy in 2016. The finished work, with technology by Roar Sletteland and Bernt Isak Wærstad, was shown at Henie Onstad Art Centre during Ultima in 2019 and at Galleri F 15 in 2020.",
-      "links": [{ "label": "site", "url": "https://www.gunhildmathea.com/resonance" }]
+      "url": "https://www.gunhildmathea.com/resonance"
     },
     {
       "id": "puffene",
@@ -745,10 +745,8 @@
       "summary": "Control software for the nine light and speaker boxes in Almir og Puffene, a music narrative for children by accordionist Almir Meskovic.",
       "about": "Each box has sensors, lights and a speaker, and is controlled over OSC from Ableton Live. Boxes designed by Kyrre Heldal Karlsen. Produced by Ragnhild Tveitan for Viken DKS.",
       "years": "2018",
-      "links": [
-        { "label": "production", "url": "https://samspillmusicnetwork.no/no/band/almir-og-puffene/" },
-        { "label": "article", "url": "https://www.kulturdirektoratet.no/aktuelt/trekkspill-bre-deg-ut" }
-      ]
+      "url": "https://samspillmusicnetwork.no/no/band/almir-og-puffene/",
+      "links": [{ "label": "article", "url": "https://www.kulturdirektoratet.no/aktuelt/trekkspill-bre-deg-ut" }]
     },
     {
       "id": "drivhuset-listening-kiosk",
@@ -766,7 +764,7 @@
       "category": "software-hardware",
       "status": "active",
       "summary": "What I make on my own initiative: apps and services, music tools, and hardware. Listed at byjoba.com.",
-      "links": [{ "label": "site", "url": "https://byjoba.com/" }]
+      "url": "https://byjoba.com/"
     },
     {
       "id": "tour-control",
@@ -776,7 +774,7 @@
       "status": "active",
       "summary": "App for artists and crews on tour: schedule, venues, travel, contacts and chat.",
       "about": "For FKP Scorpio Norge. iOS and web clients on a serverless backend.",
-      "links": [{ "label": "site", "url": "https://tourcontrol.no" }]
+      "url": "https://tourcontrol.no"
     },
     {
       "id": "yourbuzzkollekt",
@@ -802,7 +800,7 @@
       "status": "one-off",
       "summary": "Highasakite's website and the ticket site for their church tour, for Buzz Kollekt.",
       "years": "2026",
-      "links": [{ "label": "site", "url": "https://highasakite.no" }]
+      "url": "https://highasakite.no"
     },
     {
       "id": "solibo",
@@ -813,7 +811,7 @@
       "summary": "Board portal for housing companies.",
       "about": "My part has ended. The portal is still in use.",
       "role": "developer",
-      "links": [{ "label": "site", "url": "https://home.solibo.no/" }]
+      "url": "https://home.solibo.no/"
     },
     {
       "id": "vier-live",
@@ -824,7 +822,7 @@
       "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
       "role": "CTO and co-founder",
       "years": "2020–2021",
-      "links": [{ "label": "site", "url": "https://vier.live" }]
+      "url": "https://vier.live"
     },
     {
       "id": "zahn-hello",
@@ -843,7 +841,7 @@
       "status": "one-off",
       "summary": "The mixer for the children's music project Meg og kammeraten min: change the balance between the instruments and record your own vocals.",
       "about": "First built as a standalone app in Max in 2021, later as a mixer that runs in the browser.",
-      "links": [{ "label": "site", "url": "https://megogkammeratenmin.no/mix" }]
+      "url": "https://megogkammeratenmin.no/mix"
     },
     {
       "id": "artist-websites",
@@ -863,7 +861,7 @@
       "summary": "Written submission from OLYP to the government's strategy for culture venues.",
       "about": "Asks for multi-year operating support for culture production premises, a VAT arrangement for them, a study of returning a share of ticket income, guarantee and loan schemes, a place for culture production in municipal planning, and a municipal contact person.",
       "years": "2026",
-      "links": [{ "label": "pdf", "url": "/files/olyp-innspill-kulturarenastrategien-2026.pdf" }]
+      "url": "/files/olyp-innspill-kulturarenastrategien-2026.pdf"
     },
     {
       "id": "production-premises-association",

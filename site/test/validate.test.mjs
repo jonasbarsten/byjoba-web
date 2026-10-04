@@ -77,7 +77,7 @@ test('media must be a list of labelled videos or tracks from a host the pages ca
   assertError(errorsFor((c) => { c.projects[1].media = 'x'; }), /entry "atlanter": media must be a list/);
   assertError(errorsFor((c) => { c.projects[1].media = [{ url: ok[0].url }]; }), /entry "atlanter": media item needs a label/);
   assertError(errorsFor((c) => { c.projects[1].media = [null]; }), /entry "atlanter": media item needs a label/);
-  for (const url of ['https://vimeo.com/66229328', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/watch?v=mIxlvVlOIS0&t=10', 'https://open.spotify.com/album/abc', 7]) {
+  for (const url of ['https://vimeo.com/66229328', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/watch?v=mIxlvVlOIS0&list=RDmIxlvVlOIS0', 'https://open.spotify.com/album/abc', 7]) {
     assertError(errorsFor((c) => { c.projects[1].media = [{ label: 'x', url }]; }), /entry "atlanter": media url must be a YouTube video, an NRK TV programme or a Spotify track/);
   }
 });
@@ -109,6 +109,14 @@ test('a section needs a title and a category', () => {
   assertError(errorsFor((c) => { delete c.sites['byjoba.com'].sections[1].title; }), /byjoba.com section 1: needs a title/);
   assertError(errorsFor((c) => { delete c.sites['byjoba.com'].sections[1].category; }), /byjoba.com section 1: needs a category/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].sections[1].category = 7; }), /byjoba.com section 1: needs a category/);
+});
+
+test('a url must be https or a root-relative path', () => {
+  assert.deepEqual(errorsFor((c) => { c.projects[1].url = 'https://example.com/'; }), []);
+  assert.deepEqual(errorsFor((c) => { c.projects[1].url = '/files/a.pdf'; }), []);
+  for (const url of ['http://example.com', 'example.com', '//example.com', '', 7]) {
+    assertError(errorsFor((c) => { c.projects[1].url = url; }), /entry "atlanter": url must start with https:\/\/ or \//);
+  }
 });
 
 test('a category may appear in only one section of a site', () => {

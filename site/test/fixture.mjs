@@ -34,7 +34,7 @@ export const fixture = () => ({
       summary: 'An instrument.',
       about: 'Runs on a Raspberry Pi.',
       status: 'in-development',
-      links: [{ label: 'source', url: 'https://example.com/kiwi' }],
+      url: 'https://example.com/kiwi',
     },
     { id: 'atlanter', name: 'Atlanter', site: 'jonasbarsten.com', category: 'music', summary: 'Composer and drummer.', status: 'active', years: '2013–' },
     { id: 'vierlive', name: 'VIER.LIVE', site: 'jonasbarsten.com', category: 'advocacy', summary: 'Streaming platform.', status: 'ended', role: 'co-founder', years: '2020–2021' },

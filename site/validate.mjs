@@ -1,6 +1,6 @@
 import { mediaEmbed } from './media.mjs';
 
-const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'links', 'media'];
+const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'url', 'links', 'media'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
@@ -81,6 +81,7 @@ function entryErrors(entry, index, sites, seen) {
   for (const field of OPTIONAL_TEXT) {
     if (field in entry && !isText(entry[field])) errors.push(`${where}: "${field}" must be non-empty text`);
   }
+  if ('url' in entry && !isLinkUrl(entry.url)) errors.push(`${where}: url must start with https:// or /`);
   if ('media' in entry) {
     if (!Array.isArray(entry.media)) {
       errors.push(`${where}: media must be a list`);

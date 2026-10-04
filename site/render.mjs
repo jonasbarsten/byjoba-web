@@ -40,10 +40,14 @@ function otherSites(content, domain) {
 
 const count = (n, word) => (n ? `${n} ${word}${n === 1 ? '' : 's'}` : '');
 
-/** What media an entry holds, e.g. "2 videos · 1 track"; empty when it has none. */
-function mediaHint(entry) {
+/** What an opened card holds besides text, e.g. "2 videos · 1 track · 1 link"; empty when it holds none of those. */
+function contentsHint(entry) {
   const kinds = (entry.media ?? []).map((item) => mediaEmbed(item.url).kind);
-  return [count(kinds.filter((kind) => kind === 'video').length, 'video'), count(kinds.filter((kind) => kind === 'track').length, 'track')]
+  return [
+    count(kinds.filter((kind) => kind === 'video').length, 'video'),
+    count(kinds.filter((kind) => kind === 'track').length, 'track'),
+    count(entry.links?.length ?? 0, 'link'),
+  ]
     .filter(Boolean)
     .join(' · ');
 }
@@ -76,25 +80,26 @@ const badge = (entry) => ` <span class="badge">${escapeHtml(STATUS_LABELS[entry.
 
 /**
  * One entry as a card: name and status on the first row, then the summary, then
- * role and years. The name is the entry's first link when it has one.
+ * role and years. The name is a link only when the entry has a `url`; `links`
+ * never touch the name and are listed inside the opened card.
  *
- * A card with an about, further links or media opens. Only those carry the
- * "more" marker, which names the media inside when there is any.
+ * A card with an about, links or media opens. Only those carry the "more"
+ * marker, which says what is inside when that is more than text.
  */
 function renderEntry(entry) {
-  const [first, ...rest] = entry.links ?? [];
-  const name = first
-    ? `<a class="name" href="${escapeHtml(first.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
+  const name = entry.url
+    ? `<a class="name" href="${escapeHtml(entry.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
   const face = `<span class="head">${name}${badge(entry)}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
   const id = escapeHtml(entry.id);
   const media = mediaBlock(entry);
-  if (!entry.about && rest.length === 0 && !media) return `<li id="${id}">${face}</li>`;
+  const linkList = entry.links ?? [];
+  if (!entry.about && linkList.length === 0 && !media) return `<li id="${id}">${face}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
-  const links = rest.length
-    ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
+  const links = linkList.length
+    ? `<p class="links">${linkList.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
-  const more = `<span class="more">${escapeHtml(mediaHint(entry) || 'More')}</span>`;
+  const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
   return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${links}${media}</details></li>`;
 }
 
