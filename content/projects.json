@@ -25,7 +25,7 @@
       "title": "Jonas Barsten",
       "pageTitle": "Jonas Barsten — musician and developer in Oslo",
       "description": "Jonas Barsten is a drummer, musical director and developer in Oslo. A list of his work in music, teaching, spaces, installations, software and hardware.",
-      "intro": "Musician in Oslo. I like making things: software, hardware and rooms for music.",
+      "intro": "Musician in Oslo. I like making things: software, hardware and rooms for culture.",
       "jsonLd": {
         "@context": "https://schema.org",
         "@type": "Person",
@@ -362,6 +362,16 @@
       "category": "spaces",
       "status": "active",
       "summary": "Administration software for production premises: rooms, tenants and billing."
+    },
+    {
+      "id": "rosenhall",
+      "name": "Rosenhall",
+      "site": "jonasbarsten.com",
+      "category": "spaces",
+      "status": "in-development",
+      "summary": "Concert venue and bar at Rosenhoff in Oslo, in a converted bomb shelter with room for 250.",
+      "about": "A meeting place by day for the musicians who work in the area, a venue and bar by night.",
+      "links": [{ "label": "site", "url": "https://d1ivfvpmqdvx6t.cloudfront.net/" }]
     },
     {
       "id": "resonance",
