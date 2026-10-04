@@ -25,7 +25,7 @@
       "title": "Jonas Barsten",
       "pageTitle": "Jonas Barsten — musician and developer in Oslo",
       "description": "Jonas Barsten is a drummer, musical director and developer in Oslo. A list of his work in music, teaching, spaces, installations, software and hardware.",
-      "intro": "Musician in Oslo. I like making things: software, hardware and rooms for culture.",
+      "intro": "Musician. Builder of software, hardware and rooms.",
       "jsonLd": {
         "@context": "https://schema.org",
         "@type": "Person",
