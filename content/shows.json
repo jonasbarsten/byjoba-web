@@ -97,6 +97,12 @@
     {"date":"2015-06-19"}
   ],
   "sandra-kolstad": [
+    {"date":"2019-10-06","place":"Barcelona"},
+    {"date":"2019-10-04","place":"Burgos"},
+    {"date":"2019-05-11","place":"Bergen","note":"in-store"},
+    {"date":"2017-10-21","place":"Kristiansand"},
+    {"date":"2017-10-13","place":"Bergen"},
+    {"date":"2017-09-30","place":"Stavanger"},
     {"date":"2026-05-16","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2025-10-02","place":"Haugesund"},
     {"date":"2025-08-10","venue":"Hellviktangen","place":"Nesodden"},
@@ -844,7 +850,6 @@
   ],
   "vegard": [
     {"date":"2026-08-08","venue":"Sápmi Pride, Papana Bar","place":"Inari, Finland"},
-    {"date":"2026-06-21","venue":"Rabalder, Charlottenlundparken","place":"Tromsø"},
     {"date":"2026-06-19","venue":"Ohcejohka šearrá, Onnelan törmä","place":"Utsjoki, Finland"},
     {"date":"2026-01-24","place":"Finland"}
   ],
