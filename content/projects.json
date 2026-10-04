@@ -511,6 +511,16 @@
       "years": "2014"
     },
     {
+      "id": "curing-meat-at-the-back-of-beyond",
+      "name": "Curing Meat at the Back of Beyond",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "EP made with Margaret Unknown, Jon Lunde and Karl Haugland Bjorå.",
+      "years": "2011",
+      "releases": [{ "title": "Curing Meat at the Back of Beyond", "year": "2011", "cover": "/covers/curing-meat-at-the-back-of-beyond.jpg" }]
+    },
+    {
       "id": "bjorn-charles-dreyer-group",
       "name": "Bjørn Charles Dreyer Group",
       "site": "jonasbarsten.com",
