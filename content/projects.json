@@ -549,7 +549,7 @@
     },
     {
       "id": "tom-hugo",
-      "badges": ["studio"],
+      "badges": ["live", "studio"],
       "name": "Tom Hugo",
       "site": "jonasbarsten.com",
       "category": "music",
