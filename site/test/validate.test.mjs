@@ -77,7 +77,7 @@ test('media must be a list of labelled videos or tracks from a host the pages ca
   assertError(errorsFor((c) => { c.projects[1].media = 'x'; }), /entry "atlanter": media must be a list/);
   assertError(errorsFor((c) => { c.projects[1].media = [{ url: ok[0].url }]; }), /entry "atlanter": media item needs a label/);
   assertError(errorsFor((c) => { c.projects[1].media = [null]; }), /entry "atlanter": media item needs a label/);
-  for (const url of ['https://vimeo.com/66229328', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/watch?v=mIxlvVlOIS0&list=RDmIxlvVlOIS0', 'https://open.spotify.com/album/abc', 7]) {
+  for (const url of ['https://vimeo.com/66229328', 'https://www.youtube.com/watch?v=short', 'https://www.youtube.com/watch?v=mIxlvVlOIS0&t=10s', 'https://open.spotify.com/album/abc', 7]) {
     assertError(errorsFor((c) => { c.projects[1].media = [{ label: 'x', url }]; }), /entry "atlanter": media url must be a YouTube video, an NRK TV programme or a Spotify track/);
   }
 });

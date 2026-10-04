@@ -119,12 +119,6 @@ test('an NRK programme embeds through NRK\'s own player and counts as a video', 
   assert.match(html, /<span class="more">1 video<\/span>/);
 });
 
-test('a YouTube start time carries into the player', () => {
-  const content = fixture();
-  content.projects[1].media = [{ label: 'Rig rundown', url: 'https://www.youtube.com/watch?v=AxwN0J3pAQk&t=198s' }];
-  assert.match(renderIndex(content, 'jonasbarsten.com'), /<iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/AxwN0J3pAQk\?start=198" title="Rig rundown"/);
-});
-
 test('media labels are escaped', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'A "live" <take>', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];

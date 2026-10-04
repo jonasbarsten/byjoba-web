@@ -1,5 +1,4 @@
-// A watch url, optionally with a start time in seconds (`&t=198s`).
-const YOUTUBE = /^https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})(?:&t=(\d+)s?)?$/;
+const YOUTUBE = /^https:\/\/www\.youtube\.com\/watch\?v=([\w-]{11})$/;
 const SPOTIFY_TRACK = /^https:\/\/open\.spotify\.com\/track\/([A-Za-z0-9]{22})$/;
 // An NRK TV programme page; the last path segment is the programme id.
 const NRK_TV = /^https:\/\/tv\.nrk\.no\/(?:[\w-]+\/)+([A-Z]{4}\d{8})$/;
@@ -12,10 +11,7 @@ const NRK_TV = /^https:\/\/tv\.nrk\.no\/(?:[\w-]+\/)+([A-Z]{4}\d{8})$/;
 export function mediaEmbed(url) {
   if (typeof url !== 'string') return null;
   const youtube = url.match(YOUTUBE);
-  if (youtube) {
-    const start = youtube[2] ? `?start=${youtube[2]}` : '';
-    return { kind: 'video', src: `https://www.youtube-nocookie.com/embed/${youtube[1]}${start}` };
-  }
+  if (youtube) return { kind: 'video', src: `https://www.youtube-nocookie.com/embed/${youtube[1]}` };
   const nrk = url.match(NRK_TV);
   if (nrk) return { kind: 'video', src: `https://static.nrk.no/ludo/latest/video-embed.html#id=${nrk[1]}` };
   const track = url.match(SPOTIFY_TRACK);
