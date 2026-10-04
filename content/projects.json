@@ -218,7 +218,14 @@
       "status": "active",
       "summary": "Composer and drummer.",
       "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
-      "releases": [{ "title": "Vidde", "year": "2013", "url": "https://www.discogs.com/master/566572", "cover": "/covers/vidde.jpg" }],
+      "releases": [
+        { "title": "Klokker", "year": "2026", "url": "https://www.discogs.com/release/36881239", "cover": "/covers/klokker.jpg" },
+        { "title": "Jewels Of Crime", "year": "2016", "url": "https://www.discogs.com/master/950215", "cover": "/covers/jewels-of-crime.jpg" },
+        { "title": "Prins Thomas Remix", "year": "2016", "url": "https://www.discogs.com/release/18171970", "cover": "/covers/prins-thomas-remix.jpg" },
+        { "title": "Stand Still / Temple", "year": "2015", "url": "https://www.discogs.com/release/6923845", "cover": "/covers/stand-still-temple.jpg" },
+        { "title": "Ost & Kjex Remixes", "year": "2014", "url": "https://www.discogs.com/release/6425832", "cover": "/covers/ost-og-kjex-remixes.jpg" },
+        { "title": "Vidde", "year": "2013", "url": "https://www.discogs.com/master/566572", "cover": "/covers/vidde.jpg" }
+      ],
       "years": "2012–",
       "media": [
         { "label": "Soon", "url": "https://www.youtube.com/watch?v=5x26NrfqQoA" },
