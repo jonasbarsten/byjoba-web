@@ -61,10 +61,9 @@ test('the sitemap lists the list page, and the shows page when the site has show
 /** The fixture with shows on its one music entry. */
 function withShows() {
   const content = fixture();
-  content.countries = { NO: 'Norway', GB: 'United Kingdom' };
   content.projects[1].shows = [
-    { date: '2013-08-08', venue: 'Øyafestivalen', place: 'Oslo', country: 'NO' },
-    { date: '2014-02-13', venue: 'Ja Ja Ja', place: 'London', country: 'GB', note: 'showcase', review: { label: 'The Line of Best Fit', url: 'https://example.com/review?a=1&b=2' } },
+    { date: '2013-08-08', event: 'Øyafestivalen', venue: 'Øyafestivalen', place: 'Oslo' },
+    { date: '2014-02-13', event: 'Ja Ja Ja', venue: 'The Lexington', place: 'London', note: 'showcase', review: { label: 'The Line of Best Fit', url: 'https://example.com/review?a=1&b=2' } },
     { date: '2014-10' },
   ];
   return content;
@@ -73,31 +72,34 @@ function withShows() {
 test('a show\'s country shows as its code, with the name as the code\'s expansion', () => {
   const card = renderIndex(withShows(), 'jonasbarsten.com');
   assert.match(card, /<td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
-  const page = renderShows(withShows(), 'jonasbarsten.com');
-  assert.match(page, /<td>Ja Ja Ja<\/td><td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
+  const content = withShows();
+  content.projects[1].shows.push({ date: '2012', country: 'GB' });
+  const page = renderShows(content, 'jonasbarsten.com');
+  assert.match(page, /<td>Ja Ja Ja · The Lexington<\/td><td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
+  assert.match(page, /<time datetime="2012">2012<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
   assert.match(page, /<tr><td><time datetime="2014-10">Oct 2014<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
 });
 
 test('the shows page counts each venue, city and country once, and leaves out what it has none of', () => {
   const content = withShows();
   content.projects[1].shows.push(
-    { date: '2015-08-08', venue: 'Øyafestivalen', place: 'Oslo', country: 'NO' },
-    { date: '2015-09-01', venue: 'Blå', place: 'Oslo', country: 'NO' },
-    { date: '2015-10-01', venue: 'Kulturhuset', place: 'Bjugn', country: 'NO' },
-    { date: '2015-10-02', venue: 'Kulturhuset', place: 'Oslo', country: 'NO' },
+    { date: '2015-08-08', venue: 'Øyafestivalen', place: 'Oslo' },
+    { date: '2015-09-01', venue: 'Blå', place: 'Oslo' },
+    { date: '2015-10-01', venue: 'Kulturhuset', place: 'Bjugn' },
+    { date: '2015-10-02', venue: 'Kulturhuset', place: 'Oslo' },
   );
-  assert.match(renderShows(content, 'jonasbarsten.com'), / · 7 shows, 5 venues, 3 cities and 2 countries, newest first\./);
+  assert.match(renderShows(content, 'jonasbarsten.com'), / · 7 shows, 5 venues, 2 events, 3 cities and 2 countries, newest first\./);
   content.projects[1].shows = [{ date: '2016' }, { date: '2017', place: 'Oslo' }];
-  assert.match(renderShows(content, 'jonasbarsten.com'), / · 2 shows and 1 city, newest first\./);
+  assert.match(renderShows(content, 'jonasbarsten.com'), / · 2 shows, 1 city and 1 country, newest first\./);
 });
 
 test('the show tables name their columns, and the shows page has its own description', () => {
   const head = (columns) => `<table>\n<thead><tr>${columns.map((column) => `<th scope="col">${column}</th>`).join('')}</tr></thead>\n<tbody>\n<tr>`;
-  assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Venue', 'Place', 'Country', 'Note'])));
+  assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Event, venue', 'Place', 'Country', 'Note'])));
   const page = renderShows(withShows(), 'jonasbarsten.com');
-  assert.ok(page.includes(head(['Date', 'Act', 'Venue', 'Place', 'Country', 'Note'])));
+  assert.ok(page.includes(head(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'])));
   assert.match(page, /<\/tr>\n<\/tbody>\n<\/table>/);
-  const description = 'The 3 shows Jonas Barsten has played, by year: date, act, venue, place and country.';
+  const description = 'The 3 shows Jonas Barsten has played, by year: date, act, event, venue, place and country.';
   assert.ok(page.includes(`<meta name="description" content="${description}">`));
   assert.ok(page.includes(`<meta property="og:description" content="${description}">`));
 });
@@ -112,7 +114,7 @@ test('the shows page lists every show of the site by year, newest first, with th
   assert.match(html, /<title>Shows — Jonas Barsten<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/jonasbarsten\.com\/shows\.html">/);
   assert.doesNotMatch(html, /noindex/);
-  assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, 2 venues, 2 cities and 2 countries, newest first\.<\/p>/);
+  assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, 2 venues, 2 events, 2 cities and 2 countries, newest first\.<\/p>/);
   assert.deepEqual([...html.matchAll(/<h2>(\d{4})<\/h2>/g)].map((match) => match[1]), ['2014', '2013']);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
   assert.match(html, /<tr><td><time datetime="2013-08-08">8 Aug 2013<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
@@ -259,9 +261,9 @@ test('shows open as a list in a popover, from a button inside the opened card, w
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(html, /<h3>Shows<\/h3><p><button type="button" class="open-shows" popovertarget="shows-atlanter">List of 4 shows<\/button><\/p>/);
   assert.match(html, /<div id="shows-atlanter" class="shows" popover><h3>Atlanter: 4 shows<\/h3><table>/);
-  assert.match(html, /<tr><td><time datetime="2014-03-01">1 Mar 2014<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><\/td><td><\/td><\/tr>/);
-  assert.match(html, /<tr><td><time datetime="2013-08-07">7 Aug 2013<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td><\/td><td>stand-in<\/td><\/tr>/);
-  assert.match(html, /<tr><td><time datetime="2013-06">Jun 2013<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2014-03-01">1 Mar 2014<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-07">7 Aug 2013<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in<\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-06">Jun 2013<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.match(html, /<tr><td><time datetime="2012">2012<\/time><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
   assert.doesNotMatch(html, /<script(?! type="application\/ld\+json")/);
 });

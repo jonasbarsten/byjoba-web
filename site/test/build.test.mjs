@@ -11,19 +11,26 @@ import { fixture } from './fixture.mjs';
 const siteDir = fileURLToPath(new URL('..', import.meta.url));
 
 /** A temp workspace holding a content file; returns the paths `build` takes. */
-async function workspace(contentText, showsText = '{}') {
+async function workspace(contentText, showsText = '{}', placesText = JSON.stringify(fixture().places)) {
   const root = await mkdtemp(join(tmpdir(), 'byjoba-web-'));
   const contentPath = join(root, 'projects.json');
   const showsPath = join(root, 'shows.json');
+  const placesPath = join(root, 'places.json');
   await writeFile(contentPath, contentText);
   await writeFile(showsPath, showsText);
-  return { contentPath, showsPath, siteDir, staticDir: join(root, 'static'), outDir: join(root, 'dist') };
+  await writeFile(placesPath, placesText);
+  return { contentPath, showsPath, placesPath, siteDir, staticDir: join(root, 'static'), outDir: join(root, 'dist') };
 }
 
-test('shows come from their own file, keyed by entry id', async () => {
-  const paths = await workspace(JSON.stringify(fixture()), JSON.stringify({ atlanter: [{ date: '2014-03-01', venue: 'by:Larm' }] }));
+/** The fixture as `projects.json` holds it: without the places, which have their own file. */
+const projectsText = () => JSON.stringify({ ...fixture(), places: undefined });
+
+test('shows and places come from their own files', async () => {
+  const paths = await workspace(projectsText(), JSON.stringify({ atlanter: [{ date: '2014-03-01', event: 'by:Larm', venue: 'Blå', place: 'Oslo' }] }));
   await build(paths);
-  assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'index.html'), 'utf8'), /Atlanter: 1 show<\/h3>/);
+  const index = await readFile(join(paths.outDir, 'jonasbarsten.com', 'index.html'), 'utf8');
+  assert.match(index, /Atlanter: 1 show<\/h3>/);
+  assert.match(index, /<td>by:Larm · Blå<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td>/);
   assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'shows.html'), 'utf8'), /<h1>Shows<\/h1>/);
   assert.equal(existsSync(join(paths.outDir, 'byjoba.com', 'shows.html')), false);
 });

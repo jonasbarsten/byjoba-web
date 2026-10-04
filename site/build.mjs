@@ -17,13 +17,15 @@ async function readJson(path) {
 }
 
 /**
- * Reads the content and the shows. The shows live in their own file, keyed by
- * entry id, because they are many; each list is put on its entry as `shows`.
+ * Reads the content, the shows and the places. The shows live in their own
+ * file, keyed by entry id, because they are many; each list is put on its
+ * entry as `shows`. The places they name live in a third file, as `places`.
  * Throws with every problem found.
  */
-export async function loadContent({ contentPath, showsPath }) {
+export async function loadContent({ contentPath, showsPath, placesPath }) {
   const content = await readJson(contentPath);
   const shows = await readJson(showsPath);
+  if (content !== null && typeof content === 'object') content.places = await readJson(placesPath);
   const errors = [];
   if (Array.isArray(content?.projects)) {
     for (const [id, list] of Object.entries(shows)) {
@@ -38,8 +40,8 @@ export async function loadContent({ contentPath, showsPath }) {
 }
 
 /** Reads and validates the content, then writes `outDir/<domain>/` for every site. */
-export async function build({ contentPath, showsPath, siteDir, staticDir, outDir }) {
-  const content = await loadContent({ contentPath, showsPath });
+export async function build({ contentPath, showsPath, placesPath, siteDir, staticDir, outDir }) {
+  const content = await loadContent({ contentPath, showsPath, placesPath });
 
   await rm(outDir, { recursive: true, force: true });
   for (const domain of Object.keys(content.sites)) {
@@ -63,6 +65,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
     await build({
       contentPath: join(root, 'content', 'projects.json'),
       showsPath: join(root, 'content', 'shows.json'),
+      placesPath: join(root, 'content', 'places.json'),
       siteDir: join(root, 'site'),
       staticDir: join(root, 'static'),
       outDir: join(root, 'dist'),

@@ -129,14 +129,36 @@ test('shows are a list of dated items with an optional venue, place and note', (
   assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', city: 'Oslo' }]; }), /entry "atlanter": show 2013-08-07: unknown field "city"/);
 });
 
-test('a show may name its country by a code from the countries table', () => {
-  const countries = { NO: 'Norway', GB: 'United Kingdom' };
-  assert.deepEqual(errorsFor((c) => { c.countries = countries; c.projects[1].shows = [{ date: '2013-08-07', place: 'Oslo', country: 'NO' }]; }), []);
-  assertError(errorsFor((c) => { c.countries = countries; c.projects[1].shows = [{ date: '2013-08-07', country: 'SE' }]; }), /entry "atlanter": show 2013-08-07: country "SE" is not in countries/);
-  assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', country: 'NO' }]; }), /entry "atlanter": show 2013-08-07: country "NO" is not in countries/);
-  assertError(errorsFor((c) => { c.countries = ['NO']; }), /countries must be an object of codes and names/);
-  assertError(errorsFor((c) => { c.countries = { no: 'Norway' }; }), /countries: "no" must be two capital letters with a name/);
-  assertError(errorsFor((c) => { c.countries = { NO: '' }; }), /countries: "NO" must be two capital letters with a name/);
+const showErrors = (show) => errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', ...show }]; });
+
+test('a show\'s event, venue and place come from the places tables', () => {
+  assert.deepEqual(showErrors({ event: 'by:Larm', venue: 'Blå', place: 'Oslo' }), []);
+  assert.deepEqual(showErrors({ event: 'Øyafestivalen', venue: 'Øyafestivalen', place: 'Oslo' }), []);
+  assert.deepEqual(showErrors({ venue: 'Havresekken' }), []);
+  assertError(showErrors({ event: 'Bylarm' }), /entry "atlanter": show 2013-08-07: event "Bylarm" is not in events/);
+  assertError(showErrors({ place: 'Olso' }), /entry "atlanter": show 2013-08-07: place "Olso" is not in cities/);
+  assertError(showErrors({ venue: 'Blå', place: 'London' }), /entry "atlanter": show 2013-08-07: venue "Blå" in "London" is not in venues/);
+  assertError(showErrors({ venue: 'Blå' }), /entry "atlanter": show 2013-08-07: venue "Blå" without a place is not in venues/);
+});
+
+test('a show\'s country comes from its place; only a show without a place names one', () => {
+  assert.deepEqual(showErrors({ country: 'NO' }), []);
+  assertError(showErrors({ country: 'SE' }), /entry "atlanter": show 2013-08-07: country "SE" is not in countries/);
+  assertError(showErrors({ place: 'Oslo', country: 'NO' }), /entry "atlanter": show 2013-08-07: leave out the country; it comes from the place "Oslo"/);
+});
+
+test('the places tables are checked against each other', () => {
+  const placesErrors = (change) => errorsFor((c) => change(c.places));
+  assertError(errorsFor((c) => { delete c.places; }), /content must have a "places" object/);
+  assertError(placesErrors((p) => { p.countries = ['NO']; }), /places: countries must be an object of codes and names/);
+  assertError(placesErrors((p) => { p.countries.no = 'Norway'; }), /places: country "no" must be two capital letters with a name/);
+  assertError(placesErrors((p) => { p.countries.SE = ''; }), /places: country "SE" must be two capital letters with a name/);
+  assertError(placesErrors((p) => { p.cities.Stockholm = 'SE'; }), /places: city "Stockholm" needs a country code from countries/);
+  assertError(placesErrors((p) => { p.events = 'by:Larm'; }), /places: events must be a list of names, each at most once/);
+  assertError(placesErrors((p) => { p.events.push('by:Larm'); }), /places: events must be a list of names, each at most once/);
+  assertError(placesErrors((p) => { p.venues.push({ city: 'Oslo' }); }), /places: every venue needs a name/);
+  assertError(placesErrors((p) => { p.venues.push({ name: 'Mono', city: 'Olso' }); }), /places: venue "Mono" is in "Olso", which is not in cities/);
+  assertError(placesErrors((p) => { p.venues.push({ name: 'Blå', city: 'Oslo' }); }), /places: venue "Blå" in "Oslo" is listed twice/);
 });
 
 test('a show may carry a review: a label and an https url', () => {

@@ -1,5 +1,19 @@
 // A small valid content object. Returns a fresh copy so a test can change it.
 export const fixture = () => ({
+  places: {
+    countries: { NO: 'Norway', GB: 'United Kingdom' },
+    cities: { Oslo: 'NO', Kristiansand: 'NO', Bjugn: 'NO', London: 'GB' },
+    events: ['by:Larm', 'Ja Ja Ja', 'Øyafestivalen'],
+    venues: [
+      { name: 'Øyafestivalen', city: 'Oslo' },
+      { name: 'Øyafestivalen <main stage>', city: 'Oslo' },
+      { name: 'Blå', city: 'Oslo' },
+      { name: 'Kulturhuset', city: 'Oslo' },
+      { name: 'Kulturhuset', city: 'Bjugn' },
+      { name: 'The Lexington', city: 'London' },
+      { name: 'Havresekken' },
+    ],
+  },
   sites: {
     'byjoba.com': {
       title: 'byjoba',

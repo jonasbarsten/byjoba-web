@@ -1,39 +1,4 @@
 {
-  "countries": {
-    "AR": "Argentina",
-    "AT": "Austria",
-    "BE": "Belgium",
-    "BR": "Brazil",
-    "CH": "Switzerland",
-    "CN": "China",
-    "CZ": "Czech Republic",
-    "DE": "Germany",
-    "DK": "Denmark",
-    "EE": "Estonia",
-    "ES": "Spain",
-    "FI": "Finland",
-    "FR": "France",
-    "GB": "United Kingdom",
-    "HT": "Haiti",
-    "IN": "India",
-    "IT": "Italy",
-    "JP": "Japan",
-    "KR": "South Korea",
-    "LT": "Lithuania",
-    "NL": "Netherlands",
-    "NO": "Norway",
-    "PE": "Peru",
-    "PL": "Poland",
-    "PT": "Portugal",
-    "RU": "Russia",
-    "SA": "Saudi Arabia",
-    "SE": "Sweden",
-    "SK": "Slovakia",
-    "TW": "Taiwan",
-    "US": "United States",
-    "UY": "Uruguay",
-    "ZW": "Zimbabwe"
-  },
   "sites": {
     "byjoba.com": {
       "title": "byJoBa",
@@ -876,9 +841,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Miss Tati, Jonathan Floyd, Resa Saffa Park, Kimichi, Gorillai and Down Low Disco.",
+      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Miss Tati, Jonathan Floyd, Resa Saffa Park, Elén, Kimichi, Gorillai and Down Low Disco.",
       "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages and at two concerts in Port-au-Prince. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018.",
-      "years": "2015–2024"
+      "years": "2015–2026"
     },
     {
       "id": "bingobandet",

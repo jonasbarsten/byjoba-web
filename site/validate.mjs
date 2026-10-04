@@ -5,7 +5,7 @@ const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
 const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
-const SHOW_FIELDS = ['date', 'venue', 'place', 'note'];
+const SHOW_FIELDS = ['date', 'event', 'venue', 'place', 'country', 'note'];
 const COUNTRY_CODE = /^[A-Z]{2}$/;
 /** A day, a month or a year: as exact as the source allows. */
 const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;
@@ -24,20 +24,59 @@ export function validate(content) {
   }
   const domains = Object.keys(content.sites);
   const errors = domains.flatMap((domain) => siteErrors(domain, content.sites[domain]));
-  errors.push(...countryErrors(content.countries));
-  const countries = isObject(content.countries) ? content.countries : {};
+  if (!isObject(content.places)) return [...errors, 'content must have a "places" object'];
+  errors.push(...placesErrors(content.places));
+  const places = knownPlaces(content.places);
   const seen = new Set();
-  content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen, countries)));
+  content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen, places)));
   return errors;
 }
 
-/** The countries shows refer to: ISO 3166 two-letter code to English name. */
-function countryErrors(countries) {
-  if (countries === undefined) return [];
-  if (!isObject(countries)) return ['countries must be an object of codes and names'];
-  return Object.entries(countries)
-    .filter(([code, name]) => !COUNTRY_CODE.test(code) || !isText(name))
-    .map(([code]) => `countries: "${code}" must be two capital letters with a name`);
+/** A venue is told apart by its name and its city: two towns can each have a Kulturhuset. */
+const venueKey = (name, city) => `${name}\n${city ?? ''}`;
+
+/** The places tables as lookups, with an empty one for a table that is malformed. */
+function knownPlaces({ countries, cities, events, venues }) {
+  return {
+    countries: isObject(countries) ? countries : {},
+    cities: isObject(cities) ? cities : {},
+    events: new Set(Array.isArray(events) ? events : []),
+    venues: new Set((Array.isArray(venues) ? venues : []).filter(isObject).map((venue) => venueKey(venue.name, venue.city))),
+  };
+}
+
+/**
+ * The tables shows refer to: countries (ISO 3166 two-letter code to English
+ * name), cities (name to country code), events (festivals, showcases and
+ * programmes, by name) and venues (a name and the city it is in).
+ */
+function placesErrors({ countries, cities, events, venues }) {
+  const errors = [];
+  if (!isObject(countries)) return ['places: countries must be an object of codes and names'];
+  for (const [code, name] of Object.entries(countries)) {
+    if (!COUNTRY_CODE.test(code) || !isText(name)) errors.push(`places: country "${code}" must be two capital letters with a name`);
+  }
+  if (!isObject(cities)) return [...errors, 'places: cities must be an object of names and country codes'];
+  for (const [city, code] of Object.entries(cities)) {
+    if (!Object.hasOwn(countries, code)) errors.push(`places: city "${city}" needs a country code from countries`);
+  }
+  if (!Array.isArray(events) || !events.every(isText) || new Set(events).size !== events.length) {
+    errors.push('places: events must be a list of names, each at most once');
+  }
+  if (!Array.isArray(venues)) return [...errors, 'places: venues must be a list'];
+  const seen = new Set();
+  for (const venue of venues) {
+    if (!isObject(venue) || !isText(venue.name)) {
+      errors.push('places: every venue needs a name');
+      continue;
+    }
+    const where = 'city' in venue ? ` in "${venue.city}"` : '';
+    if ('city' in venue && !Object.hasOwn(cities, venue.city)) errors.push(`places: venue "${venue.name}" is${where}, which is not in cities`);
+    const key = venueKey(venue.name, venue.city);
+    if (seen.has(key)) errors.push(`places: venue "${venue.name}"${where} is listed twice`);
+    seen.add(key);
+  }
+  return errors;
 }
 
 function siteErrors(domain, site) {
@@ -71,7 +110,23 @@ function categoriesOf(site) {
   return site.sections.filter((section) => isObject(section) && isText(section.category)).map((section) => section.category);
 }
 
-function entryErrors(entry, index, sites, seen, countries) {
+/** Where a show was: every name must be one the places tables know. */
+function showPlaceErrors(show, places) {
+  const errors = [];
+  const { event, venue, place, country } = show;
+  if (isText(event) && !places.events.has(event)) errors.push(`event "${event}" is not in events`);
+  if (isText(place) && !Object.hasOwn(places.cities, place)) errors.push(`place "${place}" is not in cities`);
+  if (isText(venue) && !places.venues.has(venueKey(venue, place))) {
+    errors.push(`venue "${venue}" ${isText(place) ? `in "${place}"` : 'without a place'} is not in venues`);
+  }
+  if (isText(country)) {
+    if (isText(place)) errors.push(`leave out the country; it comes from the place "${place}"`);
+    else if (!Object.hasOwn(places.countries, country)) errors.push(`country "${country}" is not in countries`);
+  }
+  return errors;
+}
+
+function entryErrors(entry, index, sites, seen, places) {
   if (!isObject(entry)) return [`projects[${index}]: must be an object`];
   const where = isText(entry.id) ? `entry "${entry.id}"` : `projects[${index}]`;
   const errors = [];
@@ -123,13 +178,11 @@ function entryErrors(entry, index, sites, seen, countries) {
           continue;
         }
         for (const field of Object.keys(show)) {
-          if (field === 'review' || field === 'country') continue;
+          if (field === 'review') continue;
           if (!SHOW_FIELDS.includes(field)) errors.push(`${where}: show ${show.date}: unknown field "${field}"`);
           else if (!isText(show[field])) errors.push(`${where}: show ${show.date}: "${field}" must be non-empty text`);
         }
-        if ('country' in show && !Object.hasOwn(countries, show.country)) {
-          errors.push(`${where}: show ${show.date}: country "${show.country}" is not in countries`);
-        }
+        errors.push(...showPlaceErrors(show, places).map((problem) => `${where}: show ${show.date}: ${problem}`));
         if ('review' in show) {
           const { review } = show;
           const ok = isObject(review) && isText(review.label) && typeof review.url === 'string' && review.url.startsWith('https://');

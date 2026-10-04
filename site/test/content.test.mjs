@@ -10,6 +10,7 @@ import { renderContact, renderIndex } from '../render.mjs';
 const content = await loadContent({
   contentPath: fileURLToPath(new URL('../../content/projects.json', import.meta.url)),
   showsPath: fileURLToPath(new URL('../../content/shows.json', import.meta.url)),
+  placesPath: fileURLToPath(new URL('../../content/places.json', import.meta.url)),
 });
 const domains = Object.keys(content.sites);
 

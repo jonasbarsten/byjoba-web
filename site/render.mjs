@@ -91,7 +91,7 @@ function statusLine(entry) {
  * years, then the about, releases, links and media. The "more" marker on the
  * face says what is inside when that is more than text.
  */
-function renderEntry(entry, countries) {
+function renderEntry(entry, places) {
   const name = entry.url
     ? `<a class="name" href="${escapeHtml(entry.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
@@ -105,7 +105,7 @@ function renderEntry(entry, countries) {
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
-  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${showList(entry, countries)}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
+  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${showList(entry, places)}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
 }
 
 /**
@@ -146,10 +146,17 @@ const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
 const dateCell = (show) => `<td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>`;
 
 /** A show's country cell: the code, which expands to the country's name. */
-function countryCell(show, countries) {
-  if (!show.country) return '<td></td>';
-  return `<td><abbr title="${escapeHtml(countries[show.country])}">${escapeHtml(show.country)}</abbr></td>`;
+function countryCell(show, places) {
+  const code = countryOf(show, places);
+  if (!code) return '<td></td>';
+  return `<td><abbr title="${escapeHtml(places.countries[code])}">${escapeHtml(code)}</abbr></td>`;
 }
+
+/** A show's country code: its city's, or its own when it names no city. */
+const countryOf = (show, places) => (show.place ? places.cities[show.place] : show.country);
+
+/** A show's event and venue in one cell; a festival on its own grounds is both, and is named once. */
+const whereCell = (show) => cell([...new Set([show.event, show.venue].filter(Boolean))].join(' · '));
 
 /** A show's last cell: its note, then a link to a review of it, when it has them. */
 function noteCell(show) {
@@ -168,17 +175,17 @@ function showTable(columns, rows) {
 /** Newest first; the dates are ISO, so text order is date order. */
 const newestFirst = (shows) => [...shows].sort((a, b) => b.date.localeCompare(a.date));
 
-function showList(entry, countries) {
+function showList(entry, places) {
   if (!entry.shows?.length) return '';
   const id = `shows-${escapeHtml(entry.id)}`;
   const total = count(entry.shows.length, 'show');
-  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${cell(show.venue)}${cell(show.place)}${countryCell(show, countries)}${noteCell(show)}</tr>`);
+  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, places)}${noteCell(show)}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
-  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Venue', 'Place', 'Country', 'Note'], rows)}</div>`;
+  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
 }
 
 function renderSection(content, domain, section) {
-  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map((entry) => renderEntry(entry, content.countries));
+  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map((entry) => renderEntry(entry, content.places));
   if (items.length === 0) return '';
   // An optional line under the heading that says how to read the cards below it.
   const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';
@@ -193,16 +200,17 @@ function siteShows(content, domain) {
 }
 
 /**
- * What a list of shows spans, e.g. "954 shows, 477 venues, 215 cities and 33 countries".
- * A venue counts once per city, and a city once per country: two towns can each have a Kulturhuset.
+ * What a list of shows spans, e.g. "954 shows, 382 venues, 151 events, 205 cities and 33 countries".
+ * A venue counts once per city: two towns can each have a Kulturhuset.
  */
-function showTotals(shows) {
+function showTotals(shows, places) {
   const distinct = (key) => new Set(shows.map(key).filter(Boolean)).size;
   const parts = [
     count(shows.length, 'show'),
-    count(distinct((show) => show.venue && [show.venue, show.place, show.country].join('\n')), 'venue'),
-    count(distinct((show) => show.place && [show.place, show.country].join('\n')), 'city', 'cities'),
-    count(distinct((show) => show.country), 'country', 'countries'),
+    count(distinct((show) => show.venue && `${show.venue}\n${show.place}`), 'venue'),
+    count(distinct((show) => show.event), 'event'),
+    count(distinct((show) => show.place), 'city', 'cities'),
+    count(distinct((show) => countryOf(show, places)), 'country', 'countries'),
   ].filter(Boolean);
   return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0];
 }
@@ -218,14 +226,14 @@ export function renderShows(content, domain) {
   const tables = years.map((year) => {
     const rows = shows
       .filter((show) => show.date.startsWith(year))
-      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${cell(show.venue)}${cell(show.place)}${countryCell(show, content.countries)}${noteCell(show)}</tr>`);
-    return `<section>\n<h2>${year}</h2>\n${showTable(['Date', 'Act', 'Venue', 'Place', 'Country', 'Note'], rows)}\n</section>`;
+      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
+    return `<section>\n<h2>${year}</h2>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</section>`;
   });
   const body = [
-    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows)}, newest first.</p>\n</header>`,
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows, content.places)}, newest first.</p>\n</header>`,
     `<main>\n${tables.join('\n')}\n</main>`,
   ].join('\n');
-  const description = `The ${count(shows.length, 'show')} ${site.title} has played, by year: date, act, venue, place and country.`;
+  const description = `The ${count(shows.length, 'show')} ${site.title} has played, by year: date, act, event, venue, place and country.`;
   return page({ site, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 
