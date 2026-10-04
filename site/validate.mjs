@@ -87,7 +87,7 @@ function entryErrors(entry, index, sites, seen) {
     } else {
       for (const item of entry.media) {
         if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
-        else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video or a Spotify track`);
+        else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video, an NRK TV programme or a Spotify track`);
       }
     }
   }

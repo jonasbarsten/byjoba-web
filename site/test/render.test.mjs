@@ -111,6 +111,14 @@ test('the "more" marker says what media an entry holds', () => {
   assert.equal(markerFor([video(1), video(2), track, track]), '2 videos · 2 tracks');
 });
 
+test('an NRK programme embeds through NRK\'s own player and counts as a video', () => {
+  const content = fixture();
+  content.projects[1].media = [{ label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<figure class="video"><iframe src="https:\/\/static\.nrk\.no\/ludo\/latest\/video-embed\.html#id=MKMU81000521" title="Festivalsommer"/);
+  assert.match(html, /<span class="more">1 video<\/span>/);
+});
+
 test('media labels are escaped', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'A "live" <take>', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];

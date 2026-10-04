@@ -272,7 +272,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "years": "2015–2023"
+      "years": "2015–2023",
+      "media": [{ "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }]
     },
     {
       "id": "ary",
@@ -865,7 +866,7 @@
       "category": "film",
       "status": "one-off",
       "summary": "Short film that won the junior class at Amandus the year after.",
-      "about": "Made by a group of young people in Lillehammer. Camera Zizanio is a youth film festival in Greece.",
+      "about": "Made with Ron Andre Juul Stangvik. Camera Zizanio is a youth film festival in Greece.",
       "years": "2002"
     },
     {
