@@ -2,10 +2,15 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import { loadContent } from '../build.mjs';
 import { validate } from '../validate.mjs';
 import { renderContact, renderIndex } from '../render.mjs';
 
-const content = JSON.parse(await readFile(new URL('../../content/projects.json', import.meta.url), 'utf8'));
+const content = await loadContent({
+  contentPath: fileURLToPath(new URL('../../content/projects.json', import.meta.url)),
+  showsPath: fileURLToPath(new URL('../../content/shows.json', import.meta.url)),
+});
 const domains = Object.keys(content.sites);
 
 test('the real content is valid', () => {

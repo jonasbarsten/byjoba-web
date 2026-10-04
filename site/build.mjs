@@ -7,17 +7,39 @@ import { renderContact, renderIndex, renderNotFound, renderRobots, renderSitemap
 
 const ASSETS = ['style.css', 'contact.js', 'favicon.svg'];
 
-/** Reads and validates the content, then writes `outDir/<domain>/` for every site. */
-export async function build({ contentPath, siteDir, staticDir, outDir }) {
-  const text = await readFile(contentPath, 'utf8');
-  let content;
+async function readJson(path) {
   try {
-    content = JSON.parse(text);
+    return JSON.parse(await readFile(path, 'utf8'));
   } catch (error) {
-    throw new Error(`${contentPath} is not valid JSON: ${error.message}`);
+    if (error instanceof SyntaxError) throw new Error(`${path} is not valid JSON: ${error.message}`);
+    throw error;
   }
-  const errors = validate(content);
+}
+
+/**
+ * Reads the content and the shows. The shows live in their own file, keyed by
+ * entry id, because they are many; each list is put on its entry as `shows`.
+ * Throws with every problem found.
+ */
+export async function loadContent({ contentPath, showsPath }) {
+  const content = await readJson(contentPath);
+  const shows = await readJson(showsPath);
+  const errors = [];
+  if (Array.isArray(content?.projects)) {
+    for (const [id, list] of Object.entries(shows)) {
+      const entry = content.projects.find((candidate) => candidate?.id === id);
+      if (entry) entry.shows = list;
+      else errors.push(`${showsPath}: "${id}" is not the id of an entry`);
+    }
+  }
+  errors.push(...validate(content));
   if (errors.length > 0) throw new Error(`${contentPath} is invalid:\n${errors.join('\n')}`);
+  return content;
+}
+
+/** Reads and validates the content, then writes `outDir/<domain>/` for every site. */
+export async function build({ contentPath, showsPath, siteDir, staticDir, outDir }) {
+  const content = await loadContent({ contentPath, showsPath });
 
   await rm(outDir, { recursive: true, force: true });
   for (const domain of Object.keys(content.sites)) {
@@ -39,6 +61,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
   try {
     await build({
       contentPath: join(root, 'content', 'projects.json'),
+      showsPath: join(root, 'content', 'shows.json'),
       siteDir: join(root, 'site'),
       staticDir: join(root, 'static'),
       outDir: join(root, 'dist'),

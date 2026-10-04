@@ -11,12 +11,26 @@ import { fixture } from './fixture.mjs';
 const siteDir = fileURLToPath(new URL('..', import.meta.url));
 
 /** A temp workspace holding a content file; returns the paths `build` takes. */
-async function workspace(contentText) {
+async function workspace(contentText, showsText = '{}') {
   const root = await mkdtemp(join(tmpdir(), 'byjoba-web-'));
   const contentPath = join(root, 'projects.json');
+  const showsPath = join(root, 'shows.json');
   await writeFile(contentPath, contentText);
-  return { contentPath, siteDir, staticDir: join(root, 'static'), outDir: join(root, 'dist') };
+  await writeFile(showsPath, showsText);
+  return { contentPath, showsPath, siteDir, staticDir: join(root, 'static'), outDir: join(root, 'dist') };
 }
+
+test('shows come from their own file, keyed by entry id', async () => {
+  const paths = await workspace(JSON.stringify(fixture()), JSON.stringify({ atlanter: [{ date: '2014-03-01', venue: 'by:Larm' }] }));
+  await build(paths);
+  assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'index.html'), 'utf8'), /Atlanter: 1 show<\/h3>/);
+});
+
+test('shows for an id that is no entry, and invalid shows, fail the build', async () => {
+  const paths = await workspace(JSON.stringify(fixture()), JSON.stringify({ atlantis: [{ date: '2014-03-01' }], atlanter: [{ date: 'March' }] }));
+  await assert.rejects(build(paths), (error) => error.message.includes(`${paths.showsPath}: "atlantis" is not the id of an entry`) && error.message.includes('entry "atlanter": show needs a date'));
+  assert.equal(existsSync(paths.outDir), false);
+});
 
 test('the build writes every file for every site', async () => {
   const paths = await workspace(JSON.stringify(fixture()));
