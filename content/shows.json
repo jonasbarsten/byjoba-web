@@ -14,7 +14,7 @@
     {"date":"2025-11-15","place":"Bergen"},
     {"date":"2025-10-10","place":"Førde"},
     {"date":"2025-08-30","place":"Vestfold"},
-    {"date":"2025-08-29","venue":"Rakettnatt","place":"Tromsø"},
+    {"date":"2025-08-29","venue":"Rakettnatt","place":"Tromsø","review":{"label":"iTromsø","url":"https://www.itromso.no/feedback/o/xmLpPV/sprut-og-spisse-albuer"}},
     {"date":"2025-08-23","venue":"Jugendfest","place":"Ålesund"},
     {"date":"2025-08-06","venue":"Øyafestivalen","place":"Oslo"},
     {"date":"2025-07-26","venue":"Utkantfestivalen"},
@@ -223,16 +223,16 @@
     {"date":"2013-08-09","venue":"Telemarksfestivalen"},
     {"date":"2013-08-08","venue":"Øyafestivalen","place":"Oslo","review":{"label":"Musikknyheter","url":"https://www.musikknyheter.no/concert/11555"}},
     {"date":"2013-07-20","venue":"Buktafestivalen","place":"Tromsø","review":{"label":"Nordlys","url":"https://www.nordlys.no/bukta/nar-regnet-spiller-pa-lag-med-bandet/r/1-79-6769406"}},
-    {"date":"2013-07-02","venue":"Hovefestivalen","place":"Arendal"},
+    {"date":"2013-07-02","venue":"Hovefestivalen","place":"Arendal","review":{"label":"NRK P3","url":"https://www.nrk.no/p3/musikkanmeldelser/anmeldelse_-atlanter_-hovescenen_-hovefestivalen-2013-1.17233539"}},
     {"date":"2013-02-16","venue":"by:Larm","place":"Oslo"},
     {"date":"2013-02-16","venue":"by:Larm","place":"Oslo"},
-    {"date":"2013-02-14","venue":"by:Larm, Herr Nilsen","place":"Oslo"},
+    {"date":"2013-02-14","venue":"by:Larm, Herr Nilsen","place":"Oslo","review":{"label":"NRK P3","url":"https://www.nrk.no/p3/anmeldelse_-atlanter_-by_larm_-herr-nilsen-1.17234065"}},
     {"date":"2013-02-13","venue":"by:Larm","place":"Oslo","note":"opening night"}
   ],
   "alan-walker": [
     {"date":"2019-12-09","place":"India"},
     {"date":"2016-12-22","venue":"USF Verftet","place":"Bergen"},
-    {"date":"2016-12-21","venue":"USF Verftet","place":"Bergen"},
+    {"date":"2016-12-21","venue":"USF Verftet","place":"Bergen","review":{"label":"Bergens Tidende","url":"https://www.bt.no/kultur/i/5K7je/superstjernen-drukner-litt-i-storproduksjonen"}},
     {"date":"2020-03-07","place":"Hafjell"},
     {"date":"2019-12-12","place":"Saudi Arabia"},
     {"date":"2019-12-08","place":"India"},
@@ -262,9 +262,9 @@
   ],
   "matoma": [
     {"date":"2024-06-21","venue":"VG-lista"},
-    {"date":"2019-08-30","place":"Trondheim"},
+    {"date":"2019-08-30","venue":"Festningen","place":"Trondheim","review":{"label":"Adresseavisen","url":"https://trdby.adressa.no/kultur/i/qWO67z/anmeldelse-kveldens-beste-vorspiel"}},
     {"date":"2019-08-16","place":"Harstad"},
-    {"date":"2019-07-27","place":"Bodø"},
+    {"date":"2019-07-27","venue":"Opptur","place":"Bodø","review":{"label":"Bodø Nu","url":"https://www.bodonu.no/matoma-leverer-et-helt-gjennomsnittlig-show-men-vinner-pa-avslutningen/g/25-159-30864"}},
     {"date":"2019-07-13","venue":"Stavernfestivalen","place":"Stavern"},
     {"date":"2019-07-12","place":"Tysnes"},
     {"date":"2019-06-21","place":"Fredrikstad"}
@@ -275,7 +275,7 @@
     {"date":"2023-03-11","venue":"100 Dagar"},
     {"date":"2023-05-05","venue":"Spot Festival","place":"Aarhus"},
     {"date":"2022-09-17","venue":"by:Larm, Sentrum Scene","place":"Oslo"},
-    {"date":"2022-09-16","venue":"by:Larm, Blå","place":"Oslo"},
+    {"date":"2022-09-16","venue":"by:Larm, Blå","place":"Oslo","review":{"label":"Bands of Tomorrow","url":"https://www.bandsoftomorrow.com/2022/09/sei-selina-bylarm-2022/"}},
     {"date":"2022-09-12","place":"Barcelona"},
     {"date":"2022-09-11","place":"Madrid"},
     {"date":"2022-09-08","place":"Rome"},
@@ -376,7 +376,7 @@
     {"date":"2018-04-06","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2018-03-09","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2018-03-08","place":"Bergen"},
-    {"date":"2018-03-02","venue":"Rockefeller","place":"Oslo"},
+    {"date":"2018-03-02","venue":"by:Larm, Rockefeller","place":"Oslo","review":{"label":"Dagbladet","url":"https://www.dagbladet.no/kultur/ary-redder-konserten-fra-katastrofe/69572238"}},
     {"date":"2018-01-04","place":"Oslo"},
     {"date":"2017-11-11","place":"Larvik"},
     {"date":"2017-10-26","venue":"Parkteatret","place":"Oslo","review":{"label":"Universitas","url":"https://www.universitas.no/anmeldelse-ary/ary-pa-parkteatret-hvem-er-du-jeg-er-ary/137788"}},
@@ -397,7 +397,7 @@
     {"date":"2014-12-06","venue":"Parkteatret","place":"Oslo"},
     {"date":"2014-11-22","place":"Bergen"},
     {"date":"2014-11-14","place":"London"},
-    {"date":"2014-11-08","venue":"Parkteatret","place":"Oslo"},
+    {"date":"2014-11-08","venue":"Parkteatret","place":"Oslo","review":{"label":"Natt&Dag","url":"https://nattogdag.no/2014/11/nd-anmelder-alt-fra-lordagens-nils-bech-konsert/"}},
     {"date":"2014-10-17","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2014-10-10","place":"London"}
   ],
@@ -459,7 +459,7 @@
     {"date":"2013-02-16","venue":"by:Larm","place":"Oslo"},
     {"date":"2013-02-14","venue":"by:Larm, Nasjonal jazzscene","place":"Oslo"},
     {"date":"2013-08-18","venue":"Melafestivalen","place":"Oslo"},
-    {"date":"2013-08-14","venue":"Oslo Jazzfestival","place":"Oslo"},
+    {"date":"2013-08-14","venue":"Oslo Jazzfestival, Herr Nilsen","place":"Oslo","review":{"label":"Martins musikkblogg","url":"https://www.martinsmusikkblogg.com/froy-aagre-electric-oslo-jazzfestival-2013/"}},
     {"date":"2013-02-15","venue":"NRK"},
     {"date":"2013-10-12","venue":"Dølajazz","place":"Lillehammer"}
   ],
@@ -482,7 +482,7 @@
     {"date":"2014-09-19","place":"Oslo"},
     {"date":"2014-08-08","venue":"Øyafestivalen","place":"Oslo","review":{"label":"Deichman Musikk","url":"https://musikk.deichman.no/2014/08/09/oya-2014-dagens-ungdom-fylte-biblioteket-til-randen/"}},
     {"date":"2013-02-16","venue":"by:Larm","place":"Oslo"},
-    {"date":"2013-02-14","venue":"by:Larm, Revolver","place":"Oslo"}
+    {"date":"2013-02-14","venue":"by:Larm, Revolver","place":"Oslo","review":{"label":"Gaffa","url":"https://gaffa.no/anmeldelser/2013/februar/events/dagens-ungdom-revolver-by-larm/"}}
   ],
   "disaster-in-the-universe": [
     {"date":"2014-03-27","venue":"Parkteatret","place":"Oslo","note":"release concert"},
@@ -689,7 +689,7 @@
     {"date":"2022-05-31","venue":"NRK","note":"Jonathan Floyd"},
     {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
     {"date":"2023-11-11","note":"Vinni"},
-    {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S"},
+    {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S","review":{"label":"Poplish","url":"https://poplish.dk/2023/06/24/astrid-s-og-den-sukkersoede-popmusik/"}},
     {"date":"2023-01-21","venue":"Rockefeller","place":"Oslo","note":"Vinni"},
     {"date":"2022-11-26","place":"Sandefjord","note":"Dagny"},
     {"date":"2022-11-25","venue":"Salt","place":"Oslo","note":"Maud"},
@@ -730,13 +730,13 @@
     {"date":"2018-11-15","venue":"Skavlan"}
   ],
   "hanne-hukkelberg": [
-    {"date":"2019-11-15","venue":"Bø Jazzklubb","place":"Bø"},
+    {"date":"2019-11-15","venue":"Bø Jazzklubb, Parketten","place":"Bø"},
     {"date":"2019-08-07","venue":"Salt","place":"Oslo"},
     {"date":"2019-07-06","venue":"Kongsberg Jazzfestival, Lågdalsmuseet","place":"Kongsberg","note":"REMIXME, with Fredrik Høyer"},
     {"date":"2018-08-09","place":"Tromsø"}
   ],
   "den-politiske-kroppen": [
-    {"date":"2019-11-16","venue":"Bozar","place":"Brussels"},
+    {"date":"2019-11-16","venue":"Bozar","place":"Brussels","review":{"label":"RTBF","url":"https://www.rtbf.be/article/the-political-body-quand-litterature-et-musique-s-unissent-corps-et-ame-10367510"}},
     {"date":"2018-05","place":"Paris"},
     {"date":"2017-10-07","venue":"Litteraturhuset","place":"Oslo"},
     {"date":"2017-10-06","venue":"Litteraturhuset","place":"Oslo","note":"premiere"}
