@@ -196,6 +196,13 @@ test('shows open as a list in a popover, from a button inside the opened card, w
   assert.doesNotMatch(html, /<script(?! type="application\/ld\+json")/);
 });
 
+test('shows are listed newest first, whatever their order in the file', () => {
+  const content = fixture();
+  content.projects[1].shows = [{ date: '2013-08-07' }, { date: '2016' }, { date: '2014-03' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2016', '2014-03', '2013-08-07']);
+});
+
 test('a single show is counted in the singular, and the marker counts shows first', () => {
   const content = fixture();
   content.projects[1].shows = [{ date: '2014-03-01', venue: 'by:Larm' }];

@@ -1,5 +1,8 @@
 {
   "anna-lille": [
+    {"date":"2025-09-04","venue":"Spire","place":"Ålesund"},
+    {"date":"2025-06-24","place":"Drammen"},
+    {"date":"2024-09-12","venue":"by:Larm","place":"Oslo"},
     {"date":"2026-08-29","venue":"Utopia","place":"Stavanger"},
     {"date":"2026-08-22","venue":"Ypsilon","place":"Drammen"},
     {"date":"2026-08-14","venue":"Staupshaugen live","place":"Levanger"},
@@ -32,6 +35,10 @@
     {"date":"2023-09-28","venue":"Café Månefisken","place":"Oslo"}
   ],
   "daniel-kvammen": [
+    {"date":"2023-09-06","place":"Ås"},
+    {"date":"2022-03-30","place":"Oslo"},
+    {"date":"2022-03-18","venue":"NRK P3"},
+    {"date":"2015-08-15","place":"Ål"},
     {"date":"2026-08-21","venue":"Færsterålen"},
     {"date":"2026-07-24","place":"Lofthus"},
     {"date":"2026-07-11","place":"Helgelandskysten"},
@@ -71,6 +78,16 @@
     {"date":"2015-06-19"}
   ],
   "sandra-kolstad": [
+    {"date":"2023-11-23","venue":"Mir","place":"Oslo"},
+    {"date":"2023-10-27","note":"release party"},
+    {"date":"2022-04-28","note":"school tour"},
+    {"date":"2019-11-16","place":"Brussels"},
+    {"date":"2016-08-27","venue":"Færsterålen","note":"stand-in"},
+    {"date":"2016-08-06","place":"Alta","note":"stand-in"},
+    {"date":"2016-05-28","note":"stand-in"},
+    {"date":"2016-05-21","place":"Bodø","note":"stand-in"},
+    {"date":"2016-05-20","place":"Bodø","note":"stand-in"},
+    {"date":"2016-05-11","place":"Mosjøen","note":"stand-in"},
     {"date":"2026-05-16","venue":"Sentrum Scene","place":"Oslo"},
     {"date":"2025-10-02","place":"Haugesund"},
     {"date":"2025-08-10","venue":"Hellviktangen","place":"Nesodden"},
@@ -165,6 +182,8 @@
     {"date":"2015-09-18","place":"Gjøvik"}
   ],
   "atlanter": [
+    {"date":"2015-08-07","venue":"Varangerfestivalen","place":"Vadsø"},
+    {"date":"2014-06-13","venue":"Øyafestivalen event","place":"Oslo"},
     {"date":"2026-10-01","place":"Bodø"},
     {"date":"2026-06-13","place":"Kampen, Oslo"},
     {"date":"2026-02-12","venue":"Kafé Hærverk","place":"Oslo"},
@@ -207,6 +226,8 @@
     {"date":"2013-07-02","venue":"Hovefestivalen","place":"Arendal"}
   ],
   "alan-walker": [
+    {"date":"2019-12-09","place":"India"},
+    {"date":"2016-12","place":"Bergen"},
     {"date":"2020-03-07","place":"Hafjell"},
     {"date":"2019-12-12","place":"Saudi Arabia"},
     {"date":"2019-12-08","place":"India"},
@@ -245,6 +266,9 @@
     {"date":"2019-06-21","place":"Fredrikstad"}
   ],
   "sei-selina": [
+    {"date":"2026-03-22","venue":"Spellemann"},
+    {"date":"2023-05-30","venue":"Festspillene"},
+    {"date":"2023-03-11","venue":"100 Dagar"},
     {"date":"2023-05-05","venue":"Spot Festival"},
     {"date":"2022-09-17","venue":"by:Larm, Sentrum Scene","place":"Oslo"},
     {"date":"2022-09-16","venue":"by:Larm, Blå","place":"Oslo"},
@@ -272,6 +296,9 @@
     {"date":"2022-03-11","venue":"Salt","place":"Oslo"}
   ],
   "fay-wildhagen": [
+    {"date":"2022-06","venue":"Over Oslo","place":"Oslo"},
+    {"date":"2022-04","place":"Turtagrø"},
+    {"date":"2017-02","place":"Svalbard"},
     {"date":"2023-10-26","venue":"Nidarosdomen","place":"Trondheim"},
     {"date":"2022-07-09","venue":"Livestock"},
     {"date":"2022-07-08","place":"Spornes"},
@@ -353,6 +380,11 @@
     {"date":"2017-03-24","venue":"Lindmo (NRK)"}
   ],
   "nils-bech": [
+    {"date":"2017-02-05","place":"Berlin"},
+    {"date":"2014-09-14","place":"Oslo"},
+    {"date":"2014-09-06","place":"Oslo"},
+    {"date":"2014-08-30","venue":"Piknik i Parken","place":"Oslo"},
+    {"date":"2014-08-10"},
     {"date":"2017-01-12"},
     {"date":"2015-09-05","place":"Stavanger"},
     {"date":"2015-03-07","venue":"by:Larm, Tilt","place":"Oslo"},
@@ -365,6 +397,8 @@
     {"date":"2014-10-10","place":"London"}
   ],
   "thea-hjelmeland": [
+    {"date":"2023-09-08","place":"Bergen"},
+    {"date":"2014-09-18","venue":"Parkteatret","place":"Oslo"},
     {"date":"2016-09-17","place":"Bergen"},
     {"date":"2015-07-25","venue":"Fres Festival","place":"Fresvik"},
     {"date":"2015-07-22","venue":"Festival Músicas do Mundo","place":"Sines, Portugal"},
@@ -378,7 +412,27 @@
     {"date":"2014-10-01","venue":"Parterre","place":"Basel"},
     {"date":"2014-09-30","venue":"Volkstheater","place":"Munich"}
   ],
+  "bendik-baksaas-band": [
+    {"date":"2012-08-07","venue":"Klubbøya","place":"Oslo"},
+    {"date":"2012-07-21","venue":"Slottsfjell"}
+  ],
+  "siri-nilsen": [
+    {"date":"2014-08-09","place":"Sandefjord"},
+    {"date":"2014-07-19","place":"Skåtøy"},
+    {"date":"2014-06-28","venue":"Oscarsborg"}
+  ],
+  "tom-hugo": [
+    {"date":"2014-01-29","venue":"Parkteatret","place":"Oslo"},
+    {"date":"2013-05-30","place":"Aker Brygge, Oslo"}
+  ],
+  "kjetil-grande": [
+    {"date":"2009-08-18","venue":"Studentfestivalen"}
+  ],
+  "i-ate-my-pony": [
+    {"date":"2010-07","note":"tour"}
+  ],
   "hanne-kolsto": [
+    {"date":"2011-08-12","venue":"Øyafestivalen","place":"Oslo"},
     {"date":"2016-06-04","venue":"Sukkerbiten","place":"Oslo"},
     {"date":"2015-04-15","place":"Cologne"},
     {"date":"2015-04-14","place":"Munich"},
@@ -395,9 +449,20 @@
     {"date":"2014-10-18","place":"Oslo"}
   ],
   "froy-aagre": [
+    {"date":"2013-08-18","venue":"Melafestivalen","place":"Oslo"},
+    {"date":"2013-08-14","venue":"Oslo Jazzfestival","place":"Oslo"},
+    {"date":"2013-02-15","venue":"NRK"},
     {"date":"2013-10-12","venue":"Dølajazz","place":"Lillehammer"}
   ],
   "dagens-ungdom": [
+    {"date":"2014-09-06","place":"Kampen, Oslo"},
+    {"date":"2014-07-23","venue":"NRK P13"},
+    {"date":"2014-06-07","venue":"Parkteatret","place":"Oslo"},
+    {"date":"2014-06-07","venue":"Schous plass","place":"Oslo"},
+    {"date":"2014-06-07","venue":"Sound of Mu","place":"Oslo"},
+    {"date":"2014-06-06","venue":"Big Dipper","place":"Oslo"},
+    {"date":"2014-05-23","venue":"Deichman","place":"Oslo","note":"release"},
+    {"date":"2013-10-31","venue":"Internasjonalen","place":"Oslo","note":"release"},
     {"date":"2018-05-24","venue":"Last Train","place":"Oslo"},
     {"date":"2015-10-16","venue":"Ingensteds","place":"Oslo"},
     {"date":"2015-09-20"},
@@ -409,6 +474,16 @@
     {"date":"2014-08-08","venue":"Øyafestivalen","place":"Oslo"}
   ],
   "disaster-in-the-universe": [
+    {"date":"2014-03-25","venue":"God morgen Norge (TV 2)"},
+    {"date":"2014-03-22","place":"Grimstad"},
+    {"date":"2014-03-21","place":"Bergen"},
+    {"date":"2014-03-19","venue":"NRK P3"},
+    {"date":"2014-01-17","place":"Fredrikstad"},
+    {"date":"2013-07-19","venue":"Slottsfjell"},
+    {"date":"2013-07-12","venue":"Kjørrefjordfestivalen"},
+    {"date":"2012-08-07","venue":"Klubbøya","place":"Oslo"},
+    {"date":"2012-07-20","venue":"Slottsfjell"},
+    {"date":"2012-06","venue":"Hovefestivalen","place":"Arendal"},
     {"date":"2015-02-06","venue":"Uka, Blindern","place":"Oslo"},
     {"date":"2015-01-29","venue":"NRK P3"},
     {"date":"2014-11-17","venue":"Danvik","place":"Drammen"},
@@ -449,6 +524,15 @@
     {"date":"2015-12-03","venue":"Jæger","place":"Oslo"}
   ],
   "sassybeat": [
+    {"date":"2014-08-02","venue":"Raumarock"},
+    {"date":"2014-07-05","place":"Giske"},
+    {"date":"2014-04-25","place":"Risør"},
+    {"date":"2014-03-28","venue":"John Dee","place":"Oslo"},
+    {"date":"2014-03-20","place":"Drammen"},
+    {"date":"2014-02-26","venue":"God morgen Norge (TV 2)"},
+    {"date":"2014-02-22","place":"Trondheim"},
+    {"date":"2014-02-14","place":"Sandvika"},
+    {"date":"2011-07-16","venue":"Slottsfjell"},
     {"date":"2014-03-01","venue":"by:Larm, Gamla","place":"Oslo"},
     {"date":"2014-02-27","venue":"by:Larm, Rockefeller","place":"Oslo"}
   ],
@@ -463,9 +547,11 @@
     {"date":"2015-05-10"}
   ],
   "bellman": [
+    {"date":"2014-04-03","place":"Larvik"},
     {"date":"2015-01-13","place":"Japan","note":"tour"}
   ],
   "blosh": [
+    {"date":"2014-08-05","venue":"Herr Nilsen","place":"Oslo"},
     {"date":"2016-08-09","venue":"Tilt","place":"Oslo"},
     {"date":"2016-07-13","venue":"Slottsfjell"},
     {"date":"2016-06-18","place":"Elverum"},
@@ -487,6 +573,8 @@
     {"date":"2014-11-30","venue":"Kolonihagen"}
   ],
   "cctv": [
+    {"date":"2013-07-27","venue":"Torpfestivalen"},
+    {"date":"2012-10-04","venue":"Blå","place":"Oslo","note":"release"},
     {"date":"2017-08-08","venue":"Klubbøya","place":"Oslo"},
     {"date":"2015-06-04","venue":"Revolver","place":"Oslo"}
   ],
@@ -495,9 +583,14 @@
     {"date":"2022-08-11","venue":"Øyafestivalen","place":"Oslo"}
   ],
   "vegard": [
+    {"date":"2026-08-08","place":"Finland"},
+    {"date":"2026-06"},
+    {"date":"2026-06"},
     {"date":"2026-01-24","place":"Finland"}
   ],
   "froder": [
+    {"date":"2017-03-11","place":"Mo i Rana"},
+    {"date":"2017-03-10"},
     {"date":"2017-08-19","place":"Bø"},
     {"date":"2017-08-18","place":"Alta"},
     {"date":"2016-09-09","place":"Trondheim"},
@@ -518,6 +611,11 @@
     {"date":"2015-08-08","place":"Haugesund"}
   ],
   "rytmer-fra-verdensrommet": [
+    {"date":"2017-01","place":"Lithuania"},
+    {"date":"2016-06-08","place":"Bergen"},
+    {"date":"2016-06-07","place":"Bergen"},
+    {"date":"2016-06-06","place":"Bergen"},
+    {"date":"2016-06-05","place":"Bergen"},
     {"date":"2018-11-10","place":"Ørsta"},
     {"date":"2018-03-22"},
     {"date":"2018-03-21"},
@@ -561,6 +659,8 @@
     {"date":"2016-03-15","venue":"Det Norske Teatret","place":"Oslo"}
   ],
   "stand-in": [
+    {"date":"2022-05-31","venue":"NRK","note":"Jonathan Floyd"},
+    {"date":"2022-05","venue":"Spot Festival","place":"Aarhus","note":"Magly"},
     {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
     {"date":"2023-11-11","note":"Vinni"},
     {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S"},
@@ -588,6 +688,7 @@
     {"date":"2018-10-21","place":"Trondheim"}
   ],
   "jimmy-smash": [
+    {"date":"2018-10-13","place":"Fredrikstad"},
     {"date":"2018-08-24","place":"Trondheim"},
     {"date":"2018-03-01","venue":"by:Larm","place":"Oslo"},
     {"date":"2017-11-29","venue":"Jæger","place":"Oslo"}
@@ -602,12 +703,15 @@
     {"date":"2018-11-15","venue":"Skavlan"}
   ],
   "hanne-hukkelberg": [
-    {"date":"2019-10-12","venue":"Peng Festival","place":"Essen"},
+    {"date":"2019-09-18","venue":"Brenner","place":"Oslo"},
     {"date":"2019-08-07","venue":"Salt","place":"Oslo"},
     {"date":"2019-07-06","venue":"Kongsberg Jazzfestival","place":"Kongsberg"},
     {"date":"2018-08-09","place":"Tromsø"}
   ],
   "den-politiske-kroppen": [
+    {"date":"2019-10-19","place":"Frankfurt"},
+    {"date":"2019-10-18","place":"Frankfurt"},
+    {"date":"2019-10-17","place":"Frankfurt"},
     {"date":"2019-09-26","place":"Norway","note":"tour"},
     {"date":"2019-09-25","place":"Oslo","note":"premiere"}
   ],
@@ -624,6 +728,9 @@
     {"date":"2023-08-12","venue":"Øyanatt","place":"Oslo"}
   ],
   "rydin": [
+    {"date":"2014-08-05","venue":"Fisk og Vilt","place":"Oslo"},
+    {"date":"2014-06-24","venue":"Mir","place":"Oslo"},
+    {"date":"2014-06-17","venue":"Skyskraper"},
     {"date":"2016-02-28","venue":"Kampenjazz","place":"Oslo"}
   ],
   "westaman": [

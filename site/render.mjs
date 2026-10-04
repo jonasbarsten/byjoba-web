@@ -145,7 +145,9 @@ function showList(entry) {
   const id = `shows-${escapeHtml(entry.id)}`;
   const total = count(entry.shows.length, 'show');
   const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
-  const rows = entry.shows.map(
+  // Newest first; the dates are ISO, so text order is date order.
+  const newestFirst = [...entry.shows].sort((a, b) => b.date.localeCompare(a.date));
+  const rows = newestFirst.map(
     (show) => `<tr><td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>${cell(show.venue)}${cell(show.place)}${cell(show.note)}</tr>`,
   );
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
