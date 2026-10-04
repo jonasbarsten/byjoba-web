@@ -515,7 +515,10 @@
     {"date":"2009-08-18","venue":"Studiestartfestivalen","place":"Kristiansand"}
   ],
   "i-ate-my-pony": [
-    {"date":"2010-07-14","place":"Kristiansand","note":"first date of a tour"}
+    {"date":"2010-07-20","venue":"L'Orient","place":"Linköping"},
+    {"date":"2010-07-17","venue":"Skuret","place":"Oslo"},
+    {"date":"2010-07-16","venue":"Promenaden","place":"Risør"},
+    {"date":"2010-07-14","venue":"Charlies Bar","place":"Kristiansand"}
   ],
   "hanne-kolsto": [
     {"date":"2016-06-04","venue":"Musikkfest Oslo, Sukkerbiten","place":"Oslo","note":"stand-in"},
