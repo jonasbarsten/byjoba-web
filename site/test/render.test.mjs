@@ -153,14 +153,17 @@ test('links are listed by label inside the opened card and never make the name a
   assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
-test('releases are listed with their year inside the opened card, linked when they have a url', () => {
+test('releases show inside the opened card with cover, title and year; the title links when there is a url', () => {
   const content = fixture();
   content.projects[1].releases = [
-    { title: 'Vidde', year: '2013', url: 'https://www.discogs.com/master/566572' },
+    { title: 'Vidde', year: '2013', url: 'https://www.discogs.com/master/566572', cover: '/covers/vidde.jpg' },
     { title: 'A & B', year: '2014' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<span class="more">2 releases<\/span><\/summary><p class="releases">Releases: <a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> \(2013\) · A &amp; B \(2014\)<\/p><\/details>/);
+  assert.match(
+    html,
+    /<span class="more">2 releases<\/span><\/summary><div class="releases"><figure><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> \(2013\)<\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B \(2014\)<\/figcaption><\/figure><\/div><\/details>/,
+  );
 });
 
 test('the "more" marker lists videos, tracks, releases and links in that order', () => {

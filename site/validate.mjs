@@ -103,6 +103,10 @@ function entryErrors(entry, index, sites, seen) {
         }
         if (!isText(release.year)) errors.push(`${where}: release "${release.title}" needs a year`);
         if ('url' in release && !isLinkUrl(release.url)) errors.push(`${where}: release "${release.title}" url must start with https:// or /`);
+        // Covers are files of our own under static/<site>/, never images loaded from elsewhere.
+        if ('cover' in release && !(typeof release.cover === 'string' && /^\/[^/]/.test(release.cover))) {
+          errors.push(`${where}: release "${release.title}" cover must be a path starting with /`);
+        }
       }
     }
   }

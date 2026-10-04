@@ -126,6 +126,10 @@ test('releases must be a list with a title and a year, and an optional url', () 
   assertError(errorsFor((c) => { c.projects[1].releases = [null]; }), /entry "atlanter": release needs a title/);
   assertError(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: 2013 }]; }), /entry "atlanter": release "Vidde" needs a year/);
   assertError(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013', url: 'discogs.com' }]; }), /entry "atlanter": release "Vidde" url must start with https:\/\/ or \//);
+  assert.deepEqual(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013', cover: '/covers/vidde.jpg' }]; }), []);
+  for (const cover of ['https://i.discogs.com/x.jpg', 'covers/vidde.jpg', '//x/y.jpg', 7]) {
+    assertError(errorsFor((c) => { c.projects[1].releases = [{ title: 'Vidde', year: '2013', cover }]; }), /entry "atlanter": release "Vidde" cover must be a path starting with \//);
+  }
 });
 
 test('a category may appear in only one section of a site', () => {

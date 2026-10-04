@@ -208,7 +208,7 @@
       "status": "active",
       "summary": "Composer, producer and drummer.",
       "years": "2015–",
-      "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598" }]
+      "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598", "cover": "/covers/burning-love.jpg" }]
     },
     {
       "id": "atlanter",
@@ -218,7 +218,7 @@
       "status": "active",
       "summary": "Composer and drummer.",
       "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014.",
-      "releases": [{ "title": "Vidde", "year": "2013", "url": "https://www.discogs.com/master/566572" }],
+      "releases": [{ "title": "Vidde", "year": "2013", "url": "https://www.discogs.com/master/566572", "cover": "/covers/vidde.jpg" }],
       "years": "2012–",
       "media": [
         { "label": "Soon", "url": "https://www.youtube.com/watch?v=5x26NrfqQoA" },
@@ -235,7 +235,7 @@
       "status": "ended",
       "summary": "Musical director and drummer.",
       "about": "Full time from 2016 to 2021, with single shows after that.",
-      "releases": [{ "title": "Ina Wroldsen: Strongest (Alan Walker Remix)", "year": "2017", "url": "https://www.discogs.com/master/1268911" }],
+      "releases": [{ "title": "Ina Wroldsen: Strongest (Alan Walker Remix)", "year": "2017", "url": "https://www.discogs.com/master/1268911", "cover": "/covers/strongest-alan-walker-remix.jpg" }],
       "years": "2016–2021",
       "media": [
         { "label": "Faded, live", "url": "https://www.youtube.com/watch?v=mIxlvVlOIS0" },
@@ -245,6 +245,9 @@
         { "label": "Spellemannprisen", "url": "https://www.youtube.com/watch?v=kyD2uvgoyKM" },
         { "label": "Faded / Different World, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=n03IDJcsy5g" },
         { "label": "The Spectre, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=a-X6rRcYL70" },
+        { "label": "Heading Home, live at Château de Fontainebleau", "url": "https://www.youtube.com/watch?v=cYxAr_NZF9E" },
+        { "label": "Alone, Pt. II, live at Château de Fontainebleau", "url": "https://www.youtube.com/watch?v=WrHDquZ-tj0" },
+        { "label": "Who I Am, Restrung", "url": "https://www.youtube.com/watch?v=tl_1unb5Asc" },
         { "label": "Rig rundown of the band setup", "url": "https://www.youtube.com/watch?v=AxwN0J3pAQk" }
       ]
     },
@@ -276,7 +279,7 @@
       "status": "ended",
       "summary": "Drummer.",
       "years": "2015–2023",
-      "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391" }],
+      "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391", "cover": "/covers/leave-me-to-the-moon.jpg" }],
       "media": [{ "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }]
     },
     {
@@ -296,7 +299,7 @@
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
       "releases": [
-        { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058" },
+        { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058", "cover": "/covers/one-year.jpg" },
         { "title": "Trip Abroad", "year": "2014" }
       ],
       "years": "2013–2017",
@@ -319,7 +322,7 @@
       "status": "ended",
       "summary": "Drummer.",
       "about": "From 2011.",
-      "releases": [{ "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226" }],
+      "releases": [{ "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }],
       "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
         { "label": "Nobody Will Laugh", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
@@ -334,8 +337,8 @@
       "summary": "Drums, percussion and keyboards.",
       "about": "Played keyboards with her at South by Southwest.",
       "releases": [
-        { "title": "Flashblack", "year": "2012", "url": "https://www.discogs.com/master/655762" },
-        { "title": "Stillness And Panic", "year": "2013", "url": "https://www.discogs.com/master/718091" }
+        { "title": "Flashblack", "year": "2012", "url": "https://www.discogs.com/master/655762", "cover": "/covers/flashblack.jpg" },
+        { "title": "Stillness And Panic", "year": "2013", "url": "https://www.discogs.com/master/718091", "cover": "/covers/stillness-and-panic.jpg" }
       ],
       "years": "2011–2012",
       "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
@@ -348,7 +351,7 @@
       "status": "ended",
       "summary": "Drums, percussion and electronics in Frøy Aagre Electric.",
       "about": "From 2012.",
-      "releases": [{ "title": "Electric", "year": "2013", "url": "https://www.discogs.com/release/11421486" }],
+      "releases": [{ "title": "Electric", "year": "2013", "url": "https://www.discogs.com/release/11421486", "cover": "/covers/electric.jpg" }],
       "media": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
     },
     {
@@ -360,9 +363,9 @@
       "summary": "Drummer.",
       "about": "From 2012.",
       "releases": [
-        { "title": "Nedi Havet", "year": "2013", "url": "https://www.discogs.com/release/6331390" },
-        { "title": "Dagens Ungdom", "year": "2014", "url": "https://www.discogs.com/release/5947672" },
-        { "title": "Naken Gris", "year": "2015", "url": "https://www.discogs.com/release/7996427" }
+        { "title": "Nedi Havet", "year": "2013", "url": "https://www.discogs.com/release/6331390", "cover": "/covers/nedi-havet.jpg" },
+        { "title": "Dagens Ungdom", "year": "2014", "url": "https://www.discogs.com/release/5947672", "cover": "/covers/dagens-ungdom.jpg" },
+        { "title": "Naken Gris", "year": "2015", "url": "https://www.discogs.com/release/7996427", "cover": "/covers/naken-gris.jpg" }
       ],
       "media": [{ "label": "Aldri vite", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
     },
@@ -406,7 +409,7 @@
       "status": "one-off",
       "summary": "Plays on the album Blackwinged Night.",
       "years": "2015",
-      "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761" }]
+      "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761", "cover": "/covers/blackwinged-night.jpg" }]
     },
     {
       "id": "anders-wyller",
@@ -416,7 +419,7 @@
       "status": "one-off",
       "summary": "Plays on the album Norsk Skog.",
       "years": "2018",
-      "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036" }]
+      "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036", "cover": "/covers/norsk-skog.jpg" }]
     },
     {
       "id": "bjorn-charles-dreyer-group",
@@ -493,7 +496,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums and electronics in a European free improvisation orchestra.",
-      "releases": [{ "title": "ÖNCZkekvist", "year": "2010", "url": "https://www.discogs.com/release/2596315" }]
+      "releases": [{ "title": "ÖNCZkekvist", "year": "2010", "url": "https://www.discogs.com/release/2596315", "cover": "/covers/onczkekvist.jpg" }]
     },
     {
       "id": "live-electronics-concept",
@@ -571,7 +574,7 @@
       "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo.",
       "about": "The first in Pekula's series of commissioned pieces, made for the venue's 15th anniversary. Music by Simen Følstad Nilsen, Axel Skalstad and Erlend Mokkelbost. Performed behind curtains with the musicians' names kept secret: Axel Skalstad, Ellen Brekken, Marte Eberson, Simen Følstad Nilsen, Gunhild Ramsay Kristoffersen and Jonas Barsten.",
       "years": "2018",
-      "releases": [{ "title": "Live Vol. 1 Arp", "year": "2018", "url": "https://www.discogs.com/master/2743475" }],
+      "releases": [{ "title": "Live Vol. 1 Arp", "year": "2018", "url": "https://www.discogs.com/master/2743475", "cover": "/covers/live-vol-1-arp.jpg" }],
       "links": [{ "label": "release page", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
       "media": [{ "label": "Pekula Vol. 1: ARP", "url": "https://www.youtube.com/watch?v=WpIT8G1pcow" }]
     },

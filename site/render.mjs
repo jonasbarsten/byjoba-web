@@ -105,16 +105,23 @@ function renderEntry(entry) {
   return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${releases}${links}${media}</details></li>`;
 }
 
-/** The records an entry appears on, each with its year and linked when it has a url. */
+/**
+ * The records an entry appears on: cover, title and year, the title linked when
+ * the release has a url. The cover is decorative next to its caption, hence the
+ * empty alt; a release without one gets a blank square so the row stays even.
+ */
 function releaseList(entry) {
   if (!entry.releases?.length) return '';
-  const items = entry.releases.map((release) => {
+  const figures = entry.releases.map((release) => {
+    const cover = release.cover
+      ? `<img src="${escapeHtml(release.cover)}" alt="" width="96" height="96" loading="lazy">`
+      : '<span class="nocover"></span>';
     const title = release.url
       ? `<a href="${escapeHtml(release.url)}"${NEW_TAB}>${escapeHtml(release.title)}</a>`
       : escapeHtml(release.title);
-    return `${title} (${escapeHtml(release.year)})`;
+    return `<figure>${cover}<figcaption>${title} (${escapeHtml(release.year)})</figcaption></figure>`;
   });
-  return `<p class="releases">Releases: ${items.join(' · ')}</p>`;
+  return `<div class="releases">${figures.join('')}</div>`;
 }
 
 function renderSection(content, domain, section) {

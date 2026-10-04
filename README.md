@@ -61,7 +61,7 @@ An entry in `projects`:
 | `role` | no | Shown after the summary. |
 | `media` | no | List of `{ "label", "url" }` for YouTube videos (`https://www.youtube.com/watch?v=…`), NRK TV programmes (`https://tv.nrk.no/…/<programme id>`) and Spotify tracks (`https://open.spotify.com/track/…`). Shown as small players when the entry is expanded; the line says how many there are. |
 | `url` | no | Where the name links to. Without it the name is plain text. `https://…`, or `/…` for a file under `static/<site>/`. |
-| `releases` | no | List of `{ "title", "year", "url"? }`: the records the entry appears on, shown inside the opened card and counted in its marker. |
+| `releases` | no | List of `{ "title", "year", "url"?, "cover"? }`: the records the entry appears on, shown with their covers inside the opened card and counted in its marker. `cover` is a path to an image of our own under `static/<site>/`, e.g. `/covers/vidde.jpg`. |
 | `links` | no | List of `{ "label", "url" }`, shown by label inside the opened card and counted in its marker ("1 video · 1 link"). They never make the name a link. |
 
 Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.

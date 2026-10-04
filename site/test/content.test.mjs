@@ -52,6 +52,15 @@ test('every root-relative url or link points at a file in static', () => {
   }
 });
 
+test('every release cover is a file in static', () => {
+  for (const entry of content.projects) {
+    for (const release of entry.releases ?? []) {
+      if (!release.cover) continue;
+      assert.ok(existsSync(new URL(`../../static/${entry.site}${release.cover}`, import.meta.url)), `${entry.id}: ${release.cover}`);
+    }
+  }
+});
+
 test('nothing in the Music section has a name that links away', () => {
   for (const entry of content.projects.filter((e) => e.category === 'music')) {
     assert.equal(entry.url, undefined, entry.id);
