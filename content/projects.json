@@ -530,7 +530,8 @@
       "status": "one-off",
       "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo.",
       "about": "The first in Pekula's series of commissioned pieces, made for the venue's 15th anniversary. Music by Simen Følstad Nilsen, Axel Skalstad and Erlend Mokkelbost. Performed behind curtains with the musicians' names kept secret: Axel Skalstad, Ellen Brekken, Marte Eberson, Simen Følstad Nilsen, Gunhild Ramsay Kristoffersen and Jonas Barsten.",
-      "links": [{ "label": "release", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }]
+      "links": [{ "label": "release", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
+      "media": [{ "label": "Pekula Vol. 1: ARP", "url": "https://www.youtube.com/watch?v=WpIT8G1pcow" }]
     },
     {
       "id": "kyss-av-munch",
