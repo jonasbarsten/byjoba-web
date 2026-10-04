@@ -738,9 +738,6 @@
     {"date":"2017-10-07","venue":"Litteraturhuset","place":"Oslo"},
     {"date":"2017-10-06","venue":"Litteraturhuset","place":"Oslo","note":"premiere"}
   ],
-  "pasha": [
-    {"date":"2019-03-09"}
-  ],
   "vaarin": [
     {"date":"2025-03-21"},
     {"date":"2024-05-11","place":"Larvik"},

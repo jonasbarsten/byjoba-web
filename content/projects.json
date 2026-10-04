@@ -261,7 +261,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "Concerts include Finland in 2026.",
+      "about": "Vegard is the artist name of Vegard Bjørsmo. Concerts include Finland in 2026.",
       "years": "2026–"
     },
     {
@@ -534,7 +534,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Drummer on the band's concerts in Zimbabwe.",
+      "summary": "Drummer in a group that spent two months in Zimbabwe, playing concerts there.",
       "years": "2015"
     },
     {
@@ -732,12 +732,11 @@
     },
     {
       "id": "pasha",
-      "badges": ["live", "studio"],
       "name": "Pasha",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Studio sessions and a concert.",
+      "summary": "Musical director for the live show. Not on stage.",
       "years": "2018–2019"
     },
     {
@@ -824,6 +823,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Concerts.",
+      "about": "Vaarin is the artist name of Vaarin Strand.",
       "years": "2024–2025"
     },
     {
@@ -1057,9 +1057,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo.",
+      "years": "2017–2018",
+      "summary": "Keyboards and percussion on a live album recorded at Parkteatret in Oslo in 2017 and released in 2018.",
       "about": "The first in Pekula's series of commissioned pieces, made for the venue's 15th anniversary. Music by Simen Følstad Nilsen, Axel Skalstad and Erlend Mokkelbost. Performed behind curtains with the musicians' names kept secret: Axel Skalstad, Ellen Brekken, Marte Eberson, Simen Følstad Nilsen, Gunhild Ramsay Kristoffersen and Jonas Barsten.",
-      "years": "2018",
       "releases": [{ "title": "Live Vol. 1 Arp", "year": "2018", "url": "https://www.discogs.com/master/2743475", "cover": "/covers/live-vol-1-arp.jpg" }],
       "links": [{ "label": "release page", "url": "https://www.pekula.no/releases/pekula-vol-1-arp" }],
       "media": [{ "label": "Pekula Vol. 1: ARP", "url": "https://www.youtube.com/watch?v=WpIT8G1pcow" }]
