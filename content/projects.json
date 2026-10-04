@@ -322,7 +322,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums and percussion.",
-      "about": "Albums: FlashBlack (2012) and Stillness and Panic (2013).",
+      "about": "Albums: FlashBlack (2012) and Stillness and Panic (2013). Also played keyboards with her at South by Southwest.",
       "years": "2011–2012",
       "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
@@ -362,7 +362,17 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer."
+      "summary": "Drummer.",
+      "years": "2015–2017"
+    },
+    {
+      "id": "woodlands",
+      "name": "Woodlands",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Concerts in Zimbabwe.",
+      "years": "2015"
     },
     {
       "id": "bjorn-charles-dreyer-group",
