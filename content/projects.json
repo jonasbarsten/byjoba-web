@@ -340,6 +340,15 @@
       "links": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
     {
+      "id": "froy-aagre",
+      "name": "Frøy Aagre",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "links": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
+    },
+    {
       "id": "dagens-ungdom",
       "name": "Dagens Ungdom",
       "site": "jonasbarsten.com",
