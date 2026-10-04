@@ -149,6 +149,14 @@ li:target {
   font-size: 0.75rem;
 }
 
+/* First line inside an opened card: the status badge and the years. */
+details .status {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-2) 0;
+}
+
 /* Status, after the shadcn outline badge: one look for every state. */
 .badge {
   flex: none;

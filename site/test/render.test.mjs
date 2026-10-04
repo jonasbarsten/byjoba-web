@@ -67,20 +67,24 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name links to its url', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a> <span class="badge">in development<\/span><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
-test('an entry without about or links is a plain line with role and years', () => {
+test('every card opens, and the first line inside is the status badge and the years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><span class="head"><span class="name">Atlanter<\/span> <span class="badge">active<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="meta">2013–<\/span><\/li>/);
-  assert.match(html, /<li id="vierlive"><span class="head"><span class="name">VIER\.LIVE<\/span> <span class="badge">ended<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder · 2020–2021<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
 });
 
-test('only an entry that opens carries the "more" marker', () => {
+test('the role stays on the face of the card', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.doesNotMatch(html, /class="more"/);
-  assert.match(renderIndex(fixture(), 'byjoba.com'), /<span class="more">More<\/span><\/summary>/);
+  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
+});
+
+test('the face of a card carries neither the badge nor the years', () => {
+  const faces = renderIndex(fixture(), 'jonasbarsten.com').match(/<summary>.*?<\/summary>/g);
+  assert.equal(faces.length, 2);
+  for (const face of faces) assert.doesNotMatch(face, /badge|2013|2020/);
 });
 
 test('media shows as small embeds inside the expanded entry, and the name stays plain', () => {
@@ -132,15 +136,15 @@ test('each status shows as its own badge', () => {
   for (const [status, label] of Object.entries(labels)) {
     const content = fixture();
     content.projects[1].status = status;
-    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`Atlanter</span> <span class="badge">${label}</span>`));
+    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`<li id="atlanter">.*?<p class="status"><span class="badge">${label}</span> 2013–</p>`));
   }
 });
 
-test('an entry with a url and nothing to open is a plain card whose name is the link', () => {
+test('an entry with a url has its name as the link', () => {
   const content = fixture();
   content.projects[1].url = 'https://example.com/atlanter';
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a> <span class="badge">active<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="meta">2013–<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><\/span><span class="summary">Composer and drummer\.<\/span>/);
 });
 
 test('links are listed by label inside the opened card and never make the name a link', () => {
@@ -150,7 +154,7 @@ test('links are listed by label inside the opened card and never make the name a
     { label: 'article', url: 'https://example.com/article' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="status">.*?<\/p><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
 test('releases show inside the opened card with cover, title and year; the title links when there is a url', () => {
@@ -162,7 +166,7 @@ test('releases show inside the opened card with cover, title and year; the title
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(
     html,
-    /<span class="more">2 releases<\/span><\/summary><div class="releases"><figure><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> \(2013\)<\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B \(2014\)<\/figcaption><\/figure><\/div><\/details>/,
+    /<span class="more">2 releases<\/span><\/summary><p class="status">.*?<\/p><div class="releases"><figure><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> \(2013\)<\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B \(2014\)<\/figcaption><\/figure><\/div><\/details>/,
   );
 });
 
@@ -219,7 +223,7 @@ test('content is escaped in text and in attributes', () => {
   content.projects[0].links = [{ label: '<site>', url: 'https://example.com/x' }];
   const html = renderIndex(content, 'byjoba.com');
   assert.match(html, /<title>by&lt;joba&gt; &amp; &quot;co&quot;<\/title>/);
-  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;" target="_blank" rel="noopener">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a> <span class="badge">in development<\/span><\/span><span class="summary">Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
+  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;" target="_blank" rel="noopener">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a><\/span><span class="summary">Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
   assert.match(html, /<a href="https:\/\/example\.com\/x" target="_blank" rel="noopener">&lt;site&gt;<\/a>/);
   assert.doesNotMatch(html, /<b>Kiwi/);
 });

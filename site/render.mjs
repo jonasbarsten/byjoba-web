@@ -53,11 +53,8 @@ function contentsHint(entry) {
     .join(' · ');
 }
 
-/** Role and years, shown under the summary. */
-function meta(entry) {
-  const parts = [entry.role, entry.years].filter(Boolean);
-  return parts.length ? `<span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
-}
+/** The role, shown under the summary on the face of the card. */
+const meta = (entry) => (entry.role ? `<span class="meta">${escapeHtml(entry.role)}</span>` : '');
 
 /**
  * Small players for an entry's videos and tracks. `loading="lazy"` keeps them
@@ -75,34 +72,33 @@ function mediaBlock(entry) {
   return `<div class="media">${figures.join('')}</div>`;
 }
 
-/** The entry's status as a badge after its name. The label is the status with its hyphen read as a space, except one-off. */
 const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
-const badge = (entry) => ` <span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>`;
+
+/** The first line inside an opened card: the status as a badge, then the years when the entry has them. */
+function statusLine(entry) {
+  const years = entry.years ? ` ${escapeHtml(entry.years)}` : '';
+  return `<p class="status"><span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>${years}</p>`;
+}
 
 /**
- * One entry as a card: name and status on the first row, then the summary, then
- * role and years. The name is a link only when the entry has a `url`; `links`
- * never touch the name and are listed inside the opened card.
+ * One entry as a card. Its face holds the name, the summary and the role. The
+ * name is a link only when the entry has a `url`; `links` never touch the name.
  *
- * A card with an about, links or media opens. Only those carry the "more"
- * marker, which says what is inside when that is more than text.
+ * Every card opens, since every entry has a status: inside come the status and
+ * years, then the about, releases, links and media. The "more" marker on the
+ * face says what is inside when that is more than text.
  */
 function renderEntry(entry) {
   const name = entry.url
     ? `<a class="name" href="${escapeHtml(entry.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
-  const face = `<span class="head">${name}${badge(entry)}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
-  const id = escapeHtml(entry.id);
-  const media = mediaBlock(entry);
-  const linkList = entry.links ?? [];
-  const releases = releaseList(entry);
-  if (!entry.about && linkList.length === 0 && !media && !releases) return `<li id="${id}">${face}</li>`;
+  const face = `<span class="head">${name}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
-  const links = linkList.length
-    ? `<p class="links">${linkList.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
+  const links = entry.links?.length
+    ? `<p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
-  return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${releases}${links}${media}</details></li>`;
+  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
 }
 
 /**
