@@ -395,6 +395,7 @@
       "category": "founder",
       "status": "active",
       "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
+      "role": "co-founder",
       "links": [{ "label": "site", "url": "https://suril.ai" }]
     },
     {
@@ -413,7 +414,8 @@
       "site": "jonasbarsten.com",
       "category": "founder",
       "status": "in-development",
-      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB."
+      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB.",
+      "role": "co-founder"
     },
     {
       "id": "olyp-rooms",

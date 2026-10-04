@@ -40,7 +40,7 @@ function otherSites(content, domain) {
 
 const count = (n, word) => (n ? `${n} ${word}${n === 1 ? '' : 's'}` : '');
 
-/** Says what an entry holds when expanded, e.g. "2 videos · 1 track", so a reader knows it is worth opening. */
+/** What media an entry holds, e.g. "2 videos · 1 track"; empty when it has none. */
 function mediaHint(entry) {
   const kinds = (entry.media ?? []).map((item) => mediaEmbed(item.url).kind);
   return [count(kinds.filter((kind) => kind === 'video').length, 'video'), count(kinds.filter((kind) => kind === 'track').length, 'track')]
@@ -48,10 +48,10 @@ function mediaHint(entry) {
     .join(' · ');
 }
 
-/** Role, years and a hint of the media inside, shown after the summary. */
+/** Role and years, shown under the summary. */
 function meta(entry) {
-  const parts = [entry.role, entry.years, mediaHint(entry)].filter(Boolean);
-  return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
+  const parts = [entry.role, entry.years].filter(Boolean);
+  return parts.length ? `<span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
 }
 
 /**
@@ -74,26 +74,28 @@ function mediaBlock(entry) {
 const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
 const badge = (entry) => ` <span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>`;
 
-const summary = (entry) => `<span class="summary"> — ${escapeHtml(entry.summary)}</span>`;
-
 /**
- * The name is the entry's first link when it has one. The entry is a plain line,
- * or a disclosure when there is an about or further links to show.
+ * One entry as a card: name and status on the first row, then the summary, then
+ * role and years. The name is the entry's first link when it has one.
+ *
+ * A card with an about, further links or media opens. Only those carry the
+ * "more" marker, which names the media inside when there is any.
  */
 function renderEntry(entry) {
   const [first, ...rest] = entry.links ?? [];
   const name = first
     ? `<a class="name" href="${escapeHtml(first.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
-  const head = `${name}${badge(entry)}${summary(entry)}${meta(entry)}`;
+  const face = `<span class="head">${name}${badge(entry)}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
   const id = escapeHtml(entry.id);
   const media = mediaBlock(entry);
-  if (!entry.about && rest.length === 0 && !media) return `<li id="${id}">${head}</li>`;
+  if (!entry.about && rest.length === 0 && !media) return `<li id="${id}">${face}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = rest.length
     ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
-  return `<li id="${id}"><details><summary>${head}</summary>${about}${links}${media}</details></li>`;
+  const more = `<span class="more">${escapeHtml(mediaHint(entry) || 'More')}</span>`;
+  return `<li id="${id}"><details><summary>${face}${more}</summary>${about}${links}${media}</details></li>`;
 }
 
 function renderSection(content, domain, section) {

@@ -67,14 +67,20 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name is its first link', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a> <span class="badge">in development<\/span><span class="summary"> — An instrument\.<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a> <span class="badge">in development<\/span><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
 test('an entry without about or links is a plain line with role and years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><span class="name">Atlanter<\/span> <span class="badge">active<\/span><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
-  assert.match(html, /<li id="vierlive"><span class="name">VIER\.LIVE<\/span> <span class="badge">ended<\/span><span class="summary"> — Streaming platform\.<\/span> <span class="meta">co-founder · 2020–2021<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><span class="head"><span class="name">Atlanter<\/span> <span class="badge">active<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="meta">2013–<\/span><\/li>/);
+  assert.match(html, /<li id="vierlive"><span class="head"><span class="name">VIER\.LIVE<\/span> <span class="badge">ended<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder · 2020–2021<\/span><\/li>/);
+});
+
+test('only an entry that opens carries the "more" marker', () => {
+  const html = renderIndex(fixture(), 'jonasbarsten.com');
+  assert.doesNotMatch(html, /class="more"/);
+  assert.match(renderIndex(fixture(), 'byjoba.com'), /<span class="more">More<\/span><\/summary>/);
 });
 
 test('media shows as small embeds inside the expanded entry, and the name stays plain', () => {
@@ -84,25 +90,25 @@ test('media shows as small embeds inside the expanded entry, and the name stays 
     { label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="name">Atlanter<\/span>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>/);
   assert.match(
     html,
     /<div class="media"><figure class="video"><iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/vGqLUF1fwrQ" title="Pike" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen><\/iframe><figcaption>Pike<\/figcaption><\/figure><figure class="track"><iframe src="https:\/\/open\.spotify\.com\/embed\/track\/5owc6LBkOZp05yh0T0B88Q" title="Aye" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media"><\/iframe><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
   );
 });
 
-test('the line says what media an entry holds', () => {
+test('the "more" marker says what media an entry holds', () => {
   const video = (n) => ({ label: `v${n}`, url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' });
   const track = { label: 't', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' };
-  const lineFor = (media) => {
+  const markerFor = (media) => {
     const content = fixture();
     content.projects[1].media = media;
-    return renderIndex(content, 'jonasbarsten.com').match(/<li id="atlanter">.*?<span class="meta">([^<]*)<\/span>/)[1];
+    return renderIndex(content, 'jonasbarsten.com').match(/<li id="atlanter">.*?<span class="more">([^<]*)<\/span>/)[1];
   };
-  assert.equal(lineFor([video(1)]), '2013– · 1 video');
-  assert.equal(lineFor([video(1), video(2)]), '2013– · 2 videos');
-  assert.equal(lineFor([track]), '2013– · 1 track');
-  assert.equal(lineFor([video(1), video(2), track, track]), '2013– · 2 videos · 2 tracks');
+  assert.equal(markerFor([video(1)]), '1 video');
+  assert.equal(markerFor([video(1), video(2)]), '2 videos');
+  assert.equal(markerFor([track]), '1 track');
+  assert.equal(markerFor([video(1), video(2), track, track]), '2 videos · 2 tracks');
 });
 
 test('media labels are escaped', () => {
@@ -126,7 +132,7 @@ test('an entry with one link and no about is a plain line whose name is the link
   const content = fixture();
   content.projects[1].links = [{ label: 'site', url: 'https://example.com/atlanter' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a> <span class="badge">active<\/span><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a> <span class="badge">active<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="meta">2013–<\/span><\/li>/);
 });
 
 test('further links are listed by label when the entry is expanded', () => {
@@ -137,7 +143,7 @@ test('further links are listed by label when the entry is expanded', () => {
     { label: 'article', url: 'https://example.com/article' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a>.*<\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a>.*<span class="more">More<\/span><\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
 test('a site lists its own entries only', () => {
@@ -177,7 +183,7 @@ test('content is escaped in text and in attributes', () => {
   content.projects[0].links = [{ label: '<site>', url: 'https://example.com/?a=1&b="2"' }];
   const html = renderIndex(content, 'byjoba.com');
   assert.match(html, /<title>by&lt;joba&gt; &amp; &quot;co&quot;<\/title>/);
-  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;" target="_blank" rel="noopener">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a> <span class="badge">in development<\/span><span class="summary"> — Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
+  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;" target="_blank" rel="noopener">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a> <span class="badge">in development<\/span><\/span><span class="summary">Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
   assert.doesNotMatch(html, /<b>Kiwi/);
 });
 
