@@ -189,6 +189,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
+      "about": "Plays on the recordings Late to the Party and Deathbed (2024), and Stuck Cat and Hospitals (2025).",
       "years": "2023–"
     },
     {
@@ -328,7 +329,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2011.",
+      "about": "From 2011. Also plays on Bendik Baksaas' Jenny (2018).",
       "releases": [{ "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }],
       "media": [
         { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
@@ -415,6 +416,7 @@
       "category": "music",
       "status": "one-off",
       "summary": "Plays on the album Blackwinged Night.",
+      "about": "On the tracks Blackwinged Night and Half Human.",
       "years": "2015",
       "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761", "cover": "/covers/blackwinged-night.jpg" }]
     },
@@ -425,8 +427,54 @@
       "category": "music",
       "status": "one-off",
       "summary": "Plays on the album Norsk Skog.",
+      "about": "On the tracks Alle har gått hjem, Uro, Ringstrøms antikvariat and Hei sol!",
       "years": "2018",
       "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036", "cover": "/covers/norsk-skog.jpg" }]
+    },
+    {
+      "id": "anna-soleil",
+      "name": "Anna Soleil",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the recording Loved You Then And Now Again.",
+      "years": "2025"
+    },
+    {
+      "id": "some-feather",
+      "name": "Some Feather",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the recordings Princess Song and, with Thom Hell, Love By Association.",
+      "years": "2017"
+    },
+    {
+      "id": "tom-hugo",
+      "name": "Tom Hugo",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the recording Hjertet tar'kke feil.",
+      "years": "2014"
+    },
+    {
+      "id": "anna-melkild",
+      "name": "Anna Melkild",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the recording I'm Alive.",
+      "years": "2014"
+    },
+    {
+      "id": "sigurd-haug",
+      "name": "Sigurd Haug",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Plays on the recording Visjon.",
+      "years": "2014"
     },
     {
       "id": "bjorn-charles-dreyer-group",
@@ -527,7 +575,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer."
+      "summary": "Drummer.",
+      "about": "Plays on five recordings from 2019, among them Trying and Levitate."
     },
     {
       "id": "bellman",
@@ -543,7 +592,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Drummer."
+      "summary": "Drummer.",
+      "about": "Plays on nine recordings, among them Give It Away, Highway, Nightmares, and When Love Is Alive with Siri Nilsen.",
+      "years": "2015–2016"
     },
     {
       "id": "cctv",
