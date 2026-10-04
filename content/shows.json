@@ -422,6 +422,11 @@
     {"date":"2015-10-28","venue":"Teateret","place":"Kristiansand"}
   ],
   "ary": [
+    {"date":"2017-08-24","place":"Bergen"},
+    {"date":"2017-08-04","venue":"Festidalen"},
+    {"date":"2017-07-29","venue":"Canal Street","place":"Arendal"},
+    {"date":"2017-05-30","place":"London"},
+    {"date":"2017-04-26","venue":"FluxBau","place":"Berlin"},
     {"date":"2022-02-09","venue":"Lindmo (NRK)"},
     {"date":"2021-11-26","venue":"Kulturstripa (NRK P2)","place":"Oslo"},
     {"date":"2021-06-30","venue":"Byscenen","place":"Trondheim"},
