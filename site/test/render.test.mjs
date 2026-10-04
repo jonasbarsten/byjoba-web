@@ -93,13 +93,14 @@ test('the shows page counts each venue, city and country once, and leaves out wh
   assert.match(renderShows(content, 'jonasbarsten.com'), / · 1 artist, 2 shows, 1 city and 1 country\./);
 });
 
-test('a show played with another act than its card names that act: in the act column, in the card\'s note, and in the count', () => {
+test('a show played with another act than its card names that act: as plain text marked stand-in / one-off on the shows page, in the card\'s note, and in the count', () => {
   const content = withShows();
-  content.projects[1].shows.push({ date: '2016-01-02', act: 'No. 4', place: 'Oslo', note: 'stand-in' }, { date: '2016-01-03', act: 'No. 4' });
+  content.projects[1].shows.push({ date: '2016-01-02', act: 'No. 4', place: 'Oslo', note: 'on keyboards' }, { date: '2016-01-03', act: 'No. 4' });
   const page = renderShows(content, 'jonasbarsten.com');
   assert.match(page, / · 2 artists, 5 shows, /);
-  assert.match(page, /<time datetime="2016-01-02">02\.01\.16<\/time><\/td><td><a href="\/#atlanter">No\. 4<\/a><\/td><td><\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in<\/td><\/tr>/);
-  assert.match(renderIndex(content, 'jonasbarsten.com'), /<td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>No\. 4 · stand-in<\/td><\/tr>/);
+  assert.match(page, /<time datetime="2016-01-02">02\.01\.16<\/time><\/td><td>No\. 4<\/td><td><\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in \/ one-off · on keyboards<\/td><\/tr>/);
+  assert.match(page, /<time datetime="2016-01-03">03\.01\.16<\/time><\/td><td>No\. 4<\/td><td><\/td><td><\/td><td><\/td><td>stand-in \/ one-off<\/td><\/tr>/);
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>No\. 4 · on keyboards<\/td><\/tr>/);
 });
 
 test('the show tables name their columns, and the shows page has its own description', () => {

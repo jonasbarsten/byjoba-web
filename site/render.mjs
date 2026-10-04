@@ -161,6 +161,8 @@ function noteCell(show, { withAct = false } = {}) {
   const parts = [];
   // A card's own list has no act column, so an act other than the card's goes first in the note.
   if (withAct && show.act) parts.push(escapeHtml(show.act));
+  // On the shows page the act has its own column; the note says the show is not one of a card's own.
+  if (!withAct && show.act) parts.push('stand-in / one-off');
   if (show.note) parts.push(escapeHtml(show.note));
   if (show.review) parts.push(`<a href="${escapeHtml(show.review.url)}"${NEW_TAB}>${escapeHtml(show.review.label)}</a>`);
   return `<td>${parts.join(' · ')}</td>`;
@@ -219,6 +221,9 @@ function showTotals(shows, places) {
 /** Who a show was played with: the act it names, or the one its card is about. */
 const actOf = (show) => show.act ?? show.entry.name;
 
+/** The act cell: a card's own act links to the card; an act played with once or as a stand-in has no card to link to. */
+const actCell = (show) => (show.act ? cell(show.act) : `<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>`);
+
 /** Whether a site has a shows page. */
 export const hasShows = (content, domain) => siteShows(content, domain).length > 0;
 
@@ -226,7 +231,7 @@ export const hasShows = (content, domain) => siteShows(content, domain).length >
 export function renderShows(content, domain) {
   const site = content.sites[domain];
   const shows = newestFirst(siteShows(content, domain));
-  const rows = shows.map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(actOf(show))}</a></td>${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
+  const rows = shows.map((show) => `<tr>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
   const body = [
     `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows, content.places)}.</p>\n</header>`,
     `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
