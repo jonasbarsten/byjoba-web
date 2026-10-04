@@ -51,6 +51,7 @@
         { "title": "Software and hardware", "category": "software-hardware" },
         { "title": "Work for others", "category": "commissioned" },
         { "title": "Advocacy", "category": "advocacy" },
+        { "title": "Film", "category": "film" },
         { "title": "Education", "category": "education" }
       ]
     }
@@ -846,6 +847,26 @@
       "category": "advocacy",
       "status": "in-development",
       "summary": "Interest organisation for those who run rehearsal and production premises."
+    },
+    {
+      "id": "tagging-fra-vugge-til-grav",
+      "name": "Tagging, fra vugge til grav",
+      "site": "jonasbarsten.com",
+      "category": "film",
+      "status": "one-off",
+      "summary": "Short film that won the junior class at the youth film festival Amandus in Lillehammer.",
+      "about": "Made with Ole Thomas Hatlehol and Ron Andre Juul Stangvik.",
+      "years": "2001"
+    },
+    {
+      "id": "fra-amandus-til-camera-zizanio",
+      "name": "Fra Amandus til Camera Zizanio",
+      "site": "jonasbarsten.com",
+      "category": "film",
+      "status": "one-off",
+      "summary": "Short film that won the junior class at Amandus the year after.",
+      "about": "Made by a group of young people in Lillehammer. Camera Zizanio is a youth film festival in Greece.",
+      "years": "2002"
     },
     {
       "id": "nmh-master",
