@@ -1,0 +1,10 @@
+{
+  "name": "byjoba-web",
+  "private": true,
+  "type": "module",
+  "workspaces": ["site"],
+  "scripts": {
+    "test": "npm test --workspaces",
+    "build": "npm run build --workspace site"
+  }
+}
