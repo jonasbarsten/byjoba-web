@@ -206,7 +206,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "years": "2017–"
+      "years": "2015–"
     },
     {
       "id": "sandra-kolstad",
@@ -252,7 +252,8 @@
       "category": "music",
       "status": "one-off",
       "summary": "Musical director for their tour.",
-      "years": "2025"
+      "about": "Pre-production in 2025. The tour includes Rockefeller in Oslo in February 2026.",
+      "years": "2025–2026"
     },
     {
       "id": "luna",
@@ -261,7 +262,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Live project, played at Øyafestivalen among other places."
+      "summary": "Live project, played at Parkteatret in Oslo and at Øyafestivalen.",
+      "years": "2023"
     },
     {
       "id": "alan-walker",
@@ -380,7 +382,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2011.",
+      "years": "2011–2013",
       "releases": [
         { "title": "Bendik Baksaas: Jenny", "year": "2018", "cover": "/covers/jenny.jpg" },
         { "title": "The Shape Of Beats To Come", "year": "2012", "url": "https://www.discogs.com/release/3692226", "cover": "/covers/the-shape-of-beats-to-come.jpg" }
@@ -398,12 +400,12 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and keyboards.",
-      "about": "Played keyboards with her at South by Southwest.",
+      "about": "Played keyboards with her at South by Southwest in 2015. Concerts in London in 2014 and a tour of Germany in 2015.",
       "releases": [
         { "title": "Flashblack", "year": "2012", "url": "https://www.discogs.com/master/655762", "cover": "/covers/flashblack.jpg" },
         { "title": "Stillness And Panic", "year": "2013", "url": "https://www.discogs.com/master/718091", "cover": "/covers/stillness-and-panic.jpg" }
       ],
-      "years": "2011–2012",
+      "years": "2011–2016",
       "media": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
     },
     {
@@ -414,7 +416,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics in Frøy Aagre Electric.",
-      "about": "From 2012.",
+      "years": "2012–2013",
       "releases": [{ "title": "Electric", "year": "2013", "url": "https://www.discogs.com/release/11421486", "cover": "/covers/electric.jpg" }],
       "media": [{ "label": "Castle in the Air", "url": "https://www.youtube.com/watch?v=fTuvnZeYL8c" }]
     },
@@ -426,7 +428,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "From 2012.",
+      "years": "2012–2018",
       "releases": [
         { "title": "Lite Å Gjøre", "year": "2018", "cover": "/covers/lite-a-gjore.jpg" },
         { "title": "Nedi Havet", "year": "2013", "url": "https://www.discogs.com/release/6331390", "cover": "/covers/nedi-havet.jpg" },
@@ -443,7 +445,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
-      "about": "From 2011. Also built the band's live rack, which stands in for a sound engineer.",
+      "about": "Also built the band's live rack, which stands in for a sound engineer.",
+      "years": "2011–2015",
       "releases": [
         { "title": "Coconut Message", "year": "2014", "cover": "/covers/coconut-message.jpg" },
         { "title": "Now We're Gonna Learn To Swim", "year": "2014", "cover": "/covers/now-were-gonna-learn-to-swim.jpg" },
@@ -569,6 +572,226 @@
       "releases": [{ "title": "Curing Meat at the Back of Beyond", "year": "2011", "cover": "/covers/curing-meat-at-the-back-of-beyond.jpg" }]
     },
     {
+      "id": "hanne-hukkelberg",
+      "badges": ["live"],
+      "name": "Hanne Hukkelberg",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Kongsberg Jazzfestival, Salt in Oslo, Essen, and NRK's Brenner live.",
+      "years": "2018–2019"
+    },
+    {
+      "id": "sondre-justad",
+      "badges": ["live"],
+      "name": "Sondre Justad",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them the tour finale at Sentrum Scene, and the playback rig.",
+      "years": "2017–2018"
+    },
+    {
+      "id": "cezinando",
+      "badges": ["live"],
+      "name": "Cezinando",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Pre-production and concerts, among them Parkenfestivalen in Bodø.",
+      "years": "2018"
+    },
+    {
+      "id": "amanda-delara",
+      "badges": ["live"],
+      "name": "Amanda Delara",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts.",
+      "years": "2018"
+    },
+    {
+      "id": "wyclef-jean",
+      "badges": ["live"],
+      "name": "Wyclef Jean",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Performance on the TV show Skavlan.",
+      "years": "2018"
+    },
+    {
+      "id": "k-391",
+      "badges": ["live"],
+      "name": "K-391",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Pre-production for the live show.",
+      "years": "2018–2019"
+    },
+    {
+      "id": "den-politiske-kroppen",
+      "badges": ["live"],
+      "name": "Den politiske kroppen",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Stage production: premiere, a tour of Norway and a performance in Frankfurt.",
+      "years": "2019"
+    },
+    {
+      "id": "marthe-valle",
+      "badges": ["live"],
+      "name": "Marthe Valle",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts in Norway and Scotland.",
+      "years": "2018–2019"
+    },
+    {
+      "id": "jimmy-smash",
+      "badges": ["live"],
+      "name": "Jimmy Smash",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them by:Larm and Månefestivalen.",
+      "years": "2017–2019"
+    },
+    {
+      "id": "pasha",
+      "badges": ["live", "studio"],
+      "name": "Pasha",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Studio sessions and a concert.",
+      "years": "2018–2019"
+    },
+    {
+      "id": "ine-hoem",
+      "badges": ["live"],
+      "name": "Ine Hoem",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Det Norske Teatret and an autumn tour.",
+      "years": "2016–2017"
+    },
+    {
+      "id": "froder",
+      "badges": ["live"],
+      "name": "Frøder",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Øyafestivalen, Trænafestivalen and Rockefeller.",
+      "years": "2015–2017"
+    },
+    {
+      "id": "rytmer-fra-verdensrommet",
+      "badges": ["live"],
+      "name": "Rytmer fra verdensrommet",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "School concerts, and Parkteatret in Oslo.",
+      "years": "2016–2018"
+    },
+    {
+      "id": "no-4",
+      "badges": ["live"],
+      "name": "No. 4",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Slottsfjell.",
+      "years": "2016–2017"
+    },
+    {
+      "id": "westaman",
+      "badges": ["live"],
+      "name": "Westaman",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them in Slovakia.",
+      "years": "2015–2016"
+    },
+    {
+      "id": "rydin",
+      "badges": ["live", "studio"],
+      "name": "Rydin",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Studio sessions, and a concert at Kampenjazz.",
+      "years": "2014–2016"
+    },
+    {
+      "id": "julian-skar",
+      "badges": ["live"],
+      "name": "Julian Skar",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Concerts at Dramatikkens Hus in Oslo.",
+      "years": "2014"
+    },
+    {
+      "id": "jens-carelius",
+      "badges": ["live"],
+      "name": "Jens Carelius",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts.",
+      "years": "2012"
+    },
+    {
+      "id": "vaarin",
+      "badges": ["live"],
+      "name": "Vaarin",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts.",
+      "years": "2024–2025"
+    },
+    {
+      "id": "silja-sol",
+      "badges": ["live"],
+      "name": "Silja Sol",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Øyanatt, and work on the backing tracks.",
+      "years": "2023"
+    },
+    {
+      "id": "vinni",
+      "badges": ["live"],
+      "name": "Vinni",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Concerts, among them Rockefeller in Oslo.",
+      "years": "2023"
+    },
+    {
+      "id": "single-concerts",
+      "badges": ["live"],
+      "name": "Single concerts",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "With Karen Musæus, Yngvild, Delish, Christabelle, Tafel, Arif and Unge Ferrari, and Xploding Plastix.",
+      "years": "2016–2024"
+    },
+    {
       "id": "bjorn-charles-dreyer-group",
       "badges": ["live"],
       "name": "Bjørn Charles Dreyer Group",
@@ -576,7 +799,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums and electronics, with live effects and live sampling in Ableton Live and Max.",
-      "about": "A trio working between classical, electronic and improvised music. From 2008."
+      "about": "A trio working between classical, electronic and improvised music.",
+      "years": "2008–2013"
     },
     {
       "id": "sassybeat",
@@ -586,11 +810,12 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, samples and technical setup.",
-      "about": "From 2011."
+      "years": "2011–2014"
     },
     {
       "id": "i-ate-my-pony",
       "badges": ["live", "studio"],
+      "years": "2010–2011",
       "name": "I Ate My Pony",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -601,6 +826,7 @@
     {
       "id": "kjetil-grande",
       "badges": ["live"],
+      "years": "2009",
       "name": "Kjetil Grande",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -610,6 +836,7 @@
     {
       "id": "ronnie-jacobsen",
       "badges": ["live", "studio"],
+      "years": "2009–2011",
       "name": "Ronnie Jacobsen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -620,6 +847,7 @@
     {
       "id": "mads-with-band",
       "badges": ["live"],
+      "years": "2009–2011",
       "name": "Mads With Band",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -629,6 +857,7 @@
     {
       "id": "lean-mean-jazz-machine",
       "badges": ["live"],
+      "years": "2009–2010",
       "name": "Lean Mean Jazz Machine",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -638,6 +867,7 @@
     {
       "id": "chiwahwah",
       "badges": ["live"],
+      "years": "2009–2010",
       "name": "Chiwahwah",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -647,6 +877,7 @@
     {
       "id": "onskekvist",
       "badges": ["live", "studio"],
+      "years": "2010",
       "name": "Önskekvist",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -675,6 +906,7 @@
     {
       "id": "anja-skybakmoen",
       "badges": ["live", "studio"],
+      "years": "2014–2025",
       "name": "Anja Skybakmoen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -688,6 +920,8 @@
     {
       "id": "bellman",
       "badges": ["live"],
+      "years": "2013–2015",
+      "about": "Tour of Japan in 2015.",
       "name": "Bellman",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -697,12 +931,13 @@
     {
       "id": "blosh",
       "badges": ["live", "studio"],
+      "about": "Concerts include Slottsfjell in 2016.",
       "name": "Bløsh",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "years": "2015–2016",
+      "years": "2014–2016",
       "releases": [
         { "title": "Keep Bleeding Keep Breathing", "year": "2016", "cover": "/covers/keep-bleeding-keep-breathing.jpg" },
         { "title": "Keep Your Tongue", "year": "2015", "cover": "/covers/keep-your-tongue.jpg" }
@@ -711,6 +946,7 @@
     {
       "id": "cctv",
       "badges": ["live"],
+      "years": "2012–2017",
       "name": "CCTV",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -720,6 +956,7 @@
     {
       "id": "siri-nilsen",
       "badges": ["live"],
+      "years": "2014",
       "name": "Siri Nilsen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -816,7 +1053,7 @@
       "site": "jonasbarsten.com",
       "category": "live-teaching",
       "status": "active",
-      "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S and Ary."
+      "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S, Ary, Sondre Justad and Julie Bergan."
     },
     {
       "id": "nmh-teaching",
