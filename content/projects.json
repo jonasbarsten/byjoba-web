@@ -190,7 +190,11 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "Concerts include Trondheim Calling in 2024, Øyafestivalen, Bergenfest and Vinjerock in 2025, and Groningen in 2026.",
+      "about": "Singer and songwriter from Nordfjordeid, on Propeller Recordings. Concerts include Trondheim Calling and by:Larm in 2024, Øyafestivalen, Bergenfest and Vinjerock in 2025, and Groningen in 2026.",
+      "media": [
+        { "label": "Late to the Party, P3 Live at Kulturkirken Jakob", "url": "https://www.youtube.com/watch?v=hyUUY7UpQoo" },
+        { "label": "Operahuset, P3 Live", "url": "https://www.youtube.com/watch?v=o1IUxQJ2vG8" }
+      ],
       "releases": [
         { "title": "How did I let this get so serious?", "year": "2025", "cover": "/covers/how-did-i-let-this-get-so-serious.jpg" },
         { "title": "Stuck Cat", "year": "2025", "cover": "/covers/stuck-cat.jpg" },
@@ -207,7 +211,8 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
-      "about": "In 2015 and 2016, and again from 2023. Concerts include VG-lista at Rådhusplassen in Oslo in 2015.",
+      "about": "Singer and songwriter from Geilo, who sings in the Hallingdal dialect. In 2015 and 2016, and again from 2022. Concerts include VG-lista at Rådhusplassen in Oslo in 2015 and Rockefeller in 2016.",
+      "media": [{ "label": "VG-lista Topp 20 at Rådhusplassen, 2015 (the full broadcast)", "url": "https://tv.nrk.no/serie/vg-lista-topp-20-tv/sesong/2015/episode/MYNT18000215" }],
       "years": "2015–"
     },
     {
@@ -218,7 +223,8 @@
       "category": "music",
       "status": "active",
       "summary": "Composer, producer and drummer.",
-      "about": "From 2016 to 2019, and again from 2022. Concerts include a tour of Latin America in 2016 (Lima, Buenos Aires, Uruguay and São Paulo), Berghain in Berlin in 2023 and 2024, and a school tour in 2025.",
+      "about": "Vocalist, composer and keyboard player who makes electronic pop and composes for the performing arts. From 2016 to 2019, and again from 2022. Concerts include a tour of Latin America in 2016 (Lima, Montevideo, São Paulo and Buenos Aires), Henie Onstad Kunstsenter in 2016, Madrid in 2019, Berlin in 2023 and 2024, and a school tour in 2025.",
+      "media": [{ "label": "Bling Bling Bling, live at Henie Onstad Kunstsenter, 2016", "url": "https://www.youtube.com/watch?v=eF02946O6hc" }],
       "years": "2016–",
       "releases": [{ "title": "Burning Love", "year": "2019", "url": "https://www.discogs.com/master/2725598", "cover": "/covers/burning-love.jpg" }]
     },
@@ -230,7 +236,7 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "about": "Nominated for Spellemannprisen and the Nordic Music Prize in 2014. Concerts include Øyafestivalen, Hovefestivalen, Bukta and Oslo World in 2013, by:Larm, Ja Ja Ja in London, Berlin Music Week and Waves Vienna in 2014.",
+      "about": "Quartet on Jansen Records, with Jens Carelius, Arild Hammerø and Morten Kvam; the band calls its music viddeblues. Nominated for Spellemannprisen and the Nordic Music Prize in 2014. Concerts include by:Larm, Øyafestivalen, Hovefestivalen, Bukta and Oslo World in 2013, by:Larm, Ja Ja Ja in London, Berlin Music Week and Waves Vienna in 2014.",
       "releases": [
         { "title": "Klokker", "year": "2026", "url": "https://www.discogs.com/release/36881239", "cover": "/covers/klokker.jpg" },
         { "title": "Jewels Of Crime", "year": "2016", "url": "https://www.discogs.com/master/950215", "cover": "/covers/jewels-of-crime.jpg" },
@@ -270,7 +276,8 @@
     {
       "id": "luna",
       "badges": ["live"],
-      "name": "LUNA",
+      "name": "L.U:N.A",
+      "about": "L.U:N.A is the artist name of Mia Roussel.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -323,7 +330,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "From 2022 to 2023, with single shows after that. Concerts include Spot Festival and Festspillene in 2023, and Spellemann in 2026.",
+      "about": "Singer and songwriter. From 2022 to 2023, with single shows after that. Concerts include a European tour as support for Aurora and by:Larm in 2022, Spot Festival and Festspillene in 2023, and Spellemann in 2026.",
+      "media": [{ "label": "by:Larm sessions 2022, part 2 (NRK)", "url": "https://tv.nrk.no/serie/nrk-scenen/sesong/2023/episode/MKDU44000223" }],
       "years": "2022–2023"
     },
     {
@@ -346,6 +354,7 @@
       "status": "ended",
       "summary": "Drummer.",
       "about": "Concerts include the TV show Senkveld, NRK P3 and Warsaw in 2016.",
+      "media": [{ "label": "Night After Night and Moonrise, live on Senkveld", "url": "https://www.youtube.com/watch?v=VscZ_THKgsY" }],
       "years": "2015–2016"
     },
     {
@@ -356,7 +365,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Concerts include Copenhagen and Aarhus in 2015, and Øyafestivalen, Reeperbahn Festival and Spellemann in 2019.",
+      "about": "Guitarist, singer and songwriter from Bærum. Concerts include Copenhagen and Aarhus in 2015, Øyafestivalen, Reeperbahn Festival and Spellemann in 2019, the live album recording at Oslo Konserthus in 2019, and Nidarosdomen in 2023.",
       "years": "2015–2023",
       "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391", "cover": "/covers/leave-me-to-the-moon.jpg" }],
       "media": [
@@ -377,7 +386,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Musical director and drummer.",
-      "about": "Concerts include the TV show Lindmo and NRK P3 in 2017, and Estonia and Vinjerock in 2018.",
+      "about": "Ary is the artist name of Ariadne Loinsworth, who makes electronic pop. Concerts include the TV show Lindmo and NRK P3 in 2017, Estonia and Vinjerock in 2018, and Lindmo again in 2022.",
       "years": "2017–2022",
       "media": [
         { "label": "My Awe Sustains, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=6b1NsuK1o40" },
@@ -393,7 +402,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
-      "about": "Concerts include London in 2014.",
+      "about": "Singer and performance artist based in Oslo. Concerts include London in 2014, by:Larm in 2015 and Eurosonic in 2017.",
       "releases": [
         { "title": "One Year", "year": "2014", "url": "https://www.discogs.com/master/4170058", "cover": "/covers/one-year.jpg" },
         { "title": "Trip Abroad", "year": "2014", "cover": "/covers/trip-abroad.jpg" }
@@ -409,13 +418,15 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Concerts include a tour of Germany and Switzerland in 2014, and Stimmen Festival and Músicas do Mundo in 2015.",
+      "about": "Singer and songwriter. Concerts include a tour of Germany and Switzerland in 2014, and Stimmen Festival and Músicas do Mundo in 2015.",
+      "media": [{ "label": "Festival Músicas do Mundo, Sines, 2015: the festival's report from the concert", "url": "https://www.youtube.com/watch?v=wBKiMNBbP5c" }],
       "years": "2014–2016"
     },
     {
       "id": "bendik-baksaas-band",
       "badges": ["live", "studio"],
       "name": "Bendik Baksaas Band",
+      "about": "Trio led by the electronic musician Bendik Baksaas, with David Aleksander Sjølie.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -438,7 +449,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and keyboards.",
-      "about": "Played keyboards with her at South by Southwest in 2015. Concerts in London in 2014 and a tour of Germany in 2015.",
+      "about": "Artist and songwriter from Sykkylven, based in Oslo. Played keyboards with her at South by Southwest in 2015. Concerts in London in 2014 and a tour of Germany in 2015.",
       "releases": [
         { "title": "Flashblack", "year": "2012", "url": "https://www.discogs.com/master/655762", "cover": "/covers/flashblack.jpg" },
         { "title": "Stillness And Panic", "year": "2013", "url": "https://www.discogs.com/master/718091", "cover": "/covers/stillness-and-panic.jpg" }
@@ -450,6 +461,7 @@
       "id": "froy-aagre",
       "badges": ["live", "studio"],
       "name": "Frøy Aagre",
+      "about": "Frøy Aagre is a saxophonist and composer; Electric is her trio, with Andreas Ulvo on Fender Rhodes and bass synthesizer. Concerts include by:Larm, Oslo Jazzfestival, Melafestivalen and Dølajazz in 2013.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -466,7 +478,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Concerts include Øyafestivalen in 2014.",
+      "about": "Oslo band on the label Metronomicon Audio, playing guitar pop sung in Norwegian. Concerts include by:Larm in 2013, Øyafestivalen in 2014 and Musikkfest Oslo in 2015.",
       "years": "2012–2018",
       "releases": [
         { "title": "Lite Å Gjøre", "year": "2018", "cover": "/covers/lite-a-gjore.jpg" },
@@ -484,7 +496,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
-      "about": "Also built the band's live rack, which stands in for a sound engineer. Concerts include Hovefestivalen in 2014 and a live session on NRK P3 in 2015.",
+      "about": "Band from Fredrikstad playing electronica, rock, dub and psychedelia. Also built the band's live rack, which stands in for a sound engineer. Concerts include by:Larm in 2013, the release concert for Coconut Message at Parkteatret and Hovefestivalen in 2014, and a live session on NRK P3 in 2015.",
       "years": "2011–2015",
       "releases": [
         { "title": "Coconut Message", "year": "2014", "cover": "/covers/coconut-message.jpg" },
@@ -507,7 +519,11 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
-      "about": "Concerts include Roskilde Festival and Øyafestivalen in 2016, and London, Aarhus and Amsterdam.",
+      "about": "Kai Gundelach is an artist, producer and DJ from Oslo. Concerts include Roskilde Festival, Øyafestivalen, London and Aarhus in 2016, and Eurosonic in 2017.",
+      "media": [
+        { "label": "radioeins Loungekonzert, 2016", "url": "https://www.youtube.com/watch?v=micNIHhzPbw" },
+        { "label": "Kamilla og Tyven, NRK P3, 2016", "url": "https://www.youtube.com/watch?v=WNK0fHJULVI" }
+      ],
       "years": "2015–2017"
     },
     {
@@ -528,7 +544,11 @@
       "category": "music",
       "status": "one-off",
       "summary": "Drums on the album Blackwinged Night.",
-      "about": "On the tracks Blackwinged Night and Half Human.",
+      "about": "Phaedra is the music project of Ingvild Langgård; the album came out on Rune Grammofon. Drums on the track Blackwinged Night and shaker on Half Human.",
+      "media": [
+        { "label": "Blackwinged Night", "url": "https://open.spotify.com/track/7aGzBEB2EEPmklPT9lnK70" },
+        { "label": "Half Human", "url": "https://open.spotify.com/track/6sAy6eXzvYzlslsojtVols" }
+      ],
       "years": "2015",
       "releases": [{ "title": "Blackwinged Night", "year": "2015", "url": "https://www.discogs.com/master/906761", "cover": "/covers/blackwinged-night.jpg" }]
     },
@@ -541,6 +561,11 @@
       "status": "one-off",
       "summary": "Drums on the album Norsk Skog.",
       "about": "On the tracks Alle har gått hjem, Uro, Ringstrøms antikvariat and Hei sol!",
+      "media": [
+        { "label": "Alle har gått hjem", "url": "https://open.spotify.com/track/4w09VXYxwKeXsYe3utUHmL" },
+        { "label": "Uro", "url": "https://open.spotify.com/track/7cKxzMPxAHmSd6si0yvKPL" },
+        { "label": "Ringstrøms antikvariat", "url": "https://open.spotify.com/track/7FpbOIh21CaPsfq4nWTEgm" }
+      ],
       "years": "2018",
       "releases": [{ "title": "Norsk Skog", "year": "2018", "url": "https://www.discogs.com/master/1503036", "cover": "/covers/norsk-skog.jpg" }]
     },
@@ -548,6 +573,10 @@
       "id": "anna-soleil",
       "badges": ["studio"],
       "name": "Anna Soleil",
+      "media": [
+        { "label": "Loved You Then And Now Again, music video", "url": "https://www.youtube.com/watch?v=O4uzNIgrSPU" },
+        { "label": "Loved You Then And Now Again", "url": "https://open.spotify.com/track/5qOj6ZoX3ZOgpbcYD3yZLl" }
+      ],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -559,6 +588,11 @@
       "id": "some-feather",
       "badges": ["studio"],
       "name": "Some Feather",
+      "about": "Some Feather is the name Kristine Hovda first released music under.",
+      "media": [
+        { "label": "Princess Song, music video", "url": "https://www.youtube.com/watch?v=uQMrTEmnBn8" },
+        { "label": "Love By Association, with Thom Hell", "url": "https://open.spotify.com/track/10YMXX7TO6lvUWnTyryiHE" }
+      ],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -573,17 +607,21 @@
       "id": "tom-hugo",
       "badges": ["live", "studio"],
       "name": "Tom Hugo",
+      "about": "Also concerts in 2013 and 2014.",
+      "media": [{ "label": "Hjertet tar'kke feil", "url": "https://open.spotify.com/track/6SBNOHziguaLmTzBkSYGwH" }],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
       "summary": "Drums on the single Hjertet tar'kke feil.",
-      "years": "2015",
+      "years": "2013–2015",
       "releases": [{ "title": "Hjertet tar'kke feil", "year": "2015", "cover": "/covers/hjertet-tarkke-feil.jpg" }]
     },
     {
       "id": "anna-melkild",
       "badges": ["studio"],
       "name": "Anna Melkild",
+      "about": "Anna Melkild is one half of the duo Sassybeat.",
+      "media": [{ "label": "I'm Alive", "url": "https://www.youtube.com/watch?v=CTdvP_Dx7wY" }],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -604,6 +642,11 @@
       "id": "curing-meat-at-the-back-of-beyond",
       "badges": ["studio"],
       "name": "Curing Meat at the Back of Beyond",
+      "about": "Five tracks of free improvisation recorded in Kristiansand, with two guitars, electronics and drums.",
+      "media": [
+        { "label": "Curing Meat at the Back of Beyond, teaser", "url": "https://www.youtube.com/watch?v=RN32fADLQ2w" },
+        { "label": "Fleshdance", "url": "https://www.youtube.com/watch?v=SEbmM81RVzU" }
+      ],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -618,7 +661,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Kongsberg Jazzfestival, and Salt and Brenner in Oslo.",
+      "summary": "Percussion and electronics.",
+      "about": "Singer, songwriter and producer from Kongsberg. Concerts include REMIXME, a commissioned piece with the poet Fredrik Høyer at Kongsberg Jazzfestival, Salt in Oslo and Bø Jazzklubb, all in 2019.",
       "years": "2018–2019"
     },
     {
@@ -677,6 +721,7 @@
       "id": "jimmy-smash",
       "badges": ["live"],
       "name": "Jimmy Smash",
+      "about": "Duo from Fredrikstad: Mikkel Graham Guttormsen and Håvard Lyngstad.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -700,7 +745,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them Det Norske Teatret and an autumn tour.",
+      "summary": "Concerts, among them Det Norske Teatret, Varangerfestivalen and an autumn tour.",
+      "about": "Songwriter and artist from Oslo.",
       "years": "2016–2017"
     },
     {
@@ -720,7 +766,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "School concerts, and Parkteatret in Oslo.",
+      "summary": "One of the two percussionists. School concerts, Parkteatret in Oslo, and Lithuania.",
+      "about": "A multimedia concert for two percussionists by Peter Baden, started by Rikskonsertene: a space journey with lasers, video and surround sound, played for schools and at festivals.",
       "years": "2016–2018"
     },
     {
@@ -730,13 +777,15 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Concerts, among them in Slovakia.",
+      "summary": "Drummer.",
+      "about": "A project by Erland Dahlen, Hallvard Wennersberg Hagen and Bjørn Charles Dreyer, built on the sound of the Westamaran catamarans made in Mandal. Concerts include Slovakia and Mandal in 2015.",
       "years": "2015–2016"
     },
     {
       "id": "rydin",
       "badges": ["live", "studio"],
       "name": "Rydin",
+      "about": "Rydin is the solo project of the singer and pianist Andrea Rydin Berge.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -747,6 +796,7 @@
       "id": "julian-skar",
       "badges": ["live"],
       "name": "Julian Skar",
+      "about": "Julian Skar is a composer and musician who writes for theatre, dance and opera.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -761,7 +811,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Concerts.",
-      "years": "2012"
+      "about": "Singer and songwriter from Oslo, and a member of Atlanter. The concerts followed his album Opsi.",
+      "years": "2019"
     },
     {
       "id": "vaarin",
@@ -777,6 +828,7 @@
       "id": "silja-sol",
       "badges": ["live"],
       "name": "Silja Sol",
+      "about": "Artist from Bergen who sings in Norwegian.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -813,7 +865,12 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, samples and technical setup.",
-      "about": "Concerts include by:Larm in 2014.",
+      "about": "Pop band from Asker, formed by Anna Pettersdatter Melkild and Ingrid Rennemo. Concerts include by:Larm and the TV show God morgen Norge in 2014.",
+      "media": [
+        { "label": "by:Larm, 2014", "url": "https://www.youtube.com/watch?v=JI3VACs2hPU" },
+        { "label": "Chances of Changes, live on TV 2, 2014", "url": "https://www.youtube.com/watch?v=tcdzE7En3PQ" },
+        { "label": "Good Bad Boy, live on TV 2, 2014", "url": "https://www.youtube.com/watch?v=nIwuhiADB10" }
+      ],
       "years": "2011–2014"
     },
     {
@@ -821,6 +878,8 @@
       "badges": ["live", "studio"],
       "years": "2010–2011",
       "name": "I Ate My Pony",
+      "about": "Band from Sørlandet with Kaja Haven on vocals and guitar. The EP The Ride came out in 2010, produced by Bjørn Charles Dreyer.",
+      "media": [{ "label": "The Ride", "url": "https://www.youtube.com/watch?v=cxCwJL1Isqw" }],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -846,7 +905,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drums, samples and percussion.",
-      "about": "Also engineer and drummer on the pre-production of an album."
+      "about": "Blues guitarist with albums on Grappa's labels. Also engineer and drummer on the pre-production of an album."
     },
     {
       "id": "mads-with-band",
@@ -882,7 +941,8 @@
       "id": "onskekvist",
       "badges": ["live", "studio"],
       "years": "2010",
-      "name": "Önskekvist",
+      "name": "ÖNCZkekvist",
+      "about": "A 2010 project between young improvising musicians from Austria, Norway and the Czech Republic, ending with a concert at ORF RadioKulturhaus in Vienna.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -912,6 +972,11 @@
       "badges": ["live", "studio"],
       "years": "2014–2025",
       "name": "Anja Skybakmoen",
+      "about": "Vocalist and songwriter.",
+      "media": [
+        { "label": "Strand og hav", "url": "https://open.spotify.com/track/38qCMy4jtlcjhTMuf7ShMS" },
+        { "label": "Sahel O Darya", "url": "https://open.spotify.com/track/0cJ6TLpKzeDZ9w9gVZUzwX" }
+      ],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -925,7 +990,7 @@
       "id": "bellman",
       "badges": ["live"],
       "years": "2013–2015",
-      "about": "Tour of Japan in 2015.",
+      "about": "Bellman is the artist name of Arne-Johan Rauan. Tour of Japan in 2015.",
       "name": "Bellman",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -935,7 +1000,8 @@
     {
       "id": "blosh",
       "badges": ["live", "studio"],
-      "about": "Concerts include Slottsfjell in 2016.",
+      "about": "Electro-pop duo from Oslo: Jørgen Berg Svela and Teresa Bernabé. Concerts include Slottsfjell in 2016.",
+      "media": [{ "label": "Keep Your Tongue, music video", "url": "https://www.youtube.com/watch?v=DrdK_tifZ-4" }],
       "name": "Bløsh",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -952,6 +1018,7 @@
       "badges": ["live"],
       "years": "2012–2017",
       "name": "CCTV",
+      "about": "Band fronted by the singer and songwriter Shaun Curtis.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -962,6 +1029,7 @@
       "badges": ["live"],
       "years": "2014",
       "name": "Siri Nilsen",
+      "about": "Singer and songwriter. Concerts in the year of her album Skyggebokser, among them Skåtøy vise- og poesifestival.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
@@ -971,6 +1039,7 @@
       "id": "drums-and-electronics",
       "badges": ["live"],
       "name": "Drums and Electronics",
+      "media": [{ "label": "Sound Picking at the Norwegian Museum of Science and Technology", "url": "https://www.youtube.com/watch?v=bLttVegsGEg" }],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -996,7 +1065,8 @@
     {
       "id": "kyss-av-munch",
       "badges": ["live"],
-      "name": "\"Kyss\" av Munch",
+      "name": "Munchs Kyss",
+      "about": "A dance production by Plire Multi Dance, with choreography by Tharan Revfem and music by Frøy Aagre, first performed at Støperiet in Tønsberg on 26 June 2013.",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
@@ -1035,6 +1105,7 @@
       "id": "festivals",
       "badges": ["live"],
       "name": "Festivals",
+      "links": [{ "label": "article in GD: eleven concerts at by:Larm 2013", "url": "https://www.gd.no/kultur/spiller-11-konserter-pa-bylarm/s/1-934610-6495192" }],
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
