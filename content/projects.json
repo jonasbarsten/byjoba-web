@@ -163,7 +163,7 @@
       "name": "Kiwi",
       "site": "byjoba.com",
       "category": "hardware",
-      "status": "in-development",
+      "status": "active",
       "summary": "Headless instrument on a Raspberry Pi: piano, sampler and vocoder at once, blended with MIDI knobs.",
       "badges": ["open source"],
       "links": [{ "label": "source", "url": "https://github.com/jonasbarsten/kiwi" }]
