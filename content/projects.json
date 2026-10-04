@@ -356,7 +356,10 @@
       "status": "ended",
       "summary": "Drums, percussion and electronics.",
       "about": "From 2011. Album: Coconut Message (2014). Also built the band's live rack, which stands in for a sound engineer.",
-      "media": [{ "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }]
+      "media": [
+        { "label": "Beach House", "url": "https://www.youtube.com/watch?v=5kPWEkXuk-s" },
+        { "label": "Jada Jada", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }
+      ]
     },
     {
       "id": "gundelach",
