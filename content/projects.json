@@ -272,7 +272,8 @@
       "status": "ended",
       "summary": "Musical director and drummer.",
       "about": "From around 2018 to 2021, with single shows after that.",
-      "years": "2018–2021"
+      "years": "2018–2021",
+      "media": [{ "label": "WOW, with Emma Steinbakken, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=u5umRNr2duw" }]
     },
     {
       "id": "sei-selina",
@@ -293,7 +294,12 @@
       "summary": "Drummer.",
       "years": "2015–2023",
       "releases": [{ "title": "Leave Me To The Moon (Live In Oslo)", "year": "2020", "url": "https://www.discogs.com/release/15950391", "cover": "/covers/leave-me-to-the-moon.jpg" }],
-      "media": [{ "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }]
+      "media": [
+        { "label": "Leave Me To The Moon, live in Oslo", "url": "https://www.youtube.com/watch?v=y7oYnK0Ecu4" },
+        { "label": "Fire On The Mountain, live in Oslo", "url": "https://www.youtube.com/watch?v=uJ6CpJJDGZA" },
+        { "label": "__Awake, live in Oslo", "url": "https://www.youtube.com/watch?v=idZBUW8YMMY" },
+        { "label": "Festivalsommer: Fay Wildhagen from Trænafestivalen (NRK, 2021)", "url": "https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521" }
+      ]
     },
     {
       "id": "ary",
