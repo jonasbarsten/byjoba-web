@@ -154,7 +154,18 @@ details .status {
   display: flex;
   align-items: center;
   gap: var(--space-2);
-  margin: var(--space-2) 0;
+  margin: var(--space-4) 0 var(--space-2);
+}
+
+/* A small label over each group inside an opened card: Releases, Videos, Links. */
+h3 {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+  margin: var(--space-4) 0 var(--space-2);
 }
 
 /* Status, after the shadcn outline badge: one look for every state. */
@@ -183,8 +194,16 @@ summary::-webkit-details-marker {
   display: none;
 }
 
+/* An opened card: the face becomes a tinted header, ruled off from the details under it. */
 details[open] > summary {
   margin-bottom: 0;
+  background: var(--muted);
+  border-bottom: 1px solid var(--border);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+details[open] .more {
+  background: var(--background);
 }
 
 /* The marker that says a card opens, and what is inside: "More", or "2 videos · 1 track". */
@@ -207,7 +226,8 @@ details[open] .more::after {
   content: ' ▴';
 }
 
-summary:hover .more {
+summary:hover .more,
+details[open] > summary:hover .more {
   background: var(--border);
 }
 
@@ -223,8 +243,8 @@ details p {
   display: grid;
   /* Two players side by side on a phone, more as the column widens. */
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
-  gap: var(--space-2) var(--space-4);
-  margin: var(--space-2) 0 var(--space-4);
+  gap: var(--space-4) var(--space-2);
+  margin: 0 0 var(--space-2);
 }
 
 figure {
@@ -238,8 +258,8 @@ figure {
 .releases {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
-  gap: var(--space-2);
-  margin: var(--space-2) 0 var(--space-4);
+  gap: var(--space-4) var(--space-2);
+  margin: 0 0 var(--space-2);
 }
 
 .releases img,
@@ -269,11 +289,16 @@ iframe {
   height: 80px;
 }
 
+/* Under a cover or a player: the title in the full colour, the year below it in the muted one. */
 figcaption {
-  color: var(--muted-foreground);
   font-size: 0.75rem;
   line-height: 1rem;
   margin-top: var(--space-1);
+}
+
+.year {
+  display: block;
+  color: var(--muted-foreground);
 }
 
 footer {

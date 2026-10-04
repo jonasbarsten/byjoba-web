@@ -69,7 +69,9 @@ function mediaBlock(entry) {
     const allow = kind === 'video' ? 'allow="encrypted-media; picture-in-picture" allowfullscreen' : 'allow="encrypted-media"';
     return `<figure class="${kind}"><iframe src="${escapeHtml(src)}" title="${label}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ${allow}></iframe><figcaption>${label}</figcaption></figure>`;
   });
-  return `<div class="media">${figures.join('')}</div>`;
+  const kinds = new Set(entry.media.map((item) => mediaEmbed(item.url).kind));
+  const heading = kinds.size === 2 ? 'Videos and tracks' : kinds.has('video') ? 'Videos' : 'Tracks';
+  return `<h3>${heading}</h3><div class="media">${figures.join('')}</div>`;
 }
 
 const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
@@ -95,7 +97,7 @@ function renderEntry(entry) {
   const face = `<span class="head">${name}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = entry.links?.length
-    ? `<p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
+    ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
   return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
@@ -115,9 +117,9 @@ function releaseList(entry) {
     const title = release.url
       ? `<a href="${escapeHtml(release.url)}"${NEW_TAB}>${escapeHtml(release.title)}</a>`
       : escapeHtml(release.title);
-    return `<figure>${cover}<figcaption>${title} (${escapeHtml(release.year)})</figcaption></figure>`;
+    return `<figure>${cover}<figcaption>${title} <span class="year">${escapeHtml(release.year)}</span></figcaption></figure>`;
   });
-  return `<div class="releases">${figures.join('')}</div>`;
+  return `<h3>Releases</h3><div class="releases">${figures.join('')}</div>`;
 }
 
 function renderSection(content, domain, section) {
