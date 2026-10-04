@@ -169,12 +169,24 @@ h3 {
 }
 
 /* An entry's own badges, at the top right of its card's header. */
+/*
+ * Stacked in the header's top right corner, out of the text's flow, so two
+ * badges do not push the summary down. The text beside them keeps clear.
+ */
 .badges {
+  position: absolute;
+  top: var(--pad-y);
+  right: var(--pad-x);
   display: flex;
-  flex: none;
   flex-direction: column;
   align-items: flex-end;
   gap: var(--space-1);
+}
+
+summary:has(.badges) > .head,
+summary:has(.badges) > .summary,
+summary:has(.badges) > .meta {
+  padding-right: 3.5rem;
 }
 
 /* The line under a section heading that says how to read its cards. */
@@ -200,6 +212,7 @@ h3 {
 
 /* A card that opens: the whole face is the control, so it covers the card's padding. */
 summary {
+  position: relative;
   cursor: pointer;
   list-style: none;
   margin: calc(-1 * var(--pad-y)) calc(-1 * var(--pad-x));
