@@ -45,6 +45,7 @@
       "sections": [
         { "title": "Music", "category": "music" },
         { "title": "Teaching and live systems", "category": "live-teaching" },
+        { "title": "Founder", "category": "founder" },
         { "title": "Spaces", "category": "spaces" },
         { "title": "Installations", "category": "installations" },
         { "title": "Software and hardware", "category": "software-hardware" },
@@ -86,32 +87,6 @@
       "summary": "Invoice generator for the phone. Makes a PDF and hands it to the share sheet.",
       "about": "In Norwegian. Runs in the browser.",
       "links": [{ "label": "site", "url": "https://fakfura.no" }]
-    },
-    {
-      "id": "suril",
-      "name": "Suril",
-      "site": "byjoba.com",
-      "category": "apps",
-      "status": "active",
-      "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
-      "links": [{ "label": "site", "url": "https://suril.ai" }]
-    },
-    {
-      "id": "huba",
-      "name": "Huba (working title)",
-      "site": "byjoba.com",
-      "category": "apps",
-      "status": "in-development",
-      "summary": "Distributed file system for audio, video and image work.",
-      "about": "With Thomas Hukkelberg."
-    },
-    {
-      "id": "tbc",
-      "name": "TBC",
-      "site": "byjoba.com",
-      "category": "apps",
-      "status": "in-development",
-      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB."
     },
     {
       "id": "upload-to-dropbox",
@@ -405,13 +380,40 @@
       "id": "olyp",
       "name": "OLYP",
       "site": "jonasbarsten.com",
-      "category": "spaces",
+      "category": "founder",
       "status": "active",
       "summary": "Musicians' collective at Rosenhoff in Oslo: 32 rehearsal and production rooms in about 3,000 m².",
       "about": "Run by Oslo Lydproduksjon AS.",
       "role": "co-founder",
       "years": "2014–",
       "links": [{ "label": "site", "url": "https://olyp.no" }]
+    },
+    {
+      "id": "suril",
+      "name": "Suril",
+      "site": "jonasbarsten.com",
+      "category": "founder",
+      "status": "active",
+      "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
+      "links": [{ "label": "site", "url": "https://suril.ai" }]
+    },
+    {
+      "id": "huba",
+      "name": "Huba (working title)",
+      "site": "jonasbarsten.com",
+      "category": "founder",
+      "status": "in-development",
+      "summary": "Distributed file system for audio, video and image work.",
+      "about": "With Thomas Hukkelberg.",
+      "role": "co-founder"
+    },
+    {
+      "id": "tbc",
+      "name": "TBC",
+      "site": "jonasbarsten.com",
+      "category": "founder",
+      "status": "in-development",
+      "summary": "Unannounced. TypeScript monorepo on AWS with CDK and DynamoDB."
     },
     {
       "id": "olyp-rooms",
@@ -523,7 +525,7 @@
       "id": "vier-live",
       "name": "VIER.LIVE",
       "site": "jonasbarsten.com",
-      "category": "commissioned",
+      "category": "founder",
       "status": "ended",
       "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
       "role": "CTO and co-founder",

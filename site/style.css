@@ -164,7 +164,8 @@ details p {
 /* Small players inside an expanded entry. */
 .media {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  /* Two players side by side on a phone, more as the column widens. */
+  grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: var(--space-2) var(--space-4);
   margin: var(--space-2) 0 var(--space-4);
 }
