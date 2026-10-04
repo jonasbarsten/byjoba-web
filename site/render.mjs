@@ -2,6 +2,9 @@ const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&
 
 export const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (char) => ESCAPES[char]);
 
+/** Links that leave the page open in a new tab; links within the site (contact, home) do not. */
+const NEW_TAB = ' target="_blank" rel="noopener"';
+
 /** A JSON-LD data block. `<` is written as an escape so the data can never close the block. */
 const jsonLdBlock = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
@@ -30,7 +33,7 @@ function page({ site, title, canonical, index = false, body, scripts = '' }) {
 function otherSites(content, domain) {
   return Object.keys(content.sites)
     .filter((other) => other !== domain)
-    .map((other) => `<a href="https://${escapeHtml(other)}/">${escapeHtml(other)}</a>`);
+    .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
 /** Role, years and status, shown after the summary on the entry's own site. */
@@ -48,14 +51,14 @@ const summary = (entry) => `<span class="summary"> — ${escapeHtml(entry.summar
 function fullEntry(entry) {
   const [first, ...rest] = entry.links ?? [];
   const name = first
-    ? `<a class="name" href="${escapeHtml(first.url)}">${escapeHtml(entry.name)}</a>`
+    ? `<a class="name" href="${escapeHtml(first.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
   const head = `${name}${summary(entry)}${meta(entry)}`;
   const id = escapeHtml(entry.id);
   if (!entry.about && rest.length === 0) return `<li id="${id}">${head}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = rest.length
-    ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
+    ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   return `<li id="${id}"><details><summary>${head}</summary>${about}${links}</details></li>`;
 }
@@ -63,7 +66,7 @@ function fullEntry(entry) {
 /** An entry shown on the other site: name and summary only, the name linking to its home. */
 function linkedEntry(entry) {
   const id = escapeHtml(entry.id);
-  const name = `<a class="name" href="https://${escapeHtml(entry.site)}/#${id}">${escapeHtml(entry.name)}</a>`;
+  const name = `<a class="name" href="https://${escapeHtml(entry.site)}/#${id}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`;
   return `<li id="${id}">${name}${summary(entry)}</li>`;
 }
 

@@ -67,7 +67,7 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name is its first link', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><a class="name" href="https:\/\/example\.com\/kiwi">Kiwi<\/a><span class="summary"> — An instrument\.<\/span> <span class="meta">in progress<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><span class="summary"> — An instrument\.<\/span> <span class="meta">in progress<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
@@ -81,7 +81,7 @@ test('an entry with one link and no about is a plain line whose name is the link
   const content = fixture();
   content.projects[1].links = [{ label: 'site', url: 'https://example.com/atlanter' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><a class="name" href="https:\/\/example\.com\/atlanter">Atlanter<\/a><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
 });
 
 test('further links are listed by label when the entry is expanded', () => {
@@ -92,13 +92,13 @@ test('further links are listed by label when the entry is expanded', () => {
     { label: 'article', url: 'https://example.com/article' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><a class="name" href="https:\/\/example\.com\/atlanter">Atlanter<\/a>.*<\/summary><p class="links"><a href="https:\/\/example\.com\/source">source<\/a> · <a href="https:\/\/example\.com\/article">article<\/a><\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a>.*<\/summary><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
 test('a "from" section lists the other site\'s entries as one-liners that link over', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<h2>Software and hardware<\/h2>/);
-  assert.match(html, /<li id="kiwi"><a class="name" href="https:\/\/byjoba\.com\/#kiwi">Kiwi<\/a><span class="summary"> — An instrument\.<\/span><\/li>/);
+  assert.match(html, /<li id="kiwi"><a class="name" href="https:\/\/byjoba\.com\/#kiwi" target="_blank" rel="noopener">Kiwi<\/a><span class="summary"> — An instrument\.<\/span><\/li>/);
   assert.doesNotMatch(html, /Runs on a Raspberry Pi/);
 });
 
@@ -120,7 +120,7 @@ test('sections keep the order of the site and entries the order of the file', ()
 
 test('the footer has the other site, the contact link and the counter', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<footer>[\s\S]*<a href="https:\/\/jonasbarsten\.com\/">jonasbarsten\.com<\/a>[\s\S]*<a href="\/contact\.html">contact<\/a>[\s\S]*<img src="\/counter\.svg" alt="visitor counter"[\s\S]*<\/footer>/);
+  assert.match(html, /<footer>[\s\S]*<a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a>[\s\S]*<a href="\/contact\.html">contact<\/a>[\s\S]*<img src="\/counter\.svg" alt="visitor counter"[\s\S]*<\/footer>/);
 });
 
 test('the list page has no executable script and no email address', () => {
@@ -137,7 +137,7 @@ test('content is escaped in text and in attributes', () => {
   content.projects[0].links = [{ label: '<site>', url: 'https://example.com/?a=1&b="2"' }];
   const html = renderIndex(content, 'byjoba.com');
   assert.match(html, /<title>by&lt;joba&gt; &amp; &quot;co&quot;<\/title>/);
-  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a><span class="summary"> — Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
+  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;" target="_blank" rel="noopener">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a><span class="summary"> — Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
   assert.doesNotMatch(html, /<b>Kiwi/);
 });
 
