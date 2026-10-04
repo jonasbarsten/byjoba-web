@@ -939,6 +939,17 @@
       "summary": "Drummer in a jazz quintet."
     },
     {
+      "id": "sund-turneen-2008",
+      "badges": ["live"],
+      "name": "Sund-turnéen 2008",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Drummer on the tour of the jazz programme at Sund Folkehøgskole: two weeks of concerts across Norway.",
+      "about": "Started at Nattergalen in Trondheim on 27 March 2008 and went on to Ålesund, Volda, Bergen, Stord, Haugesund, Oslo, Lillehammer, Buskerud folkehøgskole and Bjugn, with concerts at upper secondary schools along the way.",
+      "years": "2008"
+    },
+    {
       "id": "chiwahwah",
       "badges": ["live"],
       "years": "2009–2010",
