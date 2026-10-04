@@ -664,7 +664,7 @@
     {"date":"2024-03-08","venue":"Riksscenen","place":"Oslo","note":"International Women's Day concert"},
     {"date":"2017-06-01"},
     {"date":"2016-10-12"},
-    {"date":"2015-05-10"}
+    {"date":"2015-05-10","venue":"Kampenjazz, Cafeteatret","place":"Oslo"}
   ],
   "bellman": [
     {"date":"2015-01-18","venue":"Metro","place":"Kyoto"},
