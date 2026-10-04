@@ -241,7 +241,12 @@
       "category": "music",
       "status": "active",
       "summary": "Composer and drummer.",
-      "years": "2013–"
+      "years": "2013–",
+      "links": [
+        { "label": "Pike", "url": "https://www.youtube.com/watch?v=vGqLUF1fwrQ" },
+        { "label": "Can't Get Away, live", "url": "https://www.youtube.com/watch?v=v0T2gI4rYiQ" },
+        { "label": "Aye on Spotify", "url": "https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q" }
+      ]
     },
     {
       "id": "alan-walker",
@@ -249,7 +254,16 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Musical director and drummer."
+      "summary": "Musical director and drummer.",
+      "links": [
+        { "label": "Faded, live", "url": "https://www.youtube.com/watch?v=mIxlvVlOIS0" },
+        { "label": "Alone, live", "url": "https://www.youtube.com/watch?v=Q9uat3ticA8" },
+        { "label": "All Falls Down, live at YouTube Space NY", "url": "https://www.youtube.com/watch?v=Tfaq4UTH7P0" },
+        { "label": "All Falls Down, stripped down", "url": "https://www.youtube.com/watch?v=k_0a3Dsih3A" },
+        { "label": "Spellemannprisen", "url": "https://www.youtube.com/watch?v=kyD2uvgoyKM" },
+        { "label": "Faded / Different World, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=n03IDJcsy5g" },
+        { "label": "The Spectre, KKBOX Music Awards", "url": "https://www.youtube.com/watch?v=a-X6rRcYL70" }
+      ]
     },
     {
       "id": "matoma",
@@ -292,7 +306,8 @@
       "category": "music",
       "status": "ended",
       "summary": "Producer, musical director and drummer.",
-      "years": "2013–2017"
+      "years": "2013–2017",
+      "links": [{ "label": "Trip Abroad", "url": "https://www.youtube.com/watch?v=91ZCn1K1XrE" }]
     },
     {
       "id": "thea-hjelmeland",
@@ -302,6 +317,45 @@
       "status": "ended",
       "summary": "Drummer.",
       "years": "2014–2016"
+    },
+    {
+      "id": "bendik-baksaas-band",
+      "name": "Bendik Baksaas Band",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "links": [
+        { "label": "Lover Ghost", "url": "https://www.youtube.com/watch?v=ZarbFdhpIc4" },
+        { "label": "Nobody Will Laugh on Spotify", "url": "https://open.spotify.com/track/62JY1S6Rro87J6azPPaeDW" }
+      ]
+    },
+    {
+      "id": "hanne-kolsto",
+      "name": "Hanne Kolstø",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "links": [{ "label": "One Plus One Makes One Out Of Two", "url": "https://www.youtube.com/watch?v=BRNr1mlj30Q" }]
+    },
+    {
+      "id": "dagens-ungdom",
+      "name": "Dagens Ungdom",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "links": [{ "label": "Aldri vite on Spotify", "url": "https://open.spotify.com/track/1drrtINK7WUNptzyukAilQ" }]
+    },
+    {
+      "id": "disaster-in-the-universe",
+      "name": "Disaster In The Universe",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "links": [{ "label": "Jada Jada on Spotify", "url": "https://open.spotify.com/track/2YHClCevPhnnzrEQ0fr3Pu" }]
     },
     {
       "id": "drums-and-electronics",
@@ -330,7 +384,7 @@
       "site": "jonasbarsten.com",
       "category": "live-teaching",
       "status": "active",
-      "summary": "Designs redundant playback and control setups for live acts."
+      "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S and Ary."
     },
     {
       "id": "olyp",
