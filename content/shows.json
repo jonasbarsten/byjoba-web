@@ -63,7 +63,6 @@
     {"date":"2022-07-29","venue":"Morellfestivalen","place":"Lofthus"},
     {"date":"2022-06-05","venue":"Moster Amfi","place":"Mosterhamn"},
     {"date":"2022-03-30","place":"Oslo"},
-    {"date":"2022-03-18","venue":"NRK P3"},
     {"date":"2022-03-16","place":"Beitostølen"},
     {"date":"2022-02-18","place":"Holmenkollen, Oslo","note":"private event"},
     {"date":"2021-10-27","venue":"Byscenen","place":"Trondheim","note":"tour finale"},
@@ -262,7 +261,6 @@
     {"date":"2016-02-06","venue":"Parkteatret","place":"Oslo"},
     {"date":"2016-01-30","venue":"Riksscenen","place":"Oslo"},
     {"date":"2016-01-22","venue":"Big Dipper","place":"Oslo"},
-    {"date":"2015-08-07","venue":"Varangerfestivalen","place":"Vadsø"},
     {"date":"2014-10-04","venue":"Flex (Waves Vienna)","place":"Vienna"},
     {"date":"2014-09-05","venue":"Comet Club (Berlin Music Week)","place":"Berlin"},
     {"date":"2014-08-15","venue":"Kartfestivalen","place":"Gvarv"},
@@ -701,6 +699,7 @@
     {"date":"2013-02-14","venue":"by:Larm, Nasjonal jazzscene","place":"Oslo"}
   ],
   "dagens-ungdom": [
+    {"date":"2020-10-10","venue":"Mir","place":"Oslo"},
     {"date":"2018-05-24","venue":"Last Train","place":"Oslo"},
     {"date":"2015-10-16","venue":"Ingensteds","place":"Oslo"},
     {"date":"2015-09-20"},
@@ -945,6 +944,9 @@
     {"date":"2022-05-04","place":"Oslo"}
   ],
   "stand-in": [
+    {"date":"2023-06-14","place":"Tønsberg","note":"Miss Tati, school concert"},
+    {"date":"2023-06-13","place":"Tønsberg","note":"Miss Tati, school concert"},
+    {"date":"2022-03-25","venue":"Youngs","place":"Oslo","note":"Resa Saffa Park"},
     {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
     {"date":"2023-11-11","place":"Lillesand","note":"Vinni"},
     {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S","review":{"label":"Poplish","url":"https://poplish.dk/2023/06/24/astrid-s-og-den-sukkersoede-popmusik/"}},
