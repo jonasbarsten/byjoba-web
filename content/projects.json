@@ -254,7 +254,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "active",
-      "summary": "Concerts, among them in Finland.",
+      "summary": "Musical director and drummer.",
+      "about": "Concerts include Finland in 2026.",
       "years": "2026–"
     },
     {
@@ -601,26 +602,6 @@
       "years": "2018–2019"
     },
     {
-      "id": "sondre-justad",
-      "badges": ["live"],
-      "name": "Sondre Justad",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "status": "ended",
-      "summary": "Concerts as a stand-in, among them the tour finale at Sentrum Scene. Also built the playback rig.",
-      "years": "2017–2018"
-    },
-    {
-      "id": "cezinando",
-      "badges": ["live"],
-      "name": "Cezinando",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "status": "ended",
-      "summary": "Concerts as a stand-in, among them Parkenfestivalen in Bodø.",
-      "years": "2018"
-    },
-    {
       "id": "amanda-delara",
       "badges": ["live"],
       "name": "Amanda Delara",
@@ -721,16 +702,6 @@
       "years": "2016–2018"
     },
     {
-      "id": "no-4",
-      "badges": ["live"],
-      "name": "No. 4",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "status": "ended",
-      "summary": "Concerts as a stand-in, among them Slottsfjell.",
-      "years": "2016–2017"
-    },
-    {
       "id": "westaman",
       "badges": ["live"],
       "name": "Westaman",
@@ -791,24 +762,15 @@
       "years": "2023"
     },
     {
-      "id": "astrid-s",
+      "id": "stand-in",
       "badges": ["live"],
-      "name": "Astrid S",
+      "name": "Stand-in",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Concert as a stand-in, at Tinderbox in Denmark.",
-      "years": "2023"
-    },
-    {
-      "id": "vinni",
-      "badges": ["live"],
-      "name": "Vinni",
-      "site": "jonasbarsten.com",
-      "category": "music",
-      "status": "ended",
-      "summary": "Concerts as a stand-in, among them Rockefeller in Oslo.",
-      "years": "2023"
+      "summary": "Drummer on single concerts with Astrid S, Vinni, Cezinando, Sondre Justad and No. 4.",
+      "about": "Astrid S at Tinderbox in Denmark in 2023. Vinni at Rockefeller in Oslo in 2023. Cezinando at Parkenfestivalen in Bodø in 2018. Sondre Justad in 2017 and 2018, among them the tour finale at Sentrum Scene in Oslo. No. 4 in 2016 and 2017, among them Slottsfjell.",
+      "years": "2016–2023"
     },
     {
       "id": "single-concerts",
@@ -1084,6 +1046,17 @@
       "category": "live-teaching",
       "status": "active",
       "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S, Ary, Sondre Justad and Julie Bergan."
+    },
+    {
+      "id": "kreativ-bruk-av-nettverk-live",
+      "name": "Kreativ bruk av nettverk – Live!",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "active",
+      "summary": "Course for technicians and musicians on networked live production, held for Kulturrom with sound engineer Johan Kristian Berntsen, and sometimes alone.",
+      "about": "Covers Ableton Live, Dante, MIDI, pre-production, stems, redundancy and timecode.",
+      "years": "2022–",
+      "links": [{ "label": "course page (Tromsø 2022)", "url": "https://kulturrom.no/arrangementer/kreativ-bruk-av-nettverk-live-tromso/" }]
     },
     {
       "id": "nmh-teaching",
