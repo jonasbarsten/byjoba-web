@@ -477,8 +477,7 @@
     {"date":"2014-10-10","venue":"The Lexington","place":"London"},
     {"date":"2014-09-14","place":"Oslo"},
     {"date":"2014-09-06","venue":"Kunstnernes Hus","place":"Oslo"},
-    {"date":"2014-08-30","venue":"Piknik i Parken","place":"Oslo"},
-    {"date":"2014-08-10"}
+    {"date":"2014-08-30","venue":"Piknik i Parken","place":"Oslo"}
   ],
   "thea-hjelmeland": [
     {"date":"2023-09-08","place":"Bergen"},
@@ -522,17 +521,15 @@
   ],
   "hanne-kolsto": [
     {"date":"2016-06-04","venue":"Musikkfest Oslo, Sukkerbiten","place":"Oslo","note":"stand-in"},
-    {"date":"2015-04-15","venue":"Blue Shell","place":"Cologne"},
     {"date":"2015-04-14","venue":"Kranhalle, Feierwerk","place":"Munich"},
+    {"date":"2015-04-13","venue":"Blue Shell","place":"Cologne"},
     {"date":"2015-04-11","venue":"Gleis 22","place":"Münster"},
     {"date":"2015-04-10","venue":"Kantine am Berghain","place":"Berlin"},
-    {"date":"2015-04-09","place":"Berlin"},
     {"date":"2015-04-08","venue":"Molotow","place":"Hamburg"},
     {"date":"2015-03-16","venue":"South by Southwest","place":"Austin"},
     {"date":"2015-02-16","venue":"Kvarteret","place":"Bergen"},
     {"date":"2015-01-30","venue":"Trondheim Calling","place":"Trondheim"},
     {"date":"2014-12-05","venue":"Parkteatret","place":"Oslo"},
-    {"date":"2014-11-29"},
     {"date":"2014-10-30","venue":"The Lexington","place":"London"},
     {"date":"2014-10-18","place":"Oslo"},
     {"date":"2011-08-12","venue":"Øyafestivalen","place":"Oslo"}
