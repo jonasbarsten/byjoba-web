@@ -545,7 +545,7 @@
     {"date":"2014-02-26","venue":"God morgen Norge (TV 2)"},
     {"date":"2014-02-22","place":"Trondheim"},
     {"date":"2014-02-14","place":"Sandvika"},
-    {"date":"2011-07-16","venue":"Slottsfjell"},
+    {"date":"2011-07-16","venue":"Slottsfjell","place":"Tønsberg","note":"percussion","review":{"label":"Martins musikkblogg","url":"https://www.martinsmusikkblogg.com/sassybeat-slottsfjell-2011/"}},
     {"date":"2014-03-01","venue":"by:Larm, Gamla","place":"Oslo"},
     {"date":"2014-02-27","venue":"by:Larm, Rockefeller","place":"Oslo"}
   ],
