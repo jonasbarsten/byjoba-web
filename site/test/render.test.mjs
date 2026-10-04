@@ -78,6 +78,19 @@ test('a show\'s country shows as its code, with the name as the code\'s expansio
   assert.match(page, /<tr><td><time datetime="2014-10">Oct 2014<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
 });
 
+test('the shows page counts each venue, city and country once, and leaves out what it has none of', () => {
+  const content = withShows();
+  content.projects[1].shows.push(
+    { date: '2015-08-08', venue: 'Øyafestivalen', place: 'Oslo', country: 'NO' },
+    { date: '2015-09-01', venue: 'Blå', place: 'Oslo', country: 'NO' },
+    { date: '2015-10-01', venue: 'Kulturhuset', place: 'Bjugn', country: 'NO' },
+    { date: '2015-10-02', venue: 'Kulturhuset', place: 'Oslo', country: 'NO' },
+  );
+  assert.match(renderShows(content, 'jonasbarsten.com'), / · 7 shows, 5 venues, 3 cities and 2 countries, newest first\./);
+  content.projects[1].shows = [{ date: '2016' }, { date: '2017', place: 'Oslo' }];
+  assert.match(renderShows(content, 'jonasbarsten.com'), / · 2 shows and 1 city, newest first\./);
+});
+
 test('the show tables name their columns, and the shows page has its own description', () => {
   const head = (columns) => `<table>\n<thead><tr>${columns.map((column) => `<th scope="col">${column}</th>`).join('')}</tr></thead>\n<tbody>\n<tr>`;
   assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Venue', 'Place', 'Country', 'Note'])));
@@ -99,7 +112,7 @@ test('the shows page lists every show of the site by year, newest first, with th
   assert.match(html, /<title>Shows — Jonas Barsten<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/jonasbarsten\.com\/shows\.html">/);
   assert.doesNotMatch(html, /noindex/);
-  assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, newest first\.<\/p>/);
+  assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, 2 venues, 2 cities and 2 countries, newest first\.<\/p>/);
   assert.deepEqual([...html.matchAll(/<h2>(\d{4})<\/h2>/g)].map((match) => match[1]), ['2014', '2013']);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
   assert.match(html, /<tr><td><time datetime="2013-08-08">8 Aug 2013<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);

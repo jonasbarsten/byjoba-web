@@ -38,7 +38,7 @@ function otherSites(content, domain) {
     .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
-const count = (n, word) => (n ? `${n} ${word}${n === 1 ? '' : 's'}` : '');
+const count = (n, word, plural = `${word}s`) => (n ? `${n} ${n === 1 ? word : plural}` : '');
 
 /** What an opened card holds besides text, e.g. "2 videos · 1 track · 1 link"; empty when it holds none of those. */
 function contentsHint(entry) {
@@ -192,6 +192,21 @@ function siteShows(content, domain) {
     .flatMap((entry) => (entry.shows ?? []).map((show) => ({ ...show, entry })));
 }
 
+/**
+ * What a list of shows spans, e.g. "954 shows, 477 venues, 215 cities and 33 countries".
+ * A venue counts once per city, and a city once per country: two towns can each have a Kulturhuset.
+ */
+function showTotals(shows) {
+  const distinct = (key) => new Set(shows.map(key).filter(Boolean)).size;
+  const parts = [
+    count(shows.length, 'show'),
+    count(distinct((show) => show.venue && [show.venue, show.place, show.country].join('\n')), 'venue'),
+    count(distinct((show) => show.place && [show.place, show.country].join('\n')), 'city', 'cities'),
+    count(distinct((show) => show.country), 'country', 'countries'),
+  ].filter(Boolean);
+  return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0];
+}
+
 /** Whether a site has a shows page. */
 export const hasShows = (content, domain) => siteShows(content, domain).length > 0;
 
@@ -207,7 +222,7 @@ export function renderShows(content, domain) {
     return `<section>\n<h2>${year}</h2>\n${showTable(['Date', 'Act', 'Venue', 'Place', 'Country', 'Note'], rows)}\n</section>`;
   });
   const body = [
-    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${count(shows.length, 'show')}, newest first.</p>\n</header>`,
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows)}, newest first.</p>\n</header>`,
     `<main>\n${tables.join('\n')}\n</main>`,
   ].join('\n');
   const description = `The ${count(shows.length, 'show')} ${site.title} has played, by year: date, act, venue, place and country.`;
