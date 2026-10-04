@@ -81,7 +81,15 @@ test('the role stays on the face of the card', () => {
   assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
 });
 
-test('the face of a card carries neither the badge nor the years', () => {
+test('an entry\'s badges show in the header of the card, after the name', () => {
+  const content = fixture();
+  content.projects[1].badges = ['live', 'A & B'];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><span class="badges"><span class="badge">live<\/span><span class="badge">A &amp; B<\/span><\/span><\/span><span class="summary">/);
+  assert.doesNotMatch(html.match(/<li id="vierlive">.*?<\/summary>/)[0], /class="badges"/);
+});
+
+test('the face of a card carries neither the status badge nor the years', () => {
   const faces = renderIndex(fixture(), 'jonasbarsten.com').match(/<summary>.*?<\/summary>/g);
   assert.equal(faces.length, 2);
   for (const face of faces) assert.doesNotMatch(face, /badge|2013|2020/);

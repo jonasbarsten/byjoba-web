@@ -1,6 +1,6 @@
 import { mediaEmbed } from './media.mjs';
 
-const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'url', 'links', 'media', 'releases'];
+const ENTRY_FIELDS = ['id', 'name', 'site', 'category', 'summary', 'about', 'years', 'status', 'role', 'badges', 'url', 'links', 'media', 'releases'];
 const REQUIRED = ['id', 'name', 'site', 'category', 'summary'];
 const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
@@ -80,6 +80,11 @@ function entryErrors(entry, index, sites, seen) {
   if (!STATUSES.includes(entry.status)) errors.push(`${where}: status must be one of ${STATUSES.join(', ')}`);
   for (const field of OPTIONAL_TEXT) {
     if (field in entry && !isText(entry[field])) errors.push(`${where}: "${field}" must be non-empty text`);
+  }
+  if ('badges' in entry) {
+    const badges = entry.badges;
+    const ok = Array.isArray(badges) && badges.length > 0 && badges.every(isText) && new Set(badges).size === badges.length;
+    if (!ok) errors.push(`${where}: badges must be a list of texts, each at most once`);
   }
   if ('url' in entry && !isLinkUrl(entry.url)) errors.push(`${where}: url must start with https:// or /`);
   if ('media' in entry) {

@@ -94,7 +94,11 @@ function renderEntry(entry) {
   const name = entry.url
     ? `<a class="name" href="${escapeHtml(entry.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
-  const face = `<span class="head">${name}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
+  // Free-form labels at the top right of the header, such as "live" and "studio" on the music cards.
+  const badges = entry.badges?.length
+    ? `<span class="badges">${entry.badges.map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join('')}</span>`
+    : '';
+  const face = `<span class="head">${name}${badges}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = entry.links?.length
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`

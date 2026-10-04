@@ -132,6 +132,15 @@ test('releases must be a list with a title and a year, and an optional url', () 
   }
 });
 
+test('badges are a list of short texts, each at most once', () => {
+  for (const badges of [['live'], ['live', 'studio'], ['open source']]) {
+    assert.deepEqual(errorsFor((c) => { c.projects[1].badges = badges; }), []);
+  }
+  for (const badges of ['live', ['live', 'live'], [], [7], ['']]) {
+    assertError(errorsFor((c) => { c.projects[1].badges = badges; }), /entry "atlanter": badges must be a list of texts, each at most once/);
+  }
+});
+
 test('a category may appear in only one section of a site', () => {
   const errors = errorsFor((c) => { c.sites['byjoba.com'].sections.push({ title: 'Again', category: 'hardware' }); });
   assertError(errors, /byjoba.com section 2: category "hardware" is already used/);

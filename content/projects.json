@@ -184,6 +184,7 @@
     },
     {
       "id": "anna-lille",
+      "badges": ["live", "studio"],
       "name": "Anna Lille",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -199,6 +200,7 @@
     },
     {
       "id": "daniel-kvammen",
+      "badges": ["live"],
       "name": "Daniel Kvammen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -208,6 +210,7 @@
     },
     {
       "id": "sandra-kolstad",
+      "badges": ["live", "studio"],
       "name": "Sandra Kolstad",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -218,6 +221,7 @@
     },
     {
       "id": "atlanter",
+      "badges": ["live", "studio"],
       "name": "Atlanter",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -241,7 +245,27 @@
       ]
     },
     {
+      "id": "sirkus-eliassen",
+      "badges": ["live"],
+      "name": "Sirkus Eliassen",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Musical director for their tour.",
+      "years": "2025"
+    },
+    {
+      "id": "luna",
+      "badges": ["live"],
+      "name": "LUNA",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Live project, played at Øyafestivalen among other places."
+    },
+    {
       "id": "alan-walker",
+      "badges": ["live", "studio"],
       "name": "Alan Walker",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -267,6 +291,7 @@
     },
     {
       "id": "matoma",
+      "badges": ["live"],
       "name": "Matoma",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -278,6 +303,7 @@
     },
     {
       "id": "sei-selina",
+      "badges": ["live"],
       "name": "Sei Selina",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -288,6 +314,7 @@
     },
     {
       "id": "fay-wildhagen",
+      "badges": ["live"],
       "name": "Fay Wildhagen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -307,6 +334,7 @@
     },
     {
       "id": "ary",
+      "badges": ["live"],
       "name": "Ary",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -321,6 +349,7 @@
     },
     {
       "id": "nils-bech",
+      "badges": ["live", "studio"],
       "name": "Nils Bech",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -335,6 +364,7 @@
     },
     {
       "id": "thea-hjelmeland",
+      "badges": ["live"],
       "name": "Thea Hjelmeland",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -344,6 +374,7 @@
     },
     {
       "id": "bendik-baksaas-band",
+      "badges": ["live", "studio"],
       "name": "Bendik Baksaas Band",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -361,6 +392,7 @@
     },
     {
       "id": "hanne-kolsto",
+      "badges": ["live", "studio"],
       "name": "Hanne Kolstø",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -376,6 +408,7 @@
     },
     {
       "id": "froy-aagre",
+      "badges": ["live", "studio"],
       "name": "Frøy Aagre",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -387,6 +420,7 @@
     },
     {
       "id": "dagens-ungdom",
+      "badges": ["live", "studio"],
       "name": "Dagens Ungdom",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -403,6 +437,7 @@
     },
     {
       "id": "disaster-in-the-universe",
+      "badges": ["live", "studio"],
       "name": "Disaster In The Universe",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -424,6 +459,7 @@
     },
     {
       "id": "gundelach",
+      "badges": ["live"],
       "name": "Gundelach",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -433,6 +469,7 @@
     },
     {
       "id": "woodlands",
+      "badges": ["live"],
       "name": "Woodlands",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -442,6 +479,7 @@
     },
     {
       "id": "phaedra",
+      "badges": ["studio"],
       "name": "Phaedra",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -453,6 +491,7 @@
     },
     {
       "id": "anders-wyller",
+      "badges": ["studio"],
       "name": "Anders Wyller",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -464,6 +503,7 @@
     },
     {
       "id": "anna-soleil",
+      "badges": ["studio"],
       "name": "Anna Soleil",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -474,6 +514,7 @@
     },
     {
       "id": "some-feather",
+      "badges": ["studio"],
       "name": "Some Feather",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -487,6 +528,7 @@
     },
     {
       "id": "tom-hugo",
+      "badges": ["studio"],
       "name": "Tom Hugo",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -497,6 +539,7 @@
     },
     {
       "id": "anna-melkild",
+      "badges": ["studio"],
       "name": "Anna Melkild",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -506,6 +549,7 @@
     },
     {
       "id": "sigurd-haug",
+      "badges": ["studio"],
       "name": "Sigurd Haug",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -515,6 +559,7 @@
     },
     {
       "id": "curing-meat-at-the-back-of-beyond",
+      "badges": ["studio"],
       "name": "Curing Meat at the Back of Beyond",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -525,6 +570,7 @@
     },
     {
       "id": "bjorn-charles-dreyer-group",
+      "badges": ["live"],
       "name": "Bjørn Charles Dreyer Group",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -534,6 +580,7 @@
     },
     {
       "id": "sassybeat",
+      "badges": ["live"],
       "name": "Sassybeat",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -543,6 +590,7 @@
     },
     {
       "id": "i-ate-my-pony",
+      "badges": ["live", "studio"],
       "name": "I Ate My Pony",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -552,6 +600,7 @@
     },
     {
       "id": "kjetil-grande",
+      "badges": ["live"],
       "name": "Kjetil Grande",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -560,6 +609,7 @@
     },
     {
       "id": "ronnie-jacobsen",
+      "badges": ["live", "studio"],
       "name": "Ronnie Jacobsen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -569,6 +619,7 @@
     },
     {
       "id": "mads-with-band",
+      "badges": ["live"],
       "name": "Mads With Band",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -577,6 +628,7 @@
     },
     {
       "id": "lean-mean-jazz-machine",
+      "badges": ["live"],
       "name": "Lean Mean Jazz Machine",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -585,6 +637,7 @@
     },
     {
       "id": "chiwahwah",
+      "badges": ["live"],
       "name": "Chiwahwah",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -593,6 +646,7 @@
     },
     {
       "id": "onskekvist",
+      "badges": ["live", "studio"],
       "name": "Önskekvist",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -602,6 +656,7 @@
     },
     {
       "id": "live-electronics-concept",
+      "badges": ["live"],
       "name": "Live Electronics concept",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -610,6 +665,7 @@
     },
     {
       "id": "other-projects",
+      "badges": ["live"],
       "name": "Other projects",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -618,6 +674,7 @@
     },
     {
       "id": "anja-skybakmoen",
+      "badges": ["live", "studio"],
       "name": "Anja Skybakmoen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -630,6 +687,7 @@
     },
     {
       "id": "bellman",
+      "badges": ["live"],
       "name": "Bellman",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -638,6 +696,7 @@
     },
     {
       "id": "blosh",
+      "badges": ["live", "studio"],
       "name": "Bløsh",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -651,6 +710,7 @@
     },
     {
       "id": "cctv",
+      "badges": ["live"],
       "name": "CCTV",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -659,6 +719,7 @@
     },
     {
       "id": "siri-nilsen",
+      "badges": ["live"],
       "name": "Siri Nilsen",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -667,6 +728,7 @@
     },
     {
       "id": "drums-and-electronics",
+      "badges": ["live"],
       "name": "Drums and Electronics",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -678,6 +740,7 @@
     },
     {
       "id": "pekula-vol-1-arp",
+      "badges": ["live"],
       "name": "Pekula Vol. 1: ARP",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -691,6 +754,7 @@
     },
     {
       "id": "kyss-av-munch",
+      "badges": ["live"],
       "name": "\"Kyss\" av Munch",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -700,6 +764,7 @@
     },
     {
       "id": "amandusprisen-2011",
+      "badges": ["studio"],
       "name": "Amandusprisen 2011",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -709,6 +774,7 @@
     },
     {
       "id": "film-music",
+      "badges": ["studio"],
       "name": "Film music",
       "site": "jonasbarsten.com",
       "category": "music",
@@ -726,6 +792,7 @@
     },
     {
       "id": "festivals",
+      "badges": ["live"],
       "name": "Festivals",
       "site": "jonasbarsten.com",
       "category": "music",

@@ -168,7 +168,15 @@ h3 {
   margin: var(--space-4) 0 var(--space-2);
 }
 
-/* Status, after the shadcn outline badge: one look for every state. */
+/* An entry's own badges, at the top right of its card's header. */
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-1);
+}
+
+/* Status and badges, after the shadcn outline badge: one look for all. */
 .badge {
   flex: none;
   border: 1px solid var(--border);
