@@ -114,7 +114,8 @@
       "site": "byjoba.com",
       "category": "music-tools",
       "summary": "Small extensions for Live: batch track creation, track export, and clip upload to Dropbox and Samply.",
-      "years": "2026"
+      "years": "2026",
+      "links": [{ "label": "ko-fi", "url": "https://ko-fi.com/byjoba" }]
     },
     {
       "id": "sordello",
