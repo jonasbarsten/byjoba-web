@@ -388,6 +388,12 @@ td:first-child {
   color: var(--muted-foreground);
 }
 
+/* A show's country code; its name shows on hover and is read out in full. */
+abbr {
+  text-decoration: none;
+  cursor: help;
+}
+
 /* On the shows page the tables sit under year headings, without the cards' gap above. */
 section > table {
   margin-bottom: var(--space-4);

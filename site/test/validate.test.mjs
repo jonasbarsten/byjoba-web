@@ -129,6 +129,16 @@ test('shows are a list of dated items with an optional venue, place and note', (
   assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', city: 'Oslo' }]; }), /entry "atlanter": show 2013-08-07: unknown field "city"/);
 });
 
+test('a show may name its country by a code from the countries table', () => {
+  const countries = { NO: 'Norway', GB: 'United Kingdom' };
+  assert.deepEqual(errorsFor((c) => { c.countries = countries; c.projects[1].shows = [{ date: '2013-08-07', place: 'Oslo', country: 'NO' }]; }), []);
+  assertError(errorsFor((c) => { c.countries = countries; c.projects[1].shows = [{ date: '2013-08-07', country: 'SE' }]; }), /entry "atlanter": show 2013-08-07: country "SE" is not in countries/);
+  assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', country: 'NO' }]; }), /entry "atlanter": show 2013-08-07: country "NO" is not in countries/);
+  assertError(errorsFor((c) => { c.countries = ['NO']; }), /countries must be an object of codes and names/);
+  assertError(errorsFor((c) => { c.countries = { no: 'Norway' }; }), /countries: "no" must be two capital letters with a name/);
+  assertError(errorsFor((c) => { c.countries = { NO: '' }; }), /countries: "NO" must be two capital letters with a name/);
+});
+
 test('a show may carry a review: a label and an https url', () => {
   assert.deepEqual(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: { label: 'Gaffa', url: 'https://gaffa.no/x' } }]; }), []);
   assertError(errorsFor((c) => { c.projects[1].shows = [{ date: '2013-08-07', review: 'https://gaffa.no/x' }]; }), /entry "atlanter": show 2013-08-07: review needs a label and an https url/);

@@ -91,7 +91,7 @@ function statusLine(entry) {
  * years, then the about, releases, links and media. The "more" marker on the
  * face says what is inside when that is more than text.
  */
-function renderEntry(entry) {
+function renderEntry(entry, countries) {
   const name = entry.url
     ? `<a class="name" href="${escapeHtml(entry.url)}"${NEW_TAB}>${escapeHtml(entry.name)}</a>`
     : `<span class="name">${escapeHtml(entry.name)}</span>`;
@@ -105,7 +105,7 @@ function renderEntry(entry) {
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   const more = `<span class="more">${escapeHtml(contentsHint(entry) || 'More')}</span>`;
-  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${showList(entry)}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
+  return `<li id="${escapeHtml(entry.id)}"><details><summary>${face}${more}</summary>${statusLine(entry)}${about}${showList(entry, countries)}${releaseList(entry)}${links}${mediaBlock(entry)}</details></li>`;
 }
 
 /**
@@ -145,6 +145,12 @@ const cell = (value) => `<td>${value ? escapeHtml(value) : ''}</td>`;
 /** A show's date cell. */
 const dateCell = (show) => `<td><time datetime="${escapeHtml(show.date)}">${showDate(show.date)}</time></td>`;
 
+/** A show's country cell: the code, which expands to the country's name. */
+function countryCell(show, countries) {
+  if (!show.country) return '<td></td>';
+  return `<td><abbr title="${escapeHtml(countries[show.country])}">${escapeHtml(show.country)}</abbr></td>`;
+}
+
 /** A show's last cell: its note, then a link to a review of it, when it has them. */
 function noteCell(show) {
   const parts = [];
@@ -156,17 +162,17 @@ function noteCell(show) {
 /** Newest first; the dates are ISO, so text order is date order. */
 const newestFirst = (shows) => [...shows].sort((a, b) => b.date.localeCompare(a.date));
 
-function showList(entry) {
+function showList(entry, countries) {
   if (!entry.shows?.length) return '';
   const id = `shows-${escapeHtml(entry.id)}`;
   const total = count(entry.shows.length, 'show');
-  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${cell(show.venue)}${cell(show.place)}${noteCell(show)}</tr>`);
+  const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${cell(show.venue)}${cell(show.place)}${countryCell(show, countries)}${noteCell(show)}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
   return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3><table>\n${rows.join('\n')}\n</table></div>`;
 }
 
 function renderSection(content, domain, section) {
-  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map(renderEntry);
+  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map((entry) => renderEntry(entry, content.countries));
   if (items.length === 0) return '';
   // An optional line under the heading that says how to read the cards below it.
   const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';
@@ -191,7 +197,7 @@ export function renderShows(content, domain) {
   const tables = years.map((year) => {
     const rows = shows
       .filter((show) => show.date.startsWith(year))
-      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${cell(show.venue)}${cell(show.place)}${noteCell(show)}</tr>`);
+      .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${cell(show.venue)}${cell(show.place)}${countryCell(show, content.countries)}${noteCell(show)}</tr>`);
     return `<section>\n<h2>${year}</h2>\n<table>\n${rows.join('\n')}\n</table>\n</section>`;
   });
   const body = [

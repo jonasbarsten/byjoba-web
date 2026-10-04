@@ -61,17 +61,26 @@ test('the sitemap lists the list page, and the shows page when the site has show
 /** The fixture with shows on its one music entry. */
 function withShows() {
   const content = fixture();
+  content.countries = { NO: 'Norway', GB: 'United Kingdom' };
   content.projects[1].shows = [
-    { date: '2013-08-08', venue: 'Øyafestivalen', place: 'Oslo' },
-    { date: '2014-02-13', venue: 'Ja Ja Ja', place: 'London', note: 'showcase', review: { label: 'The Line of Best Fit', url: 'https://example.com/review?a=1&b=2' } },
+    { date: '2013-08-08', venue: 'Øyafestivalen', place: 'Oslo', country: 'NO' },
+    { date: '2014-02-13', venue: 'Ja Ja Ja', place: 'London', country: 'GB', note: 'showcase', review: { label: 'The Line of Best Fit', url: 'https://example.com/review?a=1&b=2' } },
     { date: '2014-10' },
   ];
   return content;
 }
 
+test('a show\'s country shows as its code, with the name as the code\'s expansion', () => {
+  const card = renderIndex(withShows(), 'jonasbarsten.com');
+  assert.match(card, /<td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
+  const page = renderShows(withShows(), 'jonasbarsten.com');
+  assert.match(page, /<td>Ja Ja Ja<\/td><td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
+  assert.match(page, /<tr><td><time datetime="2014-10">Oct 2014<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
+});
+
 test('a show\'s review is a link after its note, in the card\'s list', () => {
   const html = renderIndex(withShows(), 'jonasbarsten.com');
-  assert.match(html, /<td>London<\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
+  assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
 });
 
 test('the shows page lists every show of the site by year, newest first, with the act linking to its card', () => {
@@ -82,7 +91,7 @@ test('the shows page lists every show of the site by year, newest first, with th
   assert.match(html, /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 3 shows, newest first\.<\/p>/);
   assert.deepEqual([...html.matchAll(/<h2>(\d{4})<\/h2>/g)].map((match) => match[1]), ['2014', '2013']);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
-  assert.match(html, /<tr><td><time datetime="2013-08-08">8 Aug 2013<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-08">8 Aug 2013<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.match(html, /<td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td>/);
   assert.doesNotMatch(html, /<script/);
 });
@@ -226,10 +235,10 @@ test('shows open as a list in a popover, from a button inside the opened card, w
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(html, /<h3>Shows<\/h3><p><button type="button" class="open-shows" popovertarget="shows-atlanter">List of 4 shows<\/button><\/p>/);
   assert.match(html, /<div id="shows-atlanter" class="shows" popover><h3>Atlanter: 4 shows<\/h3><table>/);
-  assert.match(html, /<tr><td><time datetime="2014-03-01">1 Mar 2014<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><\/td><\/tr>/);
-  assert.match(html, /<tr><td><time datetime="2013-08-07">7 Aug 2013<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td>stand-in<\/td><\/tr>/);
-  assert.match(html, /<tr><td><time datetime="2013-06">Jun 2013<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><\/td><\/tr>/);
-  assert.match(html, /<tr><td><time datetime="2012">2012<\/time><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2014-03-01">1 Mar 2014<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-07">7 Aug 2013<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td><\/td><td>stand-in<\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-06">Jun 2013<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2012">2012<\/time><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
   assert.doesNotMatch(html, /<script(?! type="application\/ld\+json")/);
 });
 

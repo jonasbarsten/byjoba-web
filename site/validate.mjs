@@ -6,6 +6,7 @@ const OPTIONAL_TEXT = ['about', 'years', 'role'];
 export const STATUSES = ['in-development', 'active', 'ended', 'one-off'];
 const SITE_TEXT = ['title', 'pageTitle', 'description', 'intro', 'turnstileSiteKey'];
 const SHOW_FIELDS = ['date', 'venue', 'place', 'note'];
+const COUNTRY_CODE = /^[A-Z]{2}$/;
 /** A day, a month or a year: as exact as the source allows. */
 const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;
 const SLUG =/^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -23,9 +24,20 @@ export function validate(content) {
   }
   const domains = Object.keys(content.sites);
   const errors = domains.flatMap((domain) => siteErrors(domain, content.sites[domain]));
+  errors.push(...countryErrors(content.countries));
+  const countries = isObject(content.countries) ? content.countries : {};
   const seen = new Set();
-  content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen)));
+  content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen, countries)));
   return errors;
+}
+
+/** The countries shows refer to: ISO 3166 two-letter code to English name. */
+function countryErrors(countries) {
+  if (countries === undefined) return [];
+  if (!isObject(countries)) return ['countries must be an object of codes and names'];
+  return Object.entries(countries)
+    .filter(([code, name]) => !COUNTRY_CODE.test(code) || !isText(name))
+    .map(([code]) => `countries: "${code}" must be two capital letters with a name`);
 }
 
 function siteErrors(domain, site) {
@@ -59,7 +71,7 @@ function categoriesOf(site) {
   return site.sections.filter((section) => isObject(section) && isText(section.category)).map((section) => section.category);
 }
 
-function entryErrors(entry, index, sites, seen) {
+function entryErrors(entry, index, sites, seen, countries) {
   if (!isObject(entry)) return [`projects[${index}]: must be an object`];
   const where = isText(entry.id) ? `entry "${entry.id}"` : `projects[${index}]`;
   const errors = [];
@@ -111,9 +123,12 @@ function entryErrors(entry, index, sites, seen) {
           continue;
         }
         for (const field of Object.keys(show)) {
-          if (field === 'review') continue;
+          if (field === 'review' || field === 'country') continue;
           if (!SHOW_FIELDS.includes(field)) errors.push(`${where}: show ${show.date}: unknown field "${field}"`);
           else if (!isText(show[field])) errors.push(`${where}: show ${show.date}: "${field}" must be non-empty text`);
+        }
+        if ('country' in show && !Object.hasOwn(countries, show.country)) {
+          errors.push(`${where}: show ${show.date}: country "${show.country}" is not in countries`);
         }
         if ('review' in show) {
           const { review } = show;
