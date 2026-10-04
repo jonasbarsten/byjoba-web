@@ -10,16 +10,16 @@ const NEW_TAB = ' target="_blank" rel="noopener"';
 /** A JSON-LD data block. `<` is written as an escape so the data can never close the block. */
 const jsonLdBlock = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-function page({ site, title, canonical, index = false, jsonLd, body, scripts = '' }) {
+function page({ site, title, description = site.description, canonical, index = false, jsonLd, body, scripts = '' }) {
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
     `<title>${escapeHtml(title)}</title>`,
-    `<meta name="description" content="${escapeHtml(site.description)}">`,
+    `<meta name="description" content="${escapeHtml(description)}">`,
     index ? '' : '<meta name="robots" content="noindex">',
     canonical ? `<link rel="canonical" href="${escapeHtml(canonical)}">` : '',
     `<meta property="og:title" content="${escapeHtml(title)}">`,
-    `<meta property="og:description" content="${escapeHtml(site.description)}">`,
+    `<meta property="og:description" content="${escapeHtml(description)}">`,
     `<meta property="og:site_name" content="${escapeHtml(site.title)}">`,
     '<meta property="og:type" content="website">',
     canonical ? `<meta property="og:url" content="${escapeHtml(canonical)}">` : '',
@@ -159,6 +159,12 @@ function noteCell(show) {
   return `<td>${parts.join(' · ')}</td>`;
 }
 
+/** A table of shows: its columns named in a header row, then the rows. */
+function showTable(columns, rows) {
+  const head = columns.map((column) => `<th scope="col">${column}</th>`).join('');
+  return `<table>\n<thead><tr>${head}</tr></thead>\n<tbody>\n${rows.join('\n')}\n</tbody>\n</table>`;
+}
+
 /** Newest first; the dates are ISO, so text order is date order. */
 const newestFirst = (shows) => [...shows].sort((a, b) => b.date.localeCompare(a.date));
 
@@ -168,7 +174,7 @@ function showList(entry, countries) {
   const total = count(entry.shows.length, 'show');
   const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${cell(show.venue)}${cell(show.place)}${countryCell(show, countries)}${noteCell(show)}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
-  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3><table>\n${rows.join('\n')}\n</table></div>`;
+  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Venue', 'Place', 'Country', 'Note'], rows)}</div>`;
 }
 
 function renderSection(content, domain, section) {
@@ -198,13 +204,14 @@ export function renderShows(content, domain) {
     const rows = shows
       .filter((show) => show.date.startsWith(year))
       .map((show) => `<tr>${dateCell(show)}<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>${cell(show.venue)}${cell(show.place)}${countryCell(show, content.countries)}${noteCell(show)}</tr>`);
-    return `<section>\n<h2>${year}</h2>\n<table>\n${rows.join('\n')}\n</table>\n</section>`;
+    return `<section>\n<h2>${year}</h2>\n${showTable(['Date', 'Act', 'Venue', 'Place', 'Country', 'Note'], rows)}\n</section>`;
   });
   const body = [
     `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${count(shows.length, 'show')}, newest first.</p>\n</header>`,
     `<main>\n${tables.join('\n')}\n</main>`,
   ].join('\n');
-  return page({ site, title: `Shows — ${site.title}`, canonical: `https://${domain}/shows.html`, index: true, body });
+  const description = `The ${count(shows.length, 'show')} ${site.title} has played, by year: date, act, venue, place and country.`;
+  return page({ site, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 
 export function renderIndex(content, domain) {

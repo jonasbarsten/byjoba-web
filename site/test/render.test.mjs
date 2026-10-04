@@ -78,6 +78,17 @@ test('a show\'s country shows as its code, with the name as the code\'s expansio
   assert.match(page, /<tr><td><time datetime="2014-10">Oct 2014<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
 });
 
+test('the show tables name their columns, and the shows page has its own description', () => {
+  const head = (columns) => `<table>\n<thead><tr>${columns.map((column) => `<th scope="col">${column}</th>`).join('')}</tr></thead>\n<tbody>\n<tr>`;
+  assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Venue', 'Place', 'Country', 'Note'])));
+  const page = renderShows(withShows(), 'jonasbarsten.com');
+  assert.ok(page.includes(head(['Date', 'Act', 'Venue', 'Place', 'Country', 'Note'])));
+  assert.match(page, /<\/tr>\n<\/tbody>\n<\/table>/);
+  const description = 'The 3 shows Jonas Barsten has played, by year: date, act, venue, place and country.';
+  assert.ok(page.includes(`<meta name="description" content="${description}">`));
+  assert.ok(page.includes(`<meta property="og:description" content="${description}">`));
+});
+
 test('a show\'s review is a link after its note, in the card\'s list', () => {
   const html = renderIndex(withShows(), 'jonasbarsten.com');
   assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
