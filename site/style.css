@@ -223,19 +223,23 @@ figure {
   margin: 0;
 }
 
-/* Record covers inside an expanded entry: a row of small squares that wraps. */
+/*
+ * Record covers inside an expanded entry. The columns share the card's width,
+ * which gives three across on a phone and more as the card widens.
+ */
 .releases {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 6rem);
-  gap: var(--space-2) var(--space-4);
+  grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
+  gap: var(--space-2);
   margin: var(--space-2) 0 var(--space-4);
 }
 
 .releases img,
 .nocover {
   display: block;
-  width: 6rem;
-  height: 6rem;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
   border-radius: calc(var(--radius) - 4px);
   background: var(--muted);
   object-fit: cover;
