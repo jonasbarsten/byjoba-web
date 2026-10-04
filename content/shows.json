@@ -510,6 +510,13 @@
     {"date":"2014-01-29","venue":"Parkteatret","place":"Oslo"},
     {"date":"2013-05-30","venue":"Onda","place":"Aker Brygge, Oslo"}
   ],
+  "mads-with-band": [
+    {"date":"2010-03-09","venue":"Stavanger Jazzklubb","place":"Stavanger"},
+    {"date":"2010-03-05","venue":"Knøderen","place":"Bergen"},
+    {"date":"2010-02-27","venue":"Teateret","place":"Hamar"},
+    {"date":"2010-02-26","venue":"Parkcaféen","place":"Lillehammer"},
+    {"date":"2009-11-26","venue":"Hjem","place":"Kristiansand"}
+  ],
   "kjetil-grande": [
     {"date":"2009-08-18","venue":"Studiestartfestivalen","place":"Kristiansand"}
   ],
