@@ -522,7 +522,8 @@
       "about": "Kai Gundelach is an artist, producer and DJ from Oslo. Concerts include Roskilde Festival, Øyafestivalen, London and Aarhus in 2016, and Eurosonic in 2017.",
       "media": [
         { "label": "radioeins Loungekonzert, 2016", "url": "https://www.youtube.com/watch?v=micNIHhzPbw" },
-        { "label": "Kamilla og Tyven, NRK P3, 2016", "url": "https://www.youtube.com/watch?v=WNK0fHJULVI" }
+        { "label": "Kamilla og Tyven, NRK P3, 2016", "url": "https://www.youtube.com/watch?v=WNK0fHJULVI" },
+        { "label": "Alone in the Night, live session", "url": "https://www.youtube.com/watch?v=gdrDhL7RQUY" }
       ],
       "years": "2015–2017"
     },
@@ -571,8 +572,9 @@
     },
     {
       "id": "anna-soleil",
-      "badges": ["studio"],
+      "badges": ["live", "studio"],
       "name": "Anna Soleil",
+      "about": "Also a concert at Belleville in Oslo in 2023.",
       "media": [
         { "label": "Loved You Then And Now Again, music video", "url": "https://www.youtube.com/watch?v=O4uzNIgrSPU" },
         { "label": "Loved You Then And Now Again", "url": "https://open.spotify.com/track/5qOj6ZoX3ZOgpbcYD3yZLl" }
@@ -581,7 +583,7 @@
       "category": "music",
       "status": "one-off",
       "summary": "Drums on the single Loved You Then And Now Again.",
-      "years": "2025",
+      "years": "2023–2025",
       "releases": [{ "title": "Loved You Then And Now Again", "year": "2025", "cover": "/covers/loved-you-then-and-now-again.jpg" }]
     },
     {
@@ -702,8 +704,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Musician in two stage performances from Litteraturhuset in Oslo, with authors reading to music composed by Sandra Kolstad.",
-      "about": "The Political Body (Den politiske kroppen) was commissioned for Litteraturhuset's tenth anniversary in 2017, with texts by Édouard Louis, Athena Farrokhzad and Kristina Leganger Iversen, and was also performed in Paris. Its continuation, Følelsenes politikk, came in 2019 with texts by Maria Kjos Fonn, Lone Aburas and Kayo Chingonyi, and went from Oslo to Moss, Trondheim and Bergen.",
+      "summary": "Musician in a stage performance from Litteraturhuset in Oslo, with authors reading to music composed by Sandra Kolstad.",
+      "about": "The Political Body (Den politiske kroppen) was commissioned for Litteraturhuset's tenth anniversary in 2017, with texts by Édouard Louis, Athena Farrokhzad and Kristina Leganger Iversen, and performed with Sandra Kolstad. Later performed in Paris in 2018 and at Bozar in Brussels in 2019.",
       "years": "2017–2019",
       "media": [{ "label": "The Political Body, part 1: Édouard Louis and Sandra Kolstad", "url": "https://www.youtube.com/watch?v=cTQj05h2INA" }]
     },
