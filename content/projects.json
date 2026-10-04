@@ -190,6 +190,7 @@
       "category": "music",
       "status": "active",
       "summary": "Musical director and drummer.",
+      "about": "Concerts include Trondheim Calling in 2024, Øyafestivalen, Bergenfest and Vinjerock in 2025, and Groningen in 2026.",
       "releases": [
         { "title": "How did I let this get so serious?", "year": "2025", "cover": "/covers/how-did-i-let-this-get-so-serious.jpg" },
         { "title": "Stuck Cat", "year": "2025", "cover": "/covers/stuck-cat.jpg" },
@@ -387,6 +388,7 @@
       "category": "music",
       "status": "ended",
       "summary": "Drummer.",
+      "about": "Concerts include a tour of Germany and Switzerland in 2014, and Stimmen Festival and Músicas do Mundo in 2015.",
       "years": "2014–2016"
     },
     {
