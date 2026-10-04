@@ -60,28 +60,45 @@ test('the counter image declares its size so the page does not shift', () => {
   assert.match(renderIndex(fixture(), 'byjoba.com'), /<img src="\/counter\.svg" alt="visitor counter" width="88" height="20">/);
 });
 
-test('the header links to the other site', () => {
+test('the header holds the title and the intro and nothing else', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<header>[\s\S]*<a href="https:\/\/byjoba\.com\/">byjoba\.com<\/a>[\s\S]*<\/header>/);
+  assert.match(html, /<header>\n<h1>Jonas Barsten<\/h1>\n<p>A list\.<\/p>\n<\/header>/);
 });
 
-test('an entry renders in full on its own site', () => {
+test('an entry with an about expands, and its name is its first link', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><span class="name">Kiwi<\/span> — An instrument\. <span class="meta">in progress<\/span><\/summary>/);
-  assert.match(html, /<p>Runs on a Raspberry Pi\.<\/p>/);
-  assert.match(html, /<p class="links"><a href="https:\/\/example\.com\/kiwi">source<\/a><\/p>/);
+  assert.match(html, /<li id="kiwi"><details><summary><a class="name" href="https:\/\/example\.com\/kiwi">Kiwi<\/a><span class="summary"> — An instrument\.<\/span> <span class="meta">in progress<\/span><\/summary><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.doesNotMatch(html, /class="links"/);
 });
 
 test('an entry without about or links is a plain line with role and years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><span class="name">Atlanter<\/span> — Composer and drummer\. <span class="meta">2013–<\/span><\/li>/);
-  assert.match(html, /<li id="vierlive"><span class="name">VIER\.LIVE<\/span> — Streaming platform\. <span class="meta">co-founder · 2020–2021<\/span><\/li>/);
+  assert.match(html, /<li id="atlanter"><span class="name">Atlanter<\/span><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
+  assert.match(html, /<li id="vierlive"><span class="name">VIER\.LIVE<\/span><span class="summary"> — Streaming platform\.<\/span> <span class="meta">co-founder · 2020–2021<\/span><\/li>/);
+});
+
+test('an entry with one link and no about is a plain line whose name is the link', () => {
+  const content = fixture();
+  content.projects[1].links = [{ label: 'site', url: 'https://example.com/atlanter' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><a class="name" href="https:\/\/example\.com\/atlanter">Atlanter<\/a><span class="summary"> — Composer and drummer\.<\/span> <span class="meta">2013–<\/span><\/li>/);
+});
+
+test('further links are listed by label when the entry is expanded', () => {
+  const content = fixture();
+  content.projects[1].links = [
+    { label: 'site', url: 'https://example.com/atlanter' },
+    { label: 'source', url: 'https://example.com/source' },
+    { label: 'article', url: 'https://example.com/article' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><details><summary><a class="name" href="https:\/\/example\.com\/atlanter">Atlanter<\/a>.*<\/summary><p class="links"><a href="https:\/\/example\.com\/source">source<\/a> · <a href="https:\/\/example\.com\/article">article<\/a><\/p><\/details><\/li>/);
 });
 
 test('a "from" section lists the other site\'s entries as one-liners that link over', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<h2>Software and hardware<\/h2>/);
-  assert.match(html, /<li id="kiwi"><a href="https:\/\/byjoba\.com\/#kiwi">Kiwi<\/a> — An instrument\.<\/li>/);
+  assert.match(html, /<li id="kiwi"><a class="name" href="https:\/\/byjoba\.com\/#kiwi">Kiwi<\/a><span class="summary"> — An instrument\.<\/span><\/li>/);
   assert.doesNotMatch(html, /Runs on a Raspberry Pi/);
 });
 
@@ -120,8 +137,7 @@ test('content is escaped in text and in attributes', () => {
   content.projects[0].links = [{ label: '<site>', url: 'https://example.com/?a=1&b="2"' }];
   const html = renderIndex(content, 'byjoba.com');
   assert.match(html, /<title>by&lt;joba&gt; &amp; &quot;co&quot;<\/title>/);
-  assert.match(html, /<span class="name">&lt;b&gt;Kiwi&lt;\/b&gt;<\/span> — Tom&#39;s &quot;A &amp; B&quot;/);
-  assert.match(html, /<a href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;">&lt;site&gt;<\/a>/);
+  assert.match(html, /<a class="name" href="https:\/\/example\.com\/\?a=1&amp;b=&quot;2&quot;">&lt;b&gt;Kiwi&lt;\/b&gt;<\/a><span class="summary"> — Tom&#39;s &quot;A &amp; B&quot;<\/span>/);
   assert.doesNotMatch(html, /<b>Kiwi/);
 });
 

@@ -80,16 +80,7 @@ footer {
   color: var(--muted-foreground);
 }
 
-a {
-  color: inherit;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-  text-decoration-color: var(--ring);
-}
-
-a:hover {
-  text-decoration-color: currentColor;
-}
+/* Links keep the browser's own colours and underline. */
 
 a:focus-visible,
 summary:focus-visible {
@@ -115,8 +106,13 @@ li:target {
   background: var(--muted);
 }
 
+/* The name carries the weight and the full colour; what it is sits back in the muted tone. */
 .name {
-  font-weight: 500;
+  font-weight: 600;
+}
+
+.summary {
+  color: var(--muted-foreground);
 }
 
 .meta {

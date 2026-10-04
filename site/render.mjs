@@ -39,14 +39,23 @@ function meta(entry) {
   return parts.length ? ` <span class="meta">${escapeHtml(parts.join(' · '))}</span>` : '';
 }
 
-/** An entry on its own site: a plain line, or a disclosure when it has an about or links. */
+const summary = (entry) => `<span class="summary"> — ${escapeHtml(entry.summary)}</span>`;
+
+/**
+ * An entry on its own site. The name is the entry's first link when it has one.
+ * It is a plain line, or a disclosure when there is an about or further links to show.
+ */
 function fullEntry(entry) {
-  const head = `<span class="name">${escapeHtml(entry.name)}</span> — ${escapeHtml(entry.summary)}${meta(entry)}`;
+  const [first, ...rest] = entry.links ?? [];
+  const name = first
+    ? `<a class="name" href="${escapeHtml(first.url)}">${escapeHtml(entry.name)}</a>`
+    : `<span class="name">${escapeHtml(entry.name)}</span>`;
+  const head = `${name}${summary(entry)}${meta(entry)}`;
   const id = escapeHtml(entry.id);
-  if (!entry.about && !entry.links?.length) return `<li id="${id}">${head}</li>`;
+  if (!entry.about && rest.length === 0) return `<li id="${id}">${head}</li>`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
-  const links = entry.links?.length
-    ? `<p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
+  const links = rest.length
+    ? `<p class="links">${rest.map((link) => `<a href="${escapeHtml(link.url)}">${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
     : '';
   return `<li id="${id}"><details><summary>${head}</summary>${about}${links}</details></li>`;
 }
@@ -54,8 +63,8 @@ function fullEntry(entry) {
 /** An entry shown on the other site: name and summary only, the name linking to its home. */
 function linkedEntry(entry) {
   const id = escapeHtml(entry.id);
-  const name = `<a href="https://${escapeHtml(entry.site)}/#${id}">${escapeHtml(entry.name)}</a>`;
-  return `<li id="${id}">${name} — ${escapeHtml(entry.summary)}</li>`;
+  const name = `<a class="name" href="https://${escapeHtml(entry.site)}/#${id}">${escapeHtml(entry.name)}</a>`;
+  return `<li id="${id}">${name}${summary(entry)}</li>`;
 }
 
 function renderSection(content, domain, section) {
@@ -71,7 +80,7 @@ export function renderIndex(content, domain) {
   const others = otherSites(content, domain).join(' · ');
   const sections = site.sections.map((section) => renderSection(content, domain, section)).filter(Boolean);
   const body = [
-    `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n<p>${others}</p>\n</header>`,
+    `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n</header>`,
     `<main>\n${sections.join('\n')}\n</main>`,
     `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p><img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
