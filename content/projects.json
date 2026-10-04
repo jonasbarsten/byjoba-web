@@ -327,6 +327,17 @@
       "years": "2022–2023"
     },
     {
+      "id": "magly",
+      "badges": ["live"],
+      "name": "Magly",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer.",
+      "about": "Concerts include Spot Festival in Aarhus in 2022.",
+      "years": "2022"
+    },
+    {
       "id": "sandra-lyng",
       "badges": ["live"],
       "name": "Sandra Lyng",
@@ -779,7 +790,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Magly, Jonathan Floyd, Kimichi, Christabelle, Tafel and Down Low Disco.",
+      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Jonathan Floyd, Kimichi, Christabelle, Tafel and Down Low Disco.",
       "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages.",
       "years": "2015–2024"
     },

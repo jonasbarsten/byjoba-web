@@ -663,6 +663,9 @@
     {"date":"2017-08-11","place":"Vadsø"},
     {"date":"2016-03-15","venue":"Det Norske Teatret","place":"Oslo"}
   ],
+  "magly": [
+    {"date":"2022-05","venue":"Spot Festival","place":"Aarhus"}
+  ],
   "stand-in": [
     {"date":"2017-07-13","venue":"Riddu Riđđu","place":"Manndalen","note":"Mette Henriette (keyboards)"},
     {"date":"2016-03-08","place":"Lillehammer","note":"Kimichi"},
@@ -670,7 +673,6 @@
     {"date":"2015-08-29","note":"Alejandro Fuentes"},
     {"date":"2015-01-09","place":"Bergen","note":"Down Low Disco, with Tom Hugo and Alexandra Rotan"},
     {"date":"2022-05-31","venue":"NRK","note":"Jonathan Floyd"},
-    {"date":"2022-05","venue":"Spot Festival","place":"Aarhus","note":"Magly"},
     {"date":"2024-10-12","venue":"DUNK","place":"Oslo","note":"Karen Musæus"},
     {"date":"2023-11-11","note":"Vinni"},
     {"date":"2023-06-24","venue":"Tinderbox","place":"Odense","note":"Astrid S"},
