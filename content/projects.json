@@ -164,7 +164,9 @@
       "site": "byjoba.com",
       "category": "hardware",
       "status": "in-development",
-      "summary": "Headless instrument on a Raspberry Pi: piano, sampler and vocoder at once, blended with MIDI knobs."
+      "summary": "Headless instrument on a Raspberry Pi: piano, sampler and vocoder at once, blended with MIDI knobs.",
+      "badges": ["open source"],
+      "links": [{ "label": "source", "url": "https://github.com/jonasbarsten/kiwi" }]
     },
     {
       "id": "vigil",
@@ -988,7 +990,7 @@
       "id": "bellman",
       "badges": ["live"],
       "years": "2013–2015",
-      "about": "Bellman is the artist name of Arne-Johan Rauan. Tour of Japan in 2015.",
+      "about": "Bellman is the artist name of Arne-Johan Rauan. Tour of South Korea in 2013, with concerts in Gwangju, Seoul and Busan, and of Japan in 2015, in Tokyo and Kyoto.",
       "name": "Bellman",
       "site": "jonasbarsten.com",
       "category": "music",
