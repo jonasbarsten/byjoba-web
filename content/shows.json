@@ -332,7 +332,6 @@
     {"date":"2026-03-22","venue":"Spellemann"},
     {"date":"2023-05-30","venue":"Festspillene i Bergen","place":"Bergen"},
     {"date":"2023-05-05","venue":"Spot Festival","place":"Aarhus"},
-    {"date":"2023-03-11","venue":"100 Dagar"},
     {"date":"2022-09-17","venue":"by:Larm, Sentrum Scene","place":"Oslo"},
     {"date":"2022-09-16","venue":"by:Larm, Blå","place":"Oslo","review":{"label":"Bands of Tomorrow","url":"https://www.bandsoftomorrow.com/2022/09/sei-selina-bylarm-2022/"}},
     {"date":"2022-09-12","place":"Barcelona","note":"support for Aurora"},
@@ -499,7 +498,7 @@
   ],
   "bendik-baksaas-band": [
     {"date":"2018-06-04","venue":"Victoria","place":"Oslo"},
-    {"date":"2018-01-26","venue":"Frysja","place":"Oslo"},
+    {"date":"2018-01-26","venue":"Perlen, Hammersborgtunnelen","place":"Oslo"},
     {"date":"2012-08-07","venue":"Klubbøya","place":"Oslo"},
     {"date":"2012-07-21","venue":"Slottsfjell"}
   ],
@@ -575,7 +574,6 @@
     {"date":"2014-10-09","venue":"Film fra Sør","place":"Oslo"},
     {"date":"2014-09-26","venue":"St. Croix","place":"Fredrikstad"},
     {"date":"2014-08-13","venue":"Christian Frederik-dagene","place":"Moss"},
-    {"date":"2014-07-14","venue":"Tall Ships Races","place":"Fredrikstad"},
     {"date":"2014-07-03","venue":"Hovefestivalen","place":"Arendal"},
     {"date":"2014-06-28","venue":"Vervenfestivalen","place":"Horten"},
     {"date":"2014-05-31","venue":"Parkteatret","place":"Oslo","note":"release concert"},
@@ -626,7 +624,6 @@
   "sassybeat": [
     {"date":"2014-08-02","venue":"Raumarock"},
     {"date":"2014-07-05","venue":"Sommerfesten på Giske","place":"Giske"},
-    {"date":"2014-04-25","place":"Risør"},
     {"date":"2014-03-28","venue":"John Dee","place":"Oslo"},
     {"date":"2014-03-20","place":"Drammen"},
     {"date":"2014-03-01","venue":"by:Larm, Gamla","place":"Oslo"},
@@ -795,7 +792,7 @@
     {"date":"2017-11-18","venue":"Parkteatret","place":"Oslo","note":"No. 4","review":{"label":"Periskop","url":"https://periskop.no/no-4-legger-skjul-pa-akkurat-sann/"}},
     {"date":"2017-11-10","place":"Bergen","note":"Sondre Justad"},
     {"date":"2017-10-20","place":"Trondheim","note":"Sondre Justad"},
-    {"date":"2017-10-14","venue":"Blå","place":"Oslo","note":"Christabelle"},
+    {"date":"2017-10-14","venue":"Blå","place":"Oslo","note":"Gorillai"},
     {"date":"2017-07-13","venue":"Riddu Riđđu","place":"Manndalen","note":"Mette Henriette (keyboards)"},
     {"date":"2017-05-13","place":"Oslo","note":"No. 4"},
     {"date":"2016-10-14","place":"Stavanger","note":"No. 4"},
@@ -856,7 +853,6 @@
     {"date":"2023-08-12","venue":"Øyanatt, John Dee","place":"Oslo"}
   ],
   "rydin": [
-    {"date":"2016-02-28","venue":"Kampenjazz","place":"Oslo"},
     {"date":"2014-08-05","venue":"Øyanatt, Fisk og Vilt","place":"Oslo"},
     {"date":"2014-06-24","venue":"Mir","place":"Oslo"},
     {"date":"2014-06-17","venue":"Skyskraper"}

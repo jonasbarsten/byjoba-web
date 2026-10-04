@@ -320,9 +320,9 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "Musical director and drummer.",
-      "about": "Matoma is the artist name of Tom Stræte Lagergren, a producer and DJ. From around 2018 to 2021, with single shows after that. Concerts include Stavernfestivalen in 2019, the TV show Lindmo in 2020 and VG-lista in 2024.",
-      "years": "2018–2021",
+      "summary": "Drummer, and musical director from 2023.",
+      "about": "Matoma is the artist name of Tom Stræte Lagergren, a producer and DJ. Concerts include Tysnesfest, Stavernfestivalen and Opptur in 2019, and VG-lista in 2024.",
+      "years": "2019–2024",
       "media": [{ "label": "WOW, with Emma Steinbakken, live on NRK Lindmo", "url": "https://www.youtube.com/watch?v=u5umRNr2duw" }]
     },
     {
@@ -537,7 +537,7 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Co-creator and performer in a stage production of music, dance, poetry and visual art, made in Zimbabwe.",
+      "summary": "Co-creator and performer in a stage production of music, dance, poetry and visual art, made over two stays in Zimbabwe in spring 2015.",
       "about": "Made by fifteen artists from several countries as The Woodlands Project, produced by Shi Pratt and Kyrre Heldal Karlsen, and first performed at Reps Theatre in Harare on 29 April 2015, during the Harare International Festival of the Arts. Supported by Arts Council Norway, the Fund for Performing Artists and the Norwegian Ministry of Foreign Affairs.",
       "links": [{ "label": "entry at Sceneweb", "url": "https://sceneweb.no/en/production/49693/Woodlands" }],
       "years": "2015"
@@ -793,7 +793,6 @@
     },
     {
       "id": "julian-skar",
-      "badges": ["live"],
       "name": "Julian Skar",
       "about": "Julian Skar is a composer and musician who writes for theatre, dance and opera.",
       "site": "jonasbarsten.com",
@@ -842,8 +841,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Jonathan Floyd, Kimichi, Christabelle, Tafel and Down Low Disco.",
-      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages.",
+      "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Jonathan Floyd, Resa Saffa Park, Kimichi, Gorillai and Down Low Disco.",
+      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages and at two concerts in Port-au-Prince. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018.",
       "years": "2015–2024"
     },
     {
