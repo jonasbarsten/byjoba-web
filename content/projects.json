@@ -484,12 +484,44 @@
       "summary": "The cultural exchange programme UMOJA, the improvisation concept Antiloop, and the Kristiansand edition of Modulært Grand Prix."
     },
     {
-      "id": "also-played-with",
-      "name": "Also played with",
+      "id": "anja-skybakmoen",
+      "name": "Anja Skybakmoen",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "André Bratten, Anja Skybakmoen, Bellman, Bløsh, CCTV and Siri Nilsen."
+      "summary": "Drummer."
+    },
+    {
+      "id": "bellman",
+      "name": "Bellman",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer."
+    },
+    {
+      "id": "blosh",
+      "name": "Bløsh",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer."
+    },
+    {
+      "id": "cctv",
+      "name": "CCTV",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer."
+    },
+    {
+      "id": "siri-nilsen",
+      "name": "Siri Nilsen",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer."
     },
     {
       "id": "drums-and-electronics",
