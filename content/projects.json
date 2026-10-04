@@ -846,6 +846,16 @@
       "years": "2015–2024"
     },
     {
+      "id": "bingobandet",
+      "badges": ["live"],
+      "name": "Bingobandet",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Percussion in the house band for the bingo nights at Blå in Oslo, about every other Wednesday.",
+      "years": "2010–2015"
+    },
+    {
       "id": "bjorn-charles-dreyer-group",
       "badges": ["live"],
       "name": "Bjørn Charles Dreyer Group",
