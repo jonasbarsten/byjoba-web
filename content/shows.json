@@ -107,6 +107,7 @@
     {"date":"2025-10-02","place":"Haugesund"},
     {"date":"2025-08-10","venue":"Hellviktangen","place":"Nesodden"},
     {"date":"2025-04-10","venue":"Melhus vgs","place":"Melhus","note":"school tour"},
+    {"date":"2025-04-02","venue":"Litteraturhuset","place":"Trondheim","note":"Elv på himmelen"},
     {"date":"2025-04-09","place":"Oppdal","note":"school tour"},
     {"date":"2025-04-08","place":"Orkanger","note":"school tour"},
     {"date":"2025-03-13","venue":"Trondheim voksenopplæringssenter","place":"Trondheim","note":"school tour"},
@@ -230,6 +231,7 @@
     {"date":"2015-09-18","event":"Gjøvikmarken","place":"Gjøvik"}
   ],
   "atlanter": [
+    {"date":"2013-08-26","venue":"Zoologisk Museum","place":"Oslo","note":"event"},
     {"date":"2013-11-15","venue":"Studentersamfundet","place":"Trondheim","note":"Klubben"},
     {"date":"2013-11-01","venue":"Kulturhuset","place":"Oslo","note":"broadcast concert for NRK P2"},
     {"date":"2013-05-31","venue":"Rockefeller","place":"Oslo","note":"with Kurt Vile"},
@@ -439,6 +441,7 @@
     {"date":"2015-10-28","venue":"Teateret","place":"Kristiansand"}
   ],
   "ary": [
+    {"date":"2017-05-06","event":"Landstreff","venue":"Kongeparken","place":"Ålgård"},
     {"date":"2017-08-24","place":"Bergen"},
     {"date":"2017-08-04","event":"Festidalen","venue":"Festidalen","country":"NO"},
     {"date":"2017-07-29","venue":"Canal Street","place":"Arendal"},
@@ -519,6 +522,7 @@
     {"date":"2014-09-18","venue":"Parkteatret","place":"Oslo","review":{"label":"Gaffa","url":"https://gaffa.no/anmeldelser/2014/september/events/thea-hjelmeland-parkteatret-oslo/"}}
   ],
   "bendik-baksaas-band": [
+    {"date":"2012-02-24","venue":"SUPA","country":"NO"},
     {"date":"2018-06-04","venue":"Victoria","place":"Oslo"},
     {"date":"2018-01-26","venue":"Perlen","place":"Oslo"},
     {"date":"2012-08-07","event":"Klubbøya","place":"Oslo"},
@@ -696,6 +700,7 @@
     {"date":"2009-12","place":"Kristiansand"}
   ],
   "hanne-kolsto": [
+    {"date":"2011-10-06","event":"Natt&Dag","place":"Oslo"},
     {"date":"2016-06-04","event":"Musikkfest Oslo","venue":"Sukkerbiten","place":"Oslo","note":"stand-in"},
     {"date":"2015-04-17","venue":"Club Stereo","place":"Nuremberg"},
     {"date":"2015-04-16","venue":"Café Central","place":"Weinheim"},
@@ -789,6 +794,7 @@
     {"date":"2013-02-14","event":"by:Larm","venue":"Mono","place":"Oslo"},
     {"date":"2012-08-07","event":"Klubbøya","place":"Oslo"},
     {"date":"2012-07-20","event":"Slottsfjell","venue":"Slottsfjell","place":"Tønsberg"},
+    {"date":"2012-05-05","venue":"Fugazi","country":"NO"},
     {"date":"2012-05-03","venue":"Blå","place":"Oslo"},
     {"date":"2011-10-11","event":"Zoom","venue":"Mono","place":"Oslo"},
     {"date":"2012-06","event":"Hovefestivalen","venue":"Hovefestivalen","place":"Arendal"}
@@ -987,6 +993,13 @@
     {"date":"2016-02-26","place":"Saint-Louis-du-Sud","note":"first concert, with the full group"}
   ],
   "stand-in": [
+    {"date":"2017-06","event":"Over Oslo","place":"Oslo","act":"No. 4"},
+    {"date":"2017-05-16","venue":"Oslo rådhus","place":"Oslo","act":"Maren Selvaag","note":"Business for Peace"},
+    {"date":"2015-06-18","country":"NO","act":"Åges"},
+    {"date":"2014-12-08","venue":"Mesh","place":"Oslo","act":"Maren Selvaag","note":"Sound Picking"},
+    {"date":"2014-09-25","place":"Fredrikstad","note":"percussion with a DJ"},
+    {"date":"2014-05-24","place":"Hankø","act":"Åges"},
+    {"date":"2014-05-10","place":"Sarpsborg","act":"Åges"},
     {"date":"2023-06-23","place":"Batalden","act":"Lindsjørn"},
     {"date":"2026-08-22","venue":"Ypsilon","place":"Drammen","act":"Elén"},
     {"date":"2023-06-14","place":"Tønsberg","act":"Miss Tati","note":"school concert"},
@@ -1045,6 +1058,7 @@
     {"date":"2018-11-15","event":"Senkveld (TV 2)","place":"Oslo","note":"with Wyclef Jean"}
   ],
   "hanne-hukkelberg": [
+    {"date":"2019-10-12","event":"Peng Festival","place":"Essen"},
     {"date":"2019-11-15","event":"Bø Jazzklubb","venue":"Parketten","place":"Bø"},
     {"date":"2019-08-07","venue":"Salt","place":"Oslo"},
     {"date":"2019-07-06","event":"Kongsberg Jazzfestival","venue":"Lågdalsmuseet","place":"Kongsberg","note":"REMIXME, with Fredrik Høyer"},
@@ -1084,5 +1098,46 @@
   ],
   "pekula-vol-1-arp": [
     {"date":"2017-09-18","venue":"Parkteatret","place":"Oslo","note":"the recorded concert"}
+  ],
+  "other-projects": [
+    {"date":"2020-08","event":"VårFEST","place":"Oslo","note":"VoxLAB, ensemble piece"},
+    {"date":"2012-06-12","venue":"Scenehuset","place":"Oslo","note":"Antiloop"},
+    {"date":"2012-05-03","venue":"300as","place":"Oslo","note":"with Jan Bang"},
+    {"date":"2011-09","event":"Ultima","place":"Oslo","note":"festival opening, percussion"},
+    {"date":"2011-05-20","event":"Tape to Zero","place":"Oslo","note":"SkRR"},
+    {"date":"2011-05","place":"Kristiansand","note":"Modulært Grand Prix"},
+    {"date":"2010-10","event":"Dølajazz","place":"Lillehammer","note":"Personal Sounds, Jazzincubator"},
+    {"date":"2009","event":"Punkt","place":"Kristiansand","note":"festival opening, Adam Rudolph's Organic Orchestra"}
+  ],
+  "kristiansand-years": [
+    {"date":"2011-08","event":"Knokkelrock","country":"NO"},
+    {"date":"2011-01-09","country":"NO","note":"Christmas session"},
+    {"date":"2011-01-06","country":"NO","note":"Christmas session"},
+    {"date":"2011-01","country":"NO","note":"ståopp-jazz"},
+    {"date":"2010-08-12","event":"Knokkelrock","country":"NO"},
+    {"date":"2010-08","place":"Drammen","note":"Inti"},
+    {"date":"2010-06","country":"NO","note":"Inti, tour of Sørlandet"},
+    {"date":"2010-05-15","venue":"Tollboden","place":"Kristiansand","note":"Inti"},
+    {"date":"2009-12","venue":"Sør Arena","place":"Kristiansand","note":"Øyvind Nypan"},
+    {"date":"2009-12","venue":"Kristiansand Jazzklubb","place":"Kristiansand","note":"Christmas session"},
+    {"date":"2009-08-13","venue":"Søgne gamle prestegård","place":"Søgne","note":"Monica Severinsen"}
+  ],
+  "bjorn-charles-dreyer-group": [
+    {"date":"2011-09","country":"NO","note":"tour of Sørlandet"},
+    {"date":"2010-06-06","venue":"Kristiansand Jazzklubb","place":"Kristiansand","note":"trio"}
+  ],
+  "lean-mean-jazz-machine": [
+    {"date":"2010-11-23","venue":"Victoria","place":"Oslo"}
+  ],
+  "theatre-and-dance": [
+    {"date":"2015-07","event":"Moldejazz","place":"Molde","note":"TRE"},
+    {"date":"2014-11-05","venue":"Dramatikkens hus","place":"Oslo","note":"Sukker"},
+    {"date":"2014-11-04","venue":"Dramatikkens hus","place":"Oslo","note":"Sukker"},
+    {"date":"2014-11-03","venue":"Dramatikkens hus","place":"Oslo","note":"Sukker"},
+    {"date":"2014-05-19","place":"Larvik","note":"Stella Polaris, with Jørgen Munkeby"},
+    {"date":"2009-03-28","venue":"University of Agder","place":"Kristiansand","note":"Press Play, last show"}
+  ],
+  "drums-and-electronics": [
+    {"date":"2013-06-14","venue":"Victoria","place":"Oslo","note":"master exam concert"}
   ]
 }
