@@ -975,10 +975,10 @@
   "madamamwe": [
     {"date":"2016-03-05","venue":"Café des Arts","place":"Port-au-Prince","note":"last concert of the tour"},
     {"date":"2016-03-02","place":"Port-au-Prince","note":"in one of the city's districts"},
-    {"date":"2016-03-01","country":"HT","note":"village near Saint-Louis-du-Sud"},
-    {"date":"2016-02-29","country":"HT","note":"village near Saint-Louis-du-Sud"},
-    {"date":"2016-02-28","country":"HT","note":"village near Saint-Louis-du-Sud"},
-    {"date":"2016-02-27","country":"HT","note":"village near Saint-Louis-du-Sud"},
+    {"date":"2016-03-01","country":"HT","note":"village 4, near Saint-Louis-du-Sud"},
+    {"date":"2016-02-29","country":"HT","note":"village 3, near Saint-Louis-du-Sud"},
+    {"date":"2016-02-28","country":"HT","note":"village 2, near Saint-Louis-du-Sud"},
+    {"date":"2016-02-27","country":"HT","note":"village 1, near Saint-Louis-du-Sud"},
     {"date":"2016-02-26","place":"Saint-Louis-du-Sud","note":"first concert, with the full group"}
   ],
   "stand-in": [
