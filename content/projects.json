@@ -1272,6 +1272,15 @@
       "role": "co-founder"
     },
     {
+      "id": "one-to-one",
+      "name": "1:1 (working title)",
+      "site": "jonasbarsten.com",
+      "category": "founder",
+      "status": "in-development",
+      "summary": "Start-up at a very early stage.",
+      "role": "co-founder"
+    },
+    {
       "id": "pekula",
       "name": "Pekula",
       "site": "jonasbarsten.com",
@@ -1346,6 +1355,16 @@
       "category": "installations",
       "status": "one-off",
       "summary": "A kiosk for Drivhuset: put your head in and see randomly chosen images that change with the music playing.",
+      "years": "2010"
+    },
+    {
+      "id": "the-sound-of-baneheia",
+      "name": "The Sound of Baneheia",
+      "site": "jonasbarsten.com",
+      "category": "installations",
+      "status": "one-off",
+      "summary": "A composition for the floodlit trail in Baneheia in Kristiansand, made from nature sounds recorded along it and mixed by where the listener walks.",
+      "about": "The 2.26 km trail is divided into eight zones, each with its own movement of three to four minutes. A phone reads the listener's GPS position and crossfades between the movements of the zones nearest. Composed in 2010, with support from Sørbok kulturfond.",
       "years": "2010"
     },
     {
