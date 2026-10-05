@@ -663,6 +663,7 @@
   "mads-with-band": [
     {"date":"2010-10","venue":"Roskilde Cafe","place":"Roskilde"},
     {"date":"2010-10","place":"Copenhagen","note":"Christiania"},
+    {"date":"2010-03-13","venue":"Charlies Bar","place":"Kristiansand","note":"daytime concert with I Ate My Pony"},
     {"date":"2010-03-10","venue":"Plaza","place":"Egersund"},
     {"date":"2010-03-09","venue":"Stavanger Jazzklubb","place":"Stavanger"},
     {"date":"2010-03-08","venue":"Café Moody","place":"Haugesund"},
@@ -689,7 +690,10 @@
     {"date":"2010-07-20","venue":"L'Orient","place":"Linköping"},
     {"date":"2010-07-17","venue":"Skuret","place":"Oslo"},
     {"date":"2010-07-16","venue":"Promenaden","place":"Risør"},
-    {"date":"2010-07-14","venue":"Charlies Bar","place":"Kristiansand"}
+    {"date":"2010-07-14","venue":"Charlies Bar","place":"Kristiansand"},
+    {"date":"2010-03-13","venue":"Charlies Bar","place":"Kristiansand","note":"daytime concert with Mads With Band"},
+    {"date":"2010-01-22","venue":"Charlies Bar","place":"Kristiansand","note":"competition night"},
+    {"date":"2009-12","place":"Kristiansand"}
   ],
   "hanne-kolsto": [
     {"date":"2016-06-04","event":"Musikkfest Oslo","venue":"Sukkerbiten","place":"Oslo","note":"stand-in"},
