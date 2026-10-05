@@ -202,20 +202,41 @@ function siteShows(content, domain) {
 }
 
 /**
- * What a list of shows spans, e.g. "954 shows, 382 venues, 151 events, 205 cities and 33 countries".
- * A venue counts once per city: two towns can each have a Kulturhuset.
+ * What a list of shows spans, e.g. "76 artists, 969 shows, 396 venues, 151 events, 207 cities
+ * and 33 countries", and the lists its counts open. A venue counts once per city: two towns
+ * can each have a Kulturhuset.
  */
 function showTotals(shows, places) {
-  const distinct = (key) => new Set(shows.map(key).filter(Boolean)).size;
-  const parts = [
-    count(distinct(actOf), 'artist'),
-    count(shows.length, 'show'),
-    count(distinct((show) => show.venue && `${show.venue}\n${show.place}`), 'venue'),
-    count(distinct((show) => show.event), 'event'),
-    count(distinct((show) => show.place), 'city', 'cities'),
-    count(distinct((show) => countryOf(show, places)), 'country', 'countries'),
-  ].filter(Boolean);
-  return parts.length > 1 ? `${parts.slice(0, -1).join(', ')} and ${parts.at(-1)}` : parts[0];
+  const tallies = [
+    tally(shows, 'artists', 'artist', 'artists', actOf),
+    { text: count(shows.length, 'show'), list: '' },
+    tally(shows, 'venues', 'venue', 'venues', (show) => show.venue && [show.venue, show.place].filter(Boolean).join(', ')),
+    tally(shows, 'events', 'event', 'events', (show) => show.event),
+    tally(shows, 'cities', 'city', 'cities', (show) => show.place),
+    tally(shows, 'countries', 'country', 'countries', (show) => places.countries[countryOf(show, places)]),
+  ].filter((part) => part.text);
+  const texts = tallies.map((part) => part.text);
+  const line = texts.length > 1 ? `${texts.slice(0, -1).join(', ')} and ${texts.at(-1)}` : texts[0];
+  return { line, lists: tallies.map((part) => part.list).join('') };
+}
+
+/**
+ * One of the counts, as a button that opens the list of what it counts: each
+ * name with its number of shows, most shows first. The list is a popover, so
+ * the page carries no script. Nothing to count gives no text.
+ */
+function tally(shows, id, word, plural, label) {
+  const numbers = new Map();
+  for (const name of shows.map(label).filter(Boolean)) numbers.set(name, (numbers.get(name) ?? 0) + 1);
+  if (numbers.size === 0) return { text: '', list: '' };
+  const heading = count(numbers.size, word, plural);
+  const items = [...numbers]
+    .sort(([a, x], [b, y]) => y - x || a.localeCompare(b, 'nb'))
+    .map(([name, number]) => `<li>${escapeHtml(name)} (${number})</li>`);
+  return {
+    text: `<button type="button" class="count" popovertarget="tally-${id}">${heading}</button>`,
+    list: `<div id="tally-${id}" class="shows" popover><h3>${heading}</h3><ol class="tally">\n${items.join('\n')}\n</ol></div>`,
+  };
 }
 
 /** Who a show was played with: the act it names, or the one its card is about. */
@@ -232,8 +253,9 @@ export function renderShows(content, domain) {
   const site = content.sites[domain];
   const shows = newestFirst(siteShows(content, domain));
   const rows = shows.map((show) => `<tr>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
+  const totals = showTotals(shows, content.places);
   const body = [
-    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${showTotals(shows, content.places)}.</p>\n</header>`,
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${totals.line}.</p>\n${totals.lists}\n</header>`,
     `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
   ].join('\n');
   const description = `The ${count(shows.length, 'show')} ${site.title} has played: date, act, event, venue, place and country.`;
