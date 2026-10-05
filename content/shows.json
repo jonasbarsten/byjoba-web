@@ -968,7 +968,10 @@
   "prosjekt-haiti": [
     {"date":"2016-03-05","place":"Port-au-Prince"},
     {"date":"2016-03-02","place":"Port-au-Prince"},
-    {"date":"2016-02","country":"HT","note":"concerts from a truck in villages, between 23 February and 6 March"}
+    {"date":"2016","country":"HT","note":"village concert from a truck"},
+    {"date":"2016","country":"HT","note":"village concert from a truck"},
+    {"date":"2016","country":"HT","note":"village concert from a truck"},
+    {"date":"2016","country":"HT","note":"village concert from a truck"}
   ],
   "stand-in": [
     {"date":"2023-06-23","place":"Batalden","act":"Lindsjørn"},
