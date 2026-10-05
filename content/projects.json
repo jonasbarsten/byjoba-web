@@ -941,6 +941,17 @@
       "about": "Toured Norway in February and March 2010: 18 concerts in 16 towns over 26 days. Played in Copenhagen and Roskilde in October 2010."
     },
     {
+      "id": "gypsy-lou",
+      "badges": ["live"],
+      "years": "2009",
+      "name": "Gypsy Lou",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer in the band of the singer Lisa Nybrott, formed at the University of Agder.",
+      "about": "Toured in the autumn of 2009, between 22 October and 7 November: Hamar, Gjøvik, Skien, Oslo and Trondheim."
+    },
+    {
       "id": "lean-mean-jazz-machine",
       "badges": ["live"],
       "years": "2009–2010",

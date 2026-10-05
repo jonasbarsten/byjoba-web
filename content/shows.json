@@ -653,6 +653,13 @@
     {"date":"2009-05-01","venue":"Arbeideren","country":"NO"},
     {"date":"2009-04-25","event":"Herlig Land","venue":"Herlig Land","country":"NO"}
   ],
+  "gypsy-lou": [
+    {"date":"2009","place":"Trondheim"},
+    {"date":"2009","place":"Oslo"},
+    {"date":"2009","place":"Skien"},
+    {"date":"2009","place":"Gjøvik"},
+    {"date":"2009","place":"Hamar"}
+  ],
   "mads-with-band": [
     {"date":"2010-10","venue":"Roskilde Cafe","place":"Roskilde"},
     {"date":"2010-10","place":"Copenhagen","note":"Christiania"},
