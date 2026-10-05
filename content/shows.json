@@ -339,6 +339,7 @@
     {"date":"2016-12-21","venue":"USF Verftet","place":"Bergen","review":{"label":"Bergens Tidende","url":"https://www.bt.no/kultur/i/5K7je/superstjernen-drukner-litt-i-storproduksjonen"}}
   ],
   "matoma": [
+    {"date":"2020-10-28","event":"Lindmo (NRK)","place":"Oslo"},
     {"date":"2024-06-21","event":"VG-lista","venue":"Rådhusplassen","place":"Oslo"},
     {"date":"2019-08-30","venue":"Festningen","place":"Trondheim","review":{"label":"Adresseavisen","url":"https://trdby.adressa.no/kultur/i/qWO67z/anmeldelse-kveldens-beste-vorspiel"}},
     {"date":"2019-08-16","venue":"Bakgården","place":"Harstad"},
@@ -1065,6 +1066,8 @@
   ],
   "den-politiske-kroppen": [
     {"date":"2019-11-16","venue":"Bozar","place":"Brussels","review":{"label":"RTBF","url":"https://www.rtbf.be/article/the-political-body-quand-litterature-et-musique-s-unissent-corps-et-ame-10367510"}},
+    {"date":"2019-10-17","place":"Frankfurt"},
+    {"date":"2019-09-25","place":"Oslo","note":"premiere"},
     {"date":"2018-05-18","place":"Paris"},
     {"date":"2017-10-07","venue":"Litteraturhuset","place":"Oslo"},
     {"date":"2017-10-06","venue":"Litteraturhuset","place":"Oslo","note":"premiere"}
@@ -1097,6 +1100,10 @@
   ],
   "pekula-vol-1-arp": [
     {"date":"2017-09-18","venue":"Parkteatret","place":"Oslo","note":"the recorded concert"}
+  ],
+  "phaedra": [
+    {"date":"2015-08-11","country":"NO"},
+    {"date":"2015-06-13","venue":"Parkteatret","place":"Oslo"}
   ],
   "koeju-live-system": [
     {"date":"2012-08-03","venue":"Blå","place":"Oslo"},
