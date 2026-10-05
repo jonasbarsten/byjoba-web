@@ -1369,11 +1369,12 @@
     },
     {
       "id": "yourbuzzkollekt",
-      "name": "YourBuzzKollekt",
+      "name": "Your buzzkollekt",
       "site": "jonasbarsten.com",
       "category": "commissioned",
       "status": "active",
-      "summary": "Web platform for Buzz Kollekt that gathers ticket, advertising, newsletter and streaming data."
+      "summary": "Web platform for Buzz Kollekt that gathers ticket, advertising, newsletter and streaming data.",
+      "url": "https://your.buzzkollekt.no"
     },
     {
       "id": "buzzmail",
