@@ -835,16 +835,16 @@
       "years": "2023"
     },
     {
-      "id": "prosjekt-haiti",
+      "id": "madam-amwe",
       "badges": ["live"],
-      "name": "Prosjekt Haiti",
+      "name": "Madam Amwe",
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Drummer on a tour of Haiti with the aid organisation Prosjekt Haiti: concerts from a truck in villages, and two in Port-au-Prince.",
-      "about": "Six concerts on one trip, from 22 February to 8 March 2016: village concerts in the last week of February, played on the ground among the audience, then Port-au-Prince on 2 and 5 March.",
+      "summary": "Drummer in a music project in Haiti, with Norwegian musicians and musicians from the village of Saint-Louis-du-Sud: concerts in the village and two in Port-au-Prince.",
+      "about": "Six concerts on one trip, from 22 February to 8 March 2016: village concerts in the last week of February, played on the ground among the audience, then Port-au-Prince on 2 and 5 March. A recording session followed in Oslo in September 2016. Connected with the aid organisation Prosjekt Haiti.",
       "years": "2016",
-      "links": [{ "label": "site", "url": "https://prosjekthaiti.org/" }]
+      "links": [{ "label": "Prosjekt Haiti", "url": "https://prosjekthaiti.org/" }]
     },
     {
       "id": "stand-in",
