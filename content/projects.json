@@ -835,6 +835,18 @@
       "years": "2023"
     },
     {
+      "id": "prosjekt-haiti",
+      "badges": ["live"],
+      "name": "Prosjekt Haiti",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "one-off",
+      "summary": "Musician on a tour of Haiti with the aid organisation Prosjekt Haiti: concerts from a truck in villages, and two in Port-au-Prince.",
+      "about": "One trip, from 22 February to 8 March 2016.",
+      "years": "2016",
+      "links": [{ "label": "site", "url": "https://prosjekthaiti.org/" }]
+    },
+    {
       "id": "stand-in",
       "badges": ["live"],
       "name": "Stand-in and single concerts",
@@ -842,7 +854,7 @@
       "category": "music",
       "status": "one-off",
       "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Miss Tati, Jonathan Floyd, Resa Saffa Park, Lindsjørn, Elén, Kimichi, Gorillai and Down Low Disco.",
-      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. In 2016 a tour of Haiti with Prosjekt Haiti, playing from a truck in villages and at two concerts in Port-au-Prince. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018.",
+      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018.",
       "years": "2015–2026"
     },
     {
