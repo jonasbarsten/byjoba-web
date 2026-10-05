@@ -89,6 +89,34 @@
       "url": "https://fakfura.no"
     },
     {
+      "id": "fiken-plus-plus",
+      "name": "Fiken++",
+      "site": "byjoba.com",
+      "category": "apps",
+      "status": "in-development",
+      "summary": "Chrome extension that adds one-click buttons to Fiken's bank reconciliation, starting with booking a transaction as private use.",
+      "years": "2026"
+    },
+    {
+      "id": "lossless-streaming",
+      "name": "Lossless streaming (working title)",
+      "site": "byjoba.com",
+      "category": "apps",
+      "status": "in-development",
+      "summary": "Web player for lossless audio from Dropbox, with playlists and every version of a track a click away.",
+      "years": "2025"
+    },
+    {
+      "id": "oven-pa",
+      "name": "Oven Pa",
+      "site": "byjoba.com",
+      "category": "apps",
+      "status": "in-development",
+      "summary": "iOS app for keeping a habit: a live timer since the last time, milestones, and what it has saved so far.",
+      "about": "In Norwegian.",
+      "years": "2023–"
+    },
+    {
       "id": "upload-to-dropbox",
       "name": "Upload to Dropbox",
       "site": "byjoba.com",
@@ -134,6 +162,15 @@
       "summary": "Shows the file path of the Live Set that is open."
     },
     {
+      "id": "max-for-live-devices",
+      "name": "Early Max for Live devices",
+      "site": "byjoba.com",
+      "category": "live-extensions",
+      "status": "ended",
+      "summary": "Small devices and controller utilities shared for free: audio-trigg, CC-number-changer, key to MIDI, audio2midi, MIDI Relayer and others.",
+      "years": "2010–2015"
+    },
+    {
       "id": "sordello",
       "name": "Sordello",
       "site": "byjoba.com",
@@ -159,6 +196,15 @@
       "summary": "macOS app that writes SMPTE LTC timecode as WAV files."
     },
     {
+      "id": "multitrack-player",
+      "name": "Multitrack player (working title)",
+      "site": "byjoba.com",
+      "category": "music-tools",
+      "status": "in-development",
+      "summary": "macOS app for live shows that plays hundreds of tracks from disk at once, with routing per track, cues and a waveform timeline.",
+      "years": "2026"
+    },
+    {
       "id": "kiwi",
       "name": "Kiwi",
       "site": "byjoba.com",
@@ -174,7 +220,8 @@
       "site": "byjoba.com",
       "category": "hardware",
       "status": "active",
-      "summary": "Door access system: an ESP32 device with a maglock, a cloud API and apps."
+      "summary": "Door access system: an ESP32 device with a maglock, a cloud API and apps.",
+      "about": "Grew out of a door lock prototype on Arduino with a keypad and display, made for OLYP in 2024."
     },
     {
       "id": "minos",
@@ -854,8 +901,8 @@
       "category": "music",
       "status": "one-off",
       "summary": "Single concerts, often as a stand-in on drums, with Astrid S, Dagny, Cezinando, Sondre Justad, Vinni, Maud, No. 4, Mette Henriette, Alejandro Fuentes, Karen Musæus, Miss Tati, Jonathan Floyd, Resa Saffa Park, Lindsjørn, Elén, Kimichi, Gorillai and Down Low Disco.",
-      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018.",
-      "years": "2015–2026"
+      "about": "On keyboards with Mette Henriette at Riddu Riđđu in 2017. Also concerts with a percussion trio playing contemporary music, in 2014 and 2018, jobs with Maren Selvaag (2014–2017), André Bratten and North Arc, the party band Åges, a drum group for events (2012) and live percussion with DJs (2014–2017).",
+      "years": "2012–2026"
     },
     {
       "id": "bingobandet",
@@ -1010,7 +1057,42 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "ended",
-      "summary": "The cultural exchange programme UMOJA, the improvisation concept Antiloop, and the Kristiansand edition of Modulært Grand Prix."
+      "summary": "The cultural exchange programme UMOJA, the improvisation concept Antiloop, and the Kristiansand edition of Modulært Grand Prix.",
+      "about": "UMOJA in 2011, with a trip to Africa and concerts in Norway. Won Modulært Grand Prix in 2011. Ableton Live, trumpet and percussion in Adam Rudolph's Organic Orchestra at the opening of the Punkt Festival in 2009. A solo set, Personal Sounds, at Jazzincubator during Dølajazz in 2010. The electroacoustic group SkRR at Tape to Zero in 2011, and percussion at the opening of Ultima the same year. A Jan Bang workshop and concert at 300as in 2012, and an ensemble piece at VoxLAB's VårFEST in 2020.",
+      "years": "2009–2020"
+    },
+    {
+      "id": "kristiansand-years",
+      "badges": ["live"],
+      "name": "Jazz and bands in Kristiansand",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drummer with Bodil Niska, Egil Kapstad, Hilde Hefte, Per Husby, Geir Wentzel, Øyvind Nypan and Michael Aadal, among others, while studying at the University of Agder.",
+      "about": "Ran his own concert series, nå:jazz, and was responsible for productions at a jazz club. Also the duo DJ Inti, with drums sampled live in sync with the DJ (2010), the Christmas sessions of Kristiansand Jazzklubb, a band for Knokkelrock in 2010 and 2011, a concert with Monica Severinsen (2009) and the student ensemble Bom Bom (2008).",
+      "years": "2008–2011"
+    },
+    {
+      "id": "theatre-and-dance",
+      "badges": ["live"],
+      "name": "Theatre and dance",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Musician in stage productions.",
+      "about": "In the band of Press Play, a musical at the University of Agder (2009). Music with the theatre company Stella Polaris and Jørgen Munkeby in Larvik (2014). Percussion in Sukker at Dramatikkens hus and in the children's performance TRE, on a school tour and at Moldejazz (2014–2015). Recorded for Mummitrollet og det usynlige barnet at Oslo Nye Teater, music by Julian Skar (2015). Music technology for Ingvild Langgård's dance work Cosmic Body (2015–2017). Drums in Frikar's Draumefangaren at Åbjøra in Valdres (2018).",
+      "years": "2009–2018"
+    },
+    {
+      "id": "studio-sessions",
+      "badges": ["studio"],
+      "name": "Studio sessions",
+      "site": "jonasbarsten.com",
+      "category": "music",
+      "status": "ended",
+      "summary": "Drums, percussion and programming on records and commissions.",
+      "about": "On Until Death by Emily and Thor by Thor (2012), and Let's be Light by let's be light (2015). Drums on music for commercials (2014–2015), percussion for Kleiv (2016) and on Ina Wroldsen's Strongest (2017). Live backing tracks for Kokkos (2011).",
+      "years": "2011–2017"
     },
     {
       "id": "anja-skybakmoen",
@@ -1089,7 +1171,7 @@
       "category": "music",
       "status": "one-off",
       "summary": "Master's thesis at the Norwegian Academy of Music: drums with electronics controlled by sensors on a dancer.",
-      "about": "The piece is called Sound Picking: composition, programming, drums and electronics, with dancers Anette Boge and Hedvig Bang. Presented at Musikkteknologidagene in 2012.",
+      "about": "The piece is called Sound Picking: composition, programming, drums and electronics, with dancers Anette Boge and Hedvig Bang. Presented at Musikkteknologidagene in 2012. The sensors were bought with support from Frifond musikk.",
       "years": "2011–2013",
       "links": [{ "label": "site", "url": "https://drumsandelectronics.com" }]
     },
@@ -1135,7 +1217,8 @@
       "site": "jonasbarsten.com",
       "category": "music",
       "status": "one-off",
-      "summary": "Music for student films at the film school at Lillehammer University College."
+      "summary": "Music for student films at the film school at Lillehammer University College.",
+      "about": "Among them Kongsmenn (2011). Also music for a documentary in 2016."
     },
     {
       "id": "dolajazz-prize",
@@ -1173,7 +1256,9 @@
       "site": "jonasbarsten.com",
       "category": "live-teaching",
       "status": "active",
-      "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S, Ary, Sondre Justad and Julie Bergan."
+      "summary": "Designs redundant playback and control setups for live acts, among them Karpe, Highasakite, Astrid S, Ary, Sondre Justad and Julie Bergan.",
+      "about": "Racks for Julie Bergan (2017), Susanne Sundfør and Highasakite (2018), Karpe and Astrid S (2019); sync for Unge Ferrari and Arif at Oslo Spektrum in 2017; a Max for Live patch for Bugge Wesseltoft (2016). Also rented out in-ear monitor systems to Gundelach, No. 4, Julie Bergan and others (2016–2018), specified the equipment for MER's studio suites (2017), and was technical assistant for Giorgio Moroder at Rockefeller in 2015.",
+      "years": "2015–"
     },
     {
       "id": "kreativ-bruk-av-nettverk-live",
@@ -1182,9 +1267,76 @@
       "category": "live-teaching",
       "status": "active",
       "summary": "Course for technicians and musicians on networked live production, held for Kulturrom with sound engineer Johan Kristian Berntsen, and sometimes alone.",
-      "about": "Covers Ableton Live, Dante, MIDI, pre-production, stems, redundancy and timecode.",
+      "about": "Covers Ableton Live, Dante, MIDI, pre-production, stems, redundancy and timecode. Held in Tromsø in 2022, on tour in 2023 and 2024, and in Sandefjord in 2024.",
       "years": "2022–",
       "links": [{ "label": "course page (Tromsø 2022)", "url": "https://kulturrom.no/arrangementer/kreativ-bruk-av-nettverk-live-tromso/" }]
+    },
+    {
+      "id": "ableton-courses",
+      "name": "Ableton Live courses",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "ended",
+      "summary": "Courses in Ableton Live and music production around Norway.",
+      "about": "At Skien videregående skole (2010–2011), for members of GramArt and Norsk Artistforbund in Oslo, Bergen, Stavanger and Drammen (2014–2016), for Telemark fylkeskommune (2014), bandORG (2017) and AKKS Bergen (2018). Also substitute teacher at Westerdals (2016) and external examiner at Skien videregående skole (2014).",
+      "years": "2010–2019"
+    },
+    {
+      "id": "courses-backing-tracks-network-audio",
+      "name": "Courses in backing tracks and network audio",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "active",
+      "summary": "Courses in backing tracks for bands, for BandOrg, and in network audio and Dante, for the technical crew at Studentersamfundet i Trondhjem.",
+      "about": "BandOrg in 2022 and 2023, at Notam the second time. Studentersamfundet i Trondhjem in February 2026.",
+      "years": "2022–"
+    },
+    {
+      "id": "laptop-aften",
+      "name": "Laptop-@ften",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "ended",
+      "summary": "A recurring evening for laptop music and Ableton Live at the University of Agder in Kristiansand, for students, teachers and others.",
+      "years": "2009–2011"
+    },
+    {
+      "id": "drum-teaching",
+      "name": "Drum teaching",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "ended",
+      "summary": "Drum teacher at the music school in Vågsbygd, Kristiansand, and drum workshops for children, one of which ended as a warm-up for Madcon.",
+      "about": "Before that organised the summer art camp Kreativ Kick-Off for children every summer from 2004 to 2007, and taught its drum course.",
+      "years": "2004–2011"
+    },
+    {
+      "id": "oslo-ableton-user-group",
+      "name": "Oslo Ableton User Group",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "active",
+      "summary": "Organiser of the Ableton user group in Oslo, with regular meet-ups.",
+      "years": "2020–"
+    },
+    {
+      "id": "talks",
+      "name": "Talks and panels",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "active",
+      "summary": "Talks at Musikkteknologidagene (2012), on a panel at CODA Oslo International Dance Festival (2020), at by:Larm in a session hosted by the music office MØST (2024), and in Spanish for an Ableton user group (2024).",
+      "years": "2012–"
+    },
+    {
+      "id": "capiche",
+      "name": "CAPICHE?!",
+      "site": "jonasbarsten.com",
+      "category": "live-teaching",
+      "status": "one-off",
+      "summary": "Video, light and MIDI show programming for a touring school production by Unge Viken Teater.",
+      "about": "A show system with projection mapping, light cues, a subtitles app and Ableton Live. Premiere at Vega Scene in Oslo on 19 January 2024.",
+      "years": "2023–2024"
     },
     {
       "id": "nmh-teaching",
@@ -1202,7 +1354,8 @@
       "category": "live-teaching",
       "status": "one-off",
       "summary": "Programmed for sound engineer David Solheim, who has used it with Nils Petter Molvær and Silje Nergaard among others.",
-      "years": "2014"
+      "about": "First made in 2011 under the name LexiPad.",
+      "years": "2011–2014"
     },
     {
       "id": "koeju-live-system",
@@ -1211,7 +1364,7 @@
       "category": "live-teaching",
       "status": "one-off",
       "summary": "Programmed a complete live performance system.",
-      "years": "2013–2014"
+      "years": "2012–2014"
     },
     {
       "id": "jon-balke-panning",
@@ -1237,9 +1390,9 @@
       "category": "founder",
       "status": "active",
       "summary": "Musicians' collective at Rosenhoff in Oslo: 32 rehearsal and production rooms in about 3,000 m².",
-      "about": "Run by Oslo Lydproduksjon AS. Started with support from Musikkutstyrsordningen.",
+      "about": "Run by Oslo Lydproduksjon AS, founded in 2013. Building started in September 2014 and the house opened in March 2015, with support from Musikkutstyrsordningen.",
       "role": "co-founder",
-      "years": "2014–",
+      "years": "2013–",
       "url": "https://olyp.no"
     },
     {
@@ -1250,6 +1403,7 @@
       "status": "active",
       "summary": "iOS app that turns a written dream into scenes and generates the images on the device.",
       "role": "co-founder",
+      "years": "2021–",
       "url": "https://suril.ai"
     },
     {
@@ -1306,7 +1460,9 @@
       "site": "jonasbarsten.com",
       "category": "spaces",
       "status": "active",
-      "summary": "Plans and manages the building of the sound-isolated rehearsal and production rooms."
+      "summary": "Plans and manages the building of the sound-isolated rehearsal and production rooms.",
+      "about": "Built in stages: 10 rooms in 2014, 3 in 2018 and 19 in 2022, the last with parts cut on a CNC machine.",
+      "years": "2014–"
     },
     {
       "id": "olyp-software",
@@ -1324,6 +1480,7 @@
       "status": "in-development",
       "summary": "Concert venue and bar at Rosenhoff in Oslo, in a converted bomb shelter with room for 250.",
       "about": "A meeting place by day for the musicians who work in the area, a venue and bar by night.",
+      "years": "2025–",
       "url": "https://d1ivfvpmqdvx6t.cloudfront.net/"
     },
     {
@@ -1364,7 +1521,7 @@
       "category": "installations",
       "status": "one-off",
       "summary": "A composition for the floodlit trail in Baneheia in Kristiansand, made from nature sounds recorded along it and mixed by where the listener walks.",
-      "about": "The 2.26 km trail is divided into eight zones, each with its own movement of three to four minutes. A phone reads the listener's GPS position and crossfades between the movements of the zones nearest. Composed in 2010, with support from Sørbok kulturfond.",
+      "about": "The 2.26 km trail is divided into eight zones, each with its own movement of three to four minutes. A phone reads the listener's GPS position and crossfades between the movements of the zones nearest. Composed in 2010, with support from Sørbok kulturfond, as the prototype for Visual Sounds, a planned framework for tying sound to places. The phone app stayed in development.",
       "years": "2010"
     },
     {
@@ -1384,6 +1541,7 @@
       "status": "active",
       "summary": "App for artists and crews on tour: schedule, venues, travel, contacts and chat.",
       "about": "For FKP Scorpio Norge. iOS and web clients on a serverless backend.",
+      "years": "2025–",
       "url": "https://tourcontrol.no"
     },
     {
@@ -1422,6 +1580,7 @@
       "summary": "Board portal for housing companies.",
       "about": "My part has ended. The portal is still in use.",
       "role": "developer",
+      "years": "2021–",
       "url": "https://home.solibo.no/"
     },
     {
@@ -1432,7 +1591,8 @@
       "status": "ended",
       "summary": "Platform for streaming concerts with paid tickets and viewer chat.",
       "role": "CTO and co-founder",
-      "years": "2020–2021",
+      "about": "Started in spring 2020 with a streamed festival with Aurora, Sigrid, girl in red and others. Spoke for VIER.LIVE on a panel at CODA Oslo International Dance Festival in October 2020.",
+      "years": "2020–2022",
       "url": "https://vier.live"
     },
     {
@@ -1461,7 +1621,46 @@
       "category": "commissioned",
       "status": "one-off",
       "summary": "Websites for Atlanter, Daniel Kvammen, Jansen Records, Hajk, Blackpop Records and others.",
-      "years": "2017–2020"
+      "about": "Earlier sites for I Ate My Pony and Potato Records (2010), Maren Selvaag (2011), Krisasia (2012), Super Space Project, Bjørn Charles Dreyer and Knyst (2013), Frøy Aagre and Round 2 (2015), Electric Eye (2017) and Virkelig (2018); web promos for Thea and the Wild (2014) and Jonas Alaska (2015). Most ran on hosting of his own.",
+      "years": "2010–2020"
+    },
+    {
+      "id": "festival-and-venue-websites",
+      "name": "Festival and venue websites",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "ended",
+      "summary": "Websites for Piknik i Parken, Oslofjordfest, Sukkerbiten, Glasslåven, Brygg and Trøbbelskyter, and for the Serendip festival at the Norwegian Academy of Music.",
+      "years": "2011–2017"
+    },
+    {
+      "id": "talent-norge-portals",
+      "name": "Application portals for Talent Norge",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "ended",
+      "summary": "Web portals where applicants apply to Talent Norge's programmes ArtEx and Dirigentløftet, with an admin view of all applications.",
+      "about": "Built for ArtEx in 2016, then run, hosted and updated for each round until 2021.",
+      "years": "2016–2021"
+    },
+    {
+      "id": "hovedkvarteret",
+      "name": "Hovedkvarteret",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "ended",
+      "summary": "IT and web work for the post-production company Hovedkvarteret in Oslo.",
+      "years": "2014"
+    },
+    {
+      "id": "chroma-key",
+      "name": "Chroma Key",
+      "site": "jonasbarsten.com",
+      "category": "commissioned",
+      "status": "ended",
+      "summary": "Technical lead for an interactive stage work where the audience takes part through a web app, Skalbare, which he built.",
+      "about": "Made with Hannah Karine Giske, Kristin Ryg Helgebostad and Tuva Hennum. The pre-project was supported by Arts Council Norway.",
+      "years": "2019–2021"
     },
     {
       "id": "kulturarenastrategien",
@@ -1492,6 +1691,15 @@
       "category": "advocacy",
       "status": "in-development",
       "summary": "Interest organisation for those who run rehearsal and production premises."
+    },
+    {
+      "id": "boards-and-juries",
+      "name": "Boards and juries",
+      "site": "jonasbarsten.com",
+      "category": "advocacy",
+      "status": "ended",
+      "summary": "On the board of the Serendip festival at the Norwegian Academy of Music (2011) and of Piknik i Parken (2014–2016). Jury member for the blues category of Spellemannprisen 2017.",
+      "years": "2011–2017"
     },
     {
       "id": "tagging-fra-vugge-til-grav",
