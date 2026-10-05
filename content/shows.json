@@ -974,11 +974,11 @@
   ],
   "madam-amwe": [
     {"date":"2016-03-05","place":"Port-au-Prince","note":"last concert of the tour"},
-    {"date":"2016-03-02","place":"Port-au-Prince"},
-    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"village concert"},
-    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"village concert"},
-    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"village concert"},
-    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"village concert"}
+    {"date":"2016-03-02","place":"Port-au-Prince","note":"in one of the city's districts"},
+    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"concert in a village in the area"},
+    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"concert in a village in the area"},
+    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"concert in a village in the area"},
+    {"date":"2016-02","place":"Saint-Louis-du-Sud","note":"concert in a village in the area"}
   ],
   "stand-in": [
     {"date":"2023-06-23","place":"Batalden","act":"Lindsjørn"},
