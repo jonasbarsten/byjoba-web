@@ -966,12 +966,12 @@
     {"date":"2022-05-04","place":"Oslo"}
   ],
   "prosjekt-haiti": [
-    {"date":"2016-03-05","place":"Port-au-Prince"},
+    {"date":"2016-03-05","place":"Port-au-Prince","note":"last concert of the tour"},
     {"date":"2016-03-02","place":"Port-au-Prince"},
-    {"date":"2016","country":"HT","note":"village concert from a truck"},
-    {"date":"2016","country":"HT","note":"village concert from a truck"},
-    {"date":"2016","country":"HT","note":"village concert from a truck"},
-    {"date":"2016","country":"HT","note":"village concert from a truck"}
+    {"date":"2016-02","country":"HT","note":"village concert"},
+    {"date":"2016-02","country":"HT","note":"village concert"},
+    {"date":"2016-02","country":"HT","note":"village concert"},
+    {"date":"2016-02","country":"HT","note":"village concert"}
   ],
   "stand-in": [
     {"date":"2023-06-23","place":"Batalden","act":"Lindsjørn"},
