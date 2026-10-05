@@ -1099,6 +1099,12 @@
   "pekula-vol-1-arp": [
     {"date":"2017-09-18","venue":"Parkteatret","place":"Oslo","note":"the recorded concert"}
   ],
+  "koeju-live-system": [
+    {"date":"2012-08-03","venue":"Blå","place":"Oslo"},
+    {"date":"2012-06-01","venue":"Blå","place":"Oslo"},
+    {"date":"2012-04-06","venue":"Blå","place":"Oslo"},
+    {"date":"2012-02-02","venue":"Blå","place":"Oslo"}
+  ],
   "other-projects": [
     {"date":"2020-08","event":"VårFEST","place":"Oslo","note":"VoxLAB, ensemble piece"},
     {"date":"2012-06-12","venue":"Scenehuset","place":"Oslo","note":"Antiloop"},
