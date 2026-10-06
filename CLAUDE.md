@@ -32,5 +32,5 @@ This repo is public, and so is its history.
 
 - `site/` has no dependencies and must stay that way.
 - The list pages carry no script and no inline style.
-- Nothing in the Music section has a `url`: an artist's or a release's name does not link anywhere. Videos and tracks go in `media`, other pages in `links`; both show inside the opened card. A test enforces this. The players load only when a reader opens the entry, so the page itself still calls no third party.
+- Nothing in the Music section has a `url`: an artist's or a release's name does not link anywhere. Videos and tracks go in `media`, other pages in `links`; both show inside the opened card. A test enforces this. Videos and tracks are links to their own service, not embedded players (the players did not react to clicks); only a YouTube thumbnail loads from a third party, and only when a reader opens the entry.
 - Work on `dev`. Never push to `main`.

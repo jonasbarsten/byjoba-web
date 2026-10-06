@@ -203,7 +203,7 @@ test('the face of a card carries neither the status badge nor the years', () => 
   for (const face of faces) assert.doesNotMatch(face, /badge|2013|2020/);
 });
 
-test('media shows as small embeds inside the expanded entry, and the name stays plain', () => {
+test('media shows inside the expanded entry, and the name stays plain', () => {
   const content = fixture();
   content.projects[1].media = [
     { label: 'Pike', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' },
@@ -213,8 +213,23 @@ test('media shows as small embeds inside the expanded entry, and the name stays 
   assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>/);
   assert.match(
     html,
-    /<div class="media"><figure class="video"><iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/vGqLUF1fwrQ" title="Pike" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen><\/iframe><figcaption>Pike<\/figcaption><\/figure><figure class="track"><iframe src="https:\/\/open\.spotify\.com\/embed\/track\/5owc6LBkOZp05yh0T0B88Q" title="Aye" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media"><\/iframe><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
+    /<div class="media"><figure class="video"><a class="poster" href="https:\/\/www\.youtube\.com\/watch\?v=vGqLUF1fwrQ" target="_blank" rel="noopener" aria-label="Pike, on YouTube"><img src="https:\/\/i\.ytimg\.com\/vi\/vGqLUF1fwrQ\/hqdefault\.jpg" alt="" loading="lazy"><\/a><figcaption>Pike<\/figcaption><\/figure><figure class="track"><a class="poster" href="https:\/\/open\.spotify\.com\/track\/5owc6LBkOZp05yh0T0B88Q" target="_blank" rel="noopener" aria-label="Aye, on Spotify"><span class="service">Spotify<\/span><\/a><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
   );
+});
+
+// The embedded players did not react to clicks on the live pages, so every
+// video and track is a link to it on its own service, opening in a new tab.
+// YouTube's thumbnail is the poster; NRK and Spotify show their name.
+test('media are links to the video or track on its service, with no embedded player', () => {
+  const content = fixture();
+  content.projects[1].media = [
+    { label: 'Pike', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' },
+    { label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' },
+    { label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.doesNotMatch(html, /<iframe|youtube-nocookie|static\.nrk\.no|open\.spotify\.com\/embed/);
+  assert.match(html, /<span class="more">2 videos · 1 track<\/span>/);
 });
 
 test('the "more" marker says what media an entry holds', () => {
@@ -231,11 +246,14 @@ test('the "more" marker says what media an entry holds', () => {
   assert.equal(markerFor([video(1), video(2), track, track]), '2 videos · 2 tracks');
 });
 
-test('an NRK programme embeds through NRK\'s own player and counts as a video', () => {
+test('an NRK programme links to its NRK TV page and counts as a video', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<figure class="video"><iframe src="https:\/\/static\.nrk\.no\/ludo\/latest\/video-embed\.html#id=MKMU81000521" title="Festivalsommer"/);
+  assert.match(
+    html,
+    /<figure class="video"><a class="poster" href="https:\/\/tv\.nrk\.no\/serie\/festivalsommer\/sesong\/2021\/episode\/MKMU81000521" target="_blank" rel="noopener" aria-label="Festivalsommer, on NRK TV"><span class="service">NRK TV<\/span><\/a><figcaption>Festivalsommer<\/figcaption><\/figure>/,
+  );
   assert.match(html, /<span class="more">1 video<\/span>/);
 });
 
@@ -243,7 +261,7 @@ test('media labels are escaped', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'A "live" <take>', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /title="A &quot;live&quot; &lt;take&gt;"/);
+  assert.match(html, /aria-label="A &quot;live&quot; &lt;take&gt;, on YouTube"/);
   assert.match(html, /<figcaption>A &quot;live&quot; &lt;take&gt;<\/figcaption>/);
 });
 

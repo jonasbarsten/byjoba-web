@@ -118,7 +118,7 @@ li:target {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* An opened card takes the full width, so its players and text have room. */
+  /* An opened card takes the full width, so its videos, tracks and text have room. */
   li:has(> details[open]) {
     grid-column: 1 / -1;
   }
@@ -268,10 +268,10 @@ details p {
   margin: 0 0 var(--space-2);
 }
 
-/* Small players inside an expanded entry. */
+/* Videos and tracks inside an expanded entry. */
 .media {
   display: grid;
-  /* Two players side by side on a phone, more as the column widens. */
+  /* Two side by side on a phone, more as the column widens. */
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: var(--space-4) var(--space-2);
   margin: 0 0 var(--space-2);
@@ -303,23 +303,72 @@ figure {
   object-fit: cover;
 }
 
-iframe {
-  display: block;
-  width: 100%;
-  border: 0;
+/*
+ * A video or track: a link to it on its own service, opening in a new tab.
+ * YouTube shows its thumbnail; NRK and Spotify show the service's name. A play
+ * mark sits in the middle of every one.
+ */
+.poster {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   border-radius: calc(var(--radius) - 4px);
   background: var(--muted);
+  color: var(--muted-foreground);
+  text-decoration: none;
 }
 
-.video iframe {
-  aspect-ratio: 16 / 9;
+.poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.track iframe {
-  height: 80px;
+.service {
+  padding: var(--space-2);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
 }
 
-/* Under a cover or a player: the title in the full colour, the year below it in the muted one. */
+/* The play mark: a dark disc with a white triangle, drawn without an image. */
+.poster::before,
+.poster::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.poster::before {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1.25rem 0 0 -1.25rem;
+  border-radius: 50%;
+  background: oklch(0 0 0 / 60%);
+}
+
+.poster::after {
+  margin: -0.5rem 0 0 -0.3rem;
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.8rem;
+  border-color: transparent transparent transparent white;
+}
+
+.poster:hover::before {
+  background: oklch(0 0 0 / 80%);
+}
+
+.poster:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Under a cover, a video or a track: the title in the full colour, the year below it in the muted one. */
 figcaption {
   font-size: 0.75rem;
   line-height: 1rem;

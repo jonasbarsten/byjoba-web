@@ -59,17 +59,19 @@ function contentsHint(entry) {
 const meta = (entry) => (entry.role ? `<span class="meta">${escapeHtml(entry.role)}</span>` : '');
 
 /**
- * Small players for an entry's videos and tracks. `loading="lazy"` keeps them
- * from loading until the entry is opened, so a reader who opens nothing reaches
- * no third party. YouTube refuses to play without a referrer, hence the policy.
+ * An entry's videos and tracks, each a link to it on its own service, opening in
+ * a new tab. Embedded players did not react to clicks on the live pages. A
+ * YouTube video shows its thumbnail; `loading="lazy"` keeps it from loading
+ * until the entry is opened, so a reader who opens nothing reaches no third
+ * party. NRK and Spotify show the service's name.
  */
 function mediaBlock(entry) {
   if (!entry.media?.length) return '';
   const figures = entry.media.map((item) => {
-    const { kind, src } = mediaEmbed(item.url);
+    const { kind, service, poster } = mediaEmbed(item.url);
     const label = escapeHtml(item.label);
-    const allow = kind === 'video' ? 'allow="encrypted-media; picture-in-picture" allowfullscreen' : 'allow="encrypted-media"';
-    return `<figure class="${kind}"><iframe src="${escapeHtml(src)}" title="${label}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ${allow}></iframe><figcaption>${label}</figcaption></figure>`;
+    const face = poster ? `<img src="${escapeHtml(poster)}" alt="" loading="lazy">` : `<span class="service">${service}</span>`;
+    return `<figure class="${kind}"><a class="poster" href="${escapeHtml(item.url)}"${NEW_TAB} aria-label="${label}, on ${service}">${face}</a><figcaption>${label}</figcaption></figure>`;
   });
   const kinds = new Set(entry.media.map((item) => mediaEmbed(item.url).kind));
   const heading = kinds.size === 2 ? 'Videos and tracks' : kinds.has('video') ? 'Videos' : 'Tracks';
