@@ -82,6 +82,19 @@ test('media must be a list of labelled videos or tracks from a host the pages ca
   }
 });
 
+// The pages' Content-Security-Policy allows images from these hosts only (byjoba-iac, lib/web-stack.ts).
+test('a media poster is an https image on NRK\'s or Spotify\'s image host', () => {
+  const nrk = 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521';
+  const track = 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q';
+  assert.deepEqual(errorsFor((c) => { c.projects[1].media = [
+    { label: 'n', url: nrk, poster: 'https://gfx.nrk.no/3Eva9Hu4jdjQMVjqDiBKJwWEd238Wu47GJCIBJJ1RmRA' },
+    { label: 't', url: track, poster: 'https://i.scdn.co/image/ab67616d00001e02827d41ce8620684286573002' },
+  ]; }), []);
+  for (const poster of ['http://gfx.nrk.no/x', 'https://example.com/a.jpg', 'https://gfx.nrk.no.evil.com/x', 7]) {
+    assertError(errorsFor((c) => { c.projects[1].media = [{ label: 'n', url: nrk, poster }]; }), /entry "atlanter": media poster must be an https image on gfx\.nrk\.no or i\.scdn\.co/);
+  }
+});
+
 test('an entry that is not an object is an error, not a crash', () => {
   assertError(errorsFor((c) => { c.projects.push(null); }), /projects\[3\]: must be an object/);
 });

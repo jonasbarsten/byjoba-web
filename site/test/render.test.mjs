@@ -246,6 +246,14 @@ test('the "more" marker says what media an entry holds', () => {
   assert.equal(markerFor([video(1), video(2), track, track]), '2 videos · 2 tracks');
 });
 
+test('a media item with a poster shows that image instead of the service name', () => {
+  const content = fixture();
+  content.projects[1].media = [{ label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q', poster: 'https://i.scdn.co/image/abc' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /aria-label="Aye, on Spotify"><img src="https:\/\/i\.scdn\.co\/image\/abc" alt="" loading="lazy"><\/a>/);
+  assert.doesNotMatch(html, /<span class="service">/);
+});
+
 test('an NRK programme links to its NRK TV page and counts as a video', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' }];

@@ -63,12 +63,15 @@ const meta = (entry) => (entry.role ? `<span class="meta">${escapeHtml(entry.rol
  * a new tab. Embedded players did not react to clicks on the live pages. A
  * YouTube video shows its thumbnail; `loading="lazy"` keeps it from loading
  * until the entry is opened, so a reader who opens nothing reaches no third
- * party. NRK and Spotify show the service's name.
+ * party. NRK and Spotify show the item's `poster` when the content gives one
+ * (looked up once and pinned there, so the build needs no network), and the
+ * service's name otherwise.
  */
 function mediaBlock(entry) {
   if (!entry.media?.length) return '';
   const figures = entry.media.map((item) => {
-    const { kind, service, poster } = mediaEmbed(item.url);
+    const { kind, service, poster: thumbnail } = mediaEmbed(item.url);
+    const poster = item.poster ?? thumbnail;
     const label = escapeHtml(item.label);
     const face = poster ? `<img src="${escapeHtml(poster)}" alt="" loading="lazy">` : `<span class="service">${service}</span>`;
     return `<figure class="${kind}"><a class="poster" href="${escapeHtml(item.url)}"${NEW_TAB} aria-label="${label}, on ${service}">${face}</a><figcaption>${label}</figcaption></figure>`;

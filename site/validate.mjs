@@ -11,6 +11,8 @@ const COUNTRY_CODE = /^[A-Z]{2}$/;
 const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;
 const SLUG =/^[a-z0-9]+(-[a-z0-9]+)*$/;
 const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+/** A media poster: an NRK or Spotify image, the hosts the pages' CSP allows (byjoba-iac, lib/web-stack.ts). */
+const POSTER = /^https:\/\/(gfx\.nrk\.no|i\.scdn\.co)\/[\w/-]+$/;
 
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
@@ -168,6 +170,7 @@ function entryErrors(entry, index, sites, seen, places) {
       for (const item of entry.media) {
         if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
         else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video, an NRK TV programme or a Spotify track`);
+        else if ('poster' in item && !POSTER.test(item.poster)) errors.push(`${where}: media poster must be an https image on gfx.nrk.no or i.scdn.co`);
       }
     }
   }
