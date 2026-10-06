@@ -304,7 +304,7 @@ export function renderIndex(content, domain) {
   const body = [
     `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n</header>`,
     `<main>\n${sections.join('\n')}\n</main>`,
-    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p><img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
+    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p>visitors: <img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
   return page({ site, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: site.jsonLd, body });
 }

@@ -180,6 +180,10 @@ test('the counter image declares its size so the page does not shift', () => {
   assert.match(renderIndex(fixture(), 'byjoba.com'), /<img src="\/counter\.svg" alt="visitor counter" width="88" height="20">/);
 });
 
+test('the counter is labelled "visitors:"', () => {
+  assert.match(renderIndex(fixture(), 'byjoba.com'), /<p>visitors: <img src="\/counter\.svg"/);
+});
+
 test('the header holds the title and the intro and nothing else', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<header>\n<h1>Jonas Barsten<\/h1>\n<p>A list\.<\/p>\n<\/header>/);
