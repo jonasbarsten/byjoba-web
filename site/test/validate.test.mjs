@@ -35,6 +35,14 @@ for (const field of ['id', 'name', 'site', 'category', 'summary']) {
   });
 }
 
+// The summary is the card's short description; details go in `about`.
+test('a summary is one phrase: a second sentence is an error', () => {
+  assertError(errorsFor((c) => { c.projects[1].summary = 'Drummer. Concerts in Oslo.'; }), /entry "atlanter": summary must be one phrase; put further sentences in "about"/);
+  assert.deepEqual(errorsFor((c) => { c.projects[1].summary = 'Drummer.'; }), []);
+  // A full stop inside a name is not a sentence break.
+  assert.deepEqual(errorsFor((c) => { c.projects[1].summary = 'Stand-in drummer with No. 4 and Dagny'; }), []);
+});
+
 test('an unknown site is an error', () => {
   assertError(errorsFor((c) => { c.projects[0].site = 'example.com'; }), /entry "kiwi": unknown site "example.com"/);
 });

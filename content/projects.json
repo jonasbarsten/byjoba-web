@@ -51,8 +51,8 @@
       "site": "byjoba.com",
       "category": "apps",
       "status": "active",
-      "summary": "Invoice generator for the phone. Makes a PDF and hands it to the share sheet.",
-      "about": "In Norwegian. Runs in the browser.",
+      "summary": "Invoice generator for the phone.",
+      "about": "Makes a PDF and hands it to the share sheet. In Norwegian. Runs in the browser.",
       "url": "https://fakfura.no"
     },
     {

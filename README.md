@@ -61,7 +61,7 @@ An entry in `projects`:
 | `name` | yes | Display name. |
 | `site` | yes | The one domain the entry lives on. |
 | `category` | yes | A category of a section on that site. |
-| `summary` | yes | One line, shown on the card face without its closing full stop. |
+| `summary` | yes | One phrase, shown on the card face without its closing full stop: what the thing is, or Jonas's part in it (e.g. "Drummer"). Details such as concerts go in `about`; a second sentence fails the build. |
 | `about` | no | Short paragraph, shown when expanded. |
 | `years` | no | Free text, e.g. `2016–`. |
 | `status` | yes | Shown as a badge after the name. One of `in-development` (being made, not out yet), `active` (out or running, still worked on), `ended` (was active, has stopped), `one-off` (a single piece of work, delivered). |

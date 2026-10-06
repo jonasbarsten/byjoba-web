@@ -14,6 +14,7 @@ The generator (the engine) for byjoba.com and jonasbarsten.com, and byjoba.com's
 The pages are purely informational: no voice, no pitch, no personality.
 
 - An entry says what the thing is, what Jonas's part in it was, and when. Nothing else.
+- The `summary` is one short phrase for the card face, e.g. "Drummer" or "Musical director". Concerts, venues and other details go in `about`. The build rejects a summary with a second sentence.
 - No praise, ranking or scale words (famous, biggest, leading, popular, global).
 - No audience figures, revenue or user counts.
 - Facts that locate the work are fine in `about`: a tour, a festival, a venue, a collaborator, a year.

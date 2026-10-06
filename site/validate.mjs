@@ -169,6 +169,10 @@ function entryErrors(entry, index, sites, seen, places) {
   for (const field of REQUIRED) {
     if (!isText(entry[field])) errors.push(`${where}: "${field}" is required`);
   }
+  // The summary is the card's short description; a full stop followed by a capital starts a second sentence.
+  if (isText(entry.summary) && /\.\s+[\p{Lu}]/u.test(entry.summary)) {
+    errors.push(`${where}: summary must be one phrase; put further sentences in "about"`);
+  }
   if (isText(entry.id)) {
     if (!SLUG.test(entry.id)) errors.push(`${where}: id must be a lowercase slug`);
     if (seen.has(entry.id)) errors.push(`${where}: duplicate id`);
