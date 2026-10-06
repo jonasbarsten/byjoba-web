@@ -269,6 +269,12 @@ test('the counter is labelled "visitors:"', () => {
   assert.match(renderIndex(fixture(), 'byjoba.com'), /<p>visitors: <img src="\/counter\.svg"/);
 });
 
+test('a site that names the day counting began says so in the label', () => {
+  const content = fixture();
+  content.sites['byjoba.com'].counterSince = '2026-10-06';
+  assert.match(renderIndex(content, 'byjoba.com'), /<p>visitors since <time datetime="2026-10-06">6 October 2026<\/time>: <img src="\/counter\.svg"/);
+});
+
 test('the header holds the title and the intro and nothing else', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<header>\n<h1>Jonas Barsten<\/h1>\n<p>A list\.<\/p>\n<\/header>/);

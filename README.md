@@ -50,6 +50,7 @@ A site in `sites`, keyed by its domain:
 | `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
 | `jsonLd` | no | schema.org structured data for the list page, e.g. an `Organization` or a `ProfilePage`. The build puts it in a `@graph` after a `WebSite` node (`@id` `https://<domain>/#website`) naming the site. |
 | `shareImage` | no | The link-preview image: `{ "path": "/share.png", "width": 1200, "height": 630, "alt": "…" }`. The file goes in `static/<domain>/`; the build fails without it. With it, previews use the large card. |
+| `counterSince` | no | The day the visitor counter began, `YYYY-MM-DD`. The footer then reads "visitors since 6 October 2026:" before the counter, and "visitors:" without it. |
 | `indexNowKey` | no | 8–128 letters, digits and dashes. The build serves it at `/<key>.txt`, and the deploy submits the indexed pages to IndexNow with it. Public by design. |
 | `disclaimer` | no | One line shown small and dim at the top of every page of the site, e.g. how the content was gathered. |
 | `related` | no | Hostnames of other sites the footer links to, e.g. `["byjoba.com"]`. Named here because each site's content can live in its own repo. |

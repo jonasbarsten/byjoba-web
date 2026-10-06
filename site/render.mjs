@@ -324,6 +324,15 @@ export function renderShows(content, domain) {
   return page({ site, domain, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+/** "visitors", and since when when the site names the day its counter began: "visitors since 6 October 2026". */
+function counterLabel(site) {
+  if (!site.counterSince) return 'visitors';
+  const [year, month, day] = site.counterSince.split('-').map(Number);
+  return `visitors since <time datetime="${site.counterSince}">${day} ${MONTHS[month - 1]} ${year}</time>`;
+}
+
 export function renderIndex(content, domain) {
   const site = content.sites[domain];
   const others = [hasShows(content, domain) ? '<a href="/shows.html">shows</a>' : '', ...otherSites(content, domain)].filter(Boolean).join(' · ');
@@ -331,7 +340,7 @@ export function renderIndex(content, domain) {
   const body = [
     `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n</header>`,
     `<main>\n${sections.join('\n')}\n</main>`,
-    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p>visitors: <img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
+    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p>${counterLabel(site)}: <img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
   return page({ site, domain, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: siteJsonLd(site, domain), body });
 }
