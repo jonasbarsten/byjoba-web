@@ -187,13 +187,22 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name links to its url', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p class="status" id="kiwi-details"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument<\/span><span class="more">More<\/span><\/summary><p class="status" id="kiwi-details"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
 test('every card opens, and the first line inside is the status badge and the years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="more">More<\/span><\/summary><p class="status" id="atlanter-details"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer<\/span><span class="more">More<\/span><\/summary><p class="status" id="atlanter-details"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+});
+
+// The owner wants the card faces without a closing full stop; the content may keep them.
+test('a summary shows without its final full stop; a stop between sentences stays', () => {
+  const content = fixture();
+  content.projects[1].summary = 'Drummer. Concerts in Oslo.';
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<span class="summary">Drummer\. Concerts in Oslo<\/span>/);
+  content.projects[1].summary = 'Drummer';
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<span class="summary">Drummer<\/span>/);
 });
 
 // A browser opens a closed <details> when a link's target is inside its hidden content, so a link to
@@ -205,7 +214,7 @@ test('a link to a card\'s details anchor opens the card: the anchor is inside th
 
 test('the role stays on the face of the card', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status" id="vierlive-details"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status" id="vierlive-details"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
 });
 
 test('an entry\'s badges show in the header of the card, after the name', () => {
@@ -305,7 +314,7 @@ test('an entry with a url has its name as the link', () => {
   const content = fixture();
   content.projects[1].url = 'https://example.com/atlanter';
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><\/span><span class="summary">Composer and drummer\.<\/span>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><\/span><span class="summary">Composer and drummer<\/span>/);
 });
 
 test('links are listed by label inside the opened card and never make the name a link', () => {

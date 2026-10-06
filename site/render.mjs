@@ -112,7 +112,9 @@ function renderEntry(entry, places) {
   const badges = entry.badges?.length
     ? `<span class="badges">${entry.badges.map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join('')}</span>`
     : '';
-  const face = `<span class="head">${name}${badges}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
+  // The card face shows the summary without its closing full stop; a stop between sentences stays.
+  const summary = entry.summary.replace(/\.$/, '');
+  const face = `<span class="head">${name}${badges}</span><span class="summary">${escapeHtml(summary)}</span>${meta(entry)}`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = entry.links?.length
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
