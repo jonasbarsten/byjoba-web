@@ -191,7 +191,9 @@ function showList(entry, places) {
   const total = count(entry.shows.length, 'show');
   const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, places)}${noteCell(show, { withAct: true })}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
-  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
+  // The heading row also links to every show on the site, at the top right.
+  const head = `<div class="popover-head"><h3>${escapeHtml(entry.name)}: ${total}</h3><a href="/shows.html">All shows</a></div>`;
+  return `${button}<div id="${id}" class="shows" popover>${head}${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
 }
 
 function renderSection(content, domain, section) {

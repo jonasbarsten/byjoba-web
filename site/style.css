@@ -451,6 +451,25 @@ figcaption {
   margin-top: 0;
 }
 
+/* A card's list of shows: its heading on the left, the link to all shows on the right. */
+.popover-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.popover-head h3 {
+  margin: 0;
+}
+
+.popover-head a {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  white-space: nowrap;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;

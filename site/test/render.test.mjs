@@ -324,7 +324,7 @@ test('shows open as a list in a popover, from a button inside the opened card, w
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(html, /<h3>Shows<\/h3><p><button type="button" class="open-shows" popovertarget="shows-atlanter">List of 4 shows<\/button><\/p>/);
-  assert.match(html, /<div id="shows-atlanter" class="shows" popover><h3>Atlanter: 4 shows<\/h3><table>/);
+  assert.match(html, /<div id="shows-atlanter" class="shows" popover><div class="popover-head"><h3>Atlanter: 4 shows<\/h3><a href="\/shows\.html">All shows<\/a><\/div><table>/);
   assert.match(html, /<tr><td><time datetime="2014-03-01">01\.03\.14<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.match(html, /<tr><td><time datetime="2013-08-07">07\.08\.13<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in<\/td><\/tr>/);
   assert.match(html, /<tr><td><time datetime="2013-06">––\.06\.13<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
