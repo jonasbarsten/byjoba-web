@@ -1,5 +1,6 @@
 import { cp, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
@@ -40,8 +41,11 @@ export async function loadContent({ contentPath, showsPath, placesPath }) {
   return content;
 }
 
-/** Reads and validates the content, then writes `outDir/<domain>/` for every site. */
-export async function build({ contentPath, showsPath, placesPath, siteDir, staticDir, outDir }) {
+/**
+ * Reads and validates the content, then writes `outDir/<domain>/` for every site.
+ * `lastModified` (YYYY-MM-DD) dates the sitemap entries.
+ */
+export async function build({ contentPath, showsPath, placesPath, siteDir, staticDir, outDir, lastModified }) {
   const content = await loadContent({ contentPath, showsPath, placesPath });
 
   await rm(outDir, { recursive: true, force: true });
@@ -52,13 +56,22 @@ export async function build({ contentPath, showsPath, placesPath, siteDir, stati
     await writeFile(join(dir, 'contact.html'), renderContact(content, domain));
     await writeFile(join(dir, '404.html'), renderNotFound(content, domain));
     await writeFile(join(dir, 'robots.txt'), renderRobots(domain));
-    await writeFile(join(dir, 'sitemap.xml'), renderSitemap(content, domain));
+    await writeFile(join(dir, 'sitemap.xml'), renderSitemap(content, domain, lastModified));
     if (hasShows(content, domain)) await writeFile(join(dir, 'shows.html'), renderShows(content, domain));
+    // IndexNow fetches the key from the site to check that a submission comes from its owner.
+    const { indexNowKey, shareImage } = content.sites[domain];
+    if (indexNowKey) await writeFile(join(dir, `${indexNowKey}.txt`), indexNowKey);
     for (const asset of ASSETS) await copyFile(join(siteDir, asset), join(dir, asset));
     const extras = join(staticDir, domain);
     if (existsSync(extras)) await cp(extras, dir, { recursive: true });
+    if (shareImage && !existsSync(join(dir, shareImage.path))) {
+      throw new Error(`${domain}: the share image ${shareImage.path} is not in static/${domain}`);
+    }
   }
 }
+
+/** The date of the content repo's last commit, YYYY-MM-DD: the pages change only when it does. */
+const lastCommitDate = (dir) => execFileSync('git', ['-C', dir, 'log', '-1', '--format=%cs'], { encoding: 'utf8' }).trim();
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = fileURLToPath(new URL('..', import.meta.url));
@@ -74,6 +87,7 @@ if (process.argv[1] === fileURLToPath(import.meta.url)) {
       siteDir: join(root, 'site'),
       staticDir: join(contentDir, '..', 'static'),
       outDir: resolve(values.out ?? join(root, 'dist')),
+      lastModified: lastCommitDate(contentDir),
     });
   } catch (error) {
     console.error(error.message);

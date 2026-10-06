@@ -32,10 +32,42 @@ test('the list page is indexable; the contact and not-found pages are not', () =
   assert.match(renderNotFound(fixture(), 'jonasbarsten.com'), noindex);
 });
 
-test('structured data is embedded as a JSON-LD block when the site has it', () => {
-  const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<script type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"Person","name":"Jonas Barsten"\}<\/script>/);
-  assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /ld\+json/);
+/** The JSON-LD block of a page, parsed. */
+const jsonLdOf = (html) => JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/)[1]);
+
+test('the list page names the site for search engines, followed by the site\'s own structured data', () => {
+  assert.deepEqual(jsonLdOf(renderIndex(fixture(), 'jonasbarsten.com')), {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebSite', '@id': 'https://jonasbarsten.com/#website', name: 'Jonas Barsten', alternateName: 'jonasbarsten.com', url: 'https://jonasbarsten.com/' },
+      { '@type': 'Person', name: 'Jonas Barsten' },
+    ],
+  });
+  assert.deepEqual(jsonLdOf(renderIndex(fixture(), 'byjoba.com')), {
+    '@context': 'https://schema.org',
+    '@graph': [{ '@type': 'WebSite', '@id': 'https://byjoba.com/#website', name: 'byjoba', alternateName: 'byjoba.com', url: 'https://byjoba.com/' }],
+  });
+});
+
+test('only the list page carries structured data', () => {
+  for (const html of [renderShows(withShows(), 'jonasbarsten.com'), renderContact(fixture(), 'jonasbarsten.com'), renderNotFound(fixture(), 'jonasbarsten.com')]) {
+    assert.doesNotMatch(html, /ld\+json/);
+  }
+});
+
+test('a site with a share image gets it as a large card on every page', () => {
+  const content = withShows();
+  content.sites['jonasbarsten.com'].shareImage = { path: '/share.png', width: 1200, height: 630, alt: 'Jonas Barsten, musician & developer' };
+  for (const html of [renderIndex(content, 'jonasbarsten.com'), renderShows(content, 'jonasbarsten.com')]) {
+    assert.match(html, /<meta property="og:image" content="https:\/\/jonasbarsten\.com\/share\.png">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="Jonas Barsten, musician &amp; developer">/);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  }
+});
+
+test('a site without a share image gets the small card and no image', () => {
+  const html = renderIndex(fixture(), 'byjoba.com');
+  assert.doesNotMatch(html, /og:image/);
+  assert.match(html, /<meta name="twitter:card" content="summary">/);
 });
 
 test('structured data cannot close its own block', () => {
@@ -56,6 +88,14 @@ test('the sitemap lists the list page, and the shows page when the site has show
   assert.deepEqual(xml.match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'jonasbarsten.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://jonasbarsten.com/</loc>', '<loc>https://jonasbarsten.com/shows.html</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'byjoba.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
+});
+
+test('every sitemap entry carries the date the content last changed', () => {
+  const xml = renderSitemap(withShows(), 'jonasbarsten.com', '2026-10-06');
+  assert.deepEqual(xml.match(/<url>.*<\/url>/g), [
+    '<url><loc>https://jonasbarsten.com/</loc><lastmod>2026-10-06</lastmod></url>',
+    '<url><loc>https://jonasbarsten.com/shows.html</loc><lastmod>2026-10-06</lastmod></url>',
+  ]);
 });
 
 /** The page with the count buttons reduced to their text, to read the line they sit in. */

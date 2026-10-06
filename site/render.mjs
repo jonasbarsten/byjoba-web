@@ -10,7 +10,34 @@ const NEW_TAB = ' target="_blank" rel="noopener"';
 /** A JSON-LD data block. `<` is written as an escape so the data can never close the block. */
 const jsonLdBlock = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-function page({ site, title, description = site.description, canonical, index = false, jsonLd, body, scripts = '' }) {
+/**
+ * The share image's tags, absolute as the Open Graph protocol requires. Without
+ * one, link previews show the small card with the title and description only.
+ */
+function shareImageTags(site, domain) {
+  const image = site.shareImage;
+  if (!image) return ['<meta name="twitter:card" content="summary">'];
+  return [
+    `<meta property="og:image" content="https://${escapeHtml(domain)}${escapeHtml(image.path)}">`,
+    `<meta property="og:image:width" content="${image.width}">`,
+    `<meta property="og:image:height" content="${image.height}">`,
+    `<meta property="og:image:alt" content="${escapeHtml(image.alt)}">`,
+    '<meta name="twitter:card" content="summary_large_image">',
+  ];
+}
+
+/**
+ * The list page's structured data: a WebSite node, which Google reads for the
+ * site name it shows in results, then the site's own nodes from the content.
+ */
+function siteJsonLd(site, domain) {
+  const url = `https://${domain}/`;
+  const website = { '@type': 'WebSite', '@id': `${url}#website`, name: site.title, alternateName: domain, url };
+  const own = site.jsonLd ? [Object.fromEntries(Object.entries(site.jsonLd).filter(([key]) => key !== '@context'))] : [];
+  return { '@context': 'https://schema.org', '@graph': [website, ...own] };
+}
+
+function page({ site, domain, title, description = site.description, canonical, index = false, jsonLd, body, scripts = '' }) {
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -23,7 +50,7 @@ function page({ site, title, description = site.description, canonical, index = 
     `<meta property="og:site_name" content="${escapeHtml(site.title)}">`,
     '<meta property="og:type" content="website">',
     canonical ? `<meta property="og:url" content="${escapeHtml(canonical)}">` : '',
-    '<meta name="twitter:card" content="summary">',
+    ...shareImageTags(site, domain),
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
     '<link rel="stylesheet" href="/style.css">',
     jsonLd ? jsonLdBlock(jsonLd) : '',
@@ -294,7 +321,7 @@ export function renderShows(content, domain) {
     `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
   ].join('\n');
   const description = `The ${count(shows.length, 'show')} ${site.title} has played: date, act, event, venue, place and country.`;
-  return page({ site, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
+  return page({ site, domain, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 
 export function renderIndex(content, domain) {
@@ -306,7 +333,7 @@ export function renderIndex(content, domain) {
     `<main>\n${sections.join('\n')}\n</main>`,
     `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p>visitors: <img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
-  return page({ site, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: site.jsonLd, body });
+  return page({ site, domain, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: siteJsonLd(site, domain), body });
 }
 
 export function renderContact(content, domain) {
@@ -316,26 +343,29 @@ export function renderContact(content, domain) {
     `<main>\n<div id="turnstile" data-sitekey="${escapeHtml(site.turnstileSiteKey)}"></div>\n<p id="contact-result" hidden></p>\n<noscript><p>Showing the address needs JavaScript.</p></noscript>\n</main>`,
   ].join('\n');
   const scripts = '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>\n<script src="/contact.js" defer></script>\n';
-  return page({ site, title: `Contact — ${site.title}`, canonical: `https://${domain}/contact.html`, body, scripts });
+  return page({ site, domain, title: `Contact — ${site.title}`, canonical: `https://${domain}/contact.html`, body, scripts });
 }
 
 export function renderNotFound(content, domain) {
   const site = content.sites[domain];
   const body = `<main>\n<h1>Not found</h1>\n<p><a href="/">${escapeHtml(site.title)}</a></p>\n</main>`;
-  return page({ site, title: `Not found — ${site.title}`, body });
+  return page({ site, domain, title: `Not found — ${site.title}`, body });
 }
 
 export function renderRobots(domain) {
   return `User-agent: *\nAllow: /\n\nSitemap: https://${domain}/sitemap.xml\n`;
 }
 
-/** The list page and the shows page are worth indexing; the contact and not-found pages are marked noindex. */
-export function renderSitemap(content, domain) {
-  const paths = hasShows(content, domain) ? ['', 'shows.html'] : [''];
+/** The pages worth indexing: the list page, and the shows page when the site has one. The contact and not-found pages are marked noindex. */
+export const indexedUrls = (content, domain) => (hasShows(content, domain) ? ['', 'shows.html'] : ['']).map((path) => `https://${domain}/${path}`);
+
+/** `lastModified` (YYYY-MM-DD), when given, is the date the content last changed; every page is built from it. */
+export function renderSitemap(content, domain, lastModified) {
+  const lastmod = lastModified ? `<lastmod>${escapeHtml(lastModified)}</lastmod>` : '';
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...paths.map((path) => `<url><loc>https://${escapeHtml(domain)}/${path}</loc></url>`),
+    ...indexedUrls(content, domain).map((url) => `<url><loc>${escapeHtml(url)}</loc>${lastmod}</url>`),
     '</urlset>',
     '',
   ].join('\n');

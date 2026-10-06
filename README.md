@@ -48,7 +48,9 @@ A site in `sites`, keyed by its domain:
 | `description` | yes | Meta description, about 150 characters. |
 | `intro` | yes | The one line under the heading. |
 | `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
-| `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
+| `jsonLd` | no | schema.org structured data for the list page, e.g. an `Organization` or a `ProfilePage`. The build puts it in a `@graph` after a `WebSite` node (`@id` `https://<domain>/#website`) naming the site. |
+| `shareImage` | no | The link-preview image: `{ "path": "/share.png", "width": 1200, "height": 630, "alt": "…" }`. The file goes in `static/<domain>/`; the build fails without it. With it, previews use the large card. |
+| `indexNowKey` | no | 8–128 letters, digits and dashes. The build serves it at `/<key>.txt`, and the deploy submits the indexed pages to IndexNow with it. Public by design. |
 | `disclaimer` | no | One line shown small and dim at the top of every page of the site, e.g. how the content was gathered. |
 | `related` | no | Hostnames of other sites the footer links to, e.g. `["byjoba.com"]`. Named here because each site's content can live in its own repo. |
 | `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: a line under the heading that says how to read the cards (or a list of lines, each shown on its own line), and an `order`: a list of entry ids in that section, shown first and in that order; the section's other entries follow in file order. |
@@ -90,7 +92,7 @@ Entries appear in file order, after any a section's `order` names. A site's `sec
 
 ## Search engines
 
-Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
+Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Every sitemap entry's `lastmod` is the date of the content repo's last commit, so the build runs inside a git checkout. The list page's structured data starts with a `WebSite` node, which Google reads for the site name in results; every page carries Open Graph tags and, when the site has a `shareImage`, the large preview card. After a deploy, `node site/indexnow.mjs --content <dir> --site <domain>` submits the indexed pages to IndexNow (Bing, and through it ChatGPT search and Copilot, plus Yandex, Seznam and Naver); Google does not take IndexNow and finds changes through the sitemap. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
 
 ```bash
 npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-practices,performance
@@ -100,7 +102,7 @@ npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-p
 
 Work happens on `dev`; a push to `dev` or a pull request runs `.github/workflows/ci.yml` (tests and build).
 
-Merging to `main` runs `.github/workflows/deploy.yml` in the GitHub environment `production`, which only `main` may use and which waits for the owner's approval in the Actions tab: test, build, then `aws s3 sync --delete` of `dist/byjoba.com` to its bucket and a CloudFront invalidation. jonasbarsten.com deploys from its own repo, which checks out this one's `main` to build.
+Merging to `main` runs `.github/workflows/deploy.yml` in the GitHub environment `production`, which only `main` may use and which waits for the owner's approval in the Actions tab: test, build, then `aws s3 sync --delete` of `dist/byjoba.com` to its bucket, a CloudFront invalidation and an IndexNow submission (a refused submission is a warning only). jonasbarsten.com deploys from its own repo, which checks out this one's `main` to build.
 
 This repo holds no infrastructure. The buckets, the distributions and the deploy roles are in `byjoba-iac`; the visitor counter and the contact endpoint are byjoba-api's web service, which each site's distribution reaches at `/counter.svg` and `/contact`. The workflow assumes the role in the repository variable `AWS_DEPLOY_ROLE_ARN` (`byjoba-web-github-deploy-byjoba`), which trusts only this repo's `production` environment and can sync byjoba.com's bucket and invalidate its distribution and nothing else.
 

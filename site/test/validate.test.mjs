@@ -118,6 +118,21 @@ test('a site\'s disclaimer, when given, must be text', () => {
   assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = 'Made with AI; may contain errors.'; }), []);
 });
 
+test('a site\'s share image, when given, needs a site path, a pixel size and alt text', () => {
+  const valid = { path: '/share.png', width: 1200, height: 630, alt: 'Jonas Barsten' };
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].shareImage = valid; }), []);
+  for (const bad of [{ ...valid, path: 'share.png' }, { ...valid, path: 'https://example.com/share.png' }, { ...valid, width: '1200' }, { ...valid, height: 0 }, { ...valid, alt: '' }, '/share.png']) {
+    assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].shareImage = bad; }), /jonasbarsten.com: "shareImage" needs a "path" from \/, a whole "width" and "height", and "alt" text/);
+  }
+});
+
+test('a site\'s IndexNow key, when given, is 8 to 128 letters, digits and dashes', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['byjoba.com'].indexNowKey = 'a1b2c3d4-e5f6'; }), []);
+  for (const bad of ['short', 'has space in it', 'x'.repeat(129), 'key/../../etc', 12345678]) {
+    assertError(errorsFor((c) => { c.sites['byjoba.com'].indexNowKey = bad; }), /byjoba.com: "indexNowKey" must be 8 to 128 letters, digits and dashes/);
+  }
+});
+
 test('a site\'s related sites must be a list of plain hostnames', () => {
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = 'jonasbarsten.com'; }), /byjoba.com: "related" must be a list of hostnames/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = ['https://jonasbarsten.com/']; }), /byjoba.com: "related" must be a list of hostnames/);

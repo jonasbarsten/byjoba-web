@@ -55,3 +55,8 @@ jobs:
           # Browsers revalidate after five minutes; CloudFront is invalidated below.
           aws s3 sync dist/byjoba.com "s3://$bucket" --delete --cache-control "public, max-age=300"
           aws cloudfront create-invalidation --distribution-id "$distribution" --paths '/*'
+      # Tells Bing and the other IndexNow engines the pages changed. The pages
+      # are already live, so a refused submission shows as a warning only.
+      - name: Submit to IndexNow
+        continue-on-error: true
+        run: node site/indexnow.mjs --content content --site byjoba.com

@@ -8,11 +8,15 @@
       "jsonLd": {
         "@context": "https://schema.org",
         "@type": "Organization",
+        "@id": "https://byjoba.com/#organization",
         "name": "byJoBa",
         "url": "https://byjoba.com/",
+        "logo": "https://byjoba.com/favicon.svg",
         "description": "byJoBa stands for \"by Jonas Barsten\": apps and services, music tools, and hardware.",
-        "founder": { "@type": "Person", "name": "Jonas Barsten", "url": "https://jonasbarsten.com/" }
+        "founder": { "@type": "Person", "@id": "https://jonasbarsten.com/#person", "name": "Jonas Barsten", "url": "https://jonasbarsten.com/" }
       },
+      "shareImage": { "path": "/share.png", "width": 1200, "height": 630, "alt": "byJoBa, by Jonas Barsten" },
+      "indexNowKey": "77b08a412c2299890f1793114986edab",
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "related": ["jonasbarsten.com"],
       "sections": [

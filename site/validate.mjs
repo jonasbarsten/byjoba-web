@@ -17,6 +17,13 @@ const POSTER = /^https:\/\/(gfx\.nrk\.no|i\.scdn\.co)\/[\w/-]+$/;
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 /** An external https link, or a root-relative path to a file under `static/<site>/`. */
+/** A key IndexNow accepts; the build serves it as `/<key>.txt`. */
+const INDEXNOW_KEY = /^[A-Za-z0-9-]{8,128}$/;
+/** A path within the site, without `..`, as the share image's `path`. */
+const SITE_PATH = /^\/[\w-]+(\/[\w-]+)*\.[a-z]+$/;
+const isPixels = (value) => Number.isInteger(value) && value > 0;
+const isShareImage = (image) =>
+  isObject(image) && typeof image.path === 'string' && SITE_PATH.test(image.path) && isPixels(image.width) && isPixels(image.height) && isText(image.alt);
 const isLinkUrl = (url) => typeof url === 'string' && (url.startsWith('https://') || (url.startsWith('/') && !url.startsWith('//')));
 
 /** Returns every problem in the content as a readable line; an empty list means it is valid. */
@@ -113,6 +120,12 @@ function siteErrors(domain, site) {
   const errors = SITE_TEXT.filter((field) => !isText(site[field])).map((field) => `${domain}: "${field}" is required`);
   if ('jsonLd' in site && !isObject(site.jsonLd)) errors.push(`${domain}: "jsonLd" must be an object`);
   if ('disclaimer' in site && !isText(site.disclaimer)) errors.push(`${domain}: "disclaimer" must be text`);
+  if ('shareImage' in site && !isShareImage(site.shareImage)) {
+    errors.push(`${domain}: "shareImage" needs a "path" from /, a whole "width" and "height", and "alt" text`);
+  }
+  if ('indexNowKey' in site && !(typeof site.indexNowKey === 'string' && INDEXNOW_KEY.test(site.indexNowKey))) {
+    errors.push(`${domain}: "indexNowKey" must be 8 to 128 letters, digits and dashes`);
+  }
   if ('related' in site && !(Array.isArray(site.related) && site.related.every((other) => isText(other) && HOSTNAME.test(other)))) {
     errors.push(`${domain}: "related" must be a list of hostnames`);
   }
