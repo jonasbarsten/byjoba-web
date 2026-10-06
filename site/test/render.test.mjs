@@ -435,6 +435,16 @@ test('the footer links to the site\'s related domains, even when they are not in
   assert.match(renderIndex(content, 'byjoba.com'), /<footer>\n<p><a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a> · <a href="\/contact\.html">contact<\/a>/);
 });
 
+test('a section lists the entries its order names first, in that order, then the rest in file order', () => {
+  const content = fixture();
+  const entry = (id) => ({ id, name: id, site: 'jonasbarsten.com', category: 'music', summary: 'S.', status: 'active' });
+  content.projects.push(entry('first'), entry('second'), entry('third'));
+  const ids = () => [...renderIndex(content, 'jonasbarsten.com').matchAll(/<li id="([a-z]+)"><details>/g)].map((m) => m[1]).filter((id) => id !== 'vierlive');
+  assert.deepEqual(ids(), ['atlanter', 'first', 'second', 'third']);
+  content.sites['jonasbarsten.com'].sections[0].order = ['third', 'atlanter'];
+  assert.deepEqual(ids(), ['third', 'atlanter', 'first', 'second']);
+});
+
 test('a site\'s disclaimer opens the body of every one of its pages, escaped, and a site without one has none', () => {
   const content = withShows();
   content.sites['jonasbarsten.com'].disclaimer = 'Put together with AI <from> my calendar; may contain errors.';

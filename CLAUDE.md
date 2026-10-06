@@ -7,7 +7,7 @@ The generator (the engine) for byjoba.com and jonasbarsten.com, and byjoba.com's
 - Add, change or remove a byjoba.com entry by editing `content/projects.json` only. Moving an entry to jonasbarsten.com means moving it into that repo's content, with its `site` and `category` changed.
 - A generator change reaches jonasbarsten.com on its next deploy: run it against that repo's content before merging to `main` (see the README).
 - Run `npm test` after every content change. The build refuses invalid content.
-- Entries appear in file order. Within Music, current engagements come before past ones.
+- To change where entries appear, edit the section's `order` (a list of ids shown first, in that order); don't move entries in the file. Entries it doesn't name follow in file order.
 
 ## Copy rules
 

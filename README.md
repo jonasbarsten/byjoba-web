@@ -51,7 +51,7 @@ A site in `sites`, keyed by its domain:
 | `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
 | `disclaimer` | no | One line shown small and dim at the top of every page of the site, e.g. how the content was gathered. |
 | `related` | no | Hostnames of other sites the footer links to, e.g. `["byjoba.com"]`. Named here because each site's content can live in its own repo. |
-| `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: one line under the heading that says how to read the cards. |
+| `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: one line under the heading that says how to read the cards, and an `order`: a list of entry ids in that section, shown first and in that order; the section's other entries follow in file order. |
 
 An entry in `projects`:
 
@@ -86,7 +86,7 @@ An entry in `projects`:
 
 To add a show at a new venue, add the venue (and its city, if new) here first; the build names anything it does not find. The shows page counts its venues, events, cities and countries from what the shows use.
 
-Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
+Entries appear in file order, after any a section's `order` names. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
 
 ## Search engines
 

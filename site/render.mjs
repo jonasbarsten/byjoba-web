@@ -208,8 +208,16 @@ function showList(entry, places) {
   return `${button}<div id="${id}" class="shows" popover>${head}${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
 }
 
+/** A section's entries: those its `order` names first, in that order, then the rest in file order. */
+function sectionEntries(content, domain, section) {
+  const order = section.order ?? [];
+  const rank = (entry) => (order.includes(entry.id) ? order.indexOf(entry.id) : order.length);
+  // Array.prototype.sort is stable, so entries of equal rank keep their file order.
+  return content.projects.filter((entry) => entry.site === domain && entry.category === section.category).sort((a, b) => rank(a) - rank(b));
+}
+
 function renderSection(content, domain, section) {
-  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map((entry) => renderEntry(entry, content.places));
+  const items = sectionEntries(content, domain, section).map((entry) => renderEntry(entry, content.places));
   if (items.length === 0) return '';
   // An optional line under the heading that says how to read the cards below it.
   const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';

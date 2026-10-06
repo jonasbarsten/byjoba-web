@@ -215,6 +215,15 @@ test('badges are a list of short texts, each at most once', () => {
   }
 });
 
+test('a section\'s order is a list of distinct ids of entries in that section', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlanter']; }), []);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = 'atlanter'; }), /jonasbarsten.com section "music": order must be a list of entry ids/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlantis']; }), /jonasbarsten.com section "music": order names "atlantis", which is not an entry in this section/);
+  // An entry of the same site, but another section.
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['vierlive']; }), /jonasbarsten.com section "music": order names "vierlive", which is not an entry in this section/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlanter', 'atlanter']; }), /jonasbarsten.com section "music": order names "atlanter" twice/);
+});
+
 test('a section may carry a note, which must be text', () => {
   assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 'With my part in each.'; }), []);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ''; }), /jonasbarsten.com section 0: note must be non-empty text/);

@@ -31,6 +31,32 @@ export function validate(content) {
   const places = knownPlaces(content.places);
   const seen = new Set();
   content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen, places)));
+  for (const domain of domains) errors.push(...orderErrors(domain, content.sites[domain], content.projects));
+  return errors;
+}
+
+/**
+ * A section's optional `order`: ids of entries in that section, each once. The
+ * entries it names come first, in that order; the rest follow in file order.
+ */
+function orderErrors(domain, site, projects) {
+  if (!isObject(site) || !Array.isArray(site.sections)) return [];
+  const errors = [];
+  for (const section of site.sections) {
+    if (!isObject(section) || !('order' in section)) continue;
+    const where = `${domain} section "${section.category}"`;
+    if (!Array.isArray(section.order) || !section.order.every(isText)) {
+      errors.push(`${where}: order must be a list of entry ids`);
+      continue;
+    }
+    const inSection = new Set(projects.filter((e) => isObject(e) && e.site === domain && e.category === section.category).map((e) => e.id));
+    const named = new Set();
+    for (const id of section.order) {
+      if (!inSection.has(id)) errors.push(`${where}: order names "${id}", which is not an entry in this section`);
+      if (named.has(id)) errors.push(`${where}: order names "${id}" twice`);
+      named.add(id);
+    }
+  }
   return errors;
 }
 
