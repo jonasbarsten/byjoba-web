@@ -79,8 +79,8 @@ test('a show\'s country shows as its code, with the name as the code\'s expansio
   content.projects[1].shows.push({ date: '2012', country: 'GB' });
   const page = renderShows(content, 'jonasbarsten.com');
   assert.match(page, /<td>Ja Ja Ja · The Lexington<\/td><td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
-  assert.match(page, /<time datetime="2012">––\.––\.12<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
-  assert.match(page, /<tr><td><time datetime="2014-10">––\.10\.14<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(page, /<time datetime="2012">––\.––\.12<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td><\/td><td><\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
+  assert.match(page, /<tr><td><time datetime="2014-10">––\.10\.14<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
 });
 
 test('the shows page counts each venue, city and country once, and leaves out what it has none of', () => {
@@ -166,7 +166,7 @@ test('the shows page lists every show of the site in one table, newest first, wi
   assert.equal(html.match(/<table>/g).length, 1);
   assert.doesNotMatch(html, /<h2>/);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
-  assert.match(html, /<tr><td><time datetime="2013-08-08">08\.08\.13<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-08">08\.08\.13<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.doesNotMatch(html, /<script/);
 });
 
@@ -187,18 +187,25 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name links to its url', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p class="status" id="kiwi-details"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
 test('every card opens, and the first line inside is the status badge and the years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="more">More<\/span><\/summary><p class="status" id="atlanter-details"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+});
+
+// A browser opens a closed <details> when a link's target is inside its hidden content, so a link to
+// <id>-details opens the card without script; the card's own id still marks it for older links.
+test('a link to a card\'s details anchor opens the card: the anchor is inside the card\'s hidden content', () => {
+  const html = renderIndex(fixture(), 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><details><summary>.*?<\/summary><p class="status" id="atlanter-details">/);
 });
 
 test('the role stays on the face of the card', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status" id="vierlive-details"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
 });
 
 test('an entry\'s badges show in the header of the card, after the name', () => {
@@ -290,7 +297,7 @@ test('each status shows as its own badge', () => {
   for (const [status, label] of Object.entries(labels)) {
     const content = fixture();
     content.projects[1].status = status;
-    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`<li id="atlanter">.*?<p class="status"><span class="badge">${label}</span> 2013–</p>`));
+    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`<li id="atlanter">.*?<p class="status" id="atlanter-details"><span class="badge">${label}</span> 2013–</p>`));
   }
 });
 
@@ -308,10 +315,12 @@ test('links are listed by label inside the opened card and never make the name a
     { label: 'article', url: 'https://example.com/article' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="status">.*?<\/p><h3>Links<\/h3><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="status" id="atlanter-details">.*?<\/p><h3>Links<\/h3><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
-test('releases show inside the opened card with cover, title and year; the title links when there is a url', () => {
+// The cover links too, as a larger target. It is left out of the tab order and hidden from screen
+// readers, so the title stays the one link they announce.
+test('releases show inside the opened card with cover, title and year; cover and title link when there is a url', () => {
   const content = fixture();
   content.projects[1].releases = [
     { title: 'Vidde', year: '2013', url: 'https://www.discogs.com/master/566572', cover: '/covers/vidde.jpg' },
@@ -320,7 +329,7 @@ test('releases show inside the opened card with cover, title and year; the title
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(
     html,
-    /<span class="more">2 releases<\/span><\/summary><p class="status">.*?<\/p><h3>Releases<\/h3><div class="releases"><figure><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> <span class="year">2013<\/span><\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B <span class="year">2014<\/span><\/figcaption><\/figure><\/div><\/details>/,
+    /<span class="more">2 releases<\/span><\/summary><p class="status" id="atlanter-details">.*?<\/p><h3>Releases<\/h3><div class="releases"><figure><a class="cover" href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><\/a><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> <span class="year">2013<\/span><\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B <span class="year">2014<\/span><\/figcaption><\/figure><\/div><\/details>/,
   );
 });
 

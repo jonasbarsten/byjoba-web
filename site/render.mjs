@@ -86,9 +86,14 @@ function mediaBlock(entry) {
 const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
 
 /** The first line inside an opened card: the status as a badge, then the years when the entry has them. */
+/**
+ * The first line inside an opened card. Its id, `<entry id>-details`, is the
+ * anchor that opens the card: a browser opens a closed <details> when a link's
+ * target is inside its hidden content, with no script.
+ */
 function statusLine(entry) {
   const years = entry.years ? ` ${escapeHtml(entry.years)}` : '';
-  return `<p class="status"><span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>${years}</p>`;
+  return `<p class="status" id="${escapeHtml(entry.id)}-details"><span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>${years}</p>`;
 }
 
 /**
@@ -124,9 +129,14 @@ function renderEntry(entry, places) {
 function releaseList(entry) {
   if (!entry.releases?.length) return '';
   const figures = entry.releases.map((release) => {
-    const cover = release.cover
+    const image = release.cover
       ? `<img src="${escapeHtml(release.cover)}" alt="" width="96" height="96" loading="lazy">`
       : '<span class="nocover"></span>';
+    // The cover links like the title, as a larger target; the title is the link
+    // keyboards and screen readers use, so the cover stays out of their way.
+    const cover = release.url && release.cover
+      ? `<a class="cover" href="${escapeHtml(release.url)}"${NEW_TAB} tabindex="-1" aria-hidden="true">${image}</a>`
+      : image;
     const title = release.url
       ? `<a href="${escapeHtml(release.url)}"${NEW_TAB}>${escapeHtml(release.title)}</a>`
       : escapeHtml(release.title);
@@ -255,7 +265,8 @@ function tally(shows, id, word, plural, label) {
 const actOf = (show) => show.act ?? show.entry.name;
 
 /** The act cell: a card's own act links to the card; an act played with once or as a stand-in has no card to link to. */
-const actCell = (show) => (show.act ? cell(show.act) : `<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>`);
+// The act links to its card's details anchor, which opens the card.
+const actCell = (show) => (show.act ? cell(show.act) : `<td><a href="/#${escapeHtml(show.entry.id)}-details">${escapeHtml(show.entry.name)}</a></td>`);
 
 /** Whether a site has a shows page. */
 export const hasShows = (content, domain) => siteShows(content, domain).length > 0;

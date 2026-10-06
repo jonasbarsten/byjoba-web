@@ -116,10 +116,19 @@ li {
   min-width: 0;
 }
 
-/* The entry a link points at. */
-li:target {
+/*
+ * The entry a link points at: the card itself (/#atlanter), or its details anchor
+ * inside (/#atlanter-details), which also opens it.
+ */
+li:target,
+li:has(.status:target) {
   border-color: var(--ring);
   background: var(--muted);
+}
+
+/* Following a details anchor scrolls to the line under the card's face; keep the face in view. */
+.status {
+  scroll-margin-top: 10rem;
 }
 
 @media (min-width: 40rem) {
@@ -299,6 +308,15 @@ figure {
   grid-template-columns: repeat(auto-fill, minmax(5.25rem, 1fr));
   gap: var(--space-4) var(--space-2);
   margin: 0 0 var(--space-2);
+}
+
+/* A cover that links to its release, like its title. */
+.releases .cover {
+  display: block;
+}
+
+.releases .cover:hover img {
+  opacity: 0.85;
 }
 
 .releases img,
