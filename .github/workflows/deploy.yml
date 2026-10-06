@@ -1,0 +1,57 @@
+name: deploy
+
+# On main: test and build, then sync byjoba.com's pages to its bucket and
+# invalidate its distribution. The job runs in the `production` environment,
+# which only main may use and which waits for the owner's approval; the AWS
+# role trusts only that environment. The bucket and distribution belong to
+# byjoba-iac's web stack. jonasbarsten.com deploys from its own repo.
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+      - uses: aws-actions/configure-aws-credentials@e1253824e5c10ff9df46874f81ed3ec929e19cfd # v6.3.0
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: eu-west-1
+      # The pages ship directly, not through CloudFormation.
+      - name: Sync byjoba.com
+        shell: bash
+        run: |
+          set -euo pipefail
+          stack=ByjobaWeb-byjoba
+          output() {
+            aws cloudformation describe-stacks --stack-name "$stack" --query "Stacks[0].Outputs[?OutputKey=='$1'].OutputValue" --output text
+          }
+          bucket=$(output BucketName)
+          distribution=$(output DistributionId)
+          # Fail before touching the bucket if an output is missing (the CLI prints None).
+          for value in "$bucket" "$distribution"; do
+            if [ -z "$value" ] || [ "$value" = None ]; then echo "$stack is missing an output"; exit 1; fi
+          done
+          # Browsers revalidate after five minutes; CloudFront is invalidated below.
+          aws s3 sync dist/byjoba.com "s3://$bucket" --delete --cache-control "public, max-age=300"
+          aws cloudfront create-invalidation --distribution-id "$distribution" --paths '/*'

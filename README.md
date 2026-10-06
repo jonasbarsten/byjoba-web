@@ -97,4 +97,10 @@ npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-p
 
 ## Deploy
 
-Not set up yet. Hosting, the visitor counter, the contact endpoint and the deploy workflow are plan 2 (`byjoba-tools/plans/`).
+Work happens on `dev`; a push to `dev` or a pull request runs `.github/workflows/ci.yml` (tests and build).
+
+Merging to `main` runs `.github/workflows/deploy.yml` in the GitHub environment `production`, which only `main` may use and which waits for the owner's approval in the Actions tab: test, build, then `aws s3 sync --delete` of `dist/byjoba.com` to its bucket and a CloudFront invalidation. jonasbarsten.com deploys from its own repo, which checks out this one's `main` to build.
+
+This repo holds no infrastructure. The buckets, the distributions and the deploy roles are in `byjoba-iac`; the visitor counter and the contact endpoint are byjoba-api's web service, which each site's distribution reaches at `/counter.svg` and `/contact`. The workflow assumes the role in the repository variable `AWS_DEPLOY_ROLE_ARN` (`byjoba-web-github-deploy-byjoba`), which trusts only this repo's `production` environment and can sync byjoba.com's bucket and invalidate its distribution and nothing else.
+
+`main` is protected: it cannot be deleted or force-pushed, and only the owner may update it. Workflows from outside contributors need approval.
