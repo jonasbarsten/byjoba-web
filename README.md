@@ -33,7 +33,7 @@ node site/build.mjs --content <dir> --out <dir>             # build it
 CONTENT_DIR=<dir> node --test site/test/content.test.mjs   # check it
 ```
 
-The jonasbarsten.com repo uses exactly these, from a checkout of this repo, in its CI and deploy. A change to the generator on `main` reaches jonasbarsten.com on its next deploy, so check it against that repo's content first (clone it beside this one and run both commands with `--content ../jonasbarsten.com/content`).
+The jonasbarsten.com repo uses exactly these, from a checkout of this repo, in its CI and deploy. A change to the generator on `main` reaches jonasbarsten.com on its next deploy, so check it against that repo's content first. With that repo at `~/Development/jonasbarsten.com`, run both commands from here with `../../jonasbarsten.com/content` as the content directory.
 
 Locally the visitor counter shows its alt text and the contact page cannot fetch the address; both are served by byjoba-api through the deployed site.
 
