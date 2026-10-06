@@ -17,6 +17,7 @@ const POSTER = /^https:\/\/(gfx\.nrk\.no|i\.scdn\.co)\/[\w/-]+$/;
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 /** An external https link, or a root-relative path to a file under `static/<site>/`. */
+const FULL_DATE = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/;
 /** A key IndexNow accepts; the build serves it as `/<key>.txt`. */
 const INDEXNOW_KEY = /^[A-Za-z0-9-]{8,128}$/;
 /** A path within the site, without `..`, as the share image's `path`. */
@@ -122,6 +123,9 @@ function siteErrors(domain, site) {
   if ('disclaimer' in site && !isText(site.disclaimer)) errors.push(`${domain}: "disclaimer" must be text`);
   if ('shareImage' in site && !isShareImage(site.shareImage)) {
     errors.push(`${domain}: "shareImage" needs a "path" from /, a whole "width" and "height", and "alt" text`);
+  }
+  if ('counterSince' in site && !(typeof site.counterSince === 'string' && FULL_DATE.test(site.counterSince))) {
+    errors.push(`${domain}: "counterSince" must be a date as YYYY-MM-DD`);
   }
   if ('indexNowKey' in site && !(typeof site.indexNowKey === 'string' && INDEXNOW_KEY.test(site.indexNowKey))) {
     errors.push(`${domain}: "indexNowKey" must be 8 to 128 letters, digits and dashes`);

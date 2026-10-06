@@ -133,6 +133,13 @@ test('a site\'s IndexNow key, when given, is 8 to 128 letters, digits and dashes
   }
 });
 
+test('a site\'s counterSince, when given, is a full date', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['byjoba.com'].counterSince = '2026-10-06'; }), []);
+  for (const bad of ['2026-10', '06.10.2026', '2026-13-01', 20261006]) {
+    assertError(errorsFor((c) => { c.sites['byjoba.com'].counterSince = bad; }), /byjoba.com: "counterSince" must be a date as YYYY-MM-DD/);
+  }
+});
+
 test('a site\'s related sites must be a list of plain hostnames', () => {
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = 'jonasbarsten.com'; }), /byjoba.com: "related" must be a list of hostnames/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = ['https://jonasbarsten.com/']; }), /byjoba.com: "related" must be a list of hostnames/);

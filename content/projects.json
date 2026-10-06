@@ -17,6 +17,7 @@
       },
       "shareImage": { "path": "/share.png", "width": 1200, "height": 630, "alt": "byJoBa, by Jonas Barsten" },
       "indexNowKey": "77b08a412c2299890f1793114986edab",
+      "counterSince": "2026-10-06",
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
       "related": ["jonasbarsten.com"],
       "sections": [
