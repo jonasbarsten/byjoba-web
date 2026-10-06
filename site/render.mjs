@@ -162,7 +162,10 @@ const countryOf = (show, places) => (show.place ? places.cities[show.place] : sh
 /** A show's event and venue in one cell; a festival on its own grounds is both, and is named once. */
 const whereCell = (show) => cell([...new Set([show.event, show.venue].filter(Boolean))].join(' · '));
 
-/** A show's last cell: its note, then a link to a review of it, when it has them. */
+/**
+ * A show's last cell: its note, when it has one. A show's `review` stays in the
+ * content but is not shown: the owner took the reviews off the pages for now.
+ */
 function noteCell(show, { withAct = false } = {}) {
   const parts = [];
   // A card's own list has no act column, so an act other than the card's goes first in the note.
@@ -170,7 +173,6 @@ function noteCell(show, { withAct = false } = {}) {
   // On the shows page the act has its own column; the note says the show is not one of a card's own.
   if (!withAct && show.act) parts.push('stand-in / one-off');
   if (show.note) parts.push(escapeHtml(show.note));
-  if (show.review) parts.push(`<a href="${escapeHtml(show.review.url)}"${NEW_TAB}>${escapeHtml(show.review.label)}</a>`);
   return `<td>${parts.join(' · ')}</td>`;
 }
 

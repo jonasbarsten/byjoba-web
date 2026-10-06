@@ -139,9 +139,12 @@ test('the show tables name their columns, and the shows page has its own descrip
   assert.ok(page.includes(`<meta property="og:description" content="${description}">`));
 });
 
-test('a show\'s review is a link after its note, in the card\'s list', () => {
-  const html = renderIndex(withShows(), 'jonasbarsten.com');
-  assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
+// The owner took the reviews off the pages on 2026-10-06, for now; the content keeps them.
+test('a show\'s review is not shown, on the card or on the shows page', () => {
+  for (const html of [renderIndex(withShows(), 'jonasbarsten.com'), renderShows(withShows(), 'jonasbarsten.com')]) {
+    assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase<\/td><\/tr>/);
+    assert.doesNotMatch(html, /The Line of Best Fit|example\.com\/review/);
+  }
 });
 
 test('the shows page lists every show of the site in one table, newest first, with the act linking to its card', () => {
@@ -154,7 +157,6 @@ test('the shows page lists every show of the site in one table, newest first, wi
   assert.doesNotMatch(html, /<h2>/);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
   assert.match(html, /<tr><td><time datetime="2013-08-08">08\.08\.13<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
-  assert.match(html, /<td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td>/);
   assert.doesNotMatch(html, /<script/);
 });
 
