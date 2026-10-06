@@ -1,9 +1,9 @@
 # byjoba-web
 
-The pages at byjoba.com and jonasbarsten.com: two lists of what Jonas Barsten makes and works on, generated from one content file.
+The engine behind byjoba.com and jonasbarsten.com, two lists of what Jonas Barsten makes and works on, and byjoba.com's content.
 
-- **byjoba.com** lists the software and hardware Jonas makes on his own initiative. The name is written byJoBa and stands for "by Jonas Barsten".
-- **jonasbarsten.com** lists everything else, with one entry that points to byjoba.com. Nothing is listed on both sites.
+- **byjoba.com** lists the software and hardware Jonas makes on his own initiative. The name is written byJoBa and stands for "by Jonas Barsten". Its content is in this repo.
+- **jonasbarsten.com** lists everything else, with one entry that points to byjoba.com. Its content lives in [jonasbarsten/jonasbarsten.com](https://github.com/jonasbarsten/jonasbarsten.com), whose workflows build it with this repo's generator at `main`. Nothing is listed on both sites.
 
 Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
 
@@ -11,9 +11,9 @@ Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
 
 | Path | What it is |
 |---|---|
-| `content/projects.json` | All content: the two sites, their sections, and every entry. |
-| `content/shows.json` | The shows played, per entry id. |
-| `content/places.json` | The countries, cities, events and venues the shows name. |
+| `content/projects.json` | byjoba.com's content: the site, its sections, and every entry. |
+| `content/shows.json` | The shows played, per entry id. Empty here: byjoba.com has none. |
+| `content/places.json` | The countries, cities, events and venues the shows name. Empty here. |
 | `site/` | The generator. Plain ESM JavaScript on Node 24, no dependencies. |
 | `static/<domain>/` | Files copied into that site as they are. |
 | `dist/<domain>/` | Build output. Not in git. |
@@ -22,17 +22,20 @@ Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
 
 ```bash
 npm test         # validation, rendering, build and content tests
-npm run build    # writes dist/byjoba.com and dist/jonasbarsten.com
+npm run build    # writes dist/byjoba.com
+python3 -m http.server -d dist/byjoba.com 8791
 ```
 
-Preview after a build, one terminal per site:
+The generator builds any content directory laid out like `content/` (with `static/` beside it):
 
 ```bash
-python3 -m http.server -d dist/byjoba.com 8791
-python3 -m http.server -d dist/jonasbarsten.com 8792
+node site/build.mjs --content <dir> --out <dir>             # build it
+CONTENT_DIR=<dir> node --test site/test/content.test.mjs   # check it
 ```
 
-Locally the visitor counter shows its alt text and the contact page cannot fetch the address; both need the deployed API.
+The jonasbarsten.com repo uses exactly these, from a checkout of this repo, in its CI and deploy. A change to the generator on `main` reaches jonasbarsten.com on its next deploy, so check it against that repo's content first (clone it beside this one and run both commands with `--content ../jonasbarsten.com/content`).
+
+Locally the visitor counter shows its alt text and the contact page cannot fetch the address; both are served by byjoba-api through the deployed site.
 
 ## Content model
 

@@ -1,10 +1,11 @@
 # byjoba-web
 
-Two static sites generated from `content/projects.json`. Read `README.md` for the layout and the content model.
+The generator (the engine) for byjoba.com and jonasbarsten.com, and byjoba.com's content in `content/projects.json`. jonasbarsten.com's content lives in the public repo `jonasbarsten/jonasbarsten.com`, which builds with this repo's generator at `main`. Read `README.md` for the layout and the content model.
 
 ## Changing content
 
-- Add, move or remove an entry by editing `content/projects.json` only. Moving an entry between sites is a change of `site` and `category`.
+- Add, change or remove a byjoba.com entry by editing `content/projects.json` only. Moving an entry to jonasbarsten.com means moving it into that repo's content, with its `site` and `category` changed.
+- A generator change reaches jonasbarsten.com on its next deploy: run it against that repo's content before merging to `main` (see the README).
 - Run `npm test` after every content change. The build refuses invalid content.
 - Entries appear in file order. Within Music, current engagements come before past ones.
 
@@ -20,6 +21,8 @@ The pages are purely informational: no voice, no pitch, no personality.
 - A fact found online is used only when the source is the artist, the venue, the label or an institution.
 
 ## Disclosure
+
+This repo is public, and so is its history.
 
 - The entry named "TBC" is an unannounced product. Its summary holds technology notes only. Never add its real name, purpose, audience, market or domain to any file, test or commit message in this repo.
 - Huba is co-owned and proprietary: one neutral line, no links.
