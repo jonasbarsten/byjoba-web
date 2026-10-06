@@ -52,8 +52,9 @@ test('the build writes every file for every site', async () => {
   const paths = await workspace(JSON.stringify(fixture()));
   await build(paths);
   for (const domain of ['byjoba.com', 'jonasbarsten.com']) {
-    assert.deepEqual((await readdir(join(paths.outDir, domain))).sort(), ['404.html', 'contact.html', 'contact.js', 'favicon.svg', 'index.html', 'robots.txt', 'sitemap.xml', 'style.css']);
+    assert.deepEqual((await readdir(join(paths.outDir, domain))).sort(), ['404.html', 'contact.html', 'contact.js', 'favicon.svg', 'index.html', 'llms.txt', 'robots.txt', 'sitemap.xml', 'style.css']);
   }
+  assert.match(await readFile(join(paths.outDir, 'byjoba.com', 'llms.txt'), 'utf8'), /^# byjoba\n/);
   assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'robots.txt'), 'utf8'), /Sitemap: https:\/\/jonasbarsten\.com\/sitemap\.xml/);
   assert.match(await readFile(join(paths.outDir, 'jonasbarsten.com', 'sitemap.xml'), 'utf8'), /<loc>https:\/\/jonasbarsten\.com\/<\/loc>/);
   assert.match(await readFile(join(paths.outDir, 'byjoba.com', 'index.html'), 'utf8'), /<h1>byjoba<\/h1>/);

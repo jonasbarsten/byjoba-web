@@ -5,7 +5,7 @@ import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { parseArgs } from 'node:util';
 import { validate } from './validate.mjs';
-import { hasShows, renderContact, renderIndex, renderNotFound, renderRobots, renderShows, renderSitemap } from './render.mjs';
+import { hasShows, renderContact, renderIndex, renderLlmsTxt, renderNotFound, renderRobots, renderShows, renderSitemap } from './render.mjs';
 
 const ASSETS = ['style.css', 'contact.js', 'favicon.svg'];
 
@@ -56,6 +56,7 @@ export async function build({ contentPath, showsPath, placesPath, siteDir, stati
     await writeFile(join(dir, 'contact.html'), renderContact(content, domain));
     await writeFile(join(dir, '404.html'), renderNotFound(content, domain));
     await writeFile(join(dir, 'robots.txt'), renderRobots(domain));
+    await writeFile(join(dir, 'llms.txt'), renderLlmsTxt(content, domain));
     await writeFile(join(dir, 'sitemap.xml'), renderSitemap(content, domain, lastModified));
     if (hasShows(content, domain)) await writeFile(join(dir, 'shows.html'), renderShows(content, domain));
     // IndexNow fetches the key from the site to check that a submission comes from its owner.

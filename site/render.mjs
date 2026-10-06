@@ -352,6 +352,44 @@ export function renderNotFound(content, domain) {
   return page({ site, domain, title: `Not found — ${site.title}`, body });
 }
 
+/** Text for a Markdown link label: brackets escaped so they cannot end the label. */
+const markdownLabel = (text) => text.replace(/[[\]]/g, (bracket) => `\\${bracket}`);
+/** Text ending in one full stop. */
+const stop = (text) => `${text.replace(/\.$/, '')}.`;
+/** A lowercase label, such as a role or a status, as a sentence. */
+const sentence = (text) => stop(`${text.charAt(0).toUpperCase()}${text.slice(1)}`);
+
+/** One entry as a Markdown list item: its name linking to its card, then summary, role, years and status, and about. */
+function llmsEntry(entry, domain) {
+  const status = STATUS_LABELS[entry.status];
+  const when = entry.years ? `${entry.years}, ${status}` : status;
+  const parts = [stop(entry.summary), entry.role ? sentence(entry.role) : '', sentence(when), entry.about ?? ''].filter(Boolean);
+  return `- [${markdownLabel(entry.name)}](https://${domain}/#${entry.id}): ${parts.join(' ')}`;
+}
+
+/**
+ * The site as Markdown at /llms.txt (llmstxt.org), for language models and agents
+ * that would rather not parse the HTML: the title, the description, the pages,
+ * then every section and its entries in the order the list page shows them.
+ */
+export function renderLlmsTxt(content, domain) {
+  const site = content.sites[domain];
+  const shows = siteShows(content, domain);
+  const pages = [
+    `- [The list](https://${domain}/): every entry, with its links, videos and releases`,
+    shows.length ? `- [Shows](https://${domain}/shows.html): ${count(shows.length, 'show')}, with date, act, event, venue, place and country` : '',
+    ...(site.related ?? []).map((other) => `- [${other}](https://${other}/)`),
+  ].filter(Boolean);
+  const sections = site.sections.flatMap((section) => {
+    const entries = sectionEntries(content, domain, section);
+    if (entries.length === 0) return [];
+    const note = section.note ? [[section.note].flat().join(' '), ''] : [];
+    return [`## ${section.title}`, '', ...note, ...entries.map((entry) => llmsEntry(entry, domain)), ''];
+  });
+  const intro = [site.intro, site.disclaimer].filter(Boolean).join(' ');
+  return [`# ${site.title}`, '', `> ${site.description}`, '', intro, '', ...pages, '', ...sections].join('\n');
+}
+
 export function renderRobots(domain) {
   return `User-agent: *\nAllow: /\n\nSitemap: https://${domain}/sitemap.xml\n`;
 }

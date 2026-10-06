@@ -546,10 +546,12 @@ td:last-child {
   color: var(--muted-foreground);
 }
 
-/* On the shows page, a stand-in or one-off: dimmed, so the cards' own shows stand out. */
+/*
+ * On the shows page, a stand-in or one-off: dimmed, so the cards' own shows stand out.
+ * The muted colour alone: with any opacity on top it falls below 4.5:1 contrast.
+ */
 tr.one-off td {
   color: var(--muted-foreground);
-  opacity: 0.6;
 }
 
 footer {

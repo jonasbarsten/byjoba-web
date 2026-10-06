@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { escapeHtml, renderIndex, renderContact, renderNotFound, renderRobots, renderShows, renderSitemap } from '../render.mjs';
+import { escapeHtml, renderIndex, renderContact, renderLlmsTxt, renderNotFound, renderRobots, renderShows, renderSitemap } from '../render.mjs';
 import { fixture } from './fixture.mjs';
 
 test('escapeHtml escapes the five special characters', () => {
@@ -88,6 +88,51 @@ test('the sitemap lists the list page, and the shows page when the site has show
   assert.deepEqual(xml.match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'jonasbarsten.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://jonasbarsten.com/</loc>', '<loc>https://jonasbarsten.com/shows.html</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'byjoba.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
+});
+
+test('llms.txt is the site as Markdown: title, description, pages, then every section and entry in page order', () => {
+  const content = withShows();
+  content.sites['jonasbarsten.com'].disclaimer = 'Made with AI.';
+  content.sites['jonasbarsten.com'].sections[0].note = ['Current first.', 'Then past.'];
+  assert.equal(
+    renderLlmsTxt(content, 'jonasbarsten.com'),
+    [
+      '# Jonas Barsten',
+      '',
+      '> A longer description.',
+      '',
+      'A list. Made with AI.',
+      '',
+      '- [The list](https://jonasbarsten.com/): every entry, with its links, videos and releases',
+      '- [Shows](https://jonasbarsten.com/shows.html): 3 shows, with date, act, event, venue, place and country',
+      '- [byjoba.com](https://byjoba.com/)',
+      '',
+      '## Music',
+      '',
+      'Current first. Then past.',
+      '',
+      '- [Atlanter](https://jonasbarsten.com/#atlanter): Composer and drummer. 2013–, active.',
+      '',
+      '## Advocacy',
+      '',
+      '- [VIER.LIVE](https://jonasbarsten.com/#vierlive): Streaming platform. Co-founder. 2020–2021, ended.',
+      '',
+    ].join('\n'),
+  );
+});
+
+test('llms.txt adds the about text, leaves out empty sections and the shows page a site lacks, and escapes brackets', () => {
+  const content = fixture();
+  content.projects[0].name = 'Kiwi [beta]';
+  const text = renderLlmsTxt(content, 'byjoba.com');
+  assert.match(text, /^- \[Kiwi \\\[beta\\\]\]\(https:\/\/byjoba\.com\/#kiwi\): An instrument\. In development\. Runs on a Raspberry Pi\.$/m);
+  assert.doesNotMatch(text, /## Apps|shows\.html/);
+});
+
+test('llms.txt keeps a summary\'s own capitals, as in "iOS"', () => {
+  const content = fixture();
+  content.projects[0].summary = 'iOS app';
+  assert.match(renderLlmsTxt(content, 'byjoba.com'), /\(https:\/\/byjoba\.com\/#kiwi\): iOS app\. In development\./);
 });
 
 test('every sitemap entry carries the date the content last changed', () => {
