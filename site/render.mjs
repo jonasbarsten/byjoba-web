@@ -262,7 +262,8 @@ export const hasShows = (content, domain) => siteShows(content, domain).length >
 export function renderShows(content, domain) {
   const site = content.sites[domain];
   const shows = newestFirst(siteShows(content, domain));
-  const rows = shows.map((show) => `<tr>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
+  // A stand-in or one-off (a show with its own act) is marked so the stylesheet can dim it.
+  const rows = shows.map((show) => `<tr${show.act ? ' class="one-off"' : ''}>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
   const totals = showTotals(shows, content.places);
   const body = [
     `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${totals.line}.</p>\n${totals.lists}\n</header>`,

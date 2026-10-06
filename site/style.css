@@ -519,6 +519,12 @@ td:last-child {
   color: var(--muted-foreground);
 }
 
+/* On the shows page, a stand-in or one-off: dimmed, so the cards' own shows stand out. */
+tr.one-off td {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
 footer {
   font-size: var(--text-sm);
   line-height: var(--leading-sm);

@@ -128,6 +128,16 @@ test('a show played with another act than its card names that act: as plain text
   assert.match(renderIndex(content, 'jonasbarsten.com'), /<td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>No\. 4 · on keyboards<\/td><\/tr>/);
 });
 
+// The stylesheet dims these rows so the cards' own shows stand out.
+test('on the shows page a stand-in or one-off row is marked one-off, and the cards\' own rows are not', () => {
+  const content = withShows();
+  content.projects[1].shows.push({ date: '2016-01-03', act: 'No. 4' });
+  const page = renderShows(content, 'jonasbarsten.com');
+  assert.match(page, /<tr class="one-off"><td><time datetime="2016-01-03">/);
+  assert.equal(page.match(/<tr class="one-off">/g).length, 1);
+  assert.match(page, /<tr><td><time datetime="2013-08-08">/);
+});
+
 test('the show tables name their columns, and the shows page has its own description', () => {
   const head = (columns) => `<table>\n<thead><tr>${columns.map((column) => `<th scope="col">${column}</th>`).join('')}</tr></thead>\n<tbody>\n<tr>`;
   assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Event, venue', 'Place', 'Country', 'Note'])));
