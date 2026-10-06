@@ -426,6 +426,21 @@ test('the footer links to the site\'s related domains, even when they are not in
   assert.match(renderIndex(content, 'byjoba.com'), /<footer>\n<p><a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a> · <a href="\/contact\.html">contact<\/a>/);
 });
 
+test('a site\'s disclaimer opens the body of every one of its pages, escaped, and a site without one has none', () => {
+  const content = withShows();
+  content.sites['jonasbarsten.com'].disclaimer = 'Put together with AI <from> my calendar; may contain errors.';
+  const line = '<body>\n<p class="disclaimer">Put together with AI &lt;from&gt; my calendar; may contain errors.</p>\n';
+  for (const html of [
+    renderIndex(content, 'jonasbarsten.com'),
+    renderShows(content, 'jonasbarsten.com'),
+    renderContact(content, 'jonasbarsten.com'),
+    renderNotFound(content, 'jonasbarsten.com'),
+  ]) {
+    assert.ok(html.includes(line));
+  }
+  assert.doesNotMatch(renderIndex(content, 'byjoba.com'), /class="disclaimer"/);
+});
+
 test('the list page has no executable script and no email address', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
   assert.doesNotMatch(html, /<script/);

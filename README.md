@@ -49,6 +49,7 @@ A site in `sites`, keyed by its domain:
 | `intro` | yes | The one line under the heading. |
 | `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
 | `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
+| `disclaimer` | no | One line shown small and dim at the top of every page of the site, e.g. how the content was gathered. |
 | `related` | no | Hostnames of other sites the footer links to, e.g. `["byjoba.com"]`. Named here because each site's content can live in its own repo. |
 | `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: one line under the heading that says how to read the cards. |
 

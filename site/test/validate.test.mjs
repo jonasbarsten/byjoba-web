@@ -104,6 +104,12 @@ test('a site key must be a plain hostname', () => {
   assertError(errors, /sites: "\.\.\/x" is not a hostname/);
 });
 
+test('a site\'s disclaimer, when given, must be text', () => {
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = ''; }), /jonasbarsten.com: "disclaimer" must be text/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = ['x']; }), /jonasbarsten.com: "disclaimer" must be text/);
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = 'Made with AI; may contain errors.'; }), []);
+});
+
 test('a site\'s related sites must be a list of plain hostnames', () => {
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = 'jonasbarsten.com'; }), /byjoba.com: "related" must be a list of hostnames/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = ['https://jonasbarsten.com/']; }), /byjoba.com: "related" must be a list of hostnames/);

@@ -53,6 +53,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* A site's disclaimer: one small, dim line above everything else on the page. */
+.disclaimer {
+  margin: 0 0 var(--space-8);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  opacity: 0.8;
+}
+
 h1 {
   font-size: var(--text-xl);
   line-height: var(--leading-xl);

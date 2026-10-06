@@ -28,7 +28,9 @@ function page({ site, title, description = site.description, canonical, index = 
     '<link rel="stylesheet" href="/style.css">',
     jsonLd ? jsonLdBlock(jsonLd) : '',
   ].filter(Boolean);
-  return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${body}\n${scripts}</body>\n</html>\n`;
+  // The site's disclaimer, when it has one, is the first line of every page.
+  const disclaimer = site.disclaimer ? `<p class="disclaimer">${escapeHtml(site.disclaimer)}</p>\n` : '';
+  return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${disclaimer}${body}\n${scripts}</body>\n</html>\n`;
 }
 
 /**
