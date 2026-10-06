@@ -4,7 +4,7 @@
       "title": "byJoBa",
       "pageTitle": "byJoBa — apps, music tools and hardware by Jonas Barsten",
       "description": "byJoBa stands for \"by Jonas Barsten\": the tools he makes in Oslo. Apps and services, extensions and tools for Ableton Live, and hardware.",
-      "intro": "byJoBa stands for \"by Jonas Barsten\".",
+      "intro": "Apps, music tools and hardware made by Jonas Barsten in Oslo.",
       "jsonLd": {
         "@context": "https://schema.org",
         "@type": "Organization",
