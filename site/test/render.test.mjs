@@ -380,6 +380,14 @@ test('the footer has the other site, the contact link and the counter', () => {
   assert.match(html, /<footer>[\s\S]*<a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a>[\s\S]*<a href="\/contact\.html">contact<\/a>[\s\S]*<img src="\/counter\.svg" alt="visitor counter"[\s\S]*<\/footer>/);
 });
 
+// Each site's content lives in its own repo, so the footer cannot find the other site in this content.
+test('the footer links to the site\'s related domains, even when they are not in this content', () => {
+  const content = fixture();
+  delete content.sites['jonasbarsten.com'];
+  content.projects = content.projects.filter((entry) => entry.site === 'byjoba.com');
+  assert.match(renderIndex(content, 'byjoba.com'), /<footer>\n<p><a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a> · <a href="\/contact\.html">contact<\/a>/);
+});
+
 test('the list page has no executable script and no email address', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com').replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, '');
   assert.doesNotMatch(html, /<script/);

@@ -84,6 +84,9 @@ function siteErrors(domain, site) {
   if (!isObject(site)) return [`${domain}: must be an object`];
   const errors = SITE_TEXT.filter((field) => !isText(site[field])).map((field) => `${domain}: "${field}" is required`);
   if ('jsonLd' in site && !isObject(site.jsonLd)) errors.push(`${domain}: "jsonLd" must be an object`);
+  if ('related' in site && !(Array.isArray(site.related) && site.related.every((other) => isText(other) && HOSTNAME.test(other)))) {
+    errors.push(`${domain}: "related" must be a list of hostnames`);
+  }
   if (!Array.isArray(site.sections) || site.sections.length === 0) {
     return [...errors, `${domain}: sections must be a non-empty list`];
   }

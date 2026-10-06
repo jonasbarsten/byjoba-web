@@ -21,6 +21,7 @@ export const fixture = () => ({
       description: 'Things made.',
       intro: 'Software and hardware.',
       turnstileSiteKey: 'KEY-B',
+      related: ['jonasbarsten.com'],
       sections: [
         { title: 'Hardware', category: 'hardware' },
         { title: 'Apps', category: 'apps' },
@@ -33,6 +34,7 @@ export const fixture = () => ({
       intro: 'A list.',
       jsonLd: { '@context': 'https://schema.org', '@type': 'Person', name: 'Jonas Barsten' },
       turnstileSiteKey: 'KEY-J',
+      related: ['byjoba.com'],
       sections: [
         { title: 'Music', category: 'music' },
         { title: 'Advocacy', category: 'advocacy' },

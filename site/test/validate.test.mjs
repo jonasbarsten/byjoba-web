@@ -91,6 +91,12 @@ test('a site key must be a plain hostname', () => {
   assertError(errors, /sites: "\.\.\/x" is not a hostname/);
 });
 
+test('a site\'s related sites must be a list of plain hostnames', () => {
+  assertError(errorsFor((c) => { c.sites['byjoba.com'].related = 'jonasbarsten.com'; }), /byjoba.com: "related" must be a list of hostnames/);
+  assertError(errorsFor((c) => { c.sites['byjoba.com'].related = ['https://jonasbarsten.com/']; }), /byjoba.com: "related" must be a list of hostnames/);
+  assert.deepEqual(errorsFor((c) => { delete c.sites['byjoba.com'].related; }), []);
+});
+
 test('a site\'s structured data must be an object', () => {
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].jsonLd = 'Person'; }), /jonasbarsten.com: "jsonLd" must be an object/);
   assert.deepEqual(errorsFor((c) => { delete c.sites['jonasbarsten.com'].jsonLd; }), []);

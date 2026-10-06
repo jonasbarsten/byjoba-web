@@ -31,11 +31,12 @@ function page({ site, title, description = site.description, canonical, index = 
   return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${body}\n${scripts}</body>\n</html>\n`;
 }
 
-/** Links to every other site, e.g. `<a href="https://byjoba.com/">byjoba.com</a>`. */
+/**
+ * Links to the site's related sites, e.g. `<a href="https://byjoba.com/">byjoba.com</a>`.
+ * Named in the site's content, since each site's content lives in its own repo.
+ */
 function otherSites(content, domain) {
-  return Object.keys(content.sites)
-    .filter((other) => other !== domain)
-    .map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
+  return (content.sites[domain].related ?? []).map((other) => `<a href="https://${escapeHtml(other)}/"${NEW_TAB}>${escapeHtml(other)}</a>`);
 }
 
 const count = (n, word, plural = `${word}s`) => (n ? `${n} ${n === 1 ? word : plural}` : '');

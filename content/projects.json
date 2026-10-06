@@ -14,6 +14,7 @@
         "founder": { "@type": "Person", "name": "Jonas Barsten", "url": "https://jonasbarsten.com/" }
       },
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
+      "related": ["jonasbarsten.com"],
       "sections": [
         { "title": "Apps and services", "category": "apps" },
         { "title": "Ableton Live extensions", "category": "live-extensions" },
@@ -42,6 +43,7 @@
         ]
       },
       "turnstileSiteKey": "0x4AAAAAAFNjFT1LyWQybR_q",
+      "related": ["byjoba.com"],
       "sections": [
         { "title": "Music", "category": "music", "note": "Artists and bands, with my part in each." },
         { "title": "Teaching and live systems", "category": "live-teaching" },
