@@ -1,21 +1,28 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { execFile } from 'node:child_process';
 import { mkdtemp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { promisify } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { build } from '../build.mjs';
 import { fixture } from './fixture.mjs';
 
 const siteDir = fileURLToPath(new URL('..', import.meta.url));
 
-/** A temp workspace holding a content file; returns the paths `build` takes. */
+/**
+ * A temp workspace laid out as the command line reads it: `content/` holding
+ * projects.json, shows.json and places.json, with `static/` beside it.
+ * Returns the paths `build` takes.
+ */
 async function workspace(contentText, showsText = '{}', placesText = JSON.stringify(fixture().places)) {
   const root = await mkdtemp(join(tmpdir(), 'byjoba-web-'));
-  const contentPath = join(root, 'projects.json');
-  const showsPath = join(root, 'shows.json');
-  const placesPath = join(root, 'places.json');
+  await mkdir(join(root, 'content'));
+  const contentPath = join(root, 'content', 'projects.json');
+  const showsPath = join(root, 'content', 'shows.json');
+  const placesPath = join(root, 'content', 'places.json');
   await writeFile(contentPath, contentText);
   await writeFile(showsPath, showsText);
   await writeFile(placesPath, placesText);
@@ -81,4 +88,17 @@ test('invalid content fails with every error and writes nothing', async () => {
   const paths = await workspace(JSON.stringify(content));
   await assert.rejects(build(paths), (error) => error.message.includes('entry "kiwi": status must be one of in-development, active, ended, one-off') && error.message.includes('entry "atlanter": "summary" is required'));
   assert.equal(existsSync(paths.outDir), false);
+});
+
+// Another repo's content builds with this engine: the jonasbarsten.com repo
+// runs `node <byjoba-web>/site/build.mjs --content content --out dist`.
+test('the command line builds a content directory given with --content into --out', async () => {
+  const paths = await workspace(projectsText());
+  await mkdir(join(paths.staticDir, 'jonasbarsten.com'), { recursive: true });
+  await writeFile(join(paths.staticDir, 'jonasbarsten.com', 'extra.txt'), 'from static');
+  const out = join(dirname(paths.contentPath), '..', 'elsewhere');
+  await promisify(execFile)(process.execPath, [fileURLToPath(new URL('../build.mjs', import.meta.url)), '--content', dirname(paths.contentPath), '--out', out]);
+  assert.ok(existsSync(join(out, 'byjoba.com', 'index.html')));
+  assert.ok(existsSync(join(out, 'jonasbarsten.com', 'index.html')));
+  assert.equal(await readFile(join(out, 'jonasbarsten.com', 'extra.txt'), 'utf8'), 'from static');
 });

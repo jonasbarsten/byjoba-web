@@ -1,7 +1,8 @@
 import { cp, copyFile, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { parseArgs } from 'node:util';
 import { validate } from './validate.mjs';
 import { hasShows, renderContact, renderIndex, renderNotFound, renderRobots, renderShows, renderSitemap } from './render.mjs';
 
@@ -61,14 +62,18 @@ export async function build({ contentPath, showsPath, placesPath, siteDir, stati
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {
   const root = fileURLToPath(new URL('..', import.meta.url));
+  // Another repo's content builds with this engine: --content names its content
+  // directory, whose static files sit beside it in ../static, and --out where to write.
+  const { values } = parseArgs({ options: { content: { type: 'string' }, out: { type: 'string' } } });
+  const contentDir = resolve(values.content ?? join(root, 'content'));
   try {
     await build({
-      contentPath: join(root, 'content', 'projects.json'),
-      showsPath: join(root, 'content', 'shows.json'),
-      placesPath: join(root, 'content', 'places.json'),
+      contentPath: join(contentDir, 'projects.json'),
+      showsPath: join(contentDir, 'shows.json'),
+      placesPath: join(contentDir, 'places.json'),
       siteDir: join(root, 'site'),
-      staticDir: join(root, 'static'),
-      outDir: join(root, 'dist'),
+      staticDir: join(contentDir, '..', 'static'),
+      outDir: resolve(values.out ?? join(root, 'dist')),
     });
   } catch (error) {
     console.error(error.message);
