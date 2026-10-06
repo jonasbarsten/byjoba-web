@@ -409,6 +409,13 @@ test('a section\'s note shows under its heading', () => {
   assert.match(html, /<h2>Advocacy<\/h2>\n<ul>/);
 });
 
+test('a note given as a list shows each line on its own line', () => {
+  const content = fixture();
+  content.sites['jonasbarsten.com'].sections[0].note = ['Artists & bands, with my part in each.', 'Current first, then past.'];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<h2>Music<\/h2>\n<p class="note">Artists &amp; bands, with my part in each\.<br>Current first, then past\.<\/p>\n<ul>/);
+});
+
 test('an empty section is not rendered', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /<h2>Apps<\/h2>/);
 });

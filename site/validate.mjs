@@ -125,7 +125,8 @@ function siteErrors(domain, site) {
     const where = `${domain} section ${index}`;
     if (!isObject(section)) return errors.push(`${where}: must be an object`);
     if (!isText(section.title)) errors.push(`${where}: needs a title`);
-    if ('note' in section && !isText(section.note)) errors.push(`${where}: note must be non-empty text`);
+    const noteLines = Array.isArray(section.note) ? section.note : [section.note];
+    if ('note' in section && !(noteLines.length > 0 && noteLines.every(isText))) errors.push(`${where}: note must be non-empty text`);
     if (!isText(section.category)) {
       errors.push(`${where}: needs a category`);
     } else {

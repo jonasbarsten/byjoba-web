@@ -220,7 +220,8 @@ function renderSection(content, domain, section) {
   const items = sectionEntries(content, domain, section).map((entry) => renderEntry(entry, content.places));
   if (items.length === 0) return '';
   // An optional line under the heading that says how to read the cards below it.
-  const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';
+  // A note given as a list shows each line on its own line.
+  const note = section.note ? `<p class="note">${[section.note].flat().map(escapeHtml).join('<br>')}</p>\n` : '';
   return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n${note}<ul>\n${items.join('\n')}\n</ul>\n</section>`;
 }
 

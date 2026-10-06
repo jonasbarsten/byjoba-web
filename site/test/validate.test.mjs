@@ -228,6 +228,10 @@ test('a section may carry a note, which must be text', () => {
   assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 'With my part in each.'; }), []);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ''; }), /jonasbarsten.com section 0: note must be non-empty text/);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 7; }), /jonasbarsten.com section 0: note must be non-empty text/);
+  // Or a list of lines, each shown on its own line.
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ['One.', 'Two.']; }), []);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ['One.', '']; }), /jonasbarsten.com section 0: note must be non-empty text/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = []; }), /jonasbarsten.com section 0: note must be non-empty text/);
 });
 
 test('a category may appear in only one section of a site', () => {
