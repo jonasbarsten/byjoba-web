@@ -32,10 +32,42 @@ test('the list page is indexable; the contact and not-found pages are not', () =
   assert.match(renderNotFound(fixture(), 'jonasbarsten.com'), noindex);
 });
 
-test('structured data is embedded as a JSON-LD block when the site has it', () => {
-  const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<script type="application\/ld\+json">\{"@context":"https:\/\/schema\.org","@type":"Person","name":"Jonas Barsten"\}<\/script>/);
-  assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /ld\+json/);
+/** The JSON-LD block of a page, parsed. */
+const jsonLdOf = (html) => JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/)[1]);
+
+test('the list page names the site for search engines, followed by the site\'s own structured data', () => {
+  assert.deepEqual(jsonLdOf(renderIndex(fixture(), 'jonasbarsten.com')), {
+    '@context': 'https://schema.org',
+    '@graph': [
+      { '@type': 'WebSite', '@id': 'https://jonasbarsten.com/#website', name: 'Jonas Barsten', alternateName: 'jonasbarsten.com', url: 'https://jonasbarsten.com/' },
+      { '@type': 'Person', name: 'Jonas Barsten' },
+    ],
+  });
+  assert.deepEqual(jsonLdOf(renderIndex(fixture(), 'byjoba.com')), {
+    '@context': 'https://schema.org',
+    '@graph': [{ '@type': 'WebSite', '@id': 'https://byjoba.com/#website', name: 'byjoba', alternateName: 'byjoba.com', url: 'https://byjoba.com/' }],
+  });
+});
+
+test('only the list page carries structured data', () => {
+  for (const html of [renderShows(withShows(), 'jonasbarsten.com'), renderContact(fixture(), 'jonasbarsten.com'), renderNotFound(fixture(), 'jonasbarsten.com')]) {
+    assert.doesNotMatch(html, /ld\+json/);
+  }
+});
+
+test('a site with a share image gets it as a large card on every page', () => {
+  const content = withShows();
+  content.sites['jonasbarsten.com'].shareImage = { path: '/share.png', width: 1200, height: 630, alt: 'Jonas Barsten, musician & developer' };
+  for (const html of [renderIndex(content, 'jonasbarsten.com'), renderShows(content, 'jonasbarsten.com')]) {
+    assert.match(html, /<meta property="og:image" content="https:\/\/jonasbarsten\.com\/share\.png">\n<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n<meta property="og:image:alt" content="Jonas Barsten, musician &amp; developer">/);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  }
+});
+
+test('a site without a share image gets the small card and no image', () => {
+  const html = renderIndex(fixture(), 'byjoba.com');
+  assert.doesNotMatch(html, /og:image/);
+  assert.match(html, /<meta name="twitter:card" content="summary">/);
 });
 
 test('structured data cannot close its own block', () => {
@@ -56,6 +88,14 @@ test('the sitemap lists the list page, and the shows page when the site has show
   assert.deepEqual(xml.match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'jonasbarsten.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://jonasbarsten.com/</loc>', '<loc>https://jonasbarsten.com/shows.html</loc>']);
   assert.deepEqual(renderSitemap(withShows(), 'byjoba.com').match(/<loc>[^<]*<\/loc>/g), ['<loc>https://byjoba.com/</loc>']);
+});
+
+test('every sitemap entry carries the date the content last changed', () => {
+  const xml = renderSitemap(withShows(), 'jonasbarsten.com', '2026-10-06');
+  assert.deepEqual(xml.match(/<url>.*<\/url>/g), [
+    '<url><loc>https://jonasbarsten.com/</loc><lastmod>2026-10-06</lastmod></url>',
+    '<url><loc>https://jonasbarsten.com/shows.html</loc><lastmod>2026-10-06</lastmod></url>',
+  ]);
 });
 
 /** The page with the count buttons reduced to their text, to read the line they sit in. */
@@ -79,8 +119,8 @@ test('a show\'s country shows as its code, with the name as the code\'s expansio
   content.projects[1].shows.push({ date: '2012', country: 'GB' });
   const page = renderShows(content, 'jonasbarsten.com');
   assert.match(page, /<td>Ja Ja Ja · The Lexington<\/td><td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
-  assert.match(page, /<time datetime="2012">––\.––\.12<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
-  assert.match(page, /<tr><td><time datetime="2014-10">––\.10\.14<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
+  assert.match(page, /<time datetime="2012">––\.––\.12<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td><\/td><td><\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td>/);
+  assert.match(page, /<tr><td><time datetime="2014-10">––\.10\.14<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td><\/td><td><\/td><td><\/td><td><\/td><\/tr>/);
 });
 
 test('the shows page counts each venue, city and country once, and leaves out what it has none of', () => {
@@ -128,6 +168,16 @@ test('a show played with another act than its card names that act: as plain text
   assert.match(renderIndex(content, 'jonasbarsten.com'), /<td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>No\. 4 · on keyboards<\/td><\/tr>/);
 });
 
+// The stylesheet dims these rows so the cards' own shows stand out.
+test('on the shows page a stand-in or one-off row is marked one-off, and the cards\' own rows are not', () => {
+  const content = withShows();
+  content.projects[1].shows.push({ date: '2016-01-03', act: 'No. 4' });
+  const page = renderShows(content, 'jonasbarsten.com');
+  assert.match(page, /<tr class="one-off"><td><time datetime="2016-01-03">/);
+  assert.equal(page.match(/<tr class="one-off">/g).length, 1);
+  assert.match(page, /<tr><td><time datetime="2013-08-08">/);
+});
+
 test('the show tables name their columns, and the shows page has its own description', () => {
   const head = (columns) => `<table>\n<thead><tr>${columns.map((column) => `<th scope="col">${column}</th>`).join('')}</tr></thead>\n<tbody>\n<tr>`;
   assert.ok(renderIndex(withShows(), 'jonasbarsten.com').includes(head(['Date', 'Event, venue', 'Place', 'Country', 'Note'])));
@@ -139,9 +189,12 @@ test('the show tables name their columns, and the shows page has its own descrip
   assert.ok(page.includes(`<meta property="og:description" content="${description}">`));
 });
 
-test('a show\'s review is a link after its note, in the card\'s list', () => {
-  const html = renderIndex(withShows(), 'jonasbarsten.com');
-  assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td><\/tr>/);
+// The owner took the reviews off the pages on 2026-10-06, for now; the content keeps them.
+test('a show\'s review is not shown, on the card or on the shows page', () => {
+  for (const html of [renderIndex(withShows(), 'jonasbarsten.com'), renderShows(withShows(), 'jonasbarsten.com')]) {
+    assert.match(html, /<td>London<\/td><td><abbr title="United Kingdom">GB<\/abbr><\/td><td>showcase<\/td><\/tr>/);
+    assert.doesNotMatch(html, /The Line of Best Fit|example\.com\/review/);
+  }
 });
 
 test('the shows page lists every show of the site in one table, newest first, with the act linking to its card', () => {
@@ -153,8 +206,7 @@ test('the shows page lists every show of the site in one table, newest first, wi
   assert.equal(html.match(/<table>/g).length, 1);
   assert.doesNotMatch(html, /<h2>/);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
-  assert.match(html, /<tr><td><time datetime="2013-08-08">08\.08\.13<\/time><\/td><td><a href="\/#atlanter">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
-  assert.match(html, /<td>showcase · <a href="https:\/\/example\.com\/review\?a=1&amp;b=2" target="_blank" rel="noopener">The Line of Best Fit<\/a><\/td>/);
+  assert.match(html, /<tr><td><time datetime="2013-08-08">08\.08\.13<\/time><\/td><td><a href="\/#atlanter-details">Atlanter<\/a><\/td><td>Øyafestivalen<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.doesNotMatch(html, /<script/);
 });
 
@@ -168,6 +220,10 @@ test('the counter image declares its size so the page does not shift', () => {
   assert.match(renderIndex(fixture(), 'byjoba.com'), /<img src="\/counter\.svg" alt="visitor counter" width="88" height="20">/);
 });
 
+test('the counter is labelled "visitors:"', () => {
+  assert.match(renderIndex(fixture(), 'byjoba.com'), /<p>visitors: <img src="\/counter\.svg"/);
+});
+
 test('the header holds the title and the intro and nothing else', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
   assert.match(html, /<header>\n<h1>Jonas Barsten<\/h1>\n<p>A list\.<\/p>\n<\/header>/);
@@ -175,18 +231,34 @@ test('the header holds the title and the intro and nothing else', () => {
 
 test('an entry with an about expands, and its name links to its url', () => {
   const html = renderIndex(fixture(), 'byjoba.com');
-  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="kiwi"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/kiwi" target="_blank" rel="noopener">Kiwi<\/a><\/span><span class="summary">An instrument<\/span><span class="more">More<\/span><\/summary><p class="status" id="kiwi-details"><span class="badge">in development<\/span><\/p><p>Runs on a Raspberry Pi\.<\/p><\/details><\/li>/);
   assert.doesNotMatch(html, /class="links"/);
 });
 
 test('every card opens, and the first line inside is the status badge and the years', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer\.<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span><\/span><span class="summary">Composer and drummer<\/span><span class="more">More<\/span><\/summary><p class="status" id="atlanter-details"><span class="badge">active<\/span> 2013–<\/p><\/details><\/li>/);
+});
+
+// The owner wants the card faces without a closing full stop; the content may keep them.
+test('a summary shows without its final full stop; a stop between sentences stays', () => {
+  const content = fixture();
+  content.projects[1].summary = 'Drummer. Concerts in Oslo.';
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<span class="summary">Drummer\. Concerts in Oslo<\/span>/);
+  content.projects[1].summary = 'Drummer';
+  assert.match(renderIndex(content, 'jonasbarsten.com'), /<span class="summary">Drummer<\/span>/);
+});
+
+// A browser opens a closed <details> when a link's target is inside its hidden content, so a link to
+// <id>-details opens the card without script; the card's own id still marks it for older links.
+test('a link to a card\'s details anchor opens the card: the anchor is inside the card\'s hidden content', () => {
+  const html = renderIndex(fixture(), 'jonasbarsten.com');
+  assert.match(html, /<li id="atlanter"><details><summary>.*?<\/summary><p class="status" id="atlanter-details">/);
 });
 
 test('the role stays on the face of the card', () => {
   const html = renderIndex(fixture(), 'jonasbarsten.com');
-  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform\.<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
+  assert.match(html, /<li id="vierlive"><details><summary><span class="head"><span class="name">VIER\.LIVE<\/span><\/span><span class="summary">Streaming platform<\/span><span class="meta">co-founder<\/span><span class="more">More<\/span><\/summary><p class="status" id="vierlive-details"><span class="badge">ended<\/span> 2020–2021<\/p><\/details><\/li>/);
 });
 
 test('an entry\'s badges show in the header of the card, after the name', () => {
@@ -203,7 +275,7 @@ test('the face of a card carries neither the status badge nor the years', () => 
   for (const face of faces) assert.doesNotMatch(face, /badge|2013|2020/);
 });
 
-test('media shows as small embeds inside the expanded entry, and the name stays plain', () => {
+test('media shows inside the expanded entry, and the name stays plain', () => {
   const content = fixture();
   content.projects[1].media = [
     { label: 'Pike', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' },
@@ -213,8 +285,23 @@ test('media shows as small embeds inside the expanded entry, and the name stays 
   assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>/);
   assert.match(
     html,
-    /<div class="media"><figure class="video"><iframe src="https:\/\/www\.youtube-nocookie\.com\/embed\/vGqLUF1fwrQ" title="Pike" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media; picture-in-picture" allowfullscreen><\/iframe><figcaption>Pike<\/figcaption><\/figure><figure class="track"><iframe src="https:\/\/open\.spotify\.com\/embed\/track\/5owc6LBkOZp05yh0T0B88Q" title="Aye" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="encrypted-media"><\/iframe><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
+    /<div class="media"><figure class="video"><a class="poster" href="https:\/\/www\.youtube\.com\/watch\?v=vGqLUF1fwrQ" target="_blank" rel="noopener" aria-label="Pike, on YouTube"><img src="https:\/\/i\.ytimg\.com\/vi\/vGqLUF1fwrQ\/hqdefault\.jpg" alt="" loading="lazy"><\/a><figcaption>Pike<\/figcaption><\/figure><figure class="track"><a class="poster" href="https:\/\/open\.spotify\.com\/track\/5owc6LBkOZp05yh0T0B88Q" target="_blank" rel="noopener" aria-label="Aye, on Spotify"><span class="service">Spotify<\/span><\/a><figcaption>Aye<\/figcaption><\/figure><\/div><\/details><\/li>/,
   );
+});
+
+// The embedded players did not react to clicks on the live pages, so every
+// video and track is a link to it on its own service, opening in a new tab.
+// YouTube's thumbnail is the poster; NRK and Spotify show their name.
+test('media are links to the video or track on its service, with no embedded player', () => {
+  const content = fixture();
+  content.projects[1].media = [
+    { label: 'Pike', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' },
+    { label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q' },
+    { label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' },
+  ];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.doesNotMatch(html, /<iframe|youtube-nocookie|static\.nrk\.no|open\.spotify\.com\/embed/);
+  assert.match(html, /<span class="more">2 videos · 1 track<\/span>/);
 });
 
 test('the "more" marker says what media an entry holds', () => {
@@ -231,11 +318,22 @@ test('the "more" marker says what media an entry holds', () => {
   assert.equal(markerFor([video(1), video(2), track, track]), '2 videos · 2 tracks');
 });
 
-test('an NRK programme embeds through NRK\'s own player and counts as a video', () => {
+test('a media item with a poster shows that image instead of the service name', () => {
+  const content = fixture();
+  content.projects[1].media = [{ label: 'Aye', url: 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q', poster: 'https://i.scdn.co/image/abc' }];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /aria-label="Aye, on Spotify"><img src="https:\/\/i\.scdn\.co\/image\/abc" alt="" loading="lazy"><\/a>/);
+  assert.doesNotMatch(html, /<span class="service">/);
+});
+
+test('an NRK programme links to its NRK TV page and counts as a video', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'Festivalsommer', url: 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<figure class="video"><iframe src="https:\/\/static\.nrk\.no\/ludo\/latest\/video-embed\.html#id=MKMU81000521" title="Festivalsommer"/);
+  assert.match(
+    html,
+    /<figure class="video"><a class="poster" href="https:\/\/tv\.nrk\.no\/serie\/festivalsommer\/sesong\/2021\/episode\/MKMU81000521" target="_blank" rel="noopener" aria-label="Festivalsommer, on NRK TV"><span class="service">NRK TV<\/span><\/a><figcaption>Festivalsommer<\/figcaption><\/figure>/,
+  );
   assert.match(html, /<span class="more">1 video<\/span>/);
 });
 
@@ -243,7 +341,7 @@ test('media labels are escaped', () => {
   const content = fixture();
   content.projects[1].media = [{ label: 'A "live" <take>', url: 'https://www.youtube.com/watch?v=vGqLUF1fwrQ' }];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /title="A &quot;live&quot; &lt;take&gt;"/);
+  assert.match(html, /aria-label="A &quot;live&quot; &lt;take&gt;, on YouTube"/);
   assert.match(html, /<figcaption>A &quot;live&quot; &lt;take&gt;<\/figcaption>/);
 });
 
@@ -252,7 +350,7 @@ test('each status shows as its own badge', () => {
   for (const [status, label] of Object.entries(labels)) {
     const content = fixture();
     content.projects[1].status = status;
-    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`<li id="atlanter">.*?<p class="status"><span class="badge">${label}</span> 2013–</p>`));
+    assert.match(renderIndex(content, 'jonasbarsten.com'), new RegExp(`<li id="atlanter">.*?<p class="status" id="atlanter-details"><span class="badge">${label}</span> 2013–</p>`));
   }
 });
 
@@ -260,7 +358,7 @@ test('an entry with a url has its name as the link', () => {
   const content = fixture();
   content.projects[1].url = 'https://example.com/atlanter';
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><\/span><span class="summary">Composer and drummer\.<\/span>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><a class="name" href="https:\/\/example\.com\/atlanter" target="_blank" rel="noopener">Atlanter<\/a><\/span><span class="summary">Composer and drummer<\/span>/);
 });
 
 test('links are listed by label inside the opened card and never make the name a link', () => {
@@ -270,10 +368,12 @@ test('links are listed by label inside the opened card and never make the name a
     { label: 'article', url: 'https://example.com/article' },
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
-  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="status">.*?<\/p><h3>Links<\/h3><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
+  assert.match(html, /<li id="atlanter"><details><summary><span class="head"><span class="name">Atlanter<\/span>.*<span class="more">2 links<\/span><\/summary><p class="status" id="atlanter-details">.*?<\/p><h3>Links<\/h3><p class="links"><a href="https:\/\/example\.com\/source" target="_blank" rel="noopener">source<\/a> · <a href="https:\/\/example\.com\/article" target="_blank" rel="noopener">article<\/a><\/p><\/details><\/li>/);
 });
 
-test('releases show inside the opened card with cover, title and year; the title links when there is a url', () => {
+// The cover links too, as a larger target. It is left out of the tab order and hidden from screen
+// readers, so the title stays the one link they announce.
+test('releases show inside the opened card with cover, title and year; cover and title link when there is a url', () => {
   const content = fixture();
   content.projects[1].releases = [
     { title: 'Vidde', year: '2013', url: 'https://www.discogs.com/master/566572', cover: '/covers/vidde.jpg' },
@@ -282,7 +382,7 @@ test('releases show inside the opened card with cover, title and year; the title
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(
     html,
-    /<span class="more">2 releases<\/span><\/summary><p class="status">.*?<\/p><h3>Releases<\/h3><div class="releases"><figure><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> <span class="year">2013<\/span><\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B <span class="year">2014<\/span><\/figcaption><\/figure><\/div><\/details>/,
+    /<span class="more">2 releases<\/span><\/summary><p class="status" id="atlanter-details">.*?<\/p><h3>Releases<\/h3><div class="releases"><figure><a class="cover" href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="\/covers\/vidde\.jpg" alt="" width="96" height="96" loading="lazy"><\/a><figcaption><a href="https:\/\/www\.discogs\.com\/master\/566572" target="_blank" rel="noopener">Vidde<\/a> <span class="year">2013<\/span><\/figcaption><\/figure><figure><span class="nocover"><\/span><figcaption>A &amp; B <span class="year">2014<\/span><\/figcaption><\/figure><\/div><\/details>/,
   );
 });
 
@@ -296,7 +396,7 @@ test('shows open as a list in a popover, from a button inside the opened card, w
   ];
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(html, /<h3>Shows<\/h3><p><button type="button" class="open-shows" popovertarget="shows-atlanter">List of 4 shows<\/button><\/p>/);
-  assert.match(html, /<div id="shows-atlanter" class="shows" popover><h3>Atlanter: 4 shows<\/h3><table>/);
+  assert.match(html, /<div id="shows-atlanter" class="shows" popover><div class="popover-head"><h3>Atlanter: 4 shows<\/h3><a href="\/shows\.html">All shows<\/a><\/div><table>/);
   assert.match(html, /<tr><td><time datetime="2014-03-01">01\.03\.14<\/time><\/td><td>by:Larm<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
   assert.match(html, /<tr><td><time datetime="2013-08-07">07\.08\.13<\/time><\/td><td>Øyafestivalen &lt;main stage&gt;<\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in<\/td><\/tr>/);
   assert.match(html, /<tr><td><time datetime="2013-06">––\.06\.13<\/time><\/td><td><\/td><td>Kristiansand<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td><\/td><\/tr>/);
@@ -362,6 +462,13 @@ test('a section\'s note shows under its heading', () => {
   assert.match(html, /<h2>Advocacy<\/h2>\n<ul>/);
 });
 
+test('a note given as a list shows each line on its own line', () => {
+  const content = fixture();
+  content.sites['jonasbarsten.com'].sections[0].note = ['Artists & bands, with my part in each.', 'Current first, then past.'];
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<h2>Music<\/h2>\n<p class="note">Artists &amp; bands, with my part in each\.<br>Current first, then past\.<\/p>\n<ul>/);
+});
+
 test('an empty section is not rendered', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /<h2>Apps<\/h2>/);
 });
@@ -386,6 +493,31 @@ test('the footer links to the site\'s related domains, even when they are not in
   delete content.sites['jonasbarsten.com'];
   content.projects = content.projects.filter((entry) => entry.site === 'byjoba.com');
   assert.match(renderIndex(content, 'byjoba.com'), /<footer>\n<p><a href="https:\/\/jonasbarsten\.com\/" target="_blank" rel="noopener">jonasbarsten\.com<\/a> · <a href="\/contact\.html">contact<\/a>/);
+});
+
+test('a section lists the entries its order names first, in that order, then the rest in file order', () => {
+  const content = fixture();
+  const entry = (id) => ({ id, name: id, site: 'jonasbarsten.com', category: 'music', summary: 'S.', status: 'active' });
+  content.projects.push(entry('first'), entry('second'), entry('third'));
+  const ids = () => [...renderIndex(content, 'jonasbarsten.com').matchAll(/<li id="([a-z]+)"><details>/g)].map((m) => m[1]).filter((id) => id !== 'vierlive');
+  assert.deepEqual(ids(), ['atlanter', 'first', 'second', 'third']);
+  content.sites['jonasbarsten.com'].sections[0].order = ['third', 'atlanter'];
+  assert.deepEqual(ids(), ['third', 'atlanter', 'first', 'second']);
+});
+
+test('a site\'s disclaimer opens the body of every one of its pages, escaped, and a site without one has none', () => {
+  const content = withShows();
+  content.sites['jonasbarsten.com'].disclaimer = 'Put together with AI <from> my calendar; may contain errors.';
+  const line = '<body>\n<p class="disclaimer">Put together with AI &lt;from&gt; my calendar; may contain errors.</p>\n';
+  for (const html of [
+    renderIndex(content, 'jonasbarsten.com'),
+    renderShows(content, 'jonasbarsten.com'),
+    renderContact(content, 'jonasbarsten.com'),
+    renderNotFound(content, 'jonasbarsten.com'),
+  ]) {
+    assert.ok(html.includes(line));
+  }
+  assert.doesNotMatch(renderIndex(content, 'byjoba.com'), /class="disclaimer"/);
 });
 
 test('the list page has no executable script and no email address', () => {

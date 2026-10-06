@@ -35,6 +35,14 @@ for (const field of ['id', 'name', 'site', 'category', 'summary']) {
   });
 }
 
+// The summary is the card's short description; details go in `about`.
+test('a summary is one phrase: a second sentence is an error', () => {
+  assertError(errorsFor((c) => { c.projects[1].summary = 'Drummer. Concerts in Oslo.'; }), /entry "atlanter": summary must be one phrase; put further sentences in "about"/);
+  assert.deepEqual(errorsFor((c) => { c.projects[1].summary = 'Drummer.'; }), []);
+  // A full stop inside a name is not a sentence break.
+  assert.deepEqual(errorsFor((c) => { c.projects[1].summary = 'Stand-in drummer with No. 4 and Dagny'; }), []);
+});
+
 test('an unknown site is an error', () => {
   assertError(errorsFor((c) => { c.projects[0].site = 'example.com'; }), /entry "kiwi": unknown site "example.com"/);
 });
@@ -82,6 +90,19 @@ test('media must be a list of labelled videos or tracks from a host the pages ca
   }
 });
 
+// The pages' Content-Security-Policy allows images from these hosts only (byjoba-iac, lib/web-stack.ts).
+test('a media poster is an https image on NRK\'s or Spotify\'s image host', () => {
+  const nrk = 'https://tv.nrk.no/serie/festivalsommer/sesong/2021/episode/MKMU81000521';
+  const track = 'https://open.spotify.com/track/5owc6LBkOZp05yh0T0B88Q';
+  assert.deepEqual(errorsFor((c) => { c.projects[1].media = [
+    { label: 'n', url: nrk, poster: 'https://gfx.nrk.no/3Eva9Hu4jdjQMVjqDiBKJwWEd238Wu47GJCIBJJ1RmRA' },
+    { label: 't', url: track, poster: 'https://i.scdn.co/image/ab67616d00001e02827d41ce8620684286573002' },
+  ]; }), []);
+  for (const poster of ['http://gfx.nrk.no/x', 'https://example.com/a.jpg', 'https://gfx.nrk.no.evil.com/x', 7]) {
+    assertError(errorsFor((c) => { c.projects[1].media = [{ label: 'n', url: nrk, poster }]; }), /entry "atlanter": media poster must be an https image on gfx\.nrk\.no or i\.scdn\.co/);
+  }
+});
+
 test('an entry that is not an object is an error, not a crash', () => {
   assertError(errorsFor((c) => { c.projects.push(null); }), /projects\[3\]: must be an object/);
 });
@@ -89,6 +110,27 @@ test('an entry that is not an object is an error, not a crash', () => {
 test('a site key must be a plain hostname', () => {
   const errors = errorsFor((c) => { c.sites['../x'] = c.sites['byjoba.com']; });
   assertError(errors, /sites: "\.\.\/x" is not a hostname/);
+});
+
+test('a site\'s disclaimer, when given, must be text', () => {
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = ''; }), /jonasbarsten.com: "disclaimer" must be text/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = ['x']; }), /jonasbarsten.com: "disclaimer" must be text/);
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].disclaimer = 'Made with AI; may contain errors.'; }), []);
+});
+
+test('a site\'s share image, when given, needs a site path, a pixel size and alt text', () => {
+  const valid = { path: '/share.png', width: 1200, height: 630, alt: 'Jonas Barsten' };
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].shareImage = valid; }), []);
+  for (const bad of [{ ...valid, path: 'share.png' }, { ...valid, path: 'https://example.com/share.png' }, { ...valid, width: '1200' }, { ...valid, height: 0 }, { ...valid, alt: '' }, '/share.png']) {
+    assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].shareImage = bad; }), /jonasbarsten.com: "shareImage" needs a "path" from \/, a whole "width" and "height", and "alt" text/);
+  }
+});
+
+test('a site\'s IndexNow key, when given, is 8 to 128 letters, digits and dashes', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['byjoba.com'].indexNowKey = 'a1b2c3d4-e5f6'; }), []);
+  for (const bad of ['short', 'has space in it', 'x'.repeat(129), 'key/../../etc', 12345678]) {
+    assertError(errorsFor((c) => { c.sites['byjoba.com'].indexNowKey = bad; }), /byjoba.com: "indexNowKey" must be 8 to 128 letters, digits and dashes/);
+  }
 });
 
 test('a site\'s related sites must be a list of plain hostnames', () => {
@@ -196,10 +238,23 @@ test('badges are a list of short texts, each at most once', () => {
   }
 });
 
+test('a section\'s order is a list of distinct ids of entries in that section', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlanter']; }), []);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = 'atlanter'; }), /jonasbarsten.com section "music": order must be a list of entry ids/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlantis']; }), /jonasbarsten.com section "music": order names "atlantis", which is not an entry in this section/);
+  // An entry of the same site, but another section.
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['vierlive']; }), /jonasbarsten.com section "music": order names "vierlive", which is not an entry in this section/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].order = ['atlanter', 'atlanter']; }), /jonasbarsten.com section "music": order names "atlanter" twice/);
+});
+
 test('a section may carry a note, which must be text', () => {
   assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 'With my part in each.'; }), []);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ''; }), /jonasbarsten.com section 0: note must be non-empty text/);
   assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = 7; }), /jonasbarsten.com section 0: note must be non-empty text/);
+  // Or a list of lines, each shown on its own line.
+  assert.deepEqual(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ['One.', 'Two.']; }), []);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = ['One.', '']; }), /jonasbarsten.com section 0: note must be non-empty text/);
+  assertError(errorsFor((c) => { c.sites['jonasbarsten.com'].sections[0].note = []; }), /jonasbarsten.com section 0: note must be non-empty text/);
 });
 
 test('a category may appear in only one section of a site', () => {

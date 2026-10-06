@@ -53,6 +53,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* A site's disclaimer: one small, dim line above everything else on the page. */
+.disclaimer {
+  margin: 0 0 var(--space-8);
+  color: var(--muted-foreground);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  opacity: 0.8;
+}
+
 h1 {
   font-size: var(--text-xl);
   line-height: var(--leading-xl);
@@ -107,10 +116,19 @@ li {
   min-width: 0;
 }
 
-/* The entry a link points at. */
-li:target {
+/*
+ * The entry a link points at: the card itself (/#atlanter), or its details anchor
+ * inside (/#atlanter-details), which also opens it.
+ */
+li:target,
+li:has(.status:target) {
   border-color: var(--ring);
   background: var(--muted);
+}
+
+/* Following a details anchor scrolls to the line under the card's face; keep the face in view. */
+.status {
+  scroll-margin-top: 10rem;
 }
 
 @media (min-width: 40rem) {
@@ -118,7 +136,7 @@ li:target {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* An opened card takes the full width, so its players and text have room. */
+  /* An opened card takes the full width, so its videos, tracks and text have room. */
   li:has(> details[open]) {
     grid-column: 1 / -1;
   }
@@ -268,10 +286,10 @@ details p {
   margin: 0 0 var(--space-2);
 }
 
-/* Small players inside an expanded entry. */
+/* Videos and tracks inside an expanded entry. */
 .media {
   display: grid;
-  /* Two players side by side on a phone, more as the column widens. */
+  /* Two side by side on a phone, more as the column widens. */
   grid-template-columns: repeat(auto-fill, minmax(9rem, 1fr));
   gap: var(--space-4) var(--space-2);
   margin: 0 0 var(--space-2);
@@ -292,6 +310,15 @@ figure {
   margin: 0 0 var(--space-2);
 }
 
+/* A cover that links to its release, like its title. */
+.releases .cover {
+  display: block;
+}
+
+.releases .cover:hover img {
+  opacity: 0.85;
+}
+
 .releases img,
 .nocover {
   display: block;
@@ -303,23 +330,72 @@ figure {
   object-fit: cover;
 }
 
-iframe {
-  display: block;
-  width: 100%;
-  border: 0;
+/*
+ * A video or track: a link to it on its own service, opening in a new tab.
+ * YouTube shows its thumbnail; NRK and Spotify show the service's name. A play
+ * mark sits in the middle of every one.
+ */
+.poster {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   border-radius: calc(var(--radius) - 4px);
   background: var(--muted);
+  color: var(--muted-foreground);
+  text-decoration: none;
 }
 
-.video iframe {
-  aspect-ratio: 16 / 9;
+.poster img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-.track iframe {
-  height: 80px;
+.service {
+  padding: var(--space-2);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
 }
 
-/* Under a cover or a player: the title in the full colour, the year below it in the muted one. */
+/* The play mark: a dark disc with a white triangle, drawn without an image. */
+.poster::before,
+.poster::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.poster::before {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: -1.25rem 0 0 -1.25rem;
+  border-radius: 50%;
+  background: oklch(0 0 0 / 60%);
+}
+
+.poster::after {
+  margin: -0.5rem 0 0 -0.3rem;
+  border-style: solid;
+  border-width: 0.5rem 0 0.5rem 0.8rem;
+  border-color: transparent transparent transparent white;
+}
+
+.poster:hover::before {
+  background: oklch(0 0 0 / 80%);
+}
+
+.poster:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* Under a cover, a video or a track: the title in the full colour, the year below it in the muted one. */
 figcaption {
   font-size: 0.75rem;
   line-height: 1rem;
@@ -402,6 +478,25 @@ figcaption {
   margin-top: 0;
 }
 
+/* A card's list of shows: its heading on the left, the link to all shows on the right. */
+.popover-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-2);
+}
+
+.popover-head h3 {
+  margin: 0;
+}
+
+.popover-head a {
+  font-size: var(--text-sm);
+  line-height: var(--leading-sm);
+  white-space: nowrap;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -451,6 +546,12 @@ td:last-child {
   color: var(--muted-foreground);
 }
 
+/* On the shows page, a stand-in or one-off: dimmed, so the cards' own shows stand out. */
+tr.one-off td {
+  color: var(--muted-foreground);
+  opacity: 0.6;
+}
+
 footer {
   font-size: var(--text-sm);
   line-height: var(--leading-sm);
@@ -460,6 +561,5 @@ footer {
 }
 
 footer img {
-  display: block;
-  margin-top: var(--space-2);
+  vertical-align: middle;
 }

@@ -11,10 +11,19 @@ const COUNTRY_CODE = /^[A-Z]{2}$/;
 const SHOW_DATE = /^\d{4}(-(0[1-9]|1[0-2])(-(0[1-9]|[12]\d|3[01]))?)?$/;
 const SLUG =/^[a-z0-9]+(-[a-z0-9]+)*$/;
 const HOSTNAME = /^[a-z0-9-]+(\.[a-z0-9-]+)+$/;
+/** A media poster: an NRK or Spotify image, the hosts the pages' CSP allows (byjoba-iac, lib/web-stack.ts). */
+const POSTER = /^https:\/\/(gfx\.nrk\.no|i\.scdn\.co)\/[\w/-]+$/;
 
 const isText = (value) => typeof value === 'string' && value.trim() !== '';
 const isObject = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
 /** An external https link, or a root-relative path to a file under `static/<site>/`. */
+/** A key IndexNow accepts; the build serves it as `/<key>.txt`. */
+const INDEXNOW_KEY = /^[A-Za-z0-9-]{8,128}$/;
+/** A path within the site, without `..`, as the share image's `path`. */
+const SITE_PATH = /^\/[\w-]+(\/[\w-]+)*\.[a-z]+$/;
+const isPixels = (value) => Number.isInteger(value) && value > 0;
+const isShareImage = (image) =>
+  isObject(image) && typeof image.path === 'string' && SITE_PATH.test(image.path) && isPixels(image.width) && isPixels(image.height) && isText(image.alt);
 const isLinkUrl = (url) => typeof url === 'string' && (url.startsWith('https://') || (url.startsWith('/') && !url.startsWith('//')));
 
 /** Returns every problem in the content as a readable line; an empty list means it is valid. */
@@ -29,6 +38,32 @@ export function validate(content) {
   const places = knownPlaces(content.places);
   const seen = new Set();
   content.projects.forEach((entry, index) => errors.push(...entryErrors(entry, index, content.sites, seen, places)));
+  for (const domain of domains) errors.push(...orderErrors(domain, content.sites[domain], content.projects));
+  return errors;
+}
+
+/**
+ * A section's optional `order`: ids of entries in that section, each once. The
+ * entries it names come first, in that order; the rest follow in file order.
+ */
+function orderErrors(domain, site, projects) {
+  if (!isObject(site) || !Array.isArray(site.sections)) return [];
+  const errors = [];
+  for (const section of site.sections) {
+    if (!isObject(section) || !('order' in section)) continue;
+    const where = `${domain} section "${section.category}"`;
+    if (!Array.isArray(section.order) || !section.order.every(isText)) {
+      errors.push(`${where}: order must be a list of entry ids`);
+      continue;
+    }
+    const inSection = new Set(projects.filter((e) => isObject(e) && e.site === domain && e.category === section.category).map((e) => e.id));
+    const named = new Set();
+    for (const id of section.order) {
+      if (!inSection.has(id)) errors.push(`${where}: order names "${id}", which is not an entry in this section`);
+      if (named.has(id)) errors.push(`${where}: order names "${id}" twice`);
+      named.add(id);
+    }
+  }
   return errors;
 }
 
@@ -84,6 +119,13 @@ function siteErrors(domain, site) {
   if (!isObject(site)) return [`${domain}: must be an object`];
   const errors = SITE_TEXT.filter((field) => !isText(site[field])).map((field) => `${domain}: "${field}" is required`);
   if ('jsonLd' in site && !isObject(site.jsonLd)) errors.push(`${domain}: "jsonLd" must be an object`);
+  if ('disclaimer' in site && !isText(site.disclaimer)) errors.push(`${domain}: "disclaimer" must be text`);
+  if ('shareImage' in site && !isShareImage(site.shareImage)) {
+    errors.push(`${domain}: "shareImage" needs a "path" from /, a whole "width" and "height", and "alt" text`);
+  }
+  if ('indexNowKey' in site && !(typeof site.indexNowKey === 'string' && INDEXNOW_KEY.test(site.indexNowKey))) {
+    errors.push(`${domain}: "indexNowKey" must be 8 to 128 letters, digits and dashes`);
+  }
   if ('related' in site && !(Array.isArray(site.related) && site.related.every((other) => isText(other) && HOSTNAME.test(other)))) {
     errors.push(`${domain}: "related" must be a list of hostnames`);
   }
@@ -96,7 +138,8 @@ function siteErrors(domain, site) {
     const where = `${domain} section ${index}`;
     if (!isObject(section)) return errors.push(`${where}: must be an object`);
     if (!isText(section.title)) errors.push(`${where}: needs a title`);
-    if ('note' in section && !isText(section.note)) errors.push(`${where}: note must be non-empty text`);
+    const noteLines = Array.isArray(section.note) ? section.note : [section.note];
+    if ('note' in section && !(noteLines.length > 0 && noteLines.every(isText))) errors.push(`${where}: note must be non-empty text`);
     if (!isText(section.category)) {
       errors.push(`${where}: needs a category`);
     } else {
@@ -139,6 +182,10 @@ function entryErrors(entry, index, sites, seen, places) {
   for (const field of REQUIRED) {
     if (!isText(entry[field])) errors.push(`${where}: "${field}" is required`);
   }
+  // The summary is the card's short description; a full stop followed by a capital starts a second sentence.
+  if (isText(entry.summary) && /\.\s+[\p{Lu}]/u.test(entry.summary)) {
+    errors.push(`${where}: summary must be one phrase; put further sentences in "about"`);
+  }
   if (isText(entry.id)) {
     if (!SLUG.test(entry.id)) errors.push(`${where}: id must be a lowercase slug`);
     if (seen.has(entry.id)) errors.push(`${where}: duplicate id`);
@@ -168,6 +215,7 @@ function entryErrors(entry, index, sites, seen, places) {
       for (const item of entry.media) {
         if (!isObject(item) || !isText(item.label)) errors.push(`${where}: media item needs a label`);
         else if (!mediaEmbed(item.url)) errors.push(`${where}: media url must be a YouTube video, an NRK TV programme or a Spotify track`);
+        else if ('poster' in item && !POSTER.test(item.poster)) errors.push(`${where}: media poster must be an https image on gfx.nrk.no or i.scdn.co`);
       }
     }
   }

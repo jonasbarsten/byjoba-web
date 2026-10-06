@@ -33,7 +33,7 @@ node site/build.mjs --content <dir> --out <dir>             # build it
 CONTENT_DIR=<dir> node --test site/test/content.test.mjs   # check it
 ```
 
-The jonasbarsten.com repo uses exactly these, from a checkout of this repo, in its CI and deploy. A change to the generator on `main` reaches jonasbarsten.com on its next deploy, so check it against that repo's content first (clone it beside this one and run both commands with `--content ../jonasbarsten.com/content`).
+The jonasbarsten.com repo uses exactly these, from a checkout of this repo, in its CI and deploy. A change to the generator on `main` reaches jonasbarsten.com on its next deploy, so check it against that repo's content first. With that repo at `~/Development/jonasbarsten.com`, run both commands from here with `../../jonasbarsten.com/content` as the content directory.
 
 Locally the visitor counter shows its alt text and the contact page cannot fetch the address; both are served by byjoba-api through the deployed site.
 
@@ -48,9 +48,12 @@ A site in `sites`, keyed by its domain:
 | `description` | yes | Meta description, about 150 characters. |
 | `intro` | yes | The one line under the heading. |
 | `turnstileSiteKey` | yes | Public Cloudflare Turnstile key for the contact page. |
-| `jsonLd` | no | schema.org structured data, embedded as it is on the list page. |
+| `jsonLd` | no | schema.org structured data for the list page, e.g. an `Organization` or a `ProfilePage`. The build puts it in a `@graph` after a `WebSite` node (`@id` `https://<domain>/#website`) naming the site. |
+| `shareImage` | no | The link-preview image: `{ "path": "/share.png", "width": 1200, "height": 630, "alt": "…" }`. The file goes in `static/<domain>/`; the build fails without it. With it, previews use the large card. |
+| `indexNowKey` | no | 8–128 letters, digits and dashes. The build serves it at `/<key>.txt`, and the deploy submits the indexed pages to IndexNow with it. Public by design. |
+| `disclaimer` | no | One line shown small and dim at the top of every page of the site, e.g. how the content was gathered. |
 | `related` | no | Hostnames of other sites the footer links to, e.g. `["byjoba.com"]`. Named here because each site's content can live in its own repo. |
-| `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: one line under the heading that says how to read the cards. |
+| `sections` | yes | Ordered headings; each has a `title` and a `category`, and optionally a `note`: a line under the heading that says how to read the cards (or a list of lines, each shown on its own line), and an `order`: a list of entry ids in that section, shown first and in that order; the section's other entries follow in file order. |
 
 An entry in `projects`:
 
@@ -60,16 +63,16 @@ An entry in `projects`:
 | `name` | yes | Display name. |
 | `site` | yes | The one domain the entry lives on. |
 | `category` | yes | A category of a section on that site. |
-| `summary` | yes | One line, shown in the list. |
+| `summary` | yes | One phrase, shown on the card face without its closing full stop: what the thing is, or Jonas's part in it (e.g. "Drummer"). Details such as concerts go in `about`; a second sentence fails the build. |
 | `about` | no | Short paragraph, shown when expanded. |
 | `years` | no | Free text, e.g. `2016–`. |
 | `status` | yes | Shown as a badge after the name. One of `in-development` (being made, not out yet), `active` (out or running, still worked on), `ended` (was active, has stopped), `one-off` (a single piece of work, delivered). |
 | `role` | no | Shown after the summary. |
-| `media` | no | List of `{ "label", "url" }` for YouTube videos (`https://www.youtube.com/watch?v=…`), NRK TV programmes (`https://tv.nrk.no/…/<programme id>`) and Spotify tracks (`https://open.spotify.com/track/…`). Shown as small players when the entry is expanded; the line says how many there are. |
+| `media` | no | List of `{ "label", "url" }` for YouTube videos (`https://www.youtube.com/watch?v=…`), NRK TV programmes (`https://tv.nrk.no/…/<programme id>`) and Spotify tracks (`https://open.spotify.com/track/…`). Shown when the entry is expanded as links that open the video or track on its own service in a new tab: a YouTube video with its thumbnail (loaded only when the entry is opened), NRK and Spotify with the item's optional `poster`, or the service's name without one. Nothing is embedded. `poster` is an https image on `gfx.nrk.no` or `i.scdn.co`, the hosts the pages' CSP allows: for NRK, an image from `https://psapi.nrk.no/playback/metadata/program/<programme id>` (`preplay.poster.images`, the 600 px one); for Spotify, the `thumbnail_url` from `https://open.spotify.com/oembed?url=<track url>`, with its host changed to `i.scdn.co`. The marker says how many there are. |
 | `badges` | no | List of short texts stacked at the top right of the card's header. The music cards use `"live"` and `"studio"`. Any text works, on any entry, but a badge reads as a fact about the thing named, so do not use badges for Jonas's role; that goes in `summary`. |
 | `url` | no | Where the name links to. Without it the name is plain text. `https://…`, or `/…` for a file under `static/<site>/`. |
 | `releases` | no | List of `{ "title", "year", "url"?, "cover"? }`: the records the entry appears on, shown with their covers inside the opened card and counted in its marker. `cover` is a path to an image of our own under `static/<site>/`, e.g. `/covers/vidde.jpg`. |
-| `shows` | no | Not written in `projects.json`: the lists live in `content/shows.json`, keyed by entry id, because they are many. Each is a list of `{ "date", "act"?, "event"?, "venue"?, "place"?, "country"?, "note"?, "review"? }`: the shows played with the act. `act` names the artist when it is not the card's own, as on the card for single concerts; the shows page counts each artist once. `event` is the festival, showcase or programme; `venue` is the physical place; `place` is the city. Every one of those names must be in `content/places.json` (see Places below), so one venue is always spelled one way. A festival on its own grounds is both the event and the venue (`"event": "Slottsfjell", "venue": "Slottsfjell"`) and is shown once. `country` is only for a show without a `place`; otherwise the country comes from the city. `review` is `{ "label", "url" }`, a published review of that show, labelled with the publication's name. A site with shows also gets `/shows.html`, which lists them all in one table, newest first, under a line that counts the artists, shows, venues, events, cities and countries; the list page links to it from its footer. `date` is `2019-08-07`, or `2019-08` or `2019` when that is all the source gives. `note` is for things like `stand-in`. A button inside the opened card opens the list in a popover (no script), and the marker counts them. Only shows Jonas played; a calendar entry is not proof of that, so check before adding. |
+| `shows` | no | Not written in `projects.json`: the lists live in `content/shows.json`, keyed by entry id, because they are many. Each is a list of `{ "date", "act"?, "event"?, "venue"?, "place"?, "country"?, "note"?, "review"? }`: the shows played with the act. `act` names the artist when it is not the card's own, as on the card for single concerts; the shows page counts each artist once. `event` is the festival, showcase or programme; `venue` is the physical place; `place` is the city. Every one of those names must be in `content/places.json` (see Places below), so one venue is always spelled one way. A festival on its own grounds is both the event and the venue (`"event": "Slottsfjell", "venue": "Slottsfjell"`) and is shown once. `country` is only for a show without a `place`; otherwise the country comes from the city. `review` is `{ "label", "url" }`, a published review of that show, labelled with the publication's name; it is validated but not shown on the pages for now. A site with shows also gets `/shows.html`, which lists them all in one table, newest first, under a line that counts the artists, shows, venues, events, cities and countries; the list page links to it from its footer. `date` is `2019-08-07`, or `2019-08` or `2019` when that is all the source gives. `note` is for things like `stand-in`. A button inside the opened card opens the list in a popover (no script), and the marker counts them. Only shows Jonas played; a calendar entry is not proof of that, so check before adding. |
 | `links` | no | List of `{ "label", "url" }`, shown by label inside the opened card and counted in its marker ("1 video · 1 link"). They never make the name a link. |
 
 ### Places
@@ -85,11 +88,11 @@ An entry in `projects`:
 
 To add a show at a new venue, add the venue (and its city, if new) here first; the build names anything it does not find. The shows page counts its venues, events, cities and countries from what the shows use.
 
-Entries appear in file order. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
+Entries appear in file order, after any a section's `order` names. A site's `sections` set the headings and their order; a section with no entries is left out. The build fails with a list of errors when the content is invalid.
 
 ## Search engines
 
-Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
+Each build also writes `robots.txt`, `sitemap.xml` and `favicon.svg`. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Every sitemap entry's `lastmod` is the date of the content repo's last commit, so the build runs inside a git checkout. The list page's structured data starts with a `WebSite` node, which Google reads for the site name in results; every page carries Open Graph tags and, when the site has a `shareImage`, the large preview card. After a deploy, `node site/indexnow.mjs --content <dir> --site <domain>` submits the indexed pages to IndexNow (Bing, and through it ChatGPT search and Copilot, plus Yandex, Seznam and Naver); Google does not take IndexNow and finds changes through the sitemap. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
 
 ```bash
 npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-practices,performance
@@ -99,7 +102,7 @@ npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-p
 
 Work happens on `dev`; a push to `dev` or a pull request runs `.github/workflows/ci.yml` (tests and build).
 
-Merging to `main` runs `.github/workflows/deploy.yml` in the GitHub environment `production`, which only `main` may use and which waits for the owner's approval in the Actions tab: test, build, then `aws s3 sync --delete` of `dist/byjoba.com` to its bucket and a CloudFront invalidation. jonasbarsten.com deploys from its own repo, which checks out this one's `main` to build.
+Merging to `main` runs `.github/workflows/deploy.yml` in the GitHub environment `production`, which only `main` may use and which waits for the owner's approval in the Actions tab: test, build, then `aws s3 sync --delete` of `dist/byjoba.com` to its bucket, a CloudFront invalidation and an IndexNow submission (a refused submission is a warning only). jonasbarsten.com deploys from its own repo, which checks out this one's `main` to build.
 
 This repo holds no infrastructure. The buckets, the distributions and the deploy roles are in `byjoba-iac`; the visitor counter and the contact endpoint are byjoba-api's web service, which each site's distribution reaches at `/counter.svg` and `/contact`. The workflow assumes the role in the repository variable `AWS_DEPLOY_ROLE_ARN` (`byjoba-web-github-deploy-byjoba`), which trusts only this repo's `production` environment and can sync byjoba.com's bucket and invalidate its distribution and nothing else.
 

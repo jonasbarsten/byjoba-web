@@ -10,7 +10,34 @@ const NEW_TAB = ' target="_blank" rel="noopener"';
 /** A JSON-LD data block. `<` is written as an escape so the data can never close the block. */
 const jsonLdBlock = (data) => `<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`;
 
-function page({ site, title, description = site.description, canonical, index = false, jsonLd, body, scripts = '' }) {
+/**
+ * The share image's tags, absolute as the Open Graph protocol requires. Without
+ * one, link previews show the small card with the title and description only.
+ */
+function shareImageTags(site, domain) {
+  const image = site.shareImage;
+  if (!image) return ['<meta name="twitter:card" content="summary">'];
+  return [
+    `<meta property="og:image" content="https://${escapeHtml(domain)}${escapeHtml(image.path)}">`,
+    `<meta property="og:image:width" content="${image.width}">`,
+    `<meta property="og:image:height" content="${image.height}">`,
+    `<meta property="og:image:alt" content="${escapeHtml(image.alt)}">`,
+    '<meta name="twitter:card" content="summary_large_image">',
+  ];
+}
+
+/**
+ * The list page's structured data: a WebSite node, which Google reads for the
+ * site name it shows in results, then the site's own nodes from the content.
+ */
+function siteJsonLd(site, domain) {
+  const url = `https://${domain}/`;
+  const website = { '@type': 'WebSite', '@id': `${url}#website`, name: site.title, alternateName: domain, url };
+  const own = site.jsonLd ? [Object.fromEntries(Object.entries(site.jsonLd).filter(([key]) => key !== '@context'))] : [];
+  return { '@context': 'https://schema.org', '@graph': [website, ...own] };
+}
+
+function page({ site, domain, title, description = site.description, canonical, index = false, jsonLd, body, scripts = '' }) {
   const head = [
     '<meta charset="utf-8">',
     '<meta name="viewport" content="width=device-width, initial-scale=1">',
@@ -23,12 +50,14 @@ function page({ site, title, description = site.description, canonical, index = 
     `<meta property="og:site_name" content="${escapeHtml(site.title)}">`,
     '<meta property="og:type" content="website">',
     canonical ? `<meta property="og:url" content="${escapeHtml(canonical)}">` : '',
-    '<meta name="twitter:card" content="summary">',
+    ...shareImageTags(site, domain),
     '<link rel="icon" href="/favicon.svg" type="image/svg+xml">',
     '<link rel="stylesheet" href="/style.css">',
     jsonLd ? jsonLdBlock(jsonLd) : '',
   ].filter(Boolean);
-  return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${body}\n${scripts}</body>\n</html>\n`;
+  // The site's disclaimer, when it has one, is the first line of every page.
+  const disclaimer = site.disclaimer ? `<p class="disclaimer">${escapeHtml(site.disclaimer)}</p>\n` : '';
+  return `<!doctype html>\n<html lang="en">\n<head>\n${head.join('\n')}\n</head>\n<body>\n${disclaimer}${body}\n${scripts}</body>\n</html>\n`;
 }
 
 /**
@@ -59,17 +88,22 @@ function contentsHint(entry) {
 const meta = (entry) => (entry.role ? `<span class="meta">${escapeHtml(entry.role)}</span>` : '');
 
 /**
- * Small players for an entry's videos and tracks. `loading="lazy"` keeps them
- * from loading until the entry is opened, so a reader who opens nothing reaches
- * no third party. YouTube refuses to play without a referrer, hence the policy.
+ * An entry's videos and tracks, each a link to it on its own service, opening in
+ * a new tab. Embedded players did not react to clicks on the live pages. A
+ * YouTube video shows its thumbnail; `loading="lazy"` keeps it from loading
+ * until the entry is opened, so a reader who opens nothing reaches no third
+ * party. NRK and Spotify show the item's `poster` when the content gives one
+ * (looked up once and pinned there, so the build needs no network), and the
+ * service's name otherwise.
  */
 function mediaBlock(entry) {
   if (!entry.media?.length) return '';
   const figures = entry.media.map((item) => {
-    const { kind, src } = mediaEmbed(item.url);
+    const { kind, service, poster: thumbnail } = mediaEmbed(item.url);
+    const poster = item.poster ?? thumbnail;
     const label = escapeHtml(item.label);
-    const allow = kind === 'video' ? 'allow="encrypted-media; picture-in-picture" allowfullscreen' : 'allow="encrypted-media"';
-    return `<figure class="${kind}"><iframe src="${escapeHtml(src)}" title="${label}" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" ${allow}></iframe><figcaption>${label}</figcaption></figure>`;
+    const face = poster ? `<img src="${escapeHtml(poster)}" alt="" loading="lazy">` : `<span class="service">${service}</span>`;
+    return `<figure class="${kind}"><a class="poster" href="${escapeHtml(item.url)}"${NEW_TAB} aria-label="${label}, on ${service}">${face}</a><figcaption>${label}</figcaption></figure>`;
   });
   const kinds = new Set(entry.media.map((item) => mediaEmbed(item.url).kind));
   const heading = kinds.size === 2 ? 'Videos and tracks' : kinds.has('video') ? 'Videos' : 'Tracks';
@@ -79,9 +113,14 @@ function mediaBlock(entry) {
 const STATUS_LABELS = { 'in-development': 'in development', active: 'active', ended: 'ended', 'one-off': 'one-off' };
 
 /** The first line inside an opened card: the status as a badge, then the years when the entry has them. */
+/**
+ * The first line inside an opened card. Its id, `<entry id>-details`, is the
+ * anchor that opens the card: a browser opens a closed <details> when a link's
+ * target is inside its hidden content, with no script.
+ */
 function statusLine(entry) {
   const years = entry.years ? ` ${escapeHtml(entry.years)}` : '';
-  return `<p class="status"><span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>${years}</p>`;
+  return `<p class="status" id="${escapeHtml(entry.id)}-details"><span class="badge">${escapeHtml(STATUS_LABELS[entry.status])}</span>${years}</p>`;
 }
 
 /**
@@ -100,7 +139,9 @@ function renderEntry(entry, places) {
   const badges = entry.badges?.length
     ? `<span class="badges">${entry.badges.map((badge) => `<span class="badge">${escapeHtml(badge)}</span>`).join('')}</span>`
     : '';
-  const face = `<span class="head">${name}${badges}</span><span class="summary">${escapeHtml(entry.summary)}</span>${meta(entry)}`;
+  // The card face shows the summary without its closing full stop; a stop between sentences stays.
+  const summary = entry.summary.replace(/\.$/, '');
+  const face = `<span class="head">${name}${badges}</span><span class="summary">${escapeHtml(summary)}</span>${meta(entry)}`;
   const about = entry.about ? `<p>${escapeHtml(entry.about)}</p>` : '';
   const links = entry.links?.length
     ? `<h3>Links</h3><p class="links">${entry.links.map((link) => `<a href="${escapeHtml(link.url)}"${NEW_TAB}>${escapeHtml(link.label)}</a>`).join(' · ')}</p>`
@@ -117,9 +158,14 @@ function renderEntry(entry, places) {
 function releaseList(entry) {
   if (!entry.releases?.length) return '';
   const figures = entry.releases.map((release) => {
-    const cover = release.cover
+    const image = release.cover
       ? `<img src="${escapeHtml(release.cover)}" alt="" width="96" height="96" loading="lazy">`
       : '<span class="nocover"></span>';
+    // The cover links like the title, as a larger target; the title is the link
+    // keyboards and screen readers use, so the cover stays out of their way.
+    const cover = release.url && release.cover
+      ? `<a class="cover" href="${escapeHtml(release.url)}"${NEW_TAB} tabindex="-1" aria-hidden="true">${image}</a>`
+      : image;
     const title = release.url
       ? `<a href="${escapeHtml(release.url)}"${NEW_TAB}>${escapeHtml(release.title)}</a>`
       : escapeHtml(release.title);
@@ -157,7 +203,10 @@ const countryOf = (show, places) => (show.place ? places.cities[show.place] : sh
 /** A show's event and venue in one cell; a festival on its own grounds is both, and is named once. */
 const whereCell = (show) => cell([...new Set([show.event, show.venue].filter(Boolean))].join(' · '));
 
-/** A show's last cell: its note, then a link to a review of it, when it has them. */
+/**
+ * A show's last cell: its note, when it has one. A show's `review` stays in the
+ * content but is not shown: the owner took the reviews off the pages for now.
+ */
 function noteCell(show, { withAct = false } = {}) {
   const parts = [];
   // A card's own list has no act column, so an act other than the card's goes first in the note.
@@ -165,7 +214,6 @@ function noteCell(show, { withAct = false } = {}) {
   // On the shows page the act has its own column; the note says the show is not one of a card's own.
   if (!withAct && show.act) parts.push('stand-in / one-off');
   if (show.note) parts.push(escapeHtml(show.note));
-  if (show.review) parts.push(`<a href="${escapeHtml(show.review.url)}"${NEW_TAB}>${escapeHtml(show.review.label)}</a>`);
   return `<td>${parts.join(' · ')}</td>`;
 }
 
@@ -184,14 +232,25 @@ function showList(entry, places) {
   const total = count(entry.shows.length, 'show');
   const rows = newestFirst(entry.shows).map((show) => `<tr>${dateCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, places)}${noteCell(show, { withAct: true })}</tr>`);
   const button = `<h3>Shows</h3><p><button type="button" class="open-shows" popovertarget="${id}">List of ${total}</button></p>`;
-  return `${button}<div id="${id}" class="shows" popover><h3>${escapeHtml(entry.name)}: ${total}</h3>${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
+  // The heading row also links to every show on the site, at the top right.
+  const head = `<div class="popover-head"><h3>${escapeHtml(entry.name)}: ${total}</h3><a href="/shows.html">All shows</a></div>`;
+  return `${button}<div id="${id}" class="shows" popover>${head}${showTable(['Date', 'Event, venue', 'Place', 'Country', 'Note'], rows)}</div>`;
+}
+
+/** A section's entries: those its `order` names first, in that order, then the rest in file order. */
+function sectionEntries(content, domain, section) {
+  const order = section.order ?? [];
+  const rank = (entry) => (order.includes(entry.id) ? order.indexOf(entry.id) : order.length);
+  // Array.prototype.sort is stable, so entries of equal rank keep their file order.
+  return content.projects.filter((entry) => entry.site === domain && entry.category === section.category).sort((a, b) => rank(a) - rank(b));
 }
 
 function renderSection(content, domain, section) {
-  const items = content.projects.filter((entry) => entry.site === domain && entry.category === section.category).map((entry) => renderEntry(entry, content.places));
+  const items = sectionEntries(content, domain, section).map((entry) => renderEntry(entry, content.places));
   if (items.length === 0) return '';
   // An optional line under the heading that says how to read the cards below it.
-  const note = section.note ? `<p class="note">${escapeHtml(section.note)}</p>\n` : '';
+  // A note given as a list shows each line on its own line.
+  const note = section.note ? `<p class="note">${[section.note].flat().map(escapeHtml).join('<br>')}</p>\n` : '';
   return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n${note}<ul>\n${items.join('\n')}\n</ul>\n</section>`;
 }
 
@@ -244,7 +303,8 @@ function tally(shows, id, word, plural, label) {
 const actOf = (show) => show.act ?? show.entry.name;
 
 /** The act cell: a card's own act links to the card; an act played with once or as a stand-in has no card to link to. */
-const actCell = (show) => (show.act ? cell(show.act) : `<td><a href="/#${escapeHtml(show.entry.id)}">${escapeHtml(show.entry.name)}</a></td>`);
+// The act links to its card's details anchor, which opens the card.
+const actCell = (show) => (show.act ? cell(show.act) : `<td><a href="/#${escapeHtml(show.entry.id)}-details">${escapeHtml(show.entry.name)}</a></td>`);
 
 /** Whether a site has a shows page. */
 export const hasShows = (content, domain) => siteShows(content, domain).length > 0;
@@ -253,14 +313,15 @@ export const hasShows = (content, domain) => siteShows(content, domain).length >
 export function renderShows(content, domain) {
   const site = content.sites[domain];
   const shows = newestFirst(siteShows(content, domain));
-  const rows = shows.map((show) => `<tr>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
+  // A stand-in or one-off (a show with its own act) is marked so the stylesheet can dim it.
+  const rows = shows.map((show) => `<tr${show.act ? ' class="one-off"' : ''}>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
   const totals = showTotals(shows, content.places);
   const body = [
     `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${totals.line}.</p>\n${totals.lists}\n</header>`,
     `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
   ].join('\n');
   const description = `The ${count(shows.length, 'show')} ${site.title} has played: date, act, event, venue, place and country.`;
-  return page({ site, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
+  return page({ site, domain, title: `Shows — ${site.title}`, description, canonical: `https://${domain}/shows.html`, index: true, body });
 }
 
 export function renderIndex(content, domain) {
@@ -270,9 +331,9 @@ export function renderIndex(content, domain) {
   const body = [
     `<header>\n<h1>${escapeHtml(site.title)}</h1>\n<p>${escapeHtml(site.intro)}</p>\n</header>`,
     `<main>\n${sections.join('\n')}\n</main>`,
-    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p><img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
+    `<footer>\n<p>${others} · <a href="/contact.html">contact</a></p>\n<p>visitors: <img src="/counter.svg" alt="visitor counter" width="88" height="20"></p>\n</footer>`,
   ].join('\n');
-  return page({ site, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: site.jsonLd, body });
+  return page({ site, domain, title: site.pageTitle, canonical: `https://${domain}/`, index: true, jsonLd: siteJsonLd(site, domain), body });
 }
 
 export function renderContact(content, domain) {
@@ -282,26 +343,29 @@ export function renderContact(content, domain) {
     `<main>\n<div id="turnstile" data-sitekey="${escapeHtml(site.turnstileSiteKey)}"></div>\n<p id="contact-result" hidden></p>\n<noscript><p>Showing the address needs JavaScript.</p></noscript>\n</main>`,
   ].join('\n');
   const scripts = '<script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>\n<script src="/contact.js" defer></script>\n';
-  return page({ site, title: `Contact — ${site.title}`, canonical: `https://${domain}/contact.html`, body, scripts });
+  return page({ site, domain, title: `Contact — ${site.title}`, canonical: `https://${domain}/contact.html`, body, scripts });
 }
 
 export function renderNotFound(content, domain) {
   const site = content.sites[domain];
   const body = `<main>\n<h1>Not found</h1>\n<p><a href="/">${escapeHtml(site.title)}</a></p>\n</main>`;
-  return page({ site, title: `Not found — ${site.title}`, body });
+  return page({ site, domain, title: `Not found — ${site.title}`, body });
 }
 
 export function renderRobots(domain) {
   return `User-agent: *\nAllow: /\n\nSitemap: https://${domain}/sitemap.xml\n`;
 }
 
-/** The list page and the shows page are worth indexing; the contact and not-found pages are marked noindex. */
-export function renderSitemap(content, domain) {
-  const paths = hasShows(content, domain) ? ['', 'shows.html'] : [''];
+/** The pages worth indexing: the list page, and the shows page when the site has one. The contact and not-found pages are marked noindex. */
+export const indexedUrls = (content, domain) => (hasShows(content, domain) ? ['', 'shows.html'] : ['']).map((path) => `https://${domain}/${path}`);
+
+/** `lastModified` (YYYY-MM-DD), when given, is the date the content last changed; every page is built from it. */
+export function renderSitemap(content, domain, lastModified) {
+  const lastmod = lastModified ? `<lastmod>${escapeHtml(lastModified)}</lastmod>` : '';
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-    ...paths.map((path) => `<url><loc>https://${escapeHtml(domain)}/${path}</loc></url>`),
+    ...indexedUrls(content, domain).map((url) => `<url><loc>${escapeHtml(url)}</loc>${lastmod}</url>`),
     '</urlset>',
     '',
   ].join('\n');
