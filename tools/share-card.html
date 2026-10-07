@@ -1,0 +1,45 @@
+<!doctype html>
+<!--
+  The template for a site's share image (static/<domain>/share.png), rendered
+  with headless Chrome at 1200×630. Not part of any site. The text comes from
+  the query: title, line (a newline, %0A, breaks it) and domain. See the
+  README, "Share images".
+-->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #171717;
+    color: #fafafa;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding: 96px 104px 88px;
+  }
+  .badge {
+    width: 96px; height: 96px; border-radius: 21px; background: #fafafa; color: #171717;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 45px; font-weight: 600; letter-spacing: -0.5px;
+  }
+  h1 { margin: 0; font-size: 104px; font-weight: 600; letter-spacing: -3px; line-height: 1; }
+  p { margin: 28px 0 0; font-size: 40px; color: #a3a3a3; line-height: 1.25; white-space: pre-line; }
+  .domain { font-size: 30px; color: #737373; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+</style>
+</head>
+<body>
+  <div class="badge">JB</div>
+  <div>
+    <h1 id="title"></h1>
+    <p id="line"></p>
+  </div>
+  <div class="domain" id="domain"></div>
+  <script>
+    const q = new URLSearchParams(location.search);
+    for (const id of ['title', 'line', 'domain']) document.getElementById(id).textContent = q.get(id);
+  </script>
+</body>
+</html>
