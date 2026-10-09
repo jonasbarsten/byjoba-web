@@ -14,8 +14,9 @@ Design: `byjoba-tools/specs/2026-10-04-landing-pages-design.md`.
 | `content/projects.json` | byjoba.com's content: the site, its sections, and every entry. |
 | `content/shows.json` | The shows played, per entry id. Empty here: byjoba.com has none. |
 | `content/places.json` | The countries, cities, events and venues the shows name. Empty here. |
-| `site/` | The generator. Plain ESM JavaScript on Node 24, no dependencies. |
-| `static/<domain>/` | Files copied into that site as they are. |
+| `site/` | The generator. Plain ESM JavaScript on Node 24, no dependencies: `build.mjs` (the command line), `render.mjs` (the pages, sitemap, robots.txt and llms.txt), `validate.mjs` (the content rules), `media.mjs` (video and track links), `indexnow.mjs` (the post-deploy submission), the stylesheet, the contact page script and the favicon. Tests in `site/test/`. |
+| `static/<domain>/` | Files copied into that site as they are, such as byjoba.com's `share.png`. |
+| `tools/share-card.html` | The template the share images are made from (see Share images). Not part of any site. |
 | `dist/<domain>/` | Build output. Not in git. |
 
 ## Commands
@@ -93,11 +94,38 @@ Entries appear in file order, after any a section's `order` names. A site's `sec
 
 ## Search engines
 
-Each build also writes `robots.txt`, `sitemap.xml`, `favicon.svg` and `llms.txt`: the site as Markdown (llmstxt.org) for language models and agents, with the title, description, pages, and every section and entry in page order, each entry linking to its card. It holds nothing the pages do not show. The list page and the shows page are indexable; the contact and not-found pages are marked `noindex`. Every sitemap entry's `lastmod` is the date of the content repo's last commit, so the build runs inside a git checkout. The list page's structured data starts with a `WebSite` node, which Google reads for the site name in results; every page carries Open Graph tags and, when the site has a `shareImage`, the large preview card. After a deploy, `node site/indexnow.mjs --content <dir> --site <domain>` submits the indexed pages to IndexNow (Bing, and through it ChatGPT search and Copilot, plus Yandex, Seznam and Naver); Google does not take IndexNow and finds changes through the sitemap. Lighthouse scores 100 for SEO, accessibility and performance on both sites; check again after a change to the markup or the stylesheet:
+Besides the pages, each build writes:
+
+- `robots.txt`, which allows everything and names the sitemap.
+- `sitemap.xml`: the list page, and the shows page when the site has one. Every entry's `lastmod` is the date of the content repo's last commit, so the build runs inside a git checkout. The contact and not-found pages are marked `noindex` and left out.
+- `llms.txt`: the site as Markdown (llmstxt.org) for language models and agents: the title, description, pages, then every section and entry in page order, each entry linking to its card. It holds nothing the pages do not show.
+- `<indexNowKey>.txt`, when the site has an IndexNow key.
+
+In the pages:
+
+- The list page's structured data starts with a `WebSite` node, which Google reads for the site name in results, followed by the site's `jsonLd` (byjoba.com an `Organization`, jonasbarsten.com a `ProfilePage` whose `Person` lists his profiles under `sameAs`).
+- Every page carries Open Graph tags and, when the site has a `shareImage`, the large preview card.
+
+After a deploy, `node site/indexnow.mjs --content <dir> --site <domain>` submits the indexed pages to IndexNow (Bing, and through it ChatGPT search and Copilot, plus Yandex, Seznam and Naver). Google does not take IndexNow and finds changes through the sitemap. Both domains are verified in Google Search Console, by TXT records in byjoba-iac (`txtRecords` in `WEB_SITES`), and imported from there into Bing Webmaster Tools.
+
+On the live sites (2026-10-07), Lighthouse scores 100 for accessibility, best practices, SEO and agentic browsing on all three pages, and 99–100 for performance on mobile, 100 on desktop. Check again after a change to the markup or the stylesheet, against the live site, since the response headers (the CSP among them) come from CloudFront:
 
 ```bash
-npx lighthouse http://localhost:8791/ --only-categories=seo,accessibility,best-practices,performance
+npx lighthouse https://byjoba.com/ --chrome-flags="--headless=new"                    # mobile
+npx lighthouse https://byjoba.com/ --preset=desktop --chrome-flags="--headless=new"   # desktop
 ```
+
+### Share images
+
+A site's `share.png` (1200×630) is `tools/share-card.html` rendered with headless Chrome: the JB badge, the title, one or two lines, and the domain, on the favicon's near-black. The text comes from the address, a newline written `%0A`:
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+  --force-device-scale-factor=1 --window-size=1200,630 --screenshot=share.png \
+  "file://$PWD/tools/share-card.html?title=byJoBa&line=Apps%2C%20music%20tools%20and%20hardware%0Amade%20by%20Jonas%20Barsten.&domain=byjoba.com"
+```
+
+Put the result in `static/<domain>/share.png` and keep the site's `shareImage.alt` in step with the text. jonasbarsten.com's is made the same way, with `title=Jonas%20Barsten&line=Drummer%20and%20musical%20director.%0AAlso%20creates%20tools%20and%20rooms%20for%20music.&domain=jonasbarsten.com`. Apps cache link previews, so a chat that already shows the link may keep the old image for a while.
 
 ## Deploy
 
