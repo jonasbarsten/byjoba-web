@@ -262,14 +262,14 @@ function siteShows(content, domain) {
 }
 
 /**
- * What a list of shows spans, e.g. "76 artists, 969 shows, 396 venues, 151 events, 207 cities
+ * What a list of shows spans, e.g. "969 shows, 76 artists, 396 venues, 151 events, 207 cities
  * and 33 countries", and the lists its counts open. A venue counts once per city: two towns
  * can each have a Kulturhuset.
  */
 function showTotals(shows, places) {
   const tallies = [
-    tally(shows, 'artists', 'artist', 'artists', actOf),
     { text: count(shows.length, 'show'), list: '' },
+    tally(shows, 'artists', 'artist', 'artists', actOf),
     tally(shows, 'venues', 'venue', 'venues', (show) => show.venue && [show.venue, show.place].filter(Boolean).join(', ')),
     tally(shows, 'events', 'event', 'events', (show) => show.event),
     tally(shows, 'cities', 'city', 'cities', (show) => show.place),
@@ -317,7 +317,7 @@ export function renderShows(content, domain) {
   const rows = shows.map((show) => `<tr${show.act ? ' class="one-off"' : ''}>${dateCell(show)}${actCell(show)}${whereCell(show)}${cell(show.place)}${countryCell(show, content.places)}${noteCell(show)}</tr>`);
   const totals = showTotals(shows, content.places);
   const body = [
-    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a> · ${totals.line}.</p>\n${totals.lists}\n</header>`,
+    `<header>\n<h1>Shows</h1>\n<p><a href="/">${escapeHtml(site.title)}</a></p>\n<p>${totals.line}.</p>\n${totals.lists}\n</header>`,
     `<main>\n${showTable(['Date', 'Act', 'Event, venue', 'Place', 'Country', 'Note'], rows)}\n</main>`,
   ].join('\n');
   const description = `The ${count(shows.length, 'show')} ${site.title} has played: date, act, event, venue, place and country.`;
