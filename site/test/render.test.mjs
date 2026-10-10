@@ -177,9 +177,9 @@ test('the shows page counts each venue, city and country once, and leaves out wh
     { date: '2015-10-02', venue: 'Kulturhuset', place: 'Oslo' },
   );
   const page = renderShows(content, 'jonasbarsten.com');
-  assert.match(withoutButtons(page), / · 1 artist, 7 shows, 5 venues, 2 events, 3 cities and 2 countries\./);
+  assert.match(withoutButtons(page), /<p>7 shows, 1 artist, 5 venues, 2 events, 3 cities and 2 countries\.<\/p>/);
   content.projects[1].shows = [{ date: '2016' }, { date: '2017', place: 'Oslo' }];
-  assert.match(withoutButtons(renderShows(content, 'jonasbarsten.com')), / · 1 artist, 2 shows, 1 city and 1 country\./);
+  assert.match(withoutButtons(renderShows(content, 'jonasbarsten.com')), /<p>2 shows, 1 artist, 1 city and 1 country\.<\/p>/);
 });
 
 test('each count but the shows opens a list of what it counts, most shows first, without script', () => {
@@ -194,7 +194,7 @@ test('each count but the shows opens a list of what it counts, most shows first,
   const page = renderShows(content, 'jonasbarsten.com');
   const list = (id, heading, items) => `<div id="tally-${id}" class="shows" popover><h3>${heading}</h3><ol class="tally">\n${items.map((item) => `<li>${item}</li>`).join('\n')}\n</ol></div>`;
   assert.ok(page.includes('<button type="button" class="count" popovertarget="tally-countries">2 countries</button>'));
-  assert.ok(page.includes(' · <button type="button" class="count" popovertarget="tally-artists">2 artists</button>, 8 shows, <button'));
+  assert.ok(page.includes('<p>8 shows, <button type="button" class="count" popovertarget="tally-artists">2 artists</button>, <button'));
   assert.ok(page.includes(list('countries', '2 countries', ['Norway (5)', 'United Kingdom (2)'])));
   assert.ok(page.includes(list('cities', '3 cities', ['Oslo (4)', 'Bjugn (1)', 'London (1)'])));
   assert.ok(page.includes(list('venues', '5 venues', ['Øyafestivalen, Oslo (2)', 'Blå, Oslo (1)', 'Kulturhuset, Bjugn (1)', 'Kulturhuset, Oslo (1)', 'The Lexington, London (1)'])));
@@ -207,7 +207,7 @@ test('a show played with another act than its card names that act: as plain text
   const content = withShows();
   content.projects[1].shows.push({ date: '2016-01-02', act: 'No. 4', place: 'Oslo', note: 'on keyboards' }, { date: '2016-01-03', act: 'No. 4' });
   const page = renderShows(content, 'jonasbarsten.com');
-  assert.match(withoutButtons(page), / · 2 artists, 5 shows, /);
+  assert.match(withoutButtons(page), /<p>5 shows, 2 artists, /);
   assert.match(page, /<time datetime="2016-01-02">02\.01\.16<\/time><\/td><td>No\. 4<\/td><td><\/td><td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>stand-in \/ one-off · on keyboards<\/td><\/tr>/);
   assert.match(page, /<time datetime="2016-01-03">03\.01\.16<\/time><\/td><td>No\. 4<\/td><td><\/td><td><\/td><td><\/td><td>stand-in \/ one-off<\/td><\/tr>/);
   assert.match(renderIndex(content, 'jonasbarsten.com'), /<td>Oslo<\/td><td><abbr title="Norway">NO<\/abbr><\/td><td>No\. 4 · on keyboards<\/td><\/tr>/);
@@ -247,7 +247,7 @@ test('the shows page lists every show of the site in one table, newest first, wi
   assert.match(html, /<title>Shows — Jonas Barsten<\/title>/);
   assert.match(html, /<link rel="canonical" href="https:\/\/jonasbarsten\.com\/shows\.html">/);
   assert.doesNotMatch(html, /noindex/);
-  assert.match(withoutButtons(html), /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a> · 1 artist, 3 shows, 2 venues, 2 events, 2 cities and 2 countries\.<\/p>/);
+  assert.match(withoutButtons(html), /<h1>Shows<\/h1>\n<p><a href="\/">Jonas Barsten<\/a><\/p>\n<p>3 shows, 1 artist, 2 venues, 2 events, 2 cities and 2 countries\.<\/p>/);
   assert.equal(html.match(/<table>/g).length, 1);
   assert.doesNotMatch(html, /<h2>/);
   assert.deepEqual([...html.matchAll(/<time datetime="([^"]+)">/g)].map((match) => match[1]), ['2014-10', '2014-02-13', '2013-08-08']);
@@ -518,6 +518,17 @@ test('a note given as a list shows each line on its own line', () => {
   content.sites['jonasbarsten.com'].sections[0].note = ['Artists & bands, with my part in each.', 'Current first, then past.'];
   const html = renderIndex(content, 'jonasbarsten.com');
   assert.match(html, /<h2>Music<\/h2>\n<p class="note">Artists &amp; bands, with my part in each\.<br>Current first, then past\.<\/p>\n<ul>/);
+});
+
+test('a site with collapsedSections shows each section closed, its heading the control that opens it, without script', () => {
+  const content = fixture();
+  content.sites['jonasbarsten.com'].collapsedSections = true;
+  content.sites['jonasbarsten.com'].sections[0].note = 'Artists & bands.';
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<section>\n<details class="section"><summary><h2>Music<\/h2><\/summary>\n<p class="note">Artists &amp; bands\.<\/p>\n<ul>\n[\s\S]*?\n<\/ul>\n<\/details>\n<\/section>/);
+  assert.doesNotMatch(html, /class="section" open/);
+  assert.doesNotMatch(html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, ''), /<script/);
+  assert.match(renderIndex(fixture(), 'jonasbarsten.com'), /<section>\n<h2>Music<\/h2>/);
 });
 
 test('an empty section is not rendered', () => {

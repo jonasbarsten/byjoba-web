@@ -140,6 +140,13 @@ test('a site\'s counterSince, when given, is a full date', () => {
   }
 });
 
+test('a site\'s collapsedSections, when given, is true or false', () => {
+  assert.deepEqual(errorsFor((c) => { c.sites['byjoba.com'].collapsedSections = true; }), []);
+  for (const bad of ['yes', 1, null]) {
+    assertError(errorsFor((c) => { c.sites['byjoba.com'].collapsedSections = bad; }), /byjoba.com: "collapsedSections" must be true or false/);
+  }
+});
+
 test('a site\'s related sites must be a list of plain hostnames', () => {
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = 'jonasbarsten.com'; }), /byjoba.com: "related" must be a list of hostnames/);
   assertError(errorsFor((c) => { c.sites['byjoba.com'].related = ['https://jonasbarsten.com/']; }), /byjoba.com: "related" must be a list of hostnames/);

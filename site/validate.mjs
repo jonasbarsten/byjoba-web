@@ -127,7 +127,10 @@ function siteErrors(domain, site) {
   if ('counterSince' in site && !(typeof site.counterSince === 'string' && FULL_DATE.test(site.counterSince))) {
     errors.push(`${domain}: "counterSince" must be a date as YYYY-MM-DD`);
   }
-  if ('indexNowKey' in site && !(typeof site.indexNowKey === 'string' && INDEXNOW_KEY.test(site.indexNowKey))) {
+  if ('collapsedSections' in site && typeof site.collapsedSections !== 'boolean') {
+    errors.push(`${domain}: "collapsedSections" must be true or false`);
+  }
+  if ('indexNowKey' in site &&!(typeof site.indexNowKey === 'string' && INDEXNOW_KEY.test(site.indexNowKey))) {
     errors.push(`${domain}: "indexNowKey" must be 8 to 128 letters, digits and dashes`);
   }
   if ('related' in site && !(Array.isArray(site.related) && site.related.every((other) => isText(other) && HOSTNAME.test(other)))) {
