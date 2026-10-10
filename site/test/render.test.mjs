@@ -520,6 +520,17 @@ test('a note given as a list shows each line on its own line', () => {
   assert.match(html, /<h2>Music<\/h2>\n<p class="note">Artists &amp; bands, with my part in each\.<br>Current first, then past\.<\/p>\n<ul>/);
 });
 
+test('a site with collapsedSections shows each section closed, its heading the control that opens it, without script', () => {
+  const content = fixture();
+  content.sites['jonasbarsten.com'].collapsedSections = true;
+  content.sites['jonasbarsten.com'].sections[0].note = 'Artists & bands.';
+  const html = renderIndex(content, 'jonasbarsten.com');
+  assert.match(html, /<section>\n<details class="section"><summary><h2>Music<\/h2><\/summary>\n<p class="note">Artists &amp; bands\.<\/p>\n<ul>\n[\s\S]*?\n<\/ul>\n<\/details>\n<\/section>/);
+  assert.doesNotMatch(html, /class="section" open/);
+  assert.doesNotMatch(html.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/g, ''), /<script/);
+  assert.match(renderIndex(fixture(), 'jonasbarsten.com'), /<section>\n<h2>Music<\/h2>/);
+});
+
 test('an empty section is not rendered', () => {
   assert.doesNotMatch(renderIndex(fixture(), 'byjoba.com'), /<h2>Apps<\/h2>/);
 });

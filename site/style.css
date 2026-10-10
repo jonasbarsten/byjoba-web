@@ -250,7 +250,7 @@ details[open] > summary {
   border-radius: var(--radius) var(--radius) 0 0;
 }
 
-details[open] .more {
+details[open] > summary .more {
   background: var(--background);
 }
 
@@ -270,13 +270,43 @@ details[open] .more {
   content: ' ▾';
 }
 
-details[open] .more::after {
+details[open] > summary .more::after {
   content: ' ▴';
 }
 
 summary:hover .more,
 details[open] > summary:hover .more {
   background: var(--border);
+}
+
+/*
+ * A collapsed section: its heading is the control, with a marker that says it opens.
+ * It keeps the heading's own look, none of a card face's.
+ */
+details.section > summary,
+details.section[open] > summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+
+/* Closed sections stand in a short list, so their headings sit closer than open ones. */
+details.section > summary > h2 {
+  margin-top: var(--space-4);
+}
+
+details.section > summary > h2::after {
+  content: ' ▾';
+}
+
+details.section[open] > summary > h2::after {
+  content: ' ▴';
+}
+
+details.section > summary:hover > h2 {
+  color: var(--foreground);
 }
 
 details p {

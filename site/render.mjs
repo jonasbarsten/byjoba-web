@@ -251,7 +251,13 @@ function renderSection(content, domain, section) {
   // An optional line under the heading that says how to read the cards below it.
   // A note given as a list shows each line on its own line.
   const note = section.note ? `<p class="note">${[section.note].flat().map(escapeHtml).join('<br>')}</p>\n` : '';
-  return `<section>\n<h2>${escapeHtml(section.title)}</h2>\n${note}<ul>\n${items.join('\n')}\n</ul>\n</section>`;
+  const heading = `<h2>${escapeHtml(section.title)}</h2>`;
+  const body = `${note}<ul>\n${items.join('\n')}\n</ul>`;
+  // A collapsed section is a closed <details>: its heading opens it, and a link to a card inside opens both.
+  if (content.sites[domain].collapsedSections) {
+    return `<section>\n<details class="section"><summary>${heading}</summary>\n${body}\n</details>\n</section>`;
+  }
+  return `<section>\n${heading}\n${body}\n</section>`;
 }
 
 /** Every show on a site, each with the entry it belongs to. */
