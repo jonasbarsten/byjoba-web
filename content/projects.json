@@ -177,6 +177,17 @@
       "years": "2026"
     },
     {
+      "id": "spd-sx-editor",
+      "name": "SPD-SX Editor",
+      "site": "byjoba.com",
+      "category": "music-tools",
+      "status": "active",
+      "summary": "Browser editor for the Roland SPD-SX sampling pad: kits, pads, samples, kit chains and kit packs.",
+      "about": "Reads and writes the unit's USB volume directly in Chrome, Edge or Brave; nothing is uploaded. Made because Roland's Wave Manager no longer runs on current macOS.",
+      "years": "2026",
+      "url": "https://spd.byjoba.com"
+    },
+    {
       "id": "kiwi",
       "name": "Kiwi",
       "site": "byjoba.com",
